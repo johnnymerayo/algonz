@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+	       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+	       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="plantillaTiles" template="/WEB-INF/pages/plantillaTiles.jsp">
+		<put-attribute name="header" value="/WEB-INF/pages/head.jsp" />		
+		<put-attribute name="content" value="/WEB-INF/pages/blank.jsp" />		
+	</definition>
+	<definition name="plantillaLogin" template="/WEB-INF/pages/plantillaLogin.jsp">
+		<put-attribute name="header" value="/WEB-INF/pages/head.jsp" />		
+		<put-attribute name="body" value="/WEB-INF/pages/blank.jsp" />		
+	</definition>
+	
+	
+	<definition name="inicio" extends="plantillaTiles">			
+		<put-attribute name="content" value="/WEB-INF/pages/inicio.jsp" />
+	</definition>
+	
+	<definition name="login" extends="plantillaLogin">			
+		<put-attribute name="body" value="/WEB-INF/pages/login.jsp" />
+	</definition>
+	
+	<!-- Consignatario -->
+	
+	<definition name="listadoConsignatarios" extends="plantillaTiles">			
+		<put-attribute name="content" value="/WEB-INF/pages/consignatarios/listaConsignatarios.jsp" />
+	</definition>
+	
+	<definition name="detalleConsignatario" extends="plantillaTiles">			
+		<put-attribute name="content" value="/WEB-INF/pages/consignatarios/detalleConsignatario.jsp" />
+	</definition>
+	
+	<definition name="nuevoConsignatario" extends="plantillaTiles">			
+		<put-attribute name="content" value="/WEB-INF/pages/consignatarios/detalleConsignatario.jsp" />
+	</definition>
+	
+	
+	
+		
+	<!-- Comunidad -->
+	
+	<definition name="listadoComunidades" extends="plantillaTiles">			
+		<put-attribute name="content" value="/WEB-INF/pages/comunidades/listaComunidades.jsp" />
+	</definition>
+	
+	<definition name="detalleComunidad" extends="plantillaTiles">			
+		<put-attribute name="content" value="/WEB-INF/pages/comunidades/detalleComunidad.jsp" />
+	</definition>
+		
+	<!-- Empresa -->
+	
+	<definition name="listadoEmpresas" extends="plantillaTiles">			
+		<put-attribute name="content" value="/WEB-INF/pages/empresas/listaEmpresas.jsp" />
+	</definition>
+	
+	<definition name="detalleEmpresa" extends="plantillaTiles">			
+		<put-attribute name="content" value="/WEB-INF/pages/empresas/detalleEmpresa.jsp" />
+	</definition>
+	
+</tiles-definitions>
