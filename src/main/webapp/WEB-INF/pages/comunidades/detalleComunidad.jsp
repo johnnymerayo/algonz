@@ -32,7 +32,50 @@
 		Portales
 		</legend>
 		
-		<p class="text-info">NO SE HAN ENCONTRADO RESULTADOS</p>
+<div>&nbsp;</div>
+		
+
+
+<c:if test="${comunidad.portals != null && empty comunidad.portals}">
+	<p class="text-info">NO SE HAN ENCONTRADO RESULTADOS</p>
+</c:if>
+
+
+<c:if test="${not empty comunidad.portals}">
+
+	<table id="tablaPaginada" class="table table-striped table-bordered">
+		<thead>
+			<tr>
+				<th>Calle</th>
+				<th>Número</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${comunidad.portals}" var="portal" varStatus="status">
+				<tr>
+					<td>${portal.teCalle}</td>
+					<td>${portal.teNombre}</td>
+					<td>
+						<a href="action/portales/editar?id=${portal.cnPortal }">
+							<i class="icon-edit"></i></a> &nbsp;
+						<a href="action/portales/eliminar?id=${portal.cnPortal }">
+							<i class="icon-remove"></i></a>
+					</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+
+</c:if>
+
+
+<div>
+	<a href="action/portales/nuevoPortal?codComunidad=${comunidad.cnComunidad }" class="btn btn-primary">Nuevo portal</a>
+</div>
+
+<div>&nbsp;</div>
+
 		
 		</fieldset>
 	

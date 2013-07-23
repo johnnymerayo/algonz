@@ -1,5 +1,7 @@
 package es.algonz.repository;
 
+import java.util.List;
+
 import es.algonz.domain.PortalVO;
 
 
@@ -14,5 +16,7 @@ public interface PortalDAO {
 	public PortalVO merge(PortalVO detachedInstance);
 
 	public PortalVO findById(Integer id);
+
+	public List<PortalVO> getPortales(PortalVO object);
 	
 }

@@ -25,6 +25,7 @@
 				<th>CIF</th>
 				<th>Nombre</th>
 				<th>Código postal</th>
+				<th>Acciones</th>
 			</tr>
 		</thead>
 		<tbody>

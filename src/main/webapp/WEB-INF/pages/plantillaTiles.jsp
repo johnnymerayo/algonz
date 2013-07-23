@@ -77,11 +77,12 @@ body {
 				<div class="well sidebar-nav-fixed">
 					<ul class="nav nav-list">
 					<sec:authorize access="hasRole('ROLE_ADMIN')">
-						<li class="nav-header">Administración</li>						
-						<!-- <li><a href="action/consignatarios/listado">Consignatarios</a></li> -->				
+						<li class="nav-header">Administración</li>			
+						<li><a href="action/comunidades/listado">Comunidades</a></li>		
+						<!-- <li><a href="action/portales/listado">Portales</a></li>					
+						<li><a href="action/consignatarios/listado">Consignatarios</a></li> -->				
 					</sec:authorize>					
 					
-						<li><a href="action/comunidades/listado">Comunidades</a></li>		
 						<li><a href="action/empresas/listado">Empresas</a></li>			
 					</ul>
 				</div>

@@ -4,6 +4,8 @@ package es.algonz.domain;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -122,7 +124,7 @@ public class PredioVO implements java.io.Serializable {
 		this.planta = planta;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name = "CN_INQUILINO")
 	public TerceroVO getTerceroByCnInquilino() {
 		return this.terceroByCnInquilino;
@@ -132,7 +134,7 @@ public class PredioVO implements java.io.Serializable {
 		this.terceroByCnInquilino = terceroByCnInquilino;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name = "CN_CONYUGE")
 	public TerceroVO getTerceroByCnConyuge() {
 		return this.terceroByCnConyuge;
@@ -142,7 +144,7 @@ public class PredioVO implements java.io.Serializable {
 		this.terceroByCnConyuge = terceroByCnConyuge;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name = "CN_PROPIETARIO", nullable = false)
 	public TerceroVO getTerceroByCnPropietario() {
 		return this.terceroByCnPropietario;

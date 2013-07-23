@@ -50,6 +50,31 @@
 	<definition name="detalleComunidad" extends="plantillaTiles">			
 		<put-attribute name="content" value="/WEB-INF/pages/comunidades/detalleComunidad.jsp" />
 	</definition>
+	
+			
+	<!-- Portal -->
+	
+	<definition name="listadoPortales" extends="plantillaTiles">			
+		<put-attribute name="content" value="/WEB-INF/pages/portales/listaPortales.jsp" />
+	</definition>
+	
+	<definition name="detallePortal" extends="plantillaTiles">			
+		<put-attribute name="content" value="/WEB-INF/pages/portales/detallePortal.jsp" />
+	</definition>
+		
+		
+		
+	<!-- Predio -->
+	
+	<definition name="listadoPredios" extends="plantillaTiles">			
+		<put-attribute name="content" value="/WEB-INF/pages/predios/listaPredios.jsp" />
+	</definition>
+	
+	<definition name="detallePredio" extends="plantillaTiles">			
+		<put-attribute name="content" value="/WEB-INF/pages/predios/detallePredio.jsp" />
+	</definition>
+		
+		
 		
 	<!-- Empresa -->
 	

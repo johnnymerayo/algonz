@@ -2,8 +2,13 @@ package es.algonz.repository;
 
 // Generated 15-jul-2013 17:23:48 by Hibernate Tools 3.4.0.CR1
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -72,5 +77,18 @@ public class PredioDAOImpl implements PredioDAO {
 			log.error("get failed", re);
 			throw re;
 		}
+	}
+
+	@Override
+	public List<PredioVO> getPredios(PredioVO object) {
+		log.debug("getting Predio list ");
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+		CriteriaQuery<PredioVO> cq = cb.createQuery(PredioVO.class);
+		Root<PredioVO> root = cq.from(PredioVO.class);
+		cq.select(root);
+		if(object != null && object.getCnPredio() != null)
+			cq.where(cb.equal(root.get("cnPredio"), object.getCnPredio()));
+		//Sino se devuelven todos
+		return entityManager.createQuery(cq).getResultList();
 	}
 }

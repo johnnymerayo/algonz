@@ -16,6 +16,12 @@ public class RequestKeys
 	public static final String ERROR = "error";
 	public static final String CODIGO_EMPRESA = "codEmpresa";
 	public static final String CODIGO_COMUNIDAD = "codComunidad";
+	public static final String CODIGO_PORTAL = "codPortal";
+	public static final String CODIGO_PREDIO = "codPredio";
 	public static final String ID = "id";
+	public static final String PORTAL = "portal";
+	public static final String PREDIO = "predio";
+	public static final String LISTA_PORTALES = "listaPortales";
+	public static final String LISTA_PREDIOS = "listaPredios";
 
 }
