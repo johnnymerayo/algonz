@@ -13,6 +13,16 @@
 			Datos del portal nº: ${portal.teNombre}
 			</c:if>
 		</legend>
+		
+<c:if test="${not empty message }">
+	<div class="text-success">${message}</div>
+	<div>&nbsp;</div>
+</c:if>
+<c:if test="${not empty error }">
+	<div class="text-error"><h5>${error }</h5></div>
+	<div>&nbsp;</div>
+</c:if>
+
 		<form:hidden path="cnPortal" />
 		<form:hidden path="comunidad.cnComunidad" />
 
@@ -106,8 +116,8 @@
 		<div class="control-group" style="clear: both">
 			<div class="controls">
 				<button type="submit" class="btn btn-primary">Guardar</button>
-				<button type="button" class="btn"
-					onclick="changeAction('mainForm','action/comunidades/editar?id=${portal.comunidad.cnComunidad}')">Cancelar</button>
+				<!-- <button type="button" class="btn" onclick="changeAction('mainForm','action/comunidades/editar?id=${portal.comunidad.cnComunidad}')">Cancelar</button>  -->
+				<a href="action/comunidades/editar?id=${portal.comunidad.cnComunidad}" class="btn">Cancelar</a>
 			</div>
 		</div>
 </form:form>

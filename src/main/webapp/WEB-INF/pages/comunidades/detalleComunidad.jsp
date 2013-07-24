@@ -9,6 +9,17 @@
 			<c:if test='${comunidad.cnComunidad!=null}'>Datos de la comunidad: ${comunidad.teNombre}
 			</c:if>
 		</legend>
+		
+				
+<c:if test="${not empty message }">
+	<div class="text-success">${message}</div>
+	<div>&nbsp;</div>
+</c:if>
+<c:if test="${not empty error }">
+	<div class="text-error"><h5>${error }</h5></div>
+	<div>&nbsp;</div>
+</c:if>
+		
 		<form:hidden path="cnComunidad" />
 
 		<div style="width: 100%; float: left">

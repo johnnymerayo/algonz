@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import es.algonz.controller.utils.ControladorUtils;
 import es.algonz.domain.ComunidadVO;
@@ -103,7 +104,7 @@ public class PredioController {
 	@RequestMapping(value = "/guardar", method = RequestMethod.POST)
 	public String guardar(
 			@Valid @ModelAttribute(RequestKeys.PREDIO) PredioVO predio,
-			BindingResult binding, Model model) {
+			BindingResult binding, Model model, RedirectAttributes redirectAttrs) {
 		if (binding.hasErrors()) {
 			model.addAttribute(RequestKeys.PREDIO, predio);
 			return "detallePredio";
@@ -114,7 +115,8 @@ public class PredioController {
 			else {
 				predioManager.persist(predio);
 			}
-			model.addAttribute(RequestKeys.MESSAGE, "Almacenado correctamente");
+			//model.addAttribute(RequestKeys.MESSAGE, "Almacenado correctamente");
+			redirectAttrs.addFlashAttribute(RequestKeys.MESSAGE, "Almacenado correctamente");
 		}
 		//return "forward:/action/predios/listado";
 		return "redirect:/action/portales/editar?id=" + predio.getPortal().getCnPortal();
