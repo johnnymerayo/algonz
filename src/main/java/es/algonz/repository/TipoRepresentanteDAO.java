@@ -1,5 +1,7 @@
 package es.algonz.repository;
 
+import java.util.List;
+
 import es.algonz.domain.TipoRepresentanteVO;
 
 
@@ -14,5 +16,8 @@ public interface TipoRepresentanteDAO {
 	public TipoRepresentanteVO merge(TipoRepresentanteVO detachedInstance);
 
 	public TipoRepresentanteVO findById(Integer id);
+
+	public List<TipoRepresentanteVO> getTipoRepresentantes(
+			TipoRepresentanteVO object);
 	
 }

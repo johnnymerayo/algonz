@@ -86,4 +86,23 @@
 		<put-attribute name="content" value="/WEB-INF/pages/empresas/detalleEmpresa.jsp" />
 	</definition>
 	
+		
+	<!-- Siniestro -->
+	
+	<definition name="listadoSiniestros" extends="plantillaTiles">			
+		<put-attribute name="content" value="/WEB-INF/pages/siniestros/listaSiniestros.jsp" />
+	</definition>
+	
+	<definition name="detalleSiniestro" extends="plantillaTiles">			
+		<put-attribute name="content" value="/WEB-INF/pages/siniestros/detalleSiniestro.jsp" />
+	</definition>	
+	
+	<!-- Actuacion -->
+	
+	<definition name="detalleActuacion" extends="plantillaTiles">			
+		<put-attribute name="content" value="/WEB-INF/pages/siniestros/detalleActuacion.jsp" />
+	</definition>
+	
+	
+	
 </tiles-definitions>

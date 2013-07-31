@@ -31,6 +31,7 @@ public class ActuacionVO implements java.io.Serializable {
 	private Date feInicio;
 	private Date feVencimiento;
 	private Date feCierre;
+	private String teDescripcion;
 	private String teObservaciones;
 	private Set<DocumentoVO> documentos = new HashSet<DocumentoVO>(0);
 
@@ -115,6 +116,16 @@ public class ActuacionVO implements java.io.Serializable {
 
 	public void setFeCierre(Date feCierre) {
 		this.feCierre = feCierre;
+	}
+
+
+	@Column(name = "TE_DESCRIPCION", length = 50)
+	public String getTeDescripcion() {
+		return teDescripcion;
+	}
+
+	public void setTeDescripcion(String teDescripcion) {
+		this.teDescripcion = teDescripcion;
 	}
 
 	@Column(name = "TE_OBSERVACIONES", length = 65535)

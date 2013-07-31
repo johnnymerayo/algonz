@@ -1,5 +1,7 @@
 package es.algonz.repository;
 
+import java.util.List;
+
 import es.algonz.domain.PlantaVO;
 
 
@@ -15,5 +17,7 @@ public interface PlantaDAO {
 	public PlantaVO merge(PlantaVO detachedInstance);
 
 	public PlantaVO findById(Integer id);
+
+	public List<PlantaVO> getPlantas(PlantaVO object);
 	
 }

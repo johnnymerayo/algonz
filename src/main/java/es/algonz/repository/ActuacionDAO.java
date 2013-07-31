@@ -1,6 +1,8 @@
 package es.algonz.repository;
 
 
+import java.util.List;
+
 import es.algonz.domain.ActuacionVO;
 
 public interface ActuacionDAO {
@@ -13,5 +15,7 @@ public interface ActuacionDAO {
 	public ActuacionVO merge(ActuacionVO detachedInstance);
 
 	public ActuacionVO findById(Integer id);
+
+	public List<ActuacionVO> getActuaciones(ActuacionVO object);
 	
 }

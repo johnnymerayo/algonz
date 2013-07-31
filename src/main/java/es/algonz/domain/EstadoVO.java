@@ -22,7 +22,7 @@ public class EstadoVO implements java.io.Serializable {
 
 	private Integer cnEstado;
 	private String teEstado;
-	private Set<ActuacionVO> actuacions = new HashSet<ActuacionVO>(0);
+	private Set<ActuacionVO> actuaciones = new HashSet<ActuacionVO>(0);
 	private Set<AvisoEmpresaVO> avisoEmpresas = new HashSet<AvisoEmpresaVO>(0);
 
 	public EstadoVO() {
@@ -33,11 +33,11 @@ public class EstadoVO implements java.io.Serializable {
 		this.teEstado = teEstado;
 	}
 
-	public EstadoVO(Integer cnEstado, String teEstado, Set<ActuacionVO> actuacions,
+	public EstadoVO(Integer cnEstado, String teEstado, Set<ActuacionVO> actuaciones,
 			Set<AvisoEmpresaVO> avisoEmpresas) {
 		this.cnEstado = cnEstado;
 		this.teEstado = teEstado;
-		this.actuacions = actuacions;
+		this.actuaciones = actuaciones;
 		this.avisoEmpresas = avisoEmpresas;
 	}
 
@@ -62,12 +62,12 @@ public class EstadoVO implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "estado")
-	public Set<ActuacionVO> getActuacions() {
-		return this.actuacions;
+	public Set<ActuacionVO> getActuaciones() {
+		return this.actuaciones;
 	}
 
-	public void setActuacions(Set<ActuacionVO> actuacions) {
-		this.actuacions = actuacions;
+	public void setActuaciones(Set<ActuacionVO> actuaciones) {
+		this.actuaciones = actuaciones;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "estado")

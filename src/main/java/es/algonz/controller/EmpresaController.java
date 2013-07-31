@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import es.algonz.controller.utils.ControladorUtils;
+import es.algonz.controller.utils.CombosUtils;
 import es.algonz.domain.EmpresaVO;
 import es.algonz.service.EmpresaManager;
 import es.algonz.validator.EmpresaValidator;
@@ -29,7 +29,7 @@ public class EmpresaController {
 	@Autowired
 	private EmpresaManager empresaManager;
 	@Autowired
-	private ControladorUtils controladorUtils;
+	private CombosUtils combosUtils;
 
 	@InitBinder(RequestKeys.EMPRESA)
 	protected void empresa(WebDataBinder binder) {
@@ -59,6 +59,11 @@ public class EmpresaController {
 				model.addAttribute(RequestKeys.EMPRESA, empresa);
 			
 		}
+		
+		// Cargamos el combo de tipos de empresa
+		model.addAttribute("tiposEmpresaCombo", combosUtils.loadTiposEmpresa());
+		
+		
 		return "detalleEmpresa";
 	}
 
@@ -78,6 +83,10 @@ public class EmpresaController {
 	public String nuevo(Model model, HttpSession session) {
 		EmpresaVO empresa = new EmpresaVO();		
 		model.addAttribute(RequestKeys.EMPRESA, empresa);
+
+
+		// Cargamos el combo de tipos de empresa
+		model.addAttribute("tiposEmpresaCombo", combosUtils.loadTiposEmpresa());
 		return "detalleEmpresa";
 	}
 

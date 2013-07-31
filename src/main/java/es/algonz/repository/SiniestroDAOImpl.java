@@ -2,14 +2,20 @@ package es.algonz.repository;
 
 // Generated 15-jul-2013 17:23:48 by Hibernate Tools 3.4.0.CR1
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import es.algonz.domain.SiniestroVO;
 import es.algonz.domain.SiniestroVO;
 
 /**
@@ -72,5 +78,18 @@ public class SiniestroDAOImpl implements SiniestroDAO {
 			log.error("get failed", re);
 			throw re;
 		}
+	}
+
+	@Override
+	public List<SiniestroVO> getSiniestros(SiniestroVO object) {
+		log.debug("getting Siniestro list ");
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+		CriteriaQuery<SiniestroVO> cq = cb.createQuery(SiniestroVO.class);
+		Root<SiniestroVO> root = cq.from(SiniestroVO.class);
+		cq.select(root);
+		if(object != null && object.getCnSiniestro() != null)
+			cq.where(cb.equal(root.get("cnSiniestro"), object.getCnSiniestro()));
+		//Sino se devuelven todos
+		return entityManager.createQuery(cq).getResultList();
 	}
 }

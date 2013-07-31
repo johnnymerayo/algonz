@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import es.algonz.controller.utils.CombosUtils;
 import es.algonz.controller.utils.ControladorUtils;
 import es.algonz.domain.ComunidadVO;
 import es.algonz.domain.PortalVO;
@@ -36,7 +37,7 @@ public class PredioController {
 	@Autowired
 	private PortalManager portalManager;
 	@Autowired
-	private ControladorUtils controladorUtils;
+	private CombosUtils comboUtils;
 
 	@InitBinder(RequestKeys.PREDIO)
 	protected void predio(WebDataBinder binder) {
@@ -64,6 +65,11 @@ public class PredioController {
 				PredioVO predio  = predioManager.findById(new Integer (id).intValue());
 				
 				model.addAttribute(RequestKeys.PREDIO, predio);
+				
+				//Cargamos el combo de plantas
+				model.addAttribute("plantasCombo", comboUtils.loadPlantas());
+				//Cargamos el combo de representantes
+				model.addAttribute("tiposRepresentanteCombo", comboUtils.loadTiposRrepresentante());
 			
 		}
 		return "detallePredio";
@@ -85,6 +91,10 @@ public class PredioController {
 	public String nuevo(Model model, HttpSession session) {
 		PredioVO predio = new PredioVO();		
 		model.addAttribute(RequestKeys.PREDIO, predio);
+		//Cargamos el combo de plantas
+		model.addAttribute("plantasCombo", comboUtils.loadPlantas());
+		//Cargamos el combo de representantes
+		model.addAttribute("tiposRepresentanteCombo", comboUtils.loadTiposRrepresentante());
 		return "detallePredio";
 	}
 	

@@ -3,14 +3,20 @@ package es.algonz.repository;
 // Generated 20-jul-2013 18:00:17 by Hibernate Tools 3.4.0.CR1
 
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import es.algonz.domain.TipoEmpresaVO;
 import es.algonz.domain.TipoEmpresaVO;
 
 /**
@@ -76,5 +82,18 @@ public class TipoEmpresaDAOImpl implements TipoEmpresaDAO{
 			log.error("get failed", re);
 			throw re;
 		}
+	}
+
+	@Override
+	public List<TipoEmpresaVO> getTipoEmpresas(TipoEmpresaVO object) {
+		log.debug("getting TipoEmpresa list ");
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+		CriteriaQuery<TipoEmpresaVO> cq = cb.createQuery(TipoEmpresaVO.class);
+		Root<TipoEmpresaVO> root = cq.from(TipoEmpresaVO.class);
+		cq.select(root);
+		if(object != null && object.getCnTipoEmpresa() != null)
+			cq.where(cb.equal(root.get("cnTipoEmpresa"), object.getCnTipoEmpresa()));
+		//Sino se devuelven todos
+		return entityManager.createQuery(cq).getResultList();
 	}
 }

@@ -7,7 +7,7 @@
 		<legend>
 			Comunidad: ${predio.portal.comunidad.teNombre} 
 			<br />
-			Portal:	<c:if test='${predio.portal.teNombre!=null}'> ${predio.portal.teNombre} - </c:if>
+			Portalnº:	<c:if test='${predio.portal.teNombre!=null}'> ${predio.portal.teNombre}</c:if>
 			<br />
 			<c:if test='${predio.cnPredio==null}'>Nuevo Predio</c:if>
 			<c:if test='${predio.cnPredio!=null}'>Datos Predio: ${predio.tePredio}
@@ -50,45 +50,19 @@
 					</c:if>
 				</div>
 			</div>
-
-			<div class="control-group ${status.error ? 'error' : '' }">
-				<label class="control-label" for="planta.cnPlanta">Planta</label>
-				<div class="controls">
-					<form:select path="planta.cnPlanta" cssClass="input-xlarge"
-						id="planta.cnPlanta" tabindex="2">
-						<form:option value="1" label="1" />
-						<form:option value="2" label="2" />
-					</form:select>
-
-					<c:if test="${status.error}">
-						<span class="help-inline">${status.errorMessage}</span>
-					</c:if>
-				</div>
-			</div>
+			
+			<t:select itemLabel="tePlanta" itemValue="cnPlanta" items="${plantasCombo}" path="planta.cnPlanta" required="true" label="Planta" tabindex="1"/>
+			
+			
 			<t:input path="tePredio" label="Predio" required="false" tabindex="3" />
 			<t:input path="teTrastero" label="Trastero" required="false" tabindex="4" />
 			<t:input path="tePlaza" label="Plaza asociada" required="false" tabindex="5" />
+				
+			<t:select itemLabel="teTipoRepresentante" itemValue="cnTipoRepresentante" items="${tiposRepresentanteCombo}" path="tipoRepresentante.cnTipoRepresentante" required="false" label="Tipo representante" tabindex="7"/>
 			
-			
-			<div class="control-group ${status.error ? 'error' : '' }">
-				<label class="control-label" for="tipoRepresentante.cnTipoRepresentante">Tipo
-					representante</label>
-				<div class="controls">
-					<form:select path="tipoRepresentante.cnTipoRepresentante" cssClass="input-xlarge"
-						id="tipoRepresentante.cnTipoRepresentante" tabindex="6">
-						<form:option value="0" label="Seleccionar..." />
-						<form:option value="1" label="Presidente" />
-						<form:option value="2" label="Vicepresidente" />
-					</form:select>
-
-					<c:if test="${status.error}">
-						<span class="help-inline">${status.errorMessage}</span>
-					</c:if>
-				</div>
-			</div>
 			
 			<t:area path="teObservaciones" label="Observaciones" cols="500"
-				tabindex="7" />
+				tabindex="9" />
 		</div>
 	</fieldset>
 

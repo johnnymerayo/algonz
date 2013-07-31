@@ -2,14 +2,20 @@ package es.algonz.repository;
 
 // Generated 15-jul-2013 17:23:48 by Hibernate Tools 3.4.0.CR1
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import es.algonz.domain.ActuacionVO;
 import es.algonz.domain.ActuacionVO;
 
 /**
@@ -75,5 +81,18 @@ public class ActuacionDAOImpl implements ActuacionDAO {
 			log.error("get failed", re);
 			throw re;
 		}
+	}
+
+	@Override
+	public List<ActuacionVO> getActuaciones(ActuacionVO object) {
+		log.debug("getting Actuacion list ");
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+		CriteriaQuery<ActuacionVO> cq = cb.createQuery(ActuacionVO.class);
+		Root<ActuacionVO> root = cq.from(ActuacionVO.class);
+		cq.select(root);
+		if(object != null && object.getCnActuacion() != null)
+			cq.where(cb.equal(root.get("cnActuacion"), object.getCnActuacion()));
+		//Sino se devuelven todos
+		return entityManager.createQuery(cq).getResultList();
 	}
 }
