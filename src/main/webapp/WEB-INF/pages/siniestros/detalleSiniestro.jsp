@@ -59,9 +59,10 @@
 		<tbody>
 			<c:forEach items="${siniestro.actuaciones}" var="actuacion" varStatus="status">
 				<tr>
-					<td>${actuacion.feInicio}</td>
-					<td>${actuacion.feVencimiento}</td>
-					<td>${actuacion.feCierre}</td>
+				
+					<td><fmt:formatDate value="${actuacion.feInicio}" pattern="dd/MM/yyyy"/></td>			
+					<td><fmt:formatDate value="${actuacion.feInicio}" pattern="dd/MM/yyyy"/></td>
+					<td><fmt:formatDate value="${actuacion.feCierre}" pattern="dd/MM/yyyy"/></td>
 					<td>
 						${actuacion.estado.teEstado}				
 					</td>

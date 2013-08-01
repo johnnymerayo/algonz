@@ -58,9 +58,10 @@
 		<tbody>
 			<c:forEach items="${empresaComunidad.avisosEmpresa}" var="aviso" varStatus="status">
 				<tr>
-					<td>${aviso.feInicio}</td>
-					<td>${aviso.feVencimiento}</td>
-					<td>${aviso.feCierre}</td>
+				
+					<td><fmt:formatDate value="${aviso.feInicio}" pattern="dd/MM/yyyy"/></td>
+					<td><fmt:formatDate value="${aviso.feVencimiento}" pattern="dd/MM/yyyy"/></td>
+					<td><fmt:formatDate value="${aviso.feCierre}" pattern="dd/MM/yyyy"/></td>
 					<td>
 						${aviso.estado.teEstado}				
 					</td>

@@ -1,5 +1,7 @@
 package es.algonz.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -8,6 +10,7 @@ import javax.validation.Valid;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.validator.GenericValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -40,6 +43,14 @@ public class AvisoEmpresaController {
 	@InitBinder(RequestKeys.AVISO_EMPRESA)
 	protected void avisoEmpresa(WebDataBinder binder) {
 		binder.setValidator(new AvisoEmpresaValidator());
+		
+		
+		// Para que salga la fecha formateada al entrar en los detalles
+		// y permitir guardar vacias
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+	    binder.registerCustomEditor(Date.class, new CustomDateEditor(
+	            dateFormat, true));
+	   
 	}
 
 	@RequestMapping(value = "/listado", method = RequestMethod.GET)

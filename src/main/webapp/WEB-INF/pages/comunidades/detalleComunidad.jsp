@@ -142,8 +142,8 @@
 						
 					</td>
 					<td>${empresaComunidad.empresa.teEmail}</td>
-					<td>${empresaComunidad.feInicio}</td>
-					<td>${empresaComunidad.feFin}</td>
+					<td><fmt:formatDate value="${empresaComunidad.feInicio}" pattern="dd/MM/yyyy"/></td>
+					<td><fmt:formatDate value="${empresaComunidad.feFin}" pattern="dd/MM/yyyy"/></td>
 					<td>
 						<a href="action/empresasComunidad/editar?id=${empresaComunidad.cnEmpresaComunidad }">
 							<i class="icon-edit"></i></a> &nbsp;
