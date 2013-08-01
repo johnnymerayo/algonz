@@ -23,9 +23,10 @@
 		<thead>
 			<tr>
 				<th>Tipo</th>
-				<th>Nombre</th>
 				<th>CIF</th>
+				<th>Nombre</th>
 				<th>Teléfono</th>
+				<th>E-mail</th>
 				<th>Acciones</th>
 			</tr>
 		</thead>
@@ -33,8 +34,8 @@
 			<c:forEach items="${listaEmpresas}" var="empresa" varStatus="status">
 				<tr>
 					<td>${empresa.tipoEmpresa.teTipoEmpresa}</td>
-					<td>${empresa.teNombre}</td>
 					<td>${empresa.caCif}</td>
+					<td>${empresa.teNombre}</td>
 					<td>
 						${empresa.teTlfFijo}
 						<c:if test="${not empty empresa.teTlfFijo and not empty empresa.teTlfMovil1}">/</c:if>
@@ -43,6 +44,7 @@
 						${empresa.teTlfMovil2}
 						
 					</td>
+					<td>${empresa.teEmail}</td>
 					<td>
 						<a href="action/empresas/editar?id=${empresa.cnEmpresa }">
 							<i class="icon-edit"></i></a> &nbsp;

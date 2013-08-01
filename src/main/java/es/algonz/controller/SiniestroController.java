@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import es.algonz.controller.utils.ControladorUtils;
+import es.algonz.controller.utils.CombosUtils;
 import es.algonz.domain.PortalVO;
 import es.algonz.domain.SiniestroVO;
 import es.algonz.service.PortalManager;
@@ -35,7 +35,7 @@ public class SiniestroController {
 	@Autowired
 	private PortalManager portalManager;
 	@Autowired
-	private ControladorUtils controladorUtils;
+	private CombosUtils combosUtils;
 
 	@InitBinder(RequestKeys.SINIESTRO)
 	protected void siniestro(WebDataBinder binder) {
@@ -65,6 +65,13 @@ public class SiniestroController {
 				model.addAttribute(RequestKeys.SINIESTRO, siniestro);
 			
 		}
+		
+
+		// Cargamos el combo de tipos de empresa
+		model.addAttribute("tiposEmpresaCombo", combosUtils.loadTiposEmpresa());
+		// TODO hacerlo dinamico desde la vista
+		// Cargamos el combo de empresa
+		model.addAttribute("empresasCombo", combosUtils.loadEmpresas());
 		return "detalleSiniestro";
 	}
 
@@ -84,6 +91,11 @@ public class SiniestroController {
 	public String nuevo(Model model, HttpSession session) {
 		SiniestroVO siniestro = new SiniestroVO();		
 		model.addAttribute(RequestKeys.SINIESTRO, siniestro);
+		// Cargamos el combo de tipos de empresa
+		model.addAttribute("tiposEmpresaCombo", combosUtils.loadTiposEmpresa());
+		// TODO hacerlo dinamico desde la vista
+		// Cargamos el combo de empresa
+		model.addAttribute("empresasCombo", combosUtils.loadEmpresas());
 		return "detalleSiniestro";
 	}
 	
@@ -96,6 +108,11 @@ public class SiniestroController {
 		}
 		
 		model.addAttribute(RequestKeys.SINIESTRO, siniestro);
+		// Cargamos el combo de tipos de empresa
+		model.addAttribute("tiposEmpresaCombo", combosUtils.loadTiposEmpresa());
+		// TODO hacerlo dinamico desde la vista
+		// Cargamos el combo de empresa
+		model.addAttribute("empresasCombo", combosUtils.loadEmpresas());
 		return "detalleSiniestro";
 	}
 	
@@ -106,6 +123,11 @@ public class SiniestroController {
 			BindingResult binding, Model model, RedirectAttributes redirectAttrs) {
 		if (binding.hasErrors()) {
 			model.addAttribute(RequestKeys.SINIESTRO, siniestro);
+			// Cargamos el combo de tipos de empresa
+			model.addAttribute("tiposEmpresaCombo", combosUtils.loadTiposEmpresa());
+			// TODO hacerlo dinamico desde la vista
+			// Cargamos el combo de empresa
+			model.addAttribute("empresasCombo", combosUtils.loadEmpresas());
 			return "detalleSiniestro";
 		}
 		if (siniestro != null) {

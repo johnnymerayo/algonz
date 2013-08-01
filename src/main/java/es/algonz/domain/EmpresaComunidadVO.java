@@ -32,7 +32,7 @@ public class EmpresaComunidadVO implements java.io.Serializable {
 	private Date feFin;
 	private String teObservaciones;
 	private Set<DocumentoVO> documentos = new HashSet<DocumentoVO>(0);
-	private Set<AvisoEmpresaVO> avisoEmpresas = new HashSet<AvisoEmpresaVO>(0);
+	private Set<AvisoEmpresaVO> avisosEmpresa = new HashSet<AvisoEmpresaVO>(0);
 	private Set<SiniestroVO> siniestros = new HashSet<SiniestroVO>(0);
 
 	public EmpresaComunidadVO() {
@@ -47,7 +47,7 @@ public class EmpresaComunidadVO implements java.io.Serializable {
 
 	public EmpresaComunidadVO(Integer cnEmpresaComunidad, ComunidadVO comunidad,
 			EmpresaVO empresa, Date feInicio, Date feFin, String teObservaciones,
-			Set<DocumentoVO> documentos, Set<AvisoEmpresaVO> avisoEmpresas,
+			Set<DocumentoVO> documentos, Set<AvisoEmpresaVO> avisosEmpresa,
 			Set<SiniestroVO> siniestros) {
 		this.cnEmpresaComunidad = cnEmpresaComunidad;
 		this.comunidad = comunidad;
@@ -56,7 +56,7 @@ public class EmpresaComunidadVO implements java.io.Serializable {
 		this.feFin = feFin;
 		this.teObservaciones = teObservaciones;
 		this.documentos = documentos;
-		this.avisoEmpresas = avisoEmpresas;
+		this.avisosEmpresa = avisosEmpresa;
 		this.siniestros = siniestros;
 	}
 
@@ -130,12 +130,12 @@ public class EmpresaComunidadVO implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "empresaComunidad")
-	public Set<AvisoEmpresaVO> getAvisoEmpresas() {
-		return this.avisoEmpresas;
+	public Set<AvisoEmpresaVO> getAvisosEmpresa() {
+		return this.avisosEmpresa;
 	}
 
-	public void setAvisoEmpresas(Set<AvisoEmpresaVO> avisoEmpresas) {
-		this.avisoEmpresas = avisoEmpresas;
+	public void setAvisosEmpresa(Set<AvisoEmpresaVO> avisosEmpresa) {
+		this.avisosEmpresa = avisosEmpresa;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "empresaComunidad")

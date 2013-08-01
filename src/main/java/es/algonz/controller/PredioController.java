@@ -107,6 +107,10 @@ public class PredioController {
 		}
 		
 		model.addAttribute(RequestKeys.PREDIO, predio);
+		//Cargamos el combo de plantas
+		model.addAttribute("plantasCombo", comboUtils.loadPlantas());
+		//Cargamos el combo de representantes
+		model.addAttribute("tiposRepresentanteCombo", comboUtils.loadTiposRrepresentante());
 		return "detallePredio";
 	}
 	
@@ -117,6 +121,10 @@ public class PredioController {
 			BindingResult binding, Model model, RedirectAttributes redirectAttrs) {
 		if (binding.hasErrors()) {
 			model.addAttribute(RequestKeys.PREDIO, predio);
+			//Cargamos el combo de plantas
+			model.addAttribute("plantasCombo", comboUtils.loadPlantas());
+			//Cargamos el combo de representantes
+			model.addAttribute("tiposRepresentanteCombo", comboUtils.loadTiposRrepresentante());
 			return "detallePredio";
 		}
 		if (predio != null) {

@@ -29,27 +29,21 @@
 		<form:hidden path="cnActuacion" />
 		<form:hidden path="siniestro.cnSiniestro" />
 
-<div class="row">
-
-<t:select cssClass="col-lg-4" itemLabel="teEstado" itemValue="cnEstado" items="${estadosCombo}" path="estado.cnEstado" required="true" label="Estado" tabindex="1"/>
-				
-</div>
-
-
-
-<div class="row">
-
-			<t:input cssClass="col-lg-4" path="feInicio" label="Fecha inicio" required="true" tabindex="2" date="true"/>
-			<t:input cssClass="col-lg-4" path="feVencimiento" label="Fecha vencimiento" required="true" tabindex="3" date="true"/>
-			<t:input cssClass="col-lg-4" path="feCierre" label="Fecha cierre" required="false" tabindex="4" date="true"/>			
-</div>
 
 
 		<div style="width: 100%; float: left">
 		
    		
 			
+<t:select cssClass="col-lg-4" itemLabel="teEstado" itemValue="cnEstado" items="${estadosCombo}" path="estado.cnEstado" required="true" label="Estado" tabindex="1"/>
+
+
+			<t:input cssClass="col-lg-4" path="feInicio" label="Fecha inicio" required="true" tabindex="2" date="true"/>
+			<t:input cssClass="col-lg-4" path="feVencimiento" label="Fecha vencimiento" required="true" tabindex="3" date="true"/>
+			<t:input cssClass="col-lg-4" path="feCierre" label="Fecha cierre" required="false" tabindex="4" date="true"/>			
+			
     
+			<t:input path="teNumeroExp" label="Nº Expediente" required="false" tabindex="5"/>
 			<t:input path="teDescripcion" label="Descripción" required="true" tabindex="5"/>
 			<t:area path="teObservaciones" label="Observaciones" required="false" tabindex="6"/>
     

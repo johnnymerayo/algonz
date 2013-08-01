@@ -23,7 +23,7 @@ public class EstadoVO implements java.io.Serializable {
 	private Integer cnEstado;
 	private String teEstado;
 	private Set<ActuacionVO> actuaciones = new HashSet<ActuacionVO>(0);
-	private Set<AvisoEmpresaVO> avisoEmpresas = new HashSet<AvisoEmpresaVO>(0);
+	private Set<AvisoEmpresaVO> avisosEmpresa = new HashSet<AvisoEmpresaVO>(0);
 
 	public EstadoVO() {
 	}
@@ -34,11 +34,11 @@ public class EstadoVO implements java.io.Serializable {
 	}
 
 	public EstadoVO(Integer cnEstado, String teEstado, Set<ActuacionVO> actuaciones,
-			Set<AvisoEmpresaVO> avisoEmpresas) {
+			Set<AvisoEmpresaVO> avisosEmpresa) {
 		this.cnEstado = cnEstado;
 		this.teEstado = teEstado;
 		this.actuaciones = actuaciones;
-		this.avisoEmpresas = avisoEmpresas;
+		this.avisosEmpresa = avisosEmpresa;
 	}
 
 	@Id
@@ -71,12 +71,12 @@ public class EstadoVO implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "estado")
-	public Set<AvisoEmpresaVO> getAvisoEmpresas() {
-		return this.avisoEmpresas;
+	public Set<AvisoEmpresaVO> getAvisosEmpresa() {
+		return this.avisosEmpresa;
 	}
 
-	public void setAvisoEmpresas(Set<AvisoEmpresaVO> avisoEmpresas) {
-		this.avisoEmpresas = avisoEmpresas;
+	public void setAvisosEmpresa(Set<AvisoEmpresaVO> avisosEmpresa) {
+		this.avisosEmpresa = avisosEmpresa;
 	}
 
 }

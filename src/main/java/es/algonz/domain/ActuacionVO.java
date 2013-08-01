@@ -31,6 +31,7 @@ public class ActuacionVO implements java.io.Serializable {
 	private Date feInicio;
 	private Date feVencimiento;
 	private Date feCierre;
+	private String teNumeroExp;
 	private String teDescripcion;
 	private String teObservaciones;
 	private Set<DocumentoVO> documentos = new HashSet<DocumentoVO>(0);
@@ -45,7 +46,7 @@ public class ActuacionVO implements java.io.Serializable {
 	}
 
 	public ActuacionVO(Integer cnActuacion, SiniestroVO siniestro, EstadoVO estado,
-			Date feInicio, Date feVencimiento, Date feCierre,
+			Date feInicio, Date feVencimiento, Date feCierre, String teDescripcion, String teNumeroExp,
 			String teObservaciones, Set<DocumentoVO> documentos) {
 		this.cnActuacion = cnActuacion;
 		this.siniestro = siniestro;
@@ -53,6 +54,8 @@ public class ActuacionVO implements java.io.Serializable {
 		this.feInicio = feInicio;
 		this.feVencimiento = feVencimiento;
 		this.feCierre = feCierre;
+		this.teNumeroExp = teNumeroExp;
+		this.teDescripcion = teDescripcion;
 		this.teObservaciones = teObservaciones;
 		this.documentos = documentos;
 	}
@@ -119,6 +122,16 @@ public class ActuacionVO implements java.io.Serializable {
 	}
 
 
+
+	@Column(name = "TE_NUMERO_EXP", length = 50)
+	public String getTeNumeroExp() {
+		return teNumeroExp;
+	}
+
+	public void setTeNumeroExp(String teNumeroExp) {
+		this.teNumeroExp = teNumeroExp;
+	}
+	
 	@Column(name = "TE_DESCRIPCION", length = 50)
 	public String getTeDescripcion() {
 		return teDescripcion;

@@ -17,41 +17,12 @@
 		<form:hidden path="portal.cnPortal" />
 
 		<div style="width: 50%; float: left">
-		
-		
-		 <div class="control-group ${status.error ? 'error' : '' }">
-        <label class="control-label" for="tipoSiniestro.cnTipoSiniestro">Tipo siniestro</label>
-        <div class="controls">        
-          <form:select path="cnTipoSiniestro" cssClass="input-xlarge" id="tipoSiniestro.cnTipoSiniestro" tabindex="1" >
-				<form:option value="0" label="Seleccionar..." />
-				<form:option value="1" label="Ascensores" />
-				<form:option value="2" label="Iluminarias" />
-			</form:select>
-          
-          
-            <c:if test="${status.error}">
-                <span class="help-inline">${status.errorMessage}</span>
-            </c:if>
-        </div>
-    </div>     
+
     
-    		
-		 <div class="control-group ${status.error ? 'error' : '' }">
-        <label class="control-label" for="empresaComunidad.empresa.cnEmpresa">Tipo siniestro</label>
-        <div class="controls">        
-          <form:select path="empresaComunidad.cnEmpresaComunidad" cssClass="input-xlarge" id="empresaComunidad.empresa.cnEmpresa" tabindex="1" >
-				<form:option value="0" label="Seleccionar..." />
-				<form:option value="1" label="ThyssenGroup" />
-				<form:option value="2" label="Luces Juan" />
-			</form:select>
-          
-          
-            <c:if test="${status.error}">
-                <span class="help-inline">${status.errorMessage}</span>
-            </c:if>
-        </div>
-    </div>     
-    
+    	<t:select itemLabel="teTipoEmpresa" itemValue="cnTipoEmpresa" items="${tiposEmpresaCombo}" path="cnTipoSiniestro" required="true" label="Tipo siniestro" tabindex="1"/>
+			
+		<t:select itemLabel="teNombre" itemValue="cnEmpresa" items="${empresasCombo}" path="empresaComunidad.empresa.cnEmpresa" required="true" label="Empresa" tabindex="2"/>
+				
 			<t:input path="teNombre" label="Descripción" required="true" tabindex="3"/>
 		
 			<t:area path="teObservaciones" label="Observaciones" cols="500" tabindex="9"/>

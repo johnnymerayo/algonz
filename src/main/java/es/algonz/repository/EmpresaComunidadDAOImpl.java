@@ -2,14 +2,20 @@ package es.algonz.repository;
 
 // Generated 15-jul-2013 17:23:48 by Hibernate Tools 3.4.0.CR1
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import es.algonz.domain.EmpresaComunidadVO;
 import es.algonz.domain.EmpresaComunidadVO;
 
 /**
@@ -77,5 +83,19 @@ public class EmpresaComunidadDAOImpl implements EmpresaComunidadDAO{
 			log.error("get failed", re);
 			throw re;
 		}
+	}
+
+	@Override
+	public List<EmpresaComunidadVO> getEmpresasComunidad(
+			EmpresaComunidadVO object) {
+		log.debug("getting EmpresaComunidad list ");
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+		CriteriaQuery<EmpresaComunidadVO> cq = cb.createQuery(EmpresaComunidadVO.class);
+		Root<EmpresaComunidadVO> root = cq.from(EmpresaComunidadVO.class);
+		cq.select(root);
+		if(object != null && object.getCnEmpresaComunidad() != null)
+			cq.where(cb.equal(root.get("cnEmpresaComunidad"), object.getCnEmpresaComunidad()));
+		//Sino se devuelven todos
+		return entityManager.createQuery(cq).getResultList();
 	}
 }

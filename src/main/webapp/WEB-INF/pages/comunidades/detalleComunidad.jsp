@@ -24,9 +24,6 @@
 
 		<div style="width: 100%; float: left">
 		
-		
-
-    
 			<t:input path="caCif" label="CIF" required="true" tabindex="1"/>
 			<t:input path="teNombre" label="Nombre" required="true" tabindex="2"/>
 			<t:input path="teCp" label="Código postal" required="false" tabindex="3"/>
@@ -106,8 +103,68 @@
 		Empresas
 		</legend>
 		
-		<p class="text-info">NO SE HAN ENCONTRADO RESULTADOS</p>
 		
+<div>&nbsp;</div>
+		
+<c:if test="${comunidad.empresasComunidad != null && empty comunidad.empresasComunidad}">
+	<p class="text-info">NO SE HAN ENCONTRADO RESULTADOS</p>
+</c:if>
+
+
+<c:if test="${not empty comunidad.empresasComunidad}">
+
+	<table id="tablaPaginada" class="table table-striped table-bordered">
+		<thead>
+			<tr>
+				<th>Tipo</th>
+				<th>CIF</th>
+				<th>Nombre</th>
+				<th>Teléfonos</th>
+				<th>E-mail</th>
+				<th>Fecha inicio</th>
+				<th>Fecha fin</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${comunidad.empresasComunidad}" var="empresaComunidad" varStatus="status">
+				<tr>
+				
+					<td>${empresaComunidad.empresa.tipoEmpresa.teTipoEmpresa}</td>
+					<td>${empresaComunidad.empresa.caCif}</td>
+					<td>${empresaComunidad.empresa.teNombre}</td>
+					<td>
+						${empresaComunidad.empresa.teTlfFijo}
+						<c:if test="${not empty empresaComunidad.empresa.teTlfFijo and not empty empresaComunidad.empresa.teTlfMovil1}">/</c:if>
+						${empresaComunidad.empresa.teTlfMovil1}
+						<c:if test="${not empty empresaComunidad.empresa.teTlfMovil1 and not empty empresaComunidad.empresa.teTlfMovil2}">/</c:if>						
+						${empresaComunidad.empresa.teTlfMovil2}
+						
+					</td>
+					<td>${empresaComunidad.empresa.teEmail}</td>
+					<td>${empresaComunidad.feInicio}</td>
+					<td>${empresaComunidad.feFin}</td>
+					<td>
+						<a href="action/empresasComunidad/editar?id=${empresaComunidad.cnEmpresaComunidad }">
+							<i class="icon-edit"></i></a> &nbsp;
+						<a href="action/empresasComunidad/eliminar?id=${empresaComunidad.cnEmpresaComunidad }">
+							<i class="icon-remove"></i></a>
+					</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+
+</c:if>
+<div>&nbsp;</div>
+
+		
+<div>
+	<a href="action/empresasComunidad/nuevaEmpresaComunidad?codComunidad=${comunidad.cnComunidad }" class="btn btn-primary">Añadir empresa</a>
+</div>
+
+<div>&nbsp;</div>
+
 		</fieldset>
 	
 		<div class="control-group" style="clear: both">

@@ -35,6 +35,16 @@ public class RequestKeys
 	public static final String ACTUACION = "actuacion";
 	public static final String CODIGO_ACTUACION = "codActuacion";
 	public static final String LISTA_ACTUACIONES = "listaActuaciones";
+	
+
+	public static final String EMPRESA_COMUNIDAD = "empresaComunidad";
+	public static final String CODIGO_EMPRESA_COMUNIDAD = "codEmpresaComunidad";
+	public static final String LISTA_EMPRESAS_COMUNIDAD = "listaEmpresasComunidad";
+	
+
+	public static final String AVISO_EMPRESA = "avisoEmpresa";
+	public static final String COD_AVISO_EMPRESA = "codAvisoEmpresa";
+	public static final String LISTA_AVISOS_EMPRESA = "listaAvisosEmpresa";
 
 
 }

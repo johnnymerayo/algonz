@@ -96,6 +96,8 @@ public class EmpresaController {
 			BindingResult binding, Model model) {
 		if (binding.hasErrors()) {
 			model.addAttribute(RequestKeys.EMPRESA, empresa);
+			// Cargamos el combo de tipos de empresa
+			model.addAttribute("tiposEmpresaCombo", combosUtils.loadTiposEmpresa());
 			return "detalleEmpresa";
 		}
 		if (empresa != null) {

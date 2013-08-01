@@ -51,6 +51,21 @@
 		<put-attribute name="content" value="/WEB-INF/pages/comunidades/detalleComunidad.jsp" />
 	</definition>
 	
+	
+	
+	<!-- Empresa -->
+	
+	<definition name="detalleEmpresaComunidad" extends="plantillaTiles">			
+		<put-attribute name="content" value="/WEB-INF/pages/empresasComunidad/detalleEmpresaComunidad.jsp" />
+	</definition>
+	
+	<!-- Aviso -->
+	
+	<definition name="detalleAvisoEmpresa" extends="plantillaTiles">			
+		<put-attribute name="content" value="/WEB-INF/pages/empresasComunidad/detalleAvisoEmpresa.jsp" />
+	</definition>
+	
+	
 			
 	<!-- Portal -->
 	
@@ -102,6 +117,7 @@
 	<definition name="detalleActuacion" extends="plantillaTiles">			
 		<put-attribute name="content" value="/WEB-INF/pages/siniestros/detalleActuacion.jsp" />
 	</definition>
+	
 	
 	
 	

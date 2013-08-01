@@ -75,13 +75,20 @@ public class ActuacionController {
 	@RequestMapping(value = "/eliminar", method = RequestMethod.GET)
 	public String eliminar(Model model,
 			@RequestParam(RequestKeys.ID) String id, HttpSession session) {
+
+		
+		String idSiniestro = "";
 		if (id != null) {
 			ActuacionVO actuacion  = actuacionManager.findById(new Integer (id).intValue());
-				actuacionManager.remove(actuacion);
+				
+			idSiniestro = actuacion.getSiniestro().getCnSiniestro().toString();	
+			actuacionManager.remove(actuacion);
 				model.addAttribute(RequestKeys.MESSAGE,
 						"Eliminado correctamente");
 		}
-		return "forward:/action/actuaciones/listado";
+//		return "forward:/action/actuaciones/listado";
+
+		return "redirect:/action/siniestros/editar?id=" + idSiniestro;
 	}
 
 	@RequestMapping(value = "/nuevo", method = RequestMethod.GET)
@@ -104,6 +111,9 @@ public class ActuacionController {
 			BindingResult binding, Model model, RedirectAttributes redirectAttrs) {
 		if (binding.hasErrors()) {
 			model.addAttribute(RequestKeys.ACTUACION, actuacion);
+
+			// Cargamos el combo de estados
+			model.addAttribute("estadosCombo", combosUtils.loadEstados());
 			return "detalleActuacion";
 		}
 		if (actuacion != null) {
