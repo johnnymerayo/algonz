@@ -17,7 +17,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import es.algonz.domain.TipoEmpresaVO;
-import es.algonz.domain.TipoEmpresaVO;
 
 /**
  * Home object for domain model class TipoEmpresa.

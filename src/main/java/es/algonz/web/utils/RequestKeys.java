@@ -43,7 +43,7 @@ public class RequestKeys
 	
 
 	public static final String AVISO_EMPRESA = "avisoEmpresa";
-	public static final String COD_AVISO_EMPRESA = "codAvisoEmpresa";
+	public static final String CODIGO_AVISO_EMPRESA = "codAvisoEmpresa";
 	public static final String LISTA_AVISOS_EMPRESA = "listaAvisosEmpresa";
 
 

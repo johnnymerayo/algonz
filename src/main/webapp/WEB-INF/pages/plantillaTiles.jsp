@@ -83,6 +83,7 @@ body {
 						<li><a href="action/consignatarios/listado">Consignatarios</a></li> -->				
 					</sec:authorize>					
 					
+						<li><a href="action/alarmas/listado">Alarmas</a></li>	
 						<li><a href="action/comunidades/listado">Comunidades</a></li>	
 						<li><a href="action/empresas/listado">Empresas</a></li>			
 					</ul>

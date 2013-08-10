@@ -14,3 +14,18 @@
 <script src="js/DT_bootstrap.js"></script>
 <script src="js/bootstrap-datepicker.js"></script>
 <script src="js/application.js"></script>
+
+<!-- DataTables Tools -->
+<script type="text/javascript" charset="utf-8" src="js/ZeroClipboard.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/TableTools.js"></script>
+<link href="css/TableTools.css" rel="stylesheet" media="screen"/> 
+<script src="js/dataTables.bootstrap.js"></script>
+
+<!-- file uploader -->
+<script src="js/vendor/jquery.ui.widget.js"></script>
+<script src="js/jquery.iframe-transport.js"></script>
+<script src="js/jquery.fileupload.js"></script>
+<link href="css/jquery.fileupload-ui.css" type="text/css" rel="stylesheet" />
+<!-- we code these -->
+<link href="css/dropzone.css" type="text/css" rel="stylesheet" />
+<script src="js/myuploadfunction.js"></script>

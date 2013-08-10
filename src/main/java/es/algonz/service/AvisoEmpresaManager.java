@@ -19,5 +19,9 @@ public interface AvisoEmpresaManager extends Serializable {
 	public AvisoEmpresaVO findById(Integer id);
 
 	public List<AvisoEmpresaVO> getAvisosEmpresa(AvisoEmpresaVO object);
+
+	public List<AvisoEmpresaVO> getAvisosEmpresaProximoVencimiento();
+
+	public List<AvisoEmpresaVO> getAvisosEmpresaAbiertas(Integer cnEmpresa);
 	
 }

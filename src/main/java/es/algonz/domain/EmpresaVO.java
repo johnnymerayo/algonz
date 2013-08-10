@@ -2,13 +2,15 @@ package es.algonz.domain;
 
 // Generated 20-jul-2013 18:00:15 by Hibernate Tools 3.4.0.CR1
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,6 +24,10 @@ import javax.persistence.Table;
 @Table(name = "empresa", catalog = "algonz")
 public class EmpresaVO implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8701321094704797219L;
 	private Integer cnEmpresa;
 	private TipoEmpresaVO tipoEmpresa;
 	private String teNombre;
@@ -134,6 +140,7 @@ public class EmpresaVO implements java.io.Serializable {
 	public void setTeTlfMovil2(String teTlfMovil2) {
 		this.teTlfMovil2 = teTlfMovil2;
 	}
+
 
 	@Column(name = "TE_EMAIL", length = 50)
 	public String getTeEmail() {

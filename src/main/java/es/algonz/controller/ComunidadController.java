@@ -1,11 +1,14 @@
 package es.algonz.controller;
 
+import java.util.LinkedList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.validator.GenericValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +19,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import es.algonz.controller.utils.ControladorUtils;
 import es.algonz.domain.ComunidadVO;
+import es.algonz.domain.DocumentoVO;
+import es.algonz.domain.FileMeta;
 import es.algonz.service.ComunidadManager;
+import es.algonz.service.DocumentoManager;
 import es.algonz.validator.ComunidadValidator;
 import es.algonz.web.utils.RequestKeys;
 
@@ -28,6 +36,10 @@ import es.algonz.web.utils.RequestKeys;
 public class ComunidadController {
 	@Autowired
 	private ComunidadManager comunidadManager;
+
+	@Autowired
+	private DocumentoManager documentoManager;
+	
 	@Autowired
 	private ControladorUtils controladorUtils;
 
@@ -55,7 +67,7 @@ public class ComunidadController {
 			@RequestParam(RequestKeys.ID) String id, HttpSession session) {
 		if (id != null) {	
 				ComunidadVO comunidad  = comunidadManager.findById(new Integer (id).intValue());
-				
+				comunidad.setRepresentantes(comunidadManager.getRepresentantes(comunidad.getCnComunidad()));
 				model.addAttribute(RequestKeys.COMUNIDAD, comunidad);
 			
 		}
@@ -99,5 +111,46 @@ public class ComunidadController {
 		}
 		return "forward:/action/comunidades/listado";
 	}
+	
+	
+
+	@RequestMapping(value = "/uploadDocument", method = RequestMethod.POST)
+	public LinkedList<FileMeta> uploadDocument(Model model, HttpSession session, MultipartRequest request, @RequestParam(RequestKeys.CODIGO_COMUNIDAD) String codComunidad) {
+
+		LinkedList<FileMeta> ficherosSubidos = new LinkedList<FileMeta>();
+		
+		if(!GenericValidator.isBlankOrNull(codComunidad)){
+			ComunidadVO comunidad = comunidadManager.findById(new Integer (codComunidad));
+
+			DocumentoVO documento = new DocumentoVO();
+			documento.setComunidad(comunidad);
+			ficherosSubidos = documentoManager.uploadDocument(request, documento);
+		}
+		
+		return ficherosSubidos;
+	}
+	
+	
+	@RequestMapping(value = "/downloadDocument", method = RequestMethod.GET)
+	public void downloadDocument(HttpServletResponse response,  @RequestParam(RequestKeys.ID) String idDocumento) {
+		
+		documentoManager.downloadDocument(response, idDocumento);
+		
+	}
+	
+
+	@RequestMapping(value = "/deleteDocument", method = RequestMethod.GET)
+	public String deleteDocument(Model model,
+			@RequestParam(RequestKeys.CODIGO_COMUNIDAD) String codComunidad, @RequestParam(RequestKeys.ID) String idDocumento, HttpSession session, RedirectAttributes redirectAttrs) {
+		
+		documentoManager.deleteDocument(idDocumento);
+
+		redirectAttrs.addFlashAttribute(RequestKeys.MESSAGE, "Documento eliminado correctamente");
+		
+		return "redirect:/action/comunidades/editar?id=" + codComunidad;
+		
+		
+	}
+	
 
 }

@@ -119,6 +119,14 @@
 	</definition>
 	
 	
+		
+	<!-- Alarmas -->
+	
+	<definition name="listadoAlarmas" extends="plantillaTiles">			
+		<put-attribute name="content" value="/WEB-INF/pages/alarmas/listaAlarmas.jsp" />
+	</definition>
+	
+	
 	
 	
 </tiles-definitions>

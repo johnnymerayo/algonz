@@ -24,6 +24,10 @@ import javax.persistence.Table;
 @Table(name = "predio", catalog = "algonz")
 public class PredioVO implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7420664783385864009L;
 	private Integer cnPredio;
 	private TipoRepresentanteVO tipoRepresentante;
 	private TipoPredioVO tipoPredio;
@@ -84,6 +88,7 @@ public class PredioVO implements java.io.Serializable {
 		this.cnPredio = cnPredio;
 	}
 
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "CN_TIPO_REPRESENTANTE")
 	public TipoRepresentanteVO getTipoRepresentante() {

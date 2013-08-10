@@ -16,7 +16,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import es.algonz.domain.ActuacionVO;
-import es.algonz.domain.ActuacionVO;
 
 /**
  * DAOImpl object for domain model class Actuacion.
@@ -94,5 +93,28 @@ public class ActuacionDAOImpl implements ActuacionDAO {
 			cq.where(cb.equal(root.get("cnActuacion"), object.getCnActuacion()));
 		//Sino se devuelven todos
 		return entityManager.createQuery(cq).getResultList();
+	}
+
+	@Override
+	public List<ActuacionVO> getActuacionesProximoVencimiento() {
+		// El aviso salta 15 días antes de la fecha de vencimiento
+		String query="select * from actuacion " +
+				"where fe_vencimiento <= DATE_ADD(CURDATE(),INTERVAL 15 DAY) " +
+				"and cn_estado <> 2 " + // Estado CERRADO no se muestran
+				"order by fe_vencimiento asc;";
+		List<ActuacionVO> resultList = entityManager.createNativeQuery(query,ActuacionVO.class).getResultList();
+		return  resultList;
+	}
+
+	@Override
+	public List<ActuacionVO> getActuacionesAbiertas(Integer cnEmpresa) {
+		String query="select a.* from actuacion a, siniestro s, empresa_comunidad ec " +
+				"where  ec.cn_empresa = '" + cnEmpresa + "' " +
+				"and a.cn_siniestro = s.cn_siniestro " +
+				"and s.cn_empresa_comunidad = ec.cn_empresa_comunidad " +
+				"and a.cn_estado <> 2 " + // Estado CERRADO no se muestran
+				"order by a.fe_vencimiento asc;";
+		List<ActuacionVO> resultList = entityManager.createNativeQuery(query,ActuacionVO.class).getResultList();
+		return  resultList;
 	}
 }

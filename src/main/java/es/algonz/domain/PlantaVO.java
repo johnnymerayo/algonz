@@ -20,6 +20,10 @@ import javax.persistence.Table;
 @Table(name = "planta", catalog = "algonz")
 public class PlantaVO implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8994257646229544139L;
 	private Integer cnPlanta;
 	private String tePlanta;
 	private Set<PredioVO> predios = new HashSet<PredioVO>(0);

@@ -13,21 +13,39 @@
 			<c:if test='${siniestro.cnSiniestro!=null}'>Datos Siniestro: ${siniestro.teNombre}
 			</c:if>
 		</legend>
+		
+		<!-- Muestra los mensajes de validación -->
+		<jsp:include page="../include_messages.jsp"/>
+		
 		<form:hidden path="cnSiniestro" />
 		<form:hidden path="portal.cnPortal" />
 
 		<div style="width: 50%; float: left">
 
     
-    	<t:select itemLabel="teTipoEmpresa" itemValue="cnTipoEmpresa" items="${tiposEmpresaCombo}" path="cnTipoSiniestro" required="true" label="Tipo siniestro" tabindex="1"/>
+    	<t:select itemLabel="teTipoEmpresa" itemValue="cnTipoEmpresa" items="${tiposEmpresaCombo}" path="cnTipoSiniestro" required="true" label="Tipo siniestro" emptyOption="true" tabindex="1"/>
 			
-		<t:select itemLabel="teNombre" itemValue="cnEmpresa" items="${empresasCombo}" path="empresaComunidad.empresa.cnEmpresa" required="true" label="Empresa" tabindex="2"/>
+		<t:select itemLabel="empresa.teNombre" itemValue="cnEmpresaComunidad" items="${empresasComunidadCombo}" path="empresaComunidad.cnEmpresaComunidad" required="true" label="Empresa" emptyOption="true" tabindex="2"/>
 				
-			<t:input path="teNombre" label="Descripción" required="true" tabindex="3"/>
+			<t:input path="teNombre" label="Descripción" required="true" maxlength="100" tabindex="3"/>
 		
 			<t:area path="teObservaciones" label="Observaciones" cols="500" tabindex="9"/>
 		</div>
 	</fieldset>
+	
+	
+<div>&nbsp;</div>
+
+	
+		<div class="control-group" style="clear: both">
+			<div class="controls">
+				<button type="submit" class="btn btn-primary">Guardar</button>
+				<a href="action/portales/editar?id=${siniestro.portal.cnPortal}" class="btn">Cancelar</a>
+			
+			</div>
+		</div>
+	
+	<c:if test="${not empty siniestro.cnSiniestro }">	
 	
 	
 	<fieldset>
@@ -82,22 +100,12 @@
 <div>&nbsp;</div>
 
 <div>
-	<a href="action/actuaciones/nuevo?codSiniestro=${siniestro.cnSiniestro}" class="btn btn-primary">Nueva actuación</a>
+	<a href="action/actuaciones/nuevo?codSiniestro=${siniestro.cnSiniestro}" class="btn btn-primary"> <i class="icon-plus icon-white"></i> <span>Nueva actuación</span></a>
 </div>
 		
 		</fieldset>
+	</c:if>
 	
-	
-<div>&nbsp;</div>
-
-	
-		<div class="control-group" style="clear: both">
-			<div class="controls">
-				<button type="submit" class="btn btn-primary">Guardar</button>
-				<button type="button" class="btn"
-					onclick="changeAction('mainForm','action/siniestros/listado')">Cancelar</button>
-			</div>
-		</div>
 </form:form>
 
 

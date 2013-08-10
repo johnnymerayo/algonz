@@ -2,14 +2,9 @@
 
 <h3>Empresas</h3>
 
-<c:if test="${not empty message }">
-	<div class="text-success">${message}</div>
-	<div>&nbsp;</div>
-</c:if>
-<c:if test="${not empty error }">
-	<div class="text-error"><h5>${error }</h5></div>
-	<div>&nbsp;</div>
-</c:if>
+
+		<!-- Muestra los mensajes de validación -->
+		<jsp:include page="../include_messages.jsp"/>
 
 
 <c:if test="${listaEmpresas != null && empty listaEmpresas}">

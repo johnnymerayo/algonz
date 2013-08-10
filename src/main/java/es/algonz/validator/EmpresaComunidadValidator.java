@@ -1,6 +1,8 @@
 package es.algonz.validator;
 
+
 import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import es.algonz.domain.EmpresaComunidadVO;
@@ -14,11 +16,18 @@ public class EmpresaComunidadValidator implements Validator {
 
 	@Override
 	public void validate(Object target, Errors errors) {	
-//		VO o=(ConsignatarioVO) target;
-//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nomFiscal", "error.requerido",new Object[]{"Nom Fiscal"});
-//		if(o.getAlias()!=null){
-//			//vslidas que otro campo sea numérico (campo edad)
-//			//errors.rejectValue("edad", errorCode, errorArgs, defaultMessage)
-//		}
+	
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "empresa.cnEmpresa",  "error.requerido",new Object[]{"Empresa"});
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "feInicio",  "error.requerido",new Object[]{"Fecha inicio"});
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "feFin",  "error.requerido",new Object[]{"Fecha fin"});
+		
+		EmpresaComunidadVO empresaComunidad = (EmpresaComunidadVO)target;
+		if (empresaComunidad.getFeInicio() != null && empresaComunidad.getFeFin() != null && empresaComunidad.getFeFin().before(empresaComunidad.getFeInicio())){
+			errors.rejectValue("feInicio","error.fechaInicioMayorFechaFin",new Object[]{"Fecha inicio", "Fecha fin"}, "");
+ 
+		}
+		
+		
+		
 	}
 }

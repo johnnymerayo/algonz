@@ -3,6 +3,7 @@ package es.algonz.repository;
 import java.util.List;
 
 import es.algonz.domain.ComunidadVO;
+import es.algonz.domain.PredioVO;
 
 
 
@@ -18,5 +19,7 @@ public interface ComunidadDAO {
 	public ComunidadVO findById(Integer id);
 
 	public List<ComunidadVO> getComunidades(ComunidadVO object);
+
+	public List<PredioVO> getRepresentantes(Integer cnComunidad);
 	
 }

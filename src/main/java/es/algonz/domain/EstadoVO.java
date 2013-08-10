@@ -20,6 +20,10 @@ import javax.persistence.Table;
 @Table(name = "estado", catalog = "algonz")
 public class EstadoVO implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5920495086640742498L;
 	private Integer cnEstado;
 	private String teEstado;
 	private Set<ActuacionVO> actuaciones = new HashSet<ActuacionVO>(0);

@@ -11,22 +11,46 @@
 			<c:if test='${empresaComunidad.cnEmpresaComunidad!=null}'>Datos EmpresaComunidad
 			</c:if>
 		</legend>
+		
+		
+		<!-- Muestra los mensajes de validación -->
+		<jsp:include page="../include_messages.jsp"/>
+		
 		<form:hidden path="cnEmpresaComunidad" />
 		<form:hidden path="comunidad.cnComunidad" />
 
 		<div style="width: 50%; float: left">
 		
 		
-		<t:select itemLabel="teTipoEmpresa" itemValue="cnTipoEmpresa" items="${tiposEmpresaCombo}" path="empresa.tipoEmpresa.cnTipoEmpresa" required="true" label="Tipo Empresa" tabindex="1"/>
+		<t:select itemLabel="teTipoEmpresa" itemValue="cnTipoEmpresa" items="${tiposEmpresaCombo}" path="empresa.tipoEmpresa.cnTipoEmpresa" required="true" label="Tipo Empresa" emptyOption="true" tabindex="1"/>
 			
-		<t:select itemLabel="teNombre" itemValue="cnEmpresa" items="${empresasCombo}" path="empresa.cnEmpresa" required="true" label="Empresa" tabindex="2"/>
+		<t:select itemLabel="teNombre" itemValue="cnEmpresa" items="${empresasCombo}" path="empresa.cnEmpresa" required="true" label="Empresa" emptyOption="true" tabindex="2"/>
 			
     		
-			<t:input path="feInicio" label="Fecha inicio" required="true" tabindex="3" date="true"/>
-			<t:input path="feFin" label="Fecha fin" required="true" tabindex="4" date="true"/>
+			<t:input path="feInicio" label="Fecha inicio" required="true" tabindex="3" maxlength="12" date="true"/>
+			<t:input path="feFin" label="Fecha fin" required="true" tabindex="4" maxlength="12" date="true"/>
 			<t:area path="teObservaciones" label="Observaciones" cols="500" tabindex="9"/>
 		</div>
 	</fieldset>
+	
+	
+<div>&nbsp;</div>
+
+	
+		<div class="control-group" style="clear: both">
+			<div class="controls">
+				<button type="submit" class="btn btn-primary">Guardar</button>
+				<!-- <button type="button" class="btn"
+					onclick="changeAction('mainForm','action/empresaComunidads/listado')">Cancelar</button> -->
+					
+				<a href="action/comunidades/editar?id=${empresaComunidad.comunidad.cnComunidad}" class="btn">Cancelar</a>
+			</div>
+		</div>
+		
+		
+		
+		
+	<c:if test="${not empty empresaComunidad.cnEmpresaComunidad }">	
 	
 	
 	<fieldset>
@@ -81,24 +105,12 @@
 <div>&nbsp;</div>
 
 <div>
-	<a href="action/avisosEmpresa/nuevo?codEmpresaComunidad=${empresaComunidad.cnEmpresaComunidad}" class="btn btn-primary">Nuevo aviso</a>
+	<a href="action/avisosEmpresa/nuevo?codEmpresaComunidad=${empresaComunidad.cnEmpresaComunidad}" class="btn btn-primary"> <i class="icon-plus icon-white"></i> <span>Nuevo aviso</span></a>
 </div>
 		
 		</fieldset>
+	</c:if>
 	
-	
-<div>&nbsp;</div>
-
-	
-		<div class="control-group" style="clear: both">
-			<div class="controls">
-				<button type="submit" class="btn btn-primary">Guardar</button>
-				<!-- <button type="button" class="btn"
-					onclick="changeAction('mainForm','action/empresaComunidads/listado')">Cancelar</button> -->
-					
-				<a href="action/comunidades/editar?id=${empresaComunidad.comunidad.cnComunidad}" class="btn">Cancelar</a>
-			</div>
-		</div>
 </form:form>
 
 

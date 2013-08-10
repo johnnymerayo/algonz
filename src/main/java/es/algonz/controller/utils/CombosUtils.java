@@ -5,11 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import es.algonz.domain.ComunidadVO;
+import es.algonz.domain.EmpresaComunidadVO;
 import es.algonz.domain.EmpresaVO;
 import es.algonz.domain.EstadoVO;
 import es.algonz.domain.PlantaVO;
 import es.algonz.domain.TipoEmpresaVO;
 import es.algonz.domain.TipoRepresentanteVO;
+import es.algonz.service.EmpresaComunidadManager;
 import es.algonz.service.EmpresaManager;
 import es.algonz.service.EstadoManager;
 import es.algonz.service.PlantaManager;
@@ -21,6 +24,8 @@ public class CombosUtils
 {
 	@Autowired
 	private EmpresaManager empresaManager;
+	@Autowired
+	private EmpresaComunidadManager empresaComunidadManager;
 	@Autowired
 	private PlantaManager plantaManager;
 	@Autowired
@@ -44,6 +49,19 @@ public class CombosUtils
 		return empresaManager.getEmpresas(empresa);
 		
 	}
+	
+
+	public List<EmpresaComunidadVO> loadEmpresasComunidad(Integer cnComunidad) {
+
+		EmpresaComunidadVO empresaComunidad = new EmpresaComunidadVO();
+		ComunidadVO comunidad = new ComunidadVO();
+		comunidad.setCnComunidad(cnComunidad);
+		empresaComunidad.setComunidad(comunidad);
+		
+		return empresaComunidadManager.getEmpresasComunidad(empresaComunidad);
+	}
+	
+	
 
 	public List<PlantaVO> loadPlantas()
 	{

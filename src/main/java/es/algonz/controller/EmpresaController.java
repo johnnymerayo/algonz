@@ -18,7 +18,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import es.algonz.controller.utils.CombosUtils;
+import es.algonz.domain.ActuacionVO;
+import es.algonz.domain.AvisoEmpresaVO;
 import es.algonz.domain.EmpresaVO;
+import es.algonz.service.ActuacionManager;
+import es.algonz.service.AvisoEmpresaManager;
 import es.algonz.service.EmpresaManager;
 import es.algonz.validator.EmpresaValidator;
 import es.algonz.web.utils.RequestKeys;
@@ -30,10 +34,14 @@ public class EmpresaController {
 	private EmpresaManager empresaManager;
 	@Autowired
 	private CombosUtils combosUtils;
+	@Autowired
+	private ActuacionManager actuacionManager;
+	@Autowired
+	private AvisoEmpresaManager avisoEmpresaManager;
 
 	@InitBinder(RequestKeys.EMPRESA)
 	protected void empresa(WebDataBinder binder) {
-		binder.setValidator(new EmpresaValidator());
+	binder.setValidator(new EmpresaValidator());
 	}
 
 	@RequestMapping(value = "/listado", method = RequestMethod.GET)
@@ -57,6 +65,18 @@ public class EmpresaController {
 				EmpresaVO empresa  = empresaManager.findById(new Integer (id).intValue());
 				
 				model.addAttribute(RequestKeys.EMPRESA, empresa);
+				
+				
+				List<ActuacionVO> listaActuaciones = null;
+				listaActuaciones = actuacionManager.getActuacionesAbiertas(empresa.getCnEmpresa());
+				model.addAttribute(RequestKeys.LISTA_ACTUACIONES,
+						listaActuaciones);
+				
+				List<AvisoEmpresaVO> listaAvisos = null;
+				listaAvisos = avisoEmpresaManager.getAvisosEmpresaAbiertas(empresa.getCnEmpresa());
+				model.addAttribute(RequestKeys.LISTA_AVISOS_EMPRESA,
+						listaAvisos);
+				
 			
 		}
 		

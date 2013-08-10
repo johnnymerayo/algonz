@@ -2,8 +2,10 @@ package es.algonz.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -20,14 +22,19 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import es.algonz.controller.utils.CombosUtils;
 import es.algonz.domain.ActuacionVO;
+import es.algonz.domain.DocumentoVO;
+import es.algonz.domain.FileMeta;
 import es.algonz.domain.SiniestroVO;
 import es.algonz.service.ActuacionManager;
+import es.algonz.service.DocumentoManager;
 import es.algonz.service.SiniestroManager;
 import es.algonz.validator.ActuacionValidator;
+import es.algonz.web.utils.ConstantesKeys;
 import es.algonz.web.utils.RequestKeys;
 
 @Controller
@@ -39,6 +46,9 @@ public class ActuacionController {
 	private SiniestroManager siniestroManager;
 	@Autowired
 	private CombosUtils combosUtils;
+
+	@Autowired
+	private DocumentoManager documentoManager;
 
 	@InitBinder(RequestKeys.ACTUACION)
 	protected void actuacion(WebDataBinder binder) {
@@ -127,6 +137,10 @@ public class ActuacionController {
 			return "detalleActuacion";
 		}
 		if (actuacion != null) {
+			if (actuacion.getFeCierre() == null && ConstantesKeys.ESTADO_CERRADO.equalsIgnoreCase(actuacion.getEstado().getCnEstado().toString())){
+				actuacion.setFeCierre(new Date());
+			}
+			
 			if (actuacion.getCnActuacion() != null && !StringUtils.isBlank(actuacion.getCnActuacion().toString()))
 				actuacionManager.merge(actuacion);
 			else {
@@ -140,5 +154,45 @@ public class ActuacionController {
 
 		return "redirect:/action/siniestros/editar?id=" + actuacion.getSiniestro().getCnSiniestro();
 	}
+	
+
+	@RequestMapping(value = "/uploadDocument", method = RequestMethod.POST)
+	public LinkedList<FileMeta> uploadDocument(Model model, HttpSession session, MultipartRequest request, @RequestParam(RequestKeys.CODIGO_ACTUACION) String codActuacion) {
+		
+		LinkedList<FileMeta> ficherosSubidos = new LinkedList<FileMeta>();
+		
+		if(!GenericValidator.isBlankOrNull(codActuacion)){
+			ActuacionVO actuacion = actuacionManager.findById(new Integer (codActuacion));
+		
+			DocumentoVO documento = new DocumentoVO();
+			documento.setActuacion(actuacion);
+			ficherosSubidos = documentoManager.uploadDocument(request, documento);
+		}
+		
+		return ficherosSubidos;
+	}
+	
+	
+	@RequestMapping(value = "/downloadDocument", method = RequestMethod.GET)
+	public void downloadDocument(HttpServletResponse response,  @RequestParam(RequestKeys.ID) String idDocumento) {
+		
+		documentoManager.downloadDocument(response, idDocumento);
+		
+	}
+	
+
+	@RequestMapping(value = "/deleteDocument", method = RequestMethod.GET)
+	public String deleteDocument(Model model,
+			@RequestParam(RequestKeys.CODIGO_ACTUACION) String codActuacion, @RequestParam(RequestKeys.ID) String idDocumento, HttpSession session, RedirectAttributes redirectAttrs) {
+		
+		documentoManager.deleteDocument(idDocumento);
+
+		redirectAttrs.addFlashAttribute(RequestKeys.MESSAGE, "Documento eliminado correctamente");
+		
+		return "redirect:/action/actuaciones/editar?id=" + codActuacion;
+		
+		
+	}
+	
 
 }

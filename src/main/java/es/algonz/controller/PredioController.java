@@ -20,8 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import es.algonz.controller.utils.CombosUtils;
-import es.algonz.controller.utils.ControladorUtils;
-import es.algonz.domain.ComunidadVO;
 import es.algonz.domain.PortalVO;
 import es.algonz.domain.PredioVO;
 import es.algonz.service.PortalManager;
@@ -77,14 +75,17 @@ public class PredioController {
 
 	@RequestMapping(value = "/eliminar", method = RequestMethod.GET)
 	public String eliminar(Model model,
-			@RequestParam(RequestKeys.ID) String id, HttpSession session) {
+			@RequestParam(RequestKeys.ID) String id, HttpSession session, RedirectAttributes redirectAttrs) {
+		PredioVO predio = new PredioVO();
 		if (id != null) {
-			PredioVO predio  = predioManager.findById(new Integer (id).intValue());
+			predio  = predioManager.findById(new Integer (id).intValue());
 				predioManager.remove(predio);
 				model.addAttribute(RequestKeys.MESSAGE,
 						"Eliminado correctamente");
+				redirectAttrs.addFlashAttribute(RequestKeys.MESSAGE, "Eliminado correctamente");
 		}
-		return "forward:/action/predios/listado";
+		//return "forward:/action/predios/listado";
+		return "redirect:/action/portales/editar?id=" + predio.getPortal().getCnPortal();
 	}
 
 	@RequestMapping(value = "/nuevo", method = RequestMethod.GET)
@@ -128,6 +129,14 @@ public class PredioController {
 			return "detallePredio";
 		}
 		if (predio != null) {
+			
+			// Para permitir que guarde sin representante
+			if (predio.getTipoRepresentante() == null  || predio.getTipoRepresentante().getCnTipoRepresentante() == null || GenericValidator.isBlankOrNull(predio.getTipoRepresentante().getCnTipoRepresentante().toString())){
+				predio.setTipoRepresentante(null);
+			}
+			
+			
+			
 			if (predio.getCnPredio() != null && !StringUtils.isBlank(predio.getCnPredio().toString()))
 				predioManager.merge(predio);
 			else {

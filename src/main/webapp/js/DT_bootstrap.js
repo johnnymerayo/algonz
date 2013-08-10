@@ -131,9 +131,64 @@ $.extend($.fn.dataTableExt.oStdClasses, {
 
 /* Table initialisation */
 $(document)
-		.ready(
-				function() {
-					$('#tablaPaginada')
+.ready(
+		function() {
+			$('#tablaPaginada')
+					.dataTable(
+							{
+								"sDom" : "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+								"sPaginationType" : "bootstrap",
+								"oLanguage" : {											
+									"sLengthMenu" : "Mostrando _MENU_ registros por página",
+									"sInfo" : "_TOTAL_ registros encontrados, Mostrando del _START_ al _END_",
+									"sInfoFiltered" : "(Filtrados de un total de _MAX_ registros)",
+									"sZeroRecords": "No hay registros coincidentes",
+									"sSearch" : "Filtrar resultados:",
+									"sInfoEmpty": "0 registros encontrados",
+									"oPaginate" : {
+										"sNext" : " Siguiente ",
+										"sPrevious" : " Anterior "
+									}
+								},
+								"bAutoWidth" : false,
+								"bLengthChange" : false,
+								"bInfo" : true,
+								"bPaginate" : true,
+								"bFilter" : true,
+								"bSort" : true,
+								"iDisplayLength" : 10,
+								"aaSorting": [ ]
+							});
+			
+				$('#tablaPaginada2')
+						.dataTable(
+								{
+									"sDom" : "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+									"sPaginationType" : "bootstrap",
+									"oLanguage" : {											
+										"sLengthMenu" : "Mostrando _MENU_ registros por página",
+										"sInfo" : "_TOTAL_ registros encontrados, Mostrando del _START_ al _END_",
+										"sInfoFiltered" : "(Filtrados de un total de _MAX_ registros)",
+										"sZeroRecords": "No hay registros coincidentes",
+										"sSearch" : "Filtrar resultados:",
+										"sInfoEmpty": "0 registros encontrados",
+										"oPaginate" : {
+											"sNext" : " Siguiente ",
+											"sPrevious" : " Anterior "
+										}
+									},
+									"bAutoWidth" : false,
+									"bLengthChange" : false,
+									"bInfo" : true,
+									"bPaginate" : true,
+									"bFilter" : true,
+									"bSort" : true,
+									"iDisplayLength" : 10,
+									"aaSorting": [ ]
+								});
+				
+
+					$('#tablaPaginada3')
 							.dataTable(
 									{
 										"sDom" : "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
@@ -156,6 +211,102 @@ $(document)
 										"bPaginate" : true,
 										"bFilter" : true,
 										"bSort" : true,
-										"iDisplayLength" : 10
+										"iDisplayLength" : 10,
+										"aaSorting": [ ]
 									});
-				});
+
+
+						$('#tablaPaginada4')
+								.dataTable(
+										{
+											"sDom" : "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+											"sPaginationType" : "bootstrap",
+											"oLanguage" : {											
+												"sLengthMenu" : "Mostrando _MENU_ registros por página",
+												"sInfo" : "_TOTAL_ registros encontrados, Mostrando del _START_ al _END_",
+												"sInfoFiltered" : "(Filtrados de un total de _MAX_ registros)",
+												"sZeroRecords": "No hay registros coincidentes",
+												"sSearch" : "Filtrar resultados:",
+												"sInfoEmpty": "0 registros encontrados",
+												"oPaginate" : {
+													"sNext" : " Siguiente ",
+													"sPrevious" : " Anterior "
+												}
+											},
+											"bAutoWidth" : false,
+											"bLengthChange" : false,
+											"bInfo" : true,
+											"bPaginate" : true,
+											"bFilter" : true,
+											"bSort" : true,
+											"iDisplayLength" : 10,
+											"aaSorting": [ ]
+										});
+						
+
+						$('#tablaPaginada_print')
+								.dataTable(
+										{
+											"sDom": "<'row-fluid'<'span6'T><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+											"sPaginationType" : "bootstrap",
+											"oLanguage" : {											
+												"sLengthMenu" : "Mostrando _MENU_ registros por página",
+												"sInfo" : "_TOTAL_ registros encontrados, Mostrando del _START_ al _END_",
+												"sInfoFiltered" : "(Filtrados de un total de _MAX_ registros)",
+												"sZeroRecords": "No hay registros coincidentes",
+												"sSearch" : "Filtrar resultados:",
+												"sInfoEmpty": "0 registros encontrados",
+												"oPaginate" : {
+													"sNext" : " Siguiente ",
+													"sPrevious" : " Anterior "
+												}
+											},
+											"bAutoWidth" : false,
+											"bLengthChange" : false,
+											"bInfo" : true,
+											"bPaginate" : true,
+											"bFilter" : true,
+											"bSort" : true,
+											"iDisplayLength" : 10,
+											"aaSorting": [ ],
+									        "oTableTools": {
+									            "aButtons": [{
+									                    "sExtends":    "print",
+									                    "sButtonText": "Imprimir"
+									                }]
+									        }
+										});
+						
+						$('#tablaPaginada2_print')
+						.dataTable(
+								{
+									"sDom": "<'row-fluid'<'span6'T><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+									"sPaginationType" : "bootstrap",
+									"oLanguage" : {											
+										"sLengthMenu" : "Mostrando _MENU_ registros por página",
+										"sInfo" : "_TOTAL_ registros encontrados, Mostrando del _START_ al _END_",
+										"sInfoFiltered" : "(Filtrados de un total de _MAX_ registros)",
+										"sZeroRecords": "No hay registros coincidentes",
+										"sSearch" : "Filtrar resultados:",
+										"sInfoEmpty": "0 registros encontrados",
+										"oPaginate" : {
+											"sNext" : " Siguiente ",
+											"sPrevious" : " Anterior "
+										}
+									},
+									"bAutoWidth" : false,
+									"bLengthChange" : false,
+									"bInfo" : true,
+									"bPaginate" : true,
+									"bFilter" : true,
+									"bSort" : true,
+									"iDisplayLength" : 10,
+									"aaSorting": [ ],
+							        "oTableTools": {
+							            "aButtons": [{
+							                    "sExtends":    "print",
+							                    "sButtonText": "Imprimir"
+							                }]
+							        }
+								});
+		});

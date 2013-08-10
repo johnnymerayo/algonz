@@ -1,6 +1,7 @@
 package es.algonz.validator;
 
 import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import es.algonz.domain.ComunidadVO;
@@ -14,11 +15,11 @@ public class ComunidadValidator implements Validator {
 
 	@Override
 	public void validate(Object target, Errors errors) {	
-//		VO o=(ConsignatarioVO) target;
-//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nomFiscal", "error.requerido",new Object[]{"Nom Fiscal"});
-//		if(o.getAlias()!=null){
-//			//vslidas que otro campo sea numérico (campo edad)
-//			//errors.rejectValue("edad", errorCode, errorArgs, defaultMessage)
-//		}
+		
+		//ComunidadVO comunidad = (ComunidadVO) target;
+
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "caCif",  "error.requerido",new Object[]{"CIF"});
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "teNombre",  "error.requerido",new Object[]{"Nombre"});
+		
 	}
 }

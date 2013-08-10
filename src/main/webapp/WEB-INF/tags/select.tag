@@ -9,6 +9,7 @@
 <%@attribute name="label" required="false" type="java.lang.String"%>
 <%@attribute name="disabled" required="false" type="java.lang.Boolean"%>
 <%@attribute name="required" required="false" type="java.lang.Boolean"%>
+<%@attribute name="emptyOption" required="false" type="java.lang.Boolean"%>
 <%@attribute name="tabindex" required="false" type="java.lang.String"%>
 <%@attribute name="items" required="true" type="java.util.Collection"%>
 <%@attribute name="itemLabel" required="true" type="java.lang.String"%>
@@ -22,6 +23,11 @@
         <label class="control-label" for="${path}">${label}<c:if test="${required}">&nbsp;<span class="required">*</span></c:if></label>
         <div class="controls">        
             <form:select path="${path}" required="${empty required?false:required }" cssClass="${empty cssClass ? 'input-xlarge' : cssClass}" id="${empty id?path:id }" tabindex="${empty tabindex?'':tabindex }" disabled="${empty disabled?false:disabled }">
+           
+			<c:if test="${emptyOption}">
+           		<form:option value="">Seleccionar...</form:option>
+			</c:if>
+           
             <form:options items="${items }" itemLabel="${itemLabel }" itemValue="${itemValue }"/>
             </form:select>
             <c:if test="${status.error}">

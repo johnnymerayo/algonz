@@ -22,6 +22,10 @@ import javax.persistence.TemporalType;
 @Table(name = "documento", catalog = "algonz")
 public class DocumentoVO implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6268061948302642933L;
 	private Integer cnDocumento;
 	private SiniestroVO siniestro;
 	private AvisoEmpresaVO avisoEmpresa;
@@ -33,6 +37,8 @@ public class DocumentoVO implements java.io.Serializable {
 	private String teNombre;
 	private String tePath;
 	private Date feGuardado;
+	private String fileType;
+	private Integer fileSize;
 
 	public DocumentoVO() {
 	}
@@ -167,5 +173,28 @@ public class DocumentoVO implements java.io.Serializable {
 	public void setFeGuardado(Date feGuardado) {
 		this.feGuardado = feGuardado;
 	}
+
+	@Column(name = "TE_FILE_TYPE", length = 50)
+	public String getFileType() {
+		return fileType;
+	}
+
+	public void setFileType(String fileType) {
+		this.fileType = fileType;
+	}
+
+	
+
+	@Column(name = "NU_FILE_SIZE")
+	public Integer getFileSize() {
+		return fileSize;
+	}
+
+	public void setFileSize(Integer fileSize) {
+		this.fileSize = fileSize;
+	}
+
+
+	
 
 }

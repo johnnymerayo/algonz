@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.algonz.domain.ComunidadVO;
+import es.algonz.domain.PredioVO;
 import es.algonz.repository.ComunidadDAO;
 
 @Service("comunidadManager")
@@ -42,5 +43,10 @@ public class ComunidadManagerImpl implements ComunidadManager {
 	@Override
 	public List<ComunidadVO> getComunidades(ComunidadVO object) {
 		return comunidadDAO.getComunidades(object);
+	}
+
+	@Override
+	public List<PredioVO> getRepresentantes(Integer cnComunidad) {
+		return comunidadDAO.getRepresentantes(cnComunidad);
 	}
 }

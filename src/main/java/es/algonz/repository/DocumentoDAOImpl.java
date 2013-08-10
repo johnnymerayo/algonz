@@ -3,8 +3,13 @@ package es.algonz.repository;
 // Generated 20-jul-2013 18:00:17 by Hibernate Tools 3.4.0.CR1
 
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -76,5 +81,17 @@ public class DocumentoDAOImpl implements DocumentoDAO{
 			log.error("get failed", re);
 			throw re;
 		}
+	}
+
+	@Override
+	public List<DocumentoVO> getDocumentos(DocumentoVO object) {
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+		CriteriaQuery<DocumentoVO> cq = cb.createQuery(DocumentoVO.class);
+		Root<DocumentoVO> root = cq.from(DocumentoVO.class);
+		cq.select(root);
+		if(object != null && object.getCnDocumento() != null)
+			cq.where(cb.equal(root.get("cnDocumento"), object.getCnDocumento()));
+		//Sino se devuelven todos
+		return entityManager.createQuery(cq).getResultList();
 	}
 }

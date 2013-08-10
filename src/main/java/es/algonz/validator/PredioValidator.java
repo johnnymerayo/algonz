@@ -1,6 +1,7 @@
 package es.algonz.validator;
 
 import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import es.algonz.domain.PredioVO;
@@ -14,11 +15,12 @@ public class PredioValidator implements Validator {
 
 	@Override
 	public void validate(Object target, Errors errors) {	
-//		VO o=(ConsignatarioVO) target;
-//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nomFiscal", "error.requerido",new Object[]{"Nom Fiscal"});
-//		if(o.getAlias()!=null){
-//			//vslidas que otro campo sea numérico (campo edad)
-//			//errors.rejectValue("edad", errorCode, errorArgs, defaultMessage)
-//		}
+		
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "tipoPredio.cnTipoPredio",  "error.requerido",new Object[]{"Tipo predio"});
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "planta.cnPlanta",  "error.requerido",new Object[]{"Planta"});
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "terceroByCnPropietario.teNombre",  "error.requerido",new Object[]{"Nombre"});
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "terceroByCnPropietario.teApellido1",  "error.requerido",new Object[]{"Número"});
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "terceroByCnPropietario.teTlfFijo",  "error.requerido",new Object[]{"Teléfono"});
+		
 	}
 }

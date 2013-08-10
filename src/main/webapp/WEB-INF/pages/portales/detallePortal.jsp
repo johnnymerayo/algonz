@@ -14,14 +14,9 @@
 			</c:if>
 		</legend>
 		
-<c:if test="${not empty message }">
-	<div class="text-success">${message}</div>
-	<div>&nbsp;</div>
-</c:if>
-<c:if test="${not empty error }">
-	<div class="text-error"><h5>${error }</h5></div>
-	<div>&nbsp;</div>
-</c:if>
+
+		<!-- Muestra los mensajes de validación -->
+		<jsp:include page="../include_messages.jsp"/>
 
 		<form:hidden path="cnPortal" />
 		<form:hidden path="comunidad.cnComunidad" />
@@ -30,8 +25,8 @@
 		<div style="width: 100%; float: left">
 		
 		
-			<t:input path="teCalle" label="Calle" required="false" tabindex="1"/>
-			<t:input path="teNombre" label="Número" required="true" tabindex="2"/>
+			<t:input path="teCalle" label="Calle" required="false" maxlength="100" tabindex="1"/>
+			<t:input path="teNombre" label="Número" required="true" maxlength="100" tabindex="2"/>
 			<t:area path="teObservaciones" label="Observaciones" required="false" tabindex="3"/>
     
     
@@ -39,7 +34,17 @@
 		
 	</fieldset>
 	
+		<div class="control-group" style="clear: both">
+			<div class="controls">
+				<button type="submit" class="btn btn-primary">Guardar</button>
+				<!-- <button type="button" class="btn" onclick="changeAction('mainForm','action/comunidades/editar?id=${portal.comunidad.cnComunidad}')">Cancelar</button>  -->
+				<a href="action/comunidades/editar?id=${portal.comunidad.cnComunidad}" class="btn">Cancelar</a>
+			</div>
+		</div>
 	
+		
+	<c:if test="${not empty portal.cnPortal }">	
+		
 	<fieldset>
 		<legend>
 		Predios
@@ -96,7 +101,7 @@
 <div>&nbsp;</div>
 
 <div>
-	<a href="action/predios/nuevoPredio?codPortal=${portal.cnPortal}" class="btn btn-primary">Nuevo predio</a>
+	<a href="action/predios/nuevoPredio?codPortal=${portal.cnPortal}" class="btn btn-primary"> <i class="icon-plus icon-white"></i> <span>Nuevo predio</span></a>
 </div>
 
 		
@@ -108,18 +113,52 @@
 		Siniestros
 		</legend>
 		
-		<p class="text-info">NO SE HAN ENCONTRADO RESULTADOS</p>
+
+<c:if test="${portal.siniestros != null && empty portal.siniestros}">
+	<p class="text-info">NO SE HAN ENCONTRADO RESULTADOS</p>
+</c:if>
+
+
+<c:if test="${not empty portal.siniestros}">
+
+	<table id="tablaPaginada2" class="table table-striped table-bordered">
+		<thead>
+			<tr>
+				<th>Tipo</th>
+				<th>Empresa</th>
+				<th>Descripción</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${portal.siniestros}" var="siniestro" varStatus="status">
+				<tr>
+					<td>${siniestro.empresaComunidad.empresa.tipoEmpresa.teTipoEmpresa}</td>
+					<td>${siniestro.empresaComunidad.empresa.teNombre}</td>
+					<td>${siniestro.teNombre}</td>
+					<td>
+						<a href="action/siniestros/editar?id=${siniestro.cnSiniestro }">
+							<i class="icon-edit"></i></a> &nbsp;
+						<a href="action/siniestros/eliminar?id=${siniestro.cnSiniestro }">
+							<i class="icon-remove"></i></a>
+					</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+
+</c:if>
+<div>&nbsp;</div>
+		
+<sec:authorize access="hasRole('ROLE_ADMIN')">
+
+<div>
+	<a href="action/siniestros/nuevoSiniestro?codPortal=${portal.cnPortal }" class="btn btn-primary"><i class="icon-plus icon-white"></i> <span>Nuevo siniestro</span></a>
+</div>
+ </sec:authorize>
 		
 		</fieldset>
-		
-	
-		<div class="control-group" style="clear: both">
-			<div class="controls">
-				<button type="submit" class="btn btn-primary">Guardar</button>
-				<!-- <button type="button" class="btn" onclick="changeAction('mainForm','action/comunidades/editar?id=${portal.comunidad.cnComunidad}')">Cancelar</button>  -->
-				<a href="action/comunidades/editar?id=${portal.comunidad.cnComunidad}" class="btn">Cancelar</a>
-			</div>
-		</div>
+		</c:if>
 </form:form>
 
 

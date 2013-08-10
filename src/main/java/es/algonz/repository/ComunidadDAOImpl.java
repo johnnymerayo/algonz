@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import es.algonz.domain.ComunidadVO;
-import es.algonz.domain.ComunidadVO;
+import es.algonz.domain.PredioVO;
 
 /**
  * DAOImpl object for domain model class Comunidad.
@@ -94,5 +94,20 @@ public class ComunidadDAOImpl implements ComunidadDAO {
 			cq.where(cb.equal(root.get("cnComunidad"), object.getCnComunidad()));
 		//Sino se devuelven todos
 		return entityManager.createQuery(cq).getResultList();
+	}
+
+	@Override
+	public List<PredioVO> getRepresentantes(Integer cnComunidad) {
+	
+		String query="SELECT pr.* " +
+				"FROM  portal p, predio pr " +
+				"WHERE p.cn_Comunidad = " + cnComunidad +
+				" AND pr.cn_portal = p.cn_portal " +
+				"AND pr.cn_tipo_representante is not null order by pr.cn_tipo_representante asc;";
+		List<PredioVO> resultList = entityManager.createNativeQuery(query,PredioVO.class).getResultList();
+		return  resultList;
+	
+
+		
 	}
 }

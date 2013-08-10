@@ -25,6 +25,10 @@ import javax.persistence.TemporalType;
 @Table(name = "aviso_empresa", catalog = "algonz")
 public class AvisoEmpresaVO implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3395653999886270027L;
 	private Integer cnAvisoEmpresa;
 	private EstadoVO estado;
 	private EmpresaComunidadVO empresaComunidad;
@@ -33,6 +37,8 @@ public class AvisoEmpresaVO implements java.io.Serializable {
 	private Date feVencimiento;
 	private Date feCierre;
 	private String teObservaciones;
+	private Integer nuDiasAviso;
+	
 	private Set<DocumentoVO> documentos = new HashSet<DocumentoVO>(0);
 
 	public AvisoEmpresaVO() {
@@ -48,7 +54,7 @@ public class AvisoEmpresaVO implements java.io.Serializable {
 	public AvisoEmpresaVO(Integer cnAvisoEmpresa, EstadoVO estado,
 			EmpresaComunidadVO empresaComunidad, String teDescripcion,
 			Date feInicio, Date feVencimiento, Date feCierre,
-			String teObservaciones, Set<DocumentoVO> documentos) {
+			String teObservaciones, Set<DocumentoVO> documentos, Integer nuDiasAviso) {
 		this.cnAvisoEmpresa = cnAvisoEmpresa;
 		this.estado = estado;
 		this.empresaComunidad = empresaComunidad;
@@ -58,6 +64,7 @@ public class AvisoEmpresaVO implements java.io.Serializable {
 		this.feCierre = feCierre;
 		this.teObservaciones = teObservaciones;
 		this.documentos = documentos;
+		this.nuDiasAviso = nuDiasAviso;
 	}
 
 	@Id
@@ -146,6 +153,16 @@ public class AvisoEmpresaVO implements java.io.Serializable {
 
 	public void setDocumentos(Set<DocumentoVO> documentos) {
 		this.documentos = documentos;
+	}
+
+
+	@Column(name = "NU_DIAS_AVISO", length = 3)
+	public Integer getNuDiasAviso() {
+		return nuDiasAviso;
+	}
+
+	public void setNuDiasAviso(Integer nuDiasAviso) {
+		this.nuDiasAviso = nuDiasAviso;
 	}
 
 }

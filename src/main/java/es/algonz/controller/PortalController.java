@@ -70,14 +70,17 @@ public class PortalController {
 
 	@RequestMapping(value = "/eliminar", method = RequestMethod.GET)
 	public String eliminar(Model model,
-			@RequestParam(RequestKeys.ID) String id, HttpSession session) {
+			@RequestParam(RequestKeys.ID) String id, HttpSession session, RedirectAttributes redirectAttrs) {
+		PortalVO portal = new PortalVO();
 		if (id != null) {
-			PortalVO portal  = portalManager.findById(new Integer (id).intValue());
+			 portal  = portalManager.findById(new Integer (id).intValue());
 				portalManager.remove(portal);
 				model.addAttribute(RequestKeys.MESSAGE,
 						"Eliminado correctamente");
-		}
-		return "forward:/action/portales/listado";
+				redirectAttrs.addFlashAttribute(RequestKeys.MESSAGE, "Eliminado correctamente");
+			}
+			//return "forward:/action/portales/listado";
+			return "redirect:/action/comunidades/editar?id=" + portal.getComunidad().getCnComunidad();
 	}
 
 	@RequestMapping(value = "/nuevo", method = RequestMethod.GET)

@@ -16,7 +16,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import es.algonz.domain.PlantaVO;
-import es.algonz.domain.PlantaVO;
 
 /**
  * DAOImpl object for domain model class Planta.

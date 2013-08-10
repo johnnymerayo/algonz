@@ -5,6 +5,7 @@ package es.algonz.domain;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -25,6 +26,10 @@ import javax.persistence.TemporalType;
 @Table(name = "actuacion", catalog = "algonz")
 public class ActuacionVO implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3759976506223254992L;
 	private Integer cnActuacion;
 	private SiniestroVO siniestro;
 	private EstadoVO estado;
@@ -120,8 +125,6 @@ public class ActuacionVO implements java.io.Serializable {
 	public void setFeCierre(Date feCierre) {
 		this.feCierre = feCierre;
 	}
-
-
 
 	@Column(name = "TE_NUMERO_EXP", length = 50)
 	public String getTeNumeroExp() {

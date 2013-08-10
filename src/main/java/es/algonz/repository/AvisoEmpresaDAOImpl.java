@@ -16,7 +16,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import es.algonz.domain.AvisoEmpresaVO;
-import es.algonz.domain.AvisoEmpresaVO;
 
 /**
  * DAOImpl object for domain model class AvisoEmpresa.
@@ -94,5 +93,28 @@ public class AvisoEmpresaDAOImpl implements AvisoEmpresaDAO{
 			cq.where(cb.equal(root.get("cnAvisoEmpresa"), object.getCnAvisoEmpresa()));
 		//Sino se devuelven todos
 		return entityManager.createQuery(cq).getResultList();
+	}
+
+	@Override
+	public List<AvisoEmpresaVO> getAvisosEmpresaProximoVencimiento() {				
+		// El aviso salta nu_dias_aviso antes de la fecha de vencimiento o bien 15 días antes si no se indica.
+		String query="select * from aviso_empresa " +
+				"where fe_vencimiento <= DATE_ADD(CURDATE(),INTERVAL IFNULL (nu_dias_aviso, 15) DAY) " +
+				"and cn_estado <> 2 " + // Estado CERRADO no se muestran
+				"order by fe_vencimiento asc;";
+		List<AvisoEmpresaVO> resultList = entityManager.createNativeQuery(query,AvisoEmpresaVO.class).getResultList();
+		return  resultList;
+	
+	}
+
+	@Override
+	public List<AvisoEmpresaVO> getAvisosEmpresaAbiertas(Integer cnEmpresa) {
+		String query="select a.* from aviso_empresa a, empresa_comunidad ec " +
+				"where ec.cn_empresa = '" + cnEmpresa + "' " +
+				"and a.cn_empresa_comunidad = ec.cn_empresa_comunidad " +
+				"and a.cn_estado <> 2 " + // Estado CERRADO no se muestran
+				"order by a.fe_vencimiento asc;";
+		List<AvisoEmpresaVO> resultList = entityManager.createNativeQuery(query,AvisoEmpresaVO.class).getResultList();
+		return  resultList;
 	}
 }

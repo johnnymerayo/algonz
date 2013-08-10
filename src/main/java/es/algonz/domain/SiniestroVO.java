@@ -23,6 +23,10 @@ import javax.persistence.Transient;
 @Table(name = "siniestro", catalog = "algonz")
 public class SiniestroVO implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4599809304135887221L;
 	private Integer cnSiniestro;
 	private PortalVO portal;
 	private EmpresaComunidadVO empresaComunidad;

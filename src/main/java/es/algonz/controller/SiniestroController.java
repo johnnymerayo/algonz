@@ -63,28 +63,34 @@ public class SiniestroController {
 				SiniestroVO siniestro  = siniestroManager.findById(new Integer (id).intValue());
 				siniestro.setCnTipoSiniestro(siniestro.getEmpresaComunidad().getEmpresa().getTipoEmpresa().getCnTipoEmpresa());
 				model.addAttribute(RequestKeys.SINIESTRO, siniestro);
+				
+				// Cargamos el combo de tipos de empresa
+				model.addAttribute("tiposEmpresaCombo", combosUtils.loadTiposEmpresa());
+				// TODO hacerlo dinamico desde la vista
+				// Cargamos el combo de empresa
+				model.addAttribute("empresasComunidadCombo", combosUtils.loadEmpresasComunidad(siniestro.getPortal().getComunidad().getCnComunidad()));
 			
 		}
 		
-
-		// Cargamos el combo de tipos de empresa
-		model.addAttribute("tiposEmpresaCombo", combosUtils.loadTiposEmpresa());
-		// TODO hacerlo dinamico desde la vista
-		// Cargamos el combo de empresa
-		model.addAttribute("empresasCombo", combosUtils.loadEmpresas());
-		return "detalleSiniestro";
+	return "detalleSiniestro";
 	}
 
 	@RequestMapping(value = "/eliminar", method = RequestMethod.GET)
 	public String eliminar(Model model,
-			@RequestParam(RequestKeys.ID) String id, HttpSession session) {
+			@RequestParam(RequestKeys.ID) String id, HttpSession session, RedirectAttributes redirectAttrs) {
+		String idPortal = "";
+		
 		if (id != null) {
 			SiniestroVO siniestro  = siniestroManager.findById(new Integer (id).intValue());
+			idPortal = siniestro.getPortal().getCnPortal().toString();
+			
 				siniestroManager.remove(siniestro);
 				model.addAttribute(RequestKeys.MESSAGE,
 						"Eliminado correctamente");
-		}
-		return "forward:/action/siniestros/listado";
+				redirectAttrs.addFlashAttribute(RequestKeys.MESSAGE, "Almacenado correctamente");
+			}
+//			return "forward:/action/siniestros/listado";
+			return "redirect:/action/portales/editar?id=" + idPortal;
 	}
 
 	@RequestMapping(value = "/nuevo", method = RequestMethod.GET)
@@ -95,7 +101,7 @@ public class SiniestroController {
 		model.addAttribute("tiposEmpresaCombo", combosUtils.loadTiposEmpresa());
 		// TODO hacerlo dinamico desde la vista
 		// Cargamos el combo de empresa
-		model.addAttribute("empresasCombo", combosUtils.loadEmpresas());
+		model.addAttribute("empresasComunidadCombo", combosUtils.loadEmpresasComunidad(siniestro.getPortal().getComunidad().getCnComunidad()));
 		return "detalleSiniestro";
 	}
 	
@@ -112,7 +118,7 @@ public class SiniestroController {
 		model.addAttribute("tiposEmpresaCombo", combosUtils.loadTiposEmpresa());
 		// TODO hacerlo dinamico desde la vista
 		// Cargamos el combo de empresa
-		model.addAttribute("empresasCombo", combosUtils.loadEmpresas());
+		model.addAttribute("empresasComunidadCombo", combosUtils.loadEmpresasComunidad(siniestro.getPortal().getComunidad().getCnComunidad()));
 		return "detalleSiniestro";
 	}
 	
@@ -122,12 +128,16 @@ public class SiniestroController {
 			@Valid @ModelAttribute(RequestKeys.SINIESTRO) SiniestroVO siniestro,
 			BindingResult binding, Model model, RedirectAttributes redirectAttrs) {
 		if (binding.hasErrors()) {
+			
+			PortalVO portal = portalManager.findById(new Integer (siniestro.getPortal().getCnPortal()));
+			siniestro.setPortal(portal);
+			
 			model.addAttribute(RequestKeys.SINIESTRO, siniestro);
 			// Cargamos el combo de tipos de empresa
 			model.addAttribute("tiposEmpresaCombo", combosUtils.loadTiposEmpresa());
 			// TODO hacerlo dinamico desde la vista
 			// Cargamos el combo de empresa
-			model.addAttribute("empresasCombo", combosUtils.loadEmpresas());
+			model.addAttribute("empresasComunidadCombo", combosUtils.loadEmpresasComunidad(siniestro.getPortal().getComunidad().getCnComunidad()));
 			return "detalleSiniestro";
 		}
 		if (siniestro != null) {
@@ -139,8 +149,8 @@ public class SiniestroController {
 			//model.addAttribute(RequestKeys.MESSAGE, "Almacenado correctamente");
 			redirectAttrs.addFlashAttribute(RequestKeys.MESSAGE, "Almacenado correctamente");
 		}
-		return "forward:/action/siniestros/listado";
-		//return "redirect:/action/portales/editar?id=" + siniestro.getPortal().getCnPortal();
+//		return "forward:/action/siniestros/listado";
+		return "redirect:/action/portales/editar?id=" + siniestro.getPortal().getCnPortal();
 	}
 
 }

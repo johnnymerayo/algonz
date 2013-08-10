@@ -25,6 +25,10 @@ import javax.persistence.TemporalType;
 @Table(name = "empresa_comunidad", catalog = "algonz")
 public class EmpresaComunidadVO implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 559666202781947169L;
 	private Integer cnEmpresaComunidad;
 	private ComunidadVO comunidad;
 	private EmpresaVO empresa;

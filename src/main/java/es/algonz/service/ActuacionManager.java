@@ -19,5 +19,9 @@ public interface ActuacionManager extends Serializable {
 	public ActuacionVO findById(Integer id);
 
 	public List<ActuacionVO> getActuaciones(ActuacionVO object);
+
+	public List<ActuacionVO> getActuacionesProximoVencimiento();
+
+	public List<ActuacionVO> getActuacionesAbiertas(Integer cnEmpresa);
 	
 }

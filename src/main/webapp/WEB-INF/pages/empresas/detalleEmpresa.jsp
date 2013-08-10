@@ -13,31 +13,21 @@
 
 		<div style="width: 50%; float: left">
 		
-    		<t:select itemLabel="teTipoEmpresa" itemValue="cnTipoEmpresa" items="${tiposEmpresaCombo}" path="tipoEmpresa.cnTipoEmpresa" required="true" label="Tipo Empresa" tabindex="1"/>
-			<t:input path="teNombre" label="Nombre" required="true" tabindex="3"/>
-			<t:input path="teTlfMovil1" label="Teléfono Móvil 1" required="false" tabindex="5"/>
-			<t:area path="teDireccion" label="Dirección" required="false" tabindex="7"/>   
+    		<t:select itemLabel="teTipoEmpresa" itemValue="cnTipoEmpresa" items="${tiposEmpresaCombo}" path="tipoEmpresa.cnTipoEmpresa" required="true" label="Tipo Empresa" emptyOption="true" tabindex="1"/>
+			<t:input path="teNombre" label="Nombre" required="true" tabindex="3" maxlength="100"/>
+			<t:input path="teTlfMovil1" label="Teléfono Móvil 1" required="false" tabindex="5" maxlength="50"/>
+			<t:area path="teDireccion" label="Dirección" required="false" tabindex="7" />   
 			<t:area path="teObservaciones" label="Observaciones" cols="500" tabindex="9"/>
     
 		</div>
 		<div style="width: 50%; float: left">
-			<t:input path="caCif" label="CIF" required="true" tabindex="2"/>
-			<t:input path="teTlfFijo" label="Teléfono Fijo" required="false" tabindex="4"/>
-			<t:input path="teTlfMovil2" label="Teléfono Movil 2" required="false" tabindex="6"/>
-			<t:input path="teEmail" label="E-Mail" required="false" tabindex="8"/>
+			<t:input path="caCif" label="CIF" required="true" tabindex="2" maxlength="10"/>
+			<t:input path="teTlfFijo" label="Teléfono Fijo" required="false" tabindex="4" maxlength="50"/>
+			<t:input path="teTlfMovil2" label="Teléfono Movil 2" required="false" tabindex="6" maxlength="50"/>
+			<t:input path="teEmail" label="E-Mail" required="false" tabindex="8" maxlength="50"/>
 		</div>
 
 	</fieldset>
-	
-	
-	<fieldset>
-		<legend>
-			Incidencias abiertas
-		</legend>
-		
-		<p class="text-info">NO SE HAN ENCONTRADO RESULTADOS</p>
-		
-		</fieldset>
 	
 	
 		<div class="control-group" style="clear: both">
@@ -47,6 +37,113 @@
 					onclick="changeAction('mainForm','action/empresas/listado')">Cancelar</button>
 			</div>
 		</div>
+	
+	<c:if test="${not empty empresa.cnEmpresa }">	
+	
+	
+<fieldset>
+	<legend> Incidencias abiertas </legend>
+
+	<c:if test="${listaActuaciones != null && empty listaActuaciones}">
+		<p class="text-info">NO SE HAN ENCONTRADO RESULTADOS</p>
+	</c:if>
+
+
+	<c:if test="${not empty listaActuaciones}">
+
+		<table id="tablaPaginada_print" class="table table-striped table-bordered">
+			<thead>
+				<tr>
+					<th>Comunidad</th>
+					<th>Portal</th>
+					<th>Fecha Inicio</th>
+					<th>Fecha Vencimiento</th>
+					<th>Estado</th>
+					<th>Descripción</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${listaActuaciones}" var="actuacion"
+					varStatus="status">				
+					<tr>
+						<td>${actuacion.siniestro.portal.comunidad.teNombre}</td>
+						<td>${actuacion.siniestro.portal.teNombre}</td>
+						<td><fmt:formatDate value="${actuacion.feInicio}"
+								pattern="dd/MM/yyyy" /></td>
+						<td><fmt:formatDate value="${actuacion.feVencimiento}"
+								pattern="dd/MM/yyyy" /></td>
+						<td>${actuacion.estado.teEstado}</td>
+						<td>${actuacion.teDescripcion}</td>
+						<td><a
+							href="action/actuaciones/editar?id=${actuacion.cnActuacion }">
+								<i class="icon-edit"></i>
+						</a></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+
+	</c:if>
+
+</fieldset>
+<div>&nbsp;</div>
+
+
+
+
+<fieldset>
+	<legend> Listado de avisos </legend>
+
+
+	<div>&nbsp;</div>
+
+	<c:if
+		test="${listaAvisosEmpresa != null && empty listaAvisosEmpresa}">
+		<p class="text-info">NO SE HAN ENCONTRADO RESULTADOS</p>
+	</c:if>
+
+
+	<c:if test="${not empty listaAvisosEmpresa}">
+
+		<table id="tablaPaginada2_print" class="table table-striped table-bordered">
+			<thead>
+				<tr>
+					<th>Comunidad</th>
+					<th>Fecha Inicio</th>
+					<th>Fecha Vencimiento</th>
+					<th>Estado</th>
+					<th>Descripción</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${listaAvisosEmpresa}" var="aviso"
+					varStatus="status">
+										
+					<tr>
+						<td>${aviso.empresaComunidad.comunidad.teNombre}</td>
+						<td><fmt:formatDate value="${aviso.feInicio}"
+								pattern="dd/MM/yyyy" /></td>
+						<td><fmt:formatDate value="${aviso.feVencimiento}"
+								pattern="dd/MM/yyyy" /></td>
+						<td>${aviso.estado.teEstado}</td>
+						<td>${aviso.teDescripcion}</td>
+						<td><a
+							href="action/avisosEmpresa/editar?id=${aviso.cnAvisoEmpresa }">
+								<i class="icon-edit"></i></a>
+						</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+
+	</c:if>
+	<div>&nbsp;</div>
+
+
+</fieldset>
+</c:if>
 </form:form>
 
 

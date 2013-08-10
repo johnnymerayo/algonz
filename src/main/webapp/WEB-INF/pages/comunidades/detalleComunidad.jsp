@@ -10,23 +10,16 @@
 			</c:if>
 		</legend>
 		
-				
-<c:if test="${not empty message }">
-	<div class="text-success">${message}</div>
-	<div>&nbsp;</div>
-</c:if>
-<c:if test="${not empty error }">
-	<div class="text-error"><h5>${error }</h5></div>
-	<div>&nbsp;</div>
-</c:if>
+		<!-- Muestra los mensajes de validación -->
+		<jsp:include page="../include_messages.jsp"/>
 		
 		<form:hidden path="cnComunidad" />
 
 		<div style="width: 100%; float: left">
 		
-			<t:input path="caCif" label="CIF" required="true" tabindex="1"/>
-			<t:input path="teNombre" label="Nombre" required="true" tabindex="2"/>
-			<t:input path="teCp" label="Código postal" required="false" tabindex="3"/>
+			<t:input path="caCif" label="CIF" required="true" maxlength="10" tabindex="1"/>
+			<t:input path="teNombre" label="Nombre" required="true" maxlength="100" tabindex="2"/>
+			<t:input path="teCp" label="Código postal" required="false" maxlength="5" tabindex="3"/>
 			<t:area path="teObservaciones" label="Observaciones" required="false" tabindex="4"/>
     
     
@@ -34,6 +27,18 @@
 		
 	</fieldset>
 	
+	
+	<div>&nbsp;</div>
+
+		<div class="control-group" style="clear: both">
+			<div class="controls">
+				<button type="submit" class="btn btn-primary">Guardar</button>
+				<button type="button" class="btn"
+					onclick="changeAction('mainForm','action/comunidades/listado')">Cancelar</button>
+			</div>
+		</div>
+		
+	<c:if test="${not empty comunidad.cnComunidad }">	
 	
 	<fieldset>
 		<legend>
@@ -79,7 +84,7 @@
 
 
 <div>
-	<a href="action/portales/nuevoPortal?codComunidad=${comunidad.cnComunidad }" class="btn btn-primary">Nuevo portal</a>
+	<a href="action/portales/nuevoPortal?codComunidad=${comunidad.cnComunidad }" class="btn btn-primary"> <i class="icon-plus icon-white"></i> <span>Nuevo portal</span></a>
 </div>
 
 <div>&nbsp;</div>
@@ -93,8 +98,56 @@
 		Representantes
 		</legend>
 		
-		<p class="text-info">NO SE HAN ENCONTRADO RESULTADOS</p>
 		
+<c:if test="${comunidad.representantes != null && empty comunidad.representantes}">
+	<p class="text-info">NO SE HAN ENCONTRADO RESULTADOS</p>
+</c:if>
+
+
+<c:if test="${not empty comunidad.representantes}">
+
+	<table id="tablaPaginada2" class="table table-striped table-bordered">
+		<thead>
+			<tr>
+				<th>Tipo</th>
+				<th>Nombre</th>
+				<th>Teléfono</th>
+				<th>Email</th>
+				<th>Calle</th>	
+				<th>Portal</th>	
+				<th>Planta</th>	
+				<th>Piso</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${comunidad.representantes}" var="predio" varStatus="status">
+				<tr>
+					<td>${predio.tipoRepresentante.teTipoRepresentante}</td>
+					<td>${predio.terceroByCnPropietario.nombreCompleto}</td>
+					<td>
+						${predio.terceroByCnPropietario.teTlfFijo}
+						<c:if test="${not empty predio.terceroByCnPropietario.teTlfFijo and not empty predio.terceroByCnPropietario.teTlfMovil1}">/</c:if>
+						${predio.terceroByCnPropietario.teTlfMovil1}
+						<c:if test="${not empty predio.terceroByCnPropietario.teTlfMovil1 and not empty predio.terceroByCnPropietario.teTlfMovil2}">/</c:if>						
+						${predio.terceroByCnPropietario.teTlfMovil2}
+						
+					</td>
+					<td>${predio.terceroByCnPropietario.teEmail}</td>
+					<td>${predio.portal.teCalle}</td>
+					<td>${predio.portal.teNombre}</td>
+					<td>${predio.planta.tePlanta}</td>
+					<td>${predio.tePredio}</td>
+					<td>
+						<a href="action/predios/editar?id=${predio.cnPredio }">
+							<i class="icon-edit"></i></a>
+					</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+
+</c:if>
 		</fieldset>
 		
 			
@@ -113,7 +166,7 @@
 
 <c:if test="${not empty comunidad.empresasComunidad}">
 
-	<table id="tablaPaginada" class="table table-striped table-bordered">
+	<table id="tablaPaginada3" class="table table-striped table-bordered">
 		<thead>
 			<tr>
 				<th>Tipo</th>
@@ -159,21 +212,78 @@
 <div>&nbsp;</div>
 
 		
+<sec:authorize access="hasRole('ROLE_ADMIN')">
 <div>
-	<a href="action/empresasComunidad/nuevaEmpresaComunidad?codComunidad=${comunidad.cnComunidad }" class="btn btn-primary">Añadir empresa</a>
+	<a href="action/empresasComunidad/nuevaEmpresaComunidad?codComunidad=${comunidad.cnComunidad }" class="btn btn-primary"> <i class="icon-plus icon-white"></i> <span>Añadir empresa</span></a>
 </div>
+</sec:authorize>
 
 <div>&nbsp;</div>
-
-		</fieldset>
 	
-		<div class="control-group" style="clear: both">
-			<div class="controls">
-				<button type="submit" class="btn btn-primary">Guardar</button>
-				<button type="button" class="btn"
-					onclick="changeAction('mainForm','action/comunidades/listado')">Cancelar</button>
-			</div>
-		</div>
+		</fieldset>
+		
+			
+	<fieldset>
+		<legend>
+		Documentos
+		</legend>
+		
+		
+<div>&nbsp;</div>
+
+
+
+<c:if test="${comunidad.documentos != null && empty comunidad.documentos}">
+	<p class="text-info">NO SE HAN ENCONTRADO RESULTADOS</p>
+</c:if>
+
+
+<c:if test="${not empty comunidad.documentos}">
+
+	
+	<table id="tablaPaginada4" class="table table-striped table-bordered">
+		<thead>
+			<tr>
+				<th>Nombre</th>
+				<th>Fecha</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${comunidad.documentos}" var="documento" varStatus="status">
+				<tr>
+				
+					<td>${documento.teNombre}</td>
+					<td><fmt:formatDate value="${documento.feGuardado}" pattern="dd/MM/yyyy"/></td>
+					<td>
+						<a href="action/comunidades/downloadDocument?id=${documento.cnDocumento }">
+							<i class="icon-download"></i></a> &nbsp;
+						<a href="action/comunidades/deleteDocument?codComunidad=${comunidad.cnComunidad }&amp;id=${documento.cnDocumento }">
+							<i class="icon-remove"></i></a>
+					</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+
+</c:if>
+<div>&nbsp;</div>
+
+
+		
+<sec:authorize access="hasRole('ROLE_ADMIN')">
+
+<div>
+<span class="btn btn-success fileinput-button">
+                    <i class="icon-plus icon-white"></i>
+                    <span>Añadir documento</span>
+                   <input id="fileupload" type="file" name="files[]" data-url="action/comunidades/uploadDocument?codComunidad=${comunidad.cnComunidad }" multiple>
+                </span>
+	</div>
+</sec:authorize>
+		</fieldset>
+</c:if>	
+
 </form:form>
 
 

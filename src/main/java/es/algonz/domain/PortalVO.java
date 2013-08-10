@@ -22,6 +22,10 @@ import javax.persistence.Table;
 @Table(name = "portal", catalog = "algonz")
 public class PortalVO implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5581050922016280646L;
 	private Integer cnPortal;
 	private ComunidadVO comunidad;
 	private String teCalle;
