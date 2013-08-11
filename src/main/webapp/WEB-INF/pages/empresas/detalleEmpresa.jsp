@@ -13,32 +13,32 @@
 
 
 <div class="row">
-<t:select itemLabel="teTipoEmpresa" itemValue="cnTipoEmpresa" items="${tiposEmpresaCombo}" path="tipoEmpresa.cnTipoEmpresa" required="true" label="Tipo Empresa" emptyOption="true" tabindex="1"/>
+<t:select itemLabel="teTipoEmpresa" itemValue="cnTipoEmpresa" items="${tiposEmpresaCombo}" path="tipoEmpresa.cnTipoEmpresa" required="true" label="Tipo Empresa" emptyOption="true" tabindex="1" gridClass="col-lg-4"/>
 </div>
 
 
 
 <div class="row">
-<t:input path="caCif" label="CIF" required="true" tabindex="2" maxlength="10" class="col-lg-4"/>
-<t:input path="teNombre" label="Nombre" required="true" tabindex="3" maxlength="100" class="col-lg-4"/>
+<t:input path="caCif" label="CIF" required="true" tabindex="2" maxlength="10" gridClass="col-lg-4"/>
+<t:input path="teNombre" label="Nombre" required="true" tabindex="3" maxlength="100" gridClass="col-lg-4"/>
 </div>
 
 
 <div class="row">
-<t:input path="teTlfFijo" label="Teléfono Fijo" required="false" tabindex="4" maxlength="50" class="col-lg-4"/>
-<t:input path="teTlfMovil1" label="Teléfono Móvil 1" required="false" tabindex="5" maxlength="50" class="col-lg-4"/>
-<t:input path="teTlfMovil2" label="Teléfono Movil 2" required="false" tabindex="6" maxlength="50" class="col-lg-4"/>
+<t:input path="teTlfFijo" label="Teléfono Fijo" required="false" tabindex="4" maxlength="50" gridClass="col-lg-4"/>
+<t:input path="teTlfMovil1" label="Teléfono Móvil 1" required="false" tabindex="5" maxlength="50" gridClass="col-lg-4"/>
+<t:input path="teTlfMovil2" label="Teléfono Movil 2" required="false" tabindex="6" maxlength="50" gridClass="col-lg-4"/>
 </div>
 
 
 <div class="row">
-<t:input path="teEmail" label="E-Mail" required="false" tabindex="7" maxlength="50" class="col-lg-4"/>
-<t:area path="teDireccion" label="Dirección" required="false" tabindex="8"  class="col-lg-4"/>
+<t:input path="teEmail" label="E-Mail" required="false" tabindex="7" maxlength="50" gridClass="col-lg-4"/>
+<t:area path="teDireccion" label="Dirección" required="false" tabindex="8"  gridClass="col-lg-4"/>
 </div>
 
 
 <div class="row">
-<t:area path="teObservaciones" label="Observaciones" cols="500" tabindex="9" class="col-lg-12"/>
+<t:area path="teObservaciones" label="Observaciones" cols="500" tabindex="9" gridClass="col-lg-12"/>
 </div>
 
 
@@ -53,11 +53,17 @@
 			</div>
 		</div>
 	
+	
+<div>&nbsp;</div>
+	
 	<c:if test="${not empty empresa.cnEmpresa }">	
 	
 	
 <fieldset>
 	<legend> Incidencias abiertas </legend>
+	
+	
+<div>&nbsp;</div>
 
 	<c:if test="${listaActuaciones != null && empty listaActuaciones}">
 		<p class="text-info">NO SE HAN ENCONTRADO RESULTADOS</p>

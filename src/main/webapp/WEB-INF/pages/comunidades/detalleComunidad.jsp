@@ -124,7 +124,7 @@
 				<th>Portal</th>	
 				<th>Planta</th>	
 				<th>Piso</th>
-				<th>Acciones</th>
+				<!-- <th>Acciones</th> -->	
 			</tr>
 		</thead>
 		<tbody>
@@ -141,14 +141,15 @@
 						
 					</td>
 					<td>${predio.terceroByCnPropietario.teEmail}</td>
+					<!-- <td><a href="mailto:${predio.terceroByCnPropietario.teEmail}">${predio.terceroByCnPropietario.teEmail}</a></td> -->
 					<td>${predio.portal.teCalle}</td>
 					<td>${predio.portal.teNombre}</td>
 					<td>${predio.planta.tePlanta}</td>
 					<td>${predio.tePredio}</td>
-					<td>
+					<!-- <td>
 						<a href="action/predios/editar?id=${predio.cnPredio }">
 							<i class="glyphicon glyphicon-edit"></i></a>
-					</td>
+					</td> -->	
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -202,6 +203,7 @@
 						
 					</td>
 					<td>${empresaComunidad.empresa.teEmail}</td>
+					<!--<td><a href="mailto:${empresaComunidad.empresa.teEmail}">${empresaComunidad.empresa.teEmail}</a></td>-->
 					<td><fmt:formatDate value="${empresaComunidad.feInicio}" pattern="dd/MM/yyyy"/></td>
 					<td><fmt:formatDate value="${empresaComunidad.feFin}" pattern="dd/MM/yyyy"/></td>
 					<td>
