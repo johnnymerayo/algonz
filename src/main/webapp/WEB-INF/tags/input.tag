@@ -12,23 +12,27 @@
 <%@attribute name="tabindex" required="false" type="java.lang.String"%>
 <%@attribute name="readonly" required="false" type="java.lang.Boolean"%>
 <%@attribute name="date" required="false" type="java.lang.Boolean"%>
+<%@attribute name="gridClass" required="false" type="java.lang.String"%>
 
 <c:if test="${empty label}">
     <c:set var="label" value="${fn:toUpperCase(fn:substring(path, 0, 1))}${fn:toLowerCase(fn:substring(path, 1,fn:length(path)))}" />
 </c:if>
 <spring:bind path="${path}">
-    <div class="control-group ${status.error ? 'error' : '' }">
+	<c:if test="${not empty gridClass}">
+	    <div class="${gridClass}">
+	</c:if>
+    <div class="form-group ${status.error ? 'has-error' : '' }">
         <label class="control-label" for="${path}">${label}<c:if test="${required}">&nbsp;<span class="required">*</span></c:if></label>
         <div class="controls">
         <c:if test="${not empty date and date==true }">
-        <div class="input-append date" id="${empty id?path:id }" data-date="${path}" data-date-format="dd-mm-yyyy">
+        <div class="input-group date" id="${empty id?path:id }" data-date="${path}" data-date-format="dd-mm-yyyy">
         </c:if>
-            <form:input path="${path}" cssClass="${empty cssClass ? 'input-xlarge' : cssClass}" id="${empty id?path:id }" maxlength="${maxlength!=null?maxlength:'' }" tabindex="${empty tabindex?'':tabindex }" readonly="${empty readonly?false:readonly }"/>
+            <form:input path="${path}" cssClass="form-control ${empty cssClass ? 'input-xlarge' : cssClass}" id="${empty id?path:id }" maxlength="${maxlength!=null?maxlength:'' }" tabindex="${empty tabindex?'':tabindex }" readonly="${empty readonly?false:readonly }"/>
             <c:if test="${not empty date and date==true }">
-            <span class="add-on"><i class="icon-calendar"></i></span></div>
+            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div>
             </c:if>
             <c:if test="${status.error}">
-                <span class="help-inline">${status.errorMessage}</span>
+                <span class="control-label">${status.errorMessage}</span>
             </c:if>
         </div>
     </div>
@@ -39,4 +43,8 @@
 		});
 		</script>
 	</c:if>
+	<c:if test="${not empty gridClass}">
+	    </div>
+	</c:if>
+	
 </spring:bind>

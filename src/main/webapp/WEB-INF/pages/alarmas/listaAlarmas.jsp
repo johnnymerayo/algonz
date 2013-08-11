@@ -7,6 +7,9 @@
 <fieldset>
 	<legend> Incidencias abiertas </legend>
 
+
+<div>&nbsp;</div>
+
 	<c:if test="${listaActuaciones != null && empty listaActuaciones}">
 		<p class="text-info">NO SE HAN ENCONTRADO RESULTADOS</p>
 	</c:if>
@@ -35,7 +38,7 @@
 										
 					<tr class="				
 <c:if test="${vencimiento lt hoy}">
- error
+ danger
 </c:if>	
 <c:if test="${vencimiento eq hoy}">
 warning
@@ -54,7 +57,7 @@ warning
 						<td>${actuacion.teDescripcion}</td>
 						<td><a
 							href="action/actuaciones/editar?id=${actuacion.cnActuacion }">
-								<i class="icon-edit"></i>
+								<i class="glyphicon glyphicon-edit"></i>
 						</a></td>
 					</tr>
 				</c:forEach>
@@ -103,7 +106,7 @@ warning
 										
 					<tr class="				
 <c:if test="${vencimiento lt hoy}">
- error
+ danger
 </c:if>	
 <c:if test="${vencimiento eq hoy}">
 warning
@@ -121,7 +124,7 @@ warning
 						<td>${aviso.teDescripcion}</td>
 						<td><a
 							href="action/avisosEmpresa/editar?id=${aviso.cnAvisoEmpresa }">
-								<i class="icon-edit"></i></a>
+								<i class="glyphicon glyphicon-edit"></i></a>
 						</td>
 					</tr>
 				</c:forEach>

@@ -11,21 +11,36 @@
 		</legend>
 		<form:hidden path="cnEmpresa" />
 
-		<div style="width: 50%; float: left">
-		
-    		<t:select itemLabel="teTipoEmpresa" itemValue="cnTipoEmpresa" items="${tiposEmpresaCombo}" path="tipoEmpresa.cnTipoEmpresa" required="true" label="Tipo Empresa" emptyOption="true" tabindex="1"/>
-			<t:input path="teNombre" label="Nombre" required="true" tabindex="3" maxlength="100"/>
-			<t:input path="teTlfMovil1" label="Teléfono Móvil 1" required="false" tabindex="5" maxlength="50"/>
-			<t:area path="teDireccion" label="Dirección" required="false" tabindex="7" />   
-			<t:area path="teObservaciones" label="Observaciones" cols="500" tabindex="9"/>
-    
-		</div>
-		<div style="width: 50%; float: left">
-			<t:input path="caCif" label="CIF" required="true" tabindex="2" maxlength="10"/>
-			<t:input path="teTlfFijo" label="Teléfono Fijo" required="false" tabindex="4" maxlength="50"/>
-			<t:input path="teTlfMovil2" label="Teléfono Movil 2" required="false" tabindex="6" maxlength="50"/>
-			<t:input path="teEmail" label="E-Mail" required="false" tabindex="8" maxlength="50"/>
-		</div>
+
+<div class="row">
+<t:select itemLabel="teTipoEmpresa" itemValue="cnTipoEmpresa" items="${tiposEmpresaCombo}" path="tipoEmpresa.cnTipoEmpresa" required="true" label="Tipo Empresa" emptyOption="true" tabindex="1"/>
+</div>
+
+
+
+<div class="row">
+<t:input path="caCif" label="CIF" required="true" tabindex="2" maxlength="10" class="col-lg-4"/>
+<t:input path="teNombre" label="Nombre" required="true" tabindex="3" maxlength="100" class="col-lg-4"/>
+</div>
+
+
+<div class="row">
+<t:input path="teTlfFijo" label="Teléfono Fijo" required="false" tabindex="4" maxlength="50" class="col-lg-4"/>
+<t:input path="teTlfMovil1" label="Teléfono Móvil 1" required="false" tabindex="5" maxlength="50" class="col-lg-4"/>
+<t:input path="teTlfMovil2" label="Teléfono Movil 2" required="false" tabindex="6" maxlength="50" class="col-lg-4"/>
+</div>
+
+
+<div class="row">
+<t:input path="teEmail" label="E-Mail" required="false" tabindex="7" maxlength="50" class="col-lg-4"/>
+<t:area path="teDireccion" label="Dirección" required="false" tabindex="8"  class="col-lg-4"/>
+</div>
+
+
+<div class="row">
+<t:area path="teObservaciones" label="Observaciones" cols="500" tabindex="9" class="col-lg-12"/>
+</div>
+
 
 	</fieldset>
 	
@@ -33,7 +48,7 @@
 		<div class="control-group" style="clear: both">
 			<div class="controls">
 				<button type="submit" class="btn btn-primary">Guardar</button>
-				<button type="button" class="btn"
+				<button type="button" class="btn btn-default"
 					onclick="changeAction('mainForm','action/empresas/listado')">Cancelar</button>
 			</div>
 		</div>
@@ -77,7 +92,7 @@
 						<td>${actuacion.teDescripcion}</td>
 						<td><a
 							href="action/actuaciones/editar?id=${actuacion.cnActuacion }">
-								<i class="icon-edit"></i>
+								<i class="glyphicon glyphicon-edit"></i>
 						</a></td>
 					</tr>
 				</c:forEach>
@@ -131,7 +146,7 @@
 						<td>${aviso.teDescripcion}</td>
 						<td><a
 							href="action/avisosEmpresa/editar?id=${aviso.cnAvisoEmpresa }">
-								<i class="icon-edit"></i></a>
+								<i class="glyphicon glyphicon-edit"></i></a>
 						</td>
 					</tr>
 				</c:forEach>

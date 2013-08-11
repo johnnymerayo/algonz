@@ -33,7 +33,7 @@
 		<div class="control-group" style="clear:both">
 			<div class="controls">
 				<button type="submit" class="btn btn-primary">Guardar</button>
-				<button type="button" class="btn"
+				<button type="button" class="btn btn-default"
 					onclick="changeAction('mainForm','action/consignatarios/listado')">Cancelar</button>
 			</div>
 		</div>

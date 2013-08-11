@@ -15,15 +15,18 @@
 		
 		<form:hidden path="cnComunidad" />
 
-		<div style="width: 100%; float: left">
-		
-			<t:input path="caCif" label="CIF" required="true" maxlength="10" tabindex="1"/>
-			<t:input path="teNombre" label="Nombre" required="true" maxlength="100" tabindex="2"/>
-			<t:input path="teCp" label="Código postal" required="false" maxlength="5" tabindex="3"/>
-			<t:area path="teObservaciones" label="Observaciones" required="false" tabindex="4"/>
-    
-    
-		</div>
+
+
+<div class="row">
+<t:input path="caCif" label="CIF" required="true" maxlength="10" tabindex="1" gridClass="col-lg-3"/>
+<t:input path="teNombre" label="Nombre" required="true" maxlength="100" tabindex="2" gridClass="col-lg-6"/>
+<t:input path="teCp" label="Código postal" required="false" maxlength="5" tabindex="3" gridClass="col-lg-3"/>
+</div>
+
+<div class="row">
+<t:area path="teObservaciones" label="Observaciones" required="false" tabindex="4" gridClass="col-lg-12"/>
+</div>
+
 		
 	</fieldset>
 	
@@ -33,10 +36,13 @@
 		<div class="control-group" style="clear: both">
 			<div class="controls">
 				<button type="submit" class="btn btn-primary">Guardar</button>
-				<button type="button" class="btn"
+				<button type="button" class="btn btn-default"
 					onclick="changeAction('mainForm','action/comunidades/listado')">Cancelar</button>
 			</div>
 		</div>
+		
+		
+<div>&nbsp;</div>
 		
 	<c:if test="${not empty comunidad.cnComunidad }">	
 	
@@ -71,9 +77,9 @@
 					<td>${portal.teNombre}</td>
 					<td>
 						<a href="action/portales/editar?id=${portal.cnPortal }">
-							<i class="icon-edit"></i></a> &nbsp;
+							<i class="glyphicon glyphicon-edit"></i></a> &nbsp;
 						<a href="action/portales/eliminar?id=${portal.cnPortal }">
-							<i class="icon-remove"></i></a>
+							<i class="glyphicon glyphicon-remove"></i></a>
 					</td>
 				</tr>
 			</c:forEach>
@@ -84,7 +90,7 @@
 
 
 <div>
-	<a href="action/portales/nuevoPortal?codComunidad=${comunidad.cnComunidad }" class="btn btn-primary"> <i class="icon-plus icon-white"></i> <span>Nuevo portal</span></a>
+	<a href="action/portales/nuevoPortal?codComunidad=${comunidad.cnComunidad }" class="btn btn-primary"> <i class="glyphicon glyphicon-plus glyphicon-white"></i> <span>Nuevo portal</span></a>
 </div>
 
 <div>&nbsp;</div>
@@ -98,6 +104,7 @@
 		Representantes
 		</legend>
 		
+<div>&nbsp;</div>
 		
 <c:if test="${comunidad.representantes != null && empty comunidad.representantes}">
 	<p class="text-info">NO SE HAN ENCONTRADO RESULTADOS</p>
@@ -140,7 +147,7 @@
 					<td>${predio.tePredio}</td>
 					<td>
 						<a href="action/predios/editar?id=${predio.cnPredio }">
-							<i class="icon-edit"></i></a>
+							<i class="glyphicon glyphicon-edit"></i></a>
 					</td>
 				</tr>
 			</c:forEach>
@@ -199,9 +206,9 @@
 					<td><fmt:formatDate value="${empresaComunidad.feFin}" pattern="dd/MM/yyyy"/></td>
 					<td>
 						<a href="action/empresasComunidad/editar?id=${empresaComunidad.cnEmpresaComunidad }">
-							<i class="icon-edit"></i></a> &nbsp;
+							<i class="glyphicon glyphicon-edit"></i></a> &nbsp;
 						<a href="action/empresasComunidad/eliminar?id=${empresaComunidad.cnEmpresaComunidad }">
-							<i class="icon-remove"></i></a>
+							<i class="glyphicon glyphicon-remove"></i></a>
 					</td>
 				</tr>
 			</c:forEach>
@@ -214,7 +221,7 @@
 		
 <sec:authorize access="hasRole('ROLE_ADMIN')">
 <div>
-	<a href="action/empresasComunidad/nuevaEmpresaComunidad?codComunidad=${comunidad.cnComunidad }" class="btn btn-primary"> <i class="icon-plus icon-white"></i> <span>Añadir empresa</span></a>
+	<a href="action/empresasComunidad/nuevaEmpresaComunidad?codComunidad=${comunidad.cnComunidad }" class="btn btn-primary"> <i class="glyphicon glyphicon-plus glyphicon-white"></i> <span>Añadir empresa</span></a>
 </div>
 </sec:authorize>
 
@@ -257,9 +264,9 @@
 					<td><fmt:formatDate value="${documento.feGuardado}" pattern="dd/MM/yyyy"/></td>
 					<td>
 						<a href="action/comunidades/downloadDocument?id=${documento.cnDocumento }">
-							<i class="icon-download"></i></a> &nbsp;
+							<i class="glyphicon glyphicon-download"></i></a> &nbsp;
 						<a href="action/comunidades/deleteDocument?codComunidad=${comunidad.cnComunidad }&amp;id=${documento.cnDocumento }">
-							<i class="icon-remove"></i></a>
+							<i class="glyphicon glyphicon-remove"></i></a>
 					</td>
 				</tr>
 			</c:forEach>
@@ -275,7 +282,7 @@
 
 <div>
 <span class="btn btn-success fileinput-button">
-                    <i class="icon-plus icon-white"></i>
+                    <i class="glyphicon glyphicon-plus glyphicon-white"></i>
                     <span>Añadir documento</span>
                    <input id="fileupload" type="file" name="files[]" data-url="action/comunidades/uploadDocument?codComunidad=${comunidad.cnComunidad }" multiple>
                 </span>

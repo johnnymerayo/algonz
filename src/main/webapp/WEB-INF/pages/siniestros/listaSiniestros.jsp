@@ -34,9 +34,9 @@
 					<td>${siniestro.teNombre}</td>
 					<td>
 						<a href="action/siniestros/editar?id=${siniestro.cnSiniestro }">
-							<i class="icon-edit"></i></a> &nbsp;
+							<i class="glyphicon glyphicon-edit"></i></a> &nbsp;
 						<a href="action/siniestros/eliminar?id=${siniestro.cnSiniestro }">
-							<i class="icon-remove"></i></a>
+							<i class="glyphicon glyphicon-remove"></i></a>
 					</td>
 				</tr>
 			</c:forEach>

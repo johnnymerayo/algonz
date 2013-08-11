@@ -42,9 +42,9 @@
 					<td>${empresa.teEmail}</td>
 					<td>
 						<a href="action/empresas/editar?id=${empresa.cnEmpresa }">
-							<i class="icon-edit"></i></a> &nbsp;
+							<i class="glyphicon glyphicon-edit"></i></a> &nbsp;
 						<a href="action/empresas/eliminar?id=${empresa.cnEmpresa }">
-							<i class="icon-remove"></i></a>
+							<i class="glyphicon glyphicon-remove"></i></a>
 					</td>
 				</tr>
 			</c:forEach>

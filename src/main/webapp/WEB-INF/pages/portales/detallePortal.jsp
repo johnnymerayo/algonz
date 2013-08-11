@@ -22,26 +22,30 @@
 		<form:hidden path="comunidad.cnComunidad" />
 
 
-		<div style="width: 100%; float: left">
-		
-		
-			<t:input path="teCalle" label="Calle" required="false" maxlength="100" tabindex="1"/>
-			<t:input path="teNombre" label="Número" required="true" maxlength="100" tabindex="2"/>
-			<t:area path="teObservaciones" label="Observaciones" required="false" tabindex="3"/>
-    
-    
-		</div>
+
+
+<div class="row">
+<t:input path="teCalle" label="Calle" required="false" maxlength="100" tabindex="1" gridClass="col-lg-6"/>
+<t:input path="teNombre" label="Número" required="true" maxlength="100" tabindex="2" gridClass="col-lg-3"/>
+</div>
+
+<div class="row">
+<t:area path="teObservaciones" label="Observaciones" required="false" tabindex="3" gridClass="col-lg-12"/>
+</div>
+
+
 		
 	</fieldset>
 	
 		<div class="control-group" style="clear: both">
 			<div class="controls">
 				<button type="submit" class="btn btn-primary">Guardar</button>
-				<!-- <button type="button" class="btn" onclick="changeAction('mainForm','action/comunidades/editar?id=${portal.comunidad.cnComunidad}')">Cancelar</button>  -->
-				<a href="action/comunidades/editar?id=${portal.comunidad.cnComunidad}" class="btn">Cancelar</a>
+				<!-- <button type="button" class="btn btn-default" onclick="changeAction('mainForm','action/comunidades/editar?id=${portal.comunidad.cnComunidad}')">Cancelar</button>  -->
+				<a href="action/comunidades/editar?id=${portal.comunidad.cnComunidad}" class="btn btn-default">Cancelar</a>
 			</div>
 		</div>
 	
+<div>&nbsp;</div>
 		
 	<c:if test="${not empty portal.cnPortal }">	
 		
@@ -88,9 +92,9 @@
 					<td>${predio.terceroByCnPropietario.teEmail}</td>
 					<td>
 						<a href="action/predios/editar?id=${predio.cnPredio }">
-							<i class="icon-edit"></i></a> &nbsp;
+							<i class="glyphicon glyphicon-edit"></i></a> &nbsp;
 						<a href="action/predios/eliminar?id=${predio.cnPredio }">
-							<i class="icon-remove"></i></a>
+							<i class="glyphicon glyphicon-remove"></i></a>
 					</td>
 				</tr>
 			</c:forEach>
@@ -101,17 +105,21 @@
 <div>&nbsp;</div>
 
 <div>
-	<a href="action/predios/nuevoPredio?codPortal=${portal.cnPortal}" class="btn btn-primary"> <i class="icon-plus icon-white"></i> <span>Nuevo predio</span></a>
+	<a href="action/predios/nuevoPredio?codPortal=${portal.cnPortal}" class="btn btn-primary"> <i class="glyphicon glyphicon-plus glyphicon-white"></i> <span>Nuevo predio</span></a>
 </div>
 
 		
 		</fieldset>
 	
+
+<div>&nbsp;</div>
 		
 	<fieldset>
 		<legend>
 		Siniestros
 		</legend>
+		
+<div>&nbsp;</div>
 		
 
 <c:if test="${portal.siniestros != null && empty portal.siniestros}">
@@ -138,9 +146,9 @@
 					<td>${siniestro.teNombre}</td>
 					<td>
 						<a href="action/siniestros/editar?id=${siniestro.cnSiniestro }">
-							<i class="icon-edit"></i></a> &nbsp;
+							<i class="glyphicon glyphicon-edit"></i></a> &nbsp;
 						<a href="action/siniestros/eliminar?id=${siniestro.cnSiniestro }">
-							<i class="icon-remove"></i></a>
+							<i class="glyphicon glyphicon-remove"></i></a>
 					</td>
 				</tr>
 			</c:forEach>
@@ -153,7 +161,7 @@
 <sec:authorize access="hasRole('ROLE_ADMIN')">
 
 <div>
-	<a href="action/siniestros/nuevoSiniestro?codPortal=${portal.cnPortal }" class="btn btn-primary"><i class="icon-plus icon-white"></i> <span>Nuevo siniestro</span></a>
+	<a href="action/siniestros/nuevoSiniestro?codPortal=${portal.cnPortal }" class="btn btn-primary"><i class="glyphicon glyphicon-plus glyphicon-white"></i> <span>Nuevo siniestro</span></a>
 </div>
  </sec:authorize>
 		

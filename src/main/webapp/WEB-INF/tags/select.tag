@@ -14,15 +14,19 @@
 <%@attribute name="items" required="true" type="java.util.Collection"%>
 <%@attribute name="itemLabel" required="true" type="java.lang.String"%>
 <%@attribute name="itemValue" required="true" type="java.lang.String"%>
+<%@attribute name="gridClass" required="false" type="java.lang.String"%>
 
 <c:if test="${empty label}">
     <c:set var="label" value="${fn:toUpperCase(fn:substring(path, 0, 1))}${fn:toLowerCase(fn:substring(path, 1,fn:length(path)))}" />
 </c:if>
 <spring:bind path="${path}">
-    <div class="control-group ${status.error ? 'error' : '' }">
+	<c:if test="${not empty gridClass}">
+	    <div class="${gridClass}">
+	</c:if>
+    <div class="form-group ${status.error ? 'has-error' : '' }">
         <label class="control-label" for="${path}">${label}<c:if test="${required}">&nbsp;<span class="required">*</span></c:if></label>
         <div class="controls">        
-            <form:select path="${path}" required="${empty required?false:required }" cssClass="${empty cssClass ? 'input-xlarge' : cssClass}" id="${empty id?path:id }" tabindex="${empty tabindex?'':tabindex }" disabled="${empty disabled?false:disabled }">
+            <form:select path="${path}" required="${empty required?false:required }" cssClass="form-control ${empty cssClass ? 'input-xlarge' : cssClass}" id="${empty id?path:id }" tabindex="${empty tabindex?'':tabindex }" disabled="${empty disabled?false:disabled }">
            
 			<c:if test="${emptyOption}">
            		<form:option value="">Seleccionar...</form:option>
@@ -31,8 +35,11 @@
             <form:options items="${items }" itemLabel="${itemLabel }" itemValue="${itemValue }"/>
             </form:select>
             <c:if test="${status.error}">
-                <span class="help-inline">${status.errorMessage}</span>
+                <span class="control-label">${status.errorMessage}</span>
             </c:if>
         </div>
-    </div>     
+    </div>   
+	<c:if test="${not empty gridClass}">
+	    </div>
+	</c:if>  
 </spring:bind>

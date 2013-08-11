@@ -34,9 +34,9 @@
 					<td>${portal.comunidad.teCp}</td>
 					<td>
 						<a href="action/portales/editar?id=${portal.cnPortal }">
-							<i class="icon-edit"></i></a> &nbsp;
+							<i class="glyphicon glyphicon-edit"></i></a> &nbsp;
 						<a href="action/portales/eliminar?id=${portal.cnPortal }">
-							<i class="icon-remove"></i></a>
+							<i class="glyphicon glyphicon-remove"></i></a>
 					</td>
 				</tr>
 			</c:forEach>

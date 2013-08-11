@@ -20,16 +20,23 @@
 		<form:hidden path="cnSiniestro" />
 		<form:hidden path="portal.cnPortal" />
 
-		<div style="width: 50%; float: left">
+		<div class="row">
 
     
-    	<t:select itemLabel="teTipoEmpresa" itemValue="cnTipoEmpresa" items="${tiposEmpresaCombo}" path="cnTipoSiniestro" required="true" label="Tipo siniestro" emptyOption="true" tabindex="1"/>
+    	<t:select gridClass="col-lg-4" itemLabel="teTipoEmpresa" itemValue="cnTipoEmpresa" items="${tiposEmpresaCombo}" path="cnTipoSiniestro" required="true" label="Tipo siniestro" emptyOption="true" tabindex="1"/>
 			
-		<t:select itemLabel="empresa.teNombre" itemValue="cnEmpresaComunidad" items="${empresasComunidadCombo}" path="empresaComunidad.cnEmpresaComunidad" required="true" label="Empresa" emptyOption="true" tabindex="2"/>
-				
-			<t:input path="teNombre" label="Descripción" required="true" maxlength="100" tabindex="3"/>
+		<t:select gridClass="col-lg-6" itemLabel="empresa.teNombre" itemValue="cnEmpresaComunidad" items="${empresasComunidadCombo}" path="empresaComunidad.cnEmpresaComunidad" required="true" label="Empresa" emptyOption="true" tabindex="2"/>
+
+		</div>
+
+		<div class="row">
+	
+		<t:input gridClass="col-lg-12" path="teNombre" label="Descripción" required="true" maxlength="100" tabindex="3"/>
+		</div>
 		
-			<t:area path="teObservaciones" label="Observaciones" cols="500" tabindex="9"/>
+
+<div class="row">
+			<t:area gridClass="col-lg-12" path="teObservaciones" label="Observaciones" cols="500" tabindex="9"/>
 		</div>
 	</fieldset>
 	
@@ -40,7 +47,7 @@
 		<div class="control-group" style="clear: both">
 			<div class="controls">
 				<button type="submit" class="btn btn-primary">Guardar</button>
-				<a href="action/portales/editar?id=${siniestro.portal.cnPortal}" class="btn">Cancelar</a>
+				<a href="action/portales/editar?id=${siniestro.portal.cnPortal}" class="btn btn-default">Cancelar</a>
 			
 			</div>
 		</div>
@@ -87,9 +94,9 @@
 					<td>${actuacion.teDescripcion}</td>
 					<td>
 						<a href="action/actuaciones/editar?id=${actuacion.cnActuacion }">
-							<i class="icon-edit"></i></a> &nbsp;
+							<i class="glyphicon glyphicon-edit"></i></a> &nbsp;
 						<a href="action/actuaciones/eliminar?id=${actuacion.cnActuacion }">
-							<i class="icon-remove"></i></a>
+							<i class="glyphicon glyphicon-remove"></i></a>
 					</td>
 				</tr>
 			</c:forEach>
@@ -100,7 +107,7 @@
 <div>&nbsp;</div>
 
 <div>
-	<a href="action/actuaciones/nuevo?codSiniestro=${siniestro.cnSiniestro}" class="btn btn-primary"> <i class="icon-plus icon-white"></i> <span>Nueva actuación</span></a>
+	<a href="action/actuaciones/nuevo?codSiniestro=${siniestro.cnSiniestro}" class="btn btn-primary"> <i class="glyphicon glyphicon-plus glyphicon-white"></i> <span>Nueva actuación</span></a>
 </div>
 		
 		</fieldset>

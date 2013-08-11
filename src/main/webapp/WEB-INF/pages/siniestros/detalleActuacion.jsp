@@ -25,23 +25,24 @@
 
 
 
-		<div style="width: 100%; float: left">
-		
-   		
-			
-<t:select cssClass="col-lg-4" itemLabel="teEstado" itemValue="cnEstado" items="${estadosCombo}" path="estado.cnEstado" required="true" label="Estado" tabindex="1"/>
+		<div class="row">	
+			<t:select gridClass="col-lg-4" itemLabel="teEstado" itemValue="cnEstado" items="${estadosCombo}" path="estado.cnEstado" required="true" label="Estado" tabindex="1"/>
+</div>
 
-
-			<t:input cssClass="col-lg-4" path="feInicio" label="Fecha inicio" required="true" tabindex="2" maxlength="12" date="true"/>
-			<t:input cssClass="col-lg-4" path="feVencimiento" label="Fecha vencimiento" required="true"  maxlength="12" tabindex="3" date="true"/>
-			<t:input cssClass="col-lg-4" path="feCierre" label="Fecha cierre" required="false" maxlength="12" tabindex="4" date="true"/>			
-			
+<div class="row">
+			<t:input gridClass="col-lg-4" path="feInicio" label="Fecha inicio" required="true" tabindex="2" maxlength="12" date="true"/>
+			<t:input gridClass="col-lg-4" path="feVencimiento" label="Fecha vencimiento" required="true"  maxlength="12" tabindex="3" date="true"/>
+			<t:input gridClass="col-lg-4" path="feCierre" label="Fecha cierre" required="false" maxlength="12" tabindex="4" date="true"/>			
+	</div>		
     
-			<t:input path="teNumeroExp" label="Nº Expediente" required="false" maxlength="50" tabindex="5"/>
-			<t:input path="teDescripcion" label="Descripción" required="true"  maxlength="100" tabindex="5"/>
-			<t:area path="teObservaciones" label="Observaciones" required="false" tabindex="6"/>
-    
-    
+   <div class="row"> 
+			<t:input gridClass="col-lg-4" path="teNumeroExp" label="Nº Expediente" required="false" maxlength="50" tabindex="5"/>
+			</div>
+			<div class="row">
+			<t:input gridClass="col-lg-12" path="teDescripcion" label="Descripción" required="true"  maxlength="100" tabindex="5"/>
+			</div>
+			<div class="row">
+			<t:area gridClass="col-lg-12" path="teObservaciones" label="Observaciones" required="false" tabindex="6"/>
 		</div>
 		
 	</fieldset>
@@ -50,10 +51,11 @@
 		<div class="control-group" style="clear: both">
 			<div class="controls">
 				<button type="submit" class="btn btn-primary">Guardar</button>
-					<a href="action/siniestros/editar?id=${actuacion.siniestro.cnSiniestro}" class="btn">Cancelar</a>
+					<a href="action/siniestros/editar?id=${actuacion.siniestro.cnSiniestro}" class="btn btn-default">Cancelar</a>
 			</div>
 		</div>
 		
+<div>&nbsp;</div>
 	
 	<c:if test="${not empty actuacion.cnActuacion }">		
 		
@@ -92,9 +94,9 @@
 					<td><fmt:formatDate value="${documento.feGuardado}" pattern="dd/MM/yyyy"/></td>
 					<td>
 						<a href="action/actuaciones/downloadDocument?id=${documento.cnDocumento }">
-							<i class="icon-download"></i></a> &nbsp;
+							<i class="glyphicon glyphicon-download"></i></a> &nbsp;
 						<a href="action/actuaciones/deleteDocument?codActuacion=${actuacion.cnActuacion }&amp;id=${documento.cnDocumento }">
-							<i class="icon-remove"></i></a>
+							<i class="glyphicon glyphicon-remove"></i></a>
 					</td>
 				</tr>
 			</c:forEach>
@@ -108,7 +110,7 @@
 
 <div>
 <span class="btn btn-success fileinput-button">
-                    <i class="icon-plus icon-white"></i>
+                    <i class="glyphicon glyphicon-plus glyphicon-white"></i>
                     <span>Añadir documento</span>
                    <input id="fileupload" type="file" name="files[]" data-url="action/actuaciones/uploadDocument?codActuacion=${actuacion.cnActuacion }" multiple>
                 </span>

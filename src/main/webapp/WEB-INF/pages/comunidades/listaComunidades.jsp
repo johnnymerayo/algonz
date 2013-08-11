@@ -30,9 +30,9 @@
 					<td>${comunidad.teCp}</td>
 					<td>
 						<a href="action/comunidades/editar?id=${comunidad.cnComunidad }">
-							<i class="icon-edit"></i></a> &nbsp;
+							<i class="glyphicon glyphicon-edit"></i></a> &nbsp;
 						<a href="action/comunidades/eliminar?id=${comunidad.cnComunidad }">
-							<i class="icon-remove"></i></a>
+							<i class="glyphicon glyphicon-remove"></i></a>
 					</td>
 				</tr>
 			</c:forEach>

@@ -23,21 +23,21 @@ body {
 				<p class="text-error">${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
 			</div>
 		</c:if>
-		<div class="control-group">
+		<div class="form-group">
 			<label class="control-label" for="j_username">Usuario</label>
 			<div class="controls">
 				<input type='text' name='j_username' value='' id="j_username"
-					placeholder="Usuario" class="input-block-level">
+					placeholder="Usuario" class="form-control input-block-level">
 			</div>
 		</div>
-		<div class="control-group">
+		<div class="form-group">
 			<label class="control-label" for="j_password">Password</label>
 			<div class="controls">
 				<input type="password" name="j_password" id="j_password"
-					placeholder="Password" class="input-block-level">
+					placeholder="Password" class="form-control input-block-level">
 			</div>
 		</div>
-		<div class="control-group">
+		<div class="form-group">
 			<div class="controls">
 
 				<bs:button type="submit" value="Entrar" text="Entrar"

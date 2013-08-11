@@ -40,9 +40,9 @@
 					<td>${predio.terceroByCnPropietario.teEmail}</td>
 					<td>
 						<a href="action/predios/editar?id=${predio.cnPredio }">
-							<i class="icon-edit"></i></a> &nbsp;
+							<i class="glyphicon glyphicon-edit"></i></a> &nbsp;
 						<a href="action/predios/eliminar?id=${predio.cnPredio }">
-							<i class="icon-remove"></i></a>
+							<i class="glyphicon glyphicon-remove"></i></a>
 					</td>
 				</tr>
 			</c:forEach>

@@ -8,6 +8,9 @@
 <link rel="stylesheet" type="text/css" href="css/DT_bootstrap.css">
 <link href="css/datepicker.css" rel="stylesheet" media="screen"/> 
 <link href="css/application.css" rel="stylesheet" media="screen"/>  
+<link href="css/bootstrap-glyphicons.css" rel="stylesheet" media="screen"/>  
+<link href="css/docs.css" rel="stylesheet" media="screen"/>  
+
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery.dataTables.min.js"></script>

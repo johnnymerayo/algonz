@@ -19,17 +19,19 @@
 		<form:hidden path="cnEmpresaComunidad" />
 		<form:hidden path="comunidad.cnComunidad" />
 
-		<div style="width: 50%; float: left">
+		<div class="row">
 		
-		
-		<t:select itemLabel="teTipoEmpresa" itemValue="cnTipoEmpresa" items="${tiposEmpresaCombo}" path="empresa.tipoEmpresa.cnTipoEmpresa" required="true" label="Tipo Empresa" emptyOption="true" tabindex="1"/>
-			
-		<t:select itemLabel="teNombre" itemValue="cnEmpresa" items="${empresasCombo}" path="empresa.cnEmpresa" required="true" label="Empresa" emptyOption="true" tabindex="2"/>
-			
+		<t:select itemLabel="teTipoEmpresa" itemValue="cnTipoEmpresa" items="${tiposEmpresaCombo}" path="empresa.tipoEmpresa.cnTipoEmpresa" required="true" label="Tipo Empresa" emptyOption="true" tabindex="1" gridClass="col-lg-4"/>	
+		<t:select itemLabel="teNombre" itemValue="cnEmpresa" items="${empresasCombo}" path="empresa.cnEmpresa" required="true" label="Empresa" emptyOption="true" tabindex="2" gridClass="col-lg-6"/>
+		</div>	
     		
-			<t:input path="feInicio" label="Fecha inicio" required="true" tabindex="3" maxlength="12" date="true"/>
-			<t:input path="feFin" label="Fecha fin" required="true" tabindex="4" maxlength="12" date="true"/>
-			<t:area path="teObservaciones" label="Observaciones" cols="500" tabindex="9"/>
+    		<div class="row">
+			<t:input path="feInicio" label="Fecha inicio" required="true" tabindex="3" maxlength="12" date="true" gridClass="col-lg-4"/>
+			<t:input path="feFin" label="Fecha fin" required="true" tabindex="4" maxlength="12" date="true" gridClass="col-lg-4"/>
+			</div>
+			
+			<div class="row">
+			<t:area path="teObservaciones" label="Observaciones" cols="500" tabindex="9" gridClass="col-lg-12"/>
 		</div>
 	</fieldset>
 	
@@ -40,15 +42,16 @@
 		<div class="control-group" style="clear: both">
 			<div class="controls">
 				<button type="submit" class="btn btn-primary">Guardar</button>
-				<!-- <button type="button" class="btn"
+				<!-- <button type="button" class="btn btn-default"
 					onclick="changeAction('mainForm','action/empresaComunidads/listado')">Cancelar</button> -->
 					
-				<a href="action/comunidades/editar?id=${empresaComunidad.comunidad.cnComunidad}" class="btn">Cancelar</a>
+				<a href="action/comunidades/editar?id=${empresaComunidad.comunidad.cnComunidad}" class="btn btn-default">Cancelar</a>
 			</div>
 		</div>
 		
 		
-		
+	
+<div>&nbsp;</div>	
 		
 	<c:if test="${not empty empresaComunidad.cnEmpresaComunidad }">	
 	
@@ -92,9 +95,9 @@
 					<td>${aviso.teDescripcion}</td>
 					<td>
 						<a href="action/avisosEmpresa/editar?id=${aviso.cnAvisoEmpresa }">
-							<i class="icon-edit"></i></a> &nbsp;
+							<i class="glyphicon glyphicon-edit"></i></a> &nbsp;
 						<a href="action/avisosEmpresa/eliminar?id=${aviso.cnAvisoEmpresa }">
-							<i class="icon-remove"></i></a>
+							<i class="glyphicon glyphicon-remove"></i></a>
 					</td>
 				</tr>
 			</c:forEach>
@@ -105,7 +108,7 @@
 <div>&nbsp;</div>
 
 <div>
-	<a href="action/avisosEmpresa/nuevo?codEmpresaComunidad=${empresaComunidad.cnEmpresaComunidad}" class="btn btn-primary"> <i class="icon-plus icon-white"></i> <span>Nuevo aviso</span></a>
+	<a href="action/avisosEmpresa/nuevo?codEmpresaComunidad=${empresaComunidad.cnEmpresaComunidad}" class="btn btn-primary"> <i class="glyphicon glyphicon-plus glyphicon-white"></i> <span>Nuevo aviso</span></a>
 </div>
 		
 		</fieldset>

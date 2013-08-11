@@ -44,9 +44,9 @@
 					</td>
 					<td>
 						<a href="action/consignatarios/editar?codEmpresa=${consignatario.codEmpresa }&codigo=${consignatario.codigo}">
-							<i class="icon-edit"></i></a> &nbsp;
+							<i class="glyphicon glyphicon-edit"></i></a> &nbsp;
 						<a href="action/consignatarios/eliminar?codEmpresa=${consignatario.codEmpresa }&codigo=${consignatario.codigo}">
-							<i class="icon-remove"></i></a>
+							<i class="glyphicon glyphicon-remove"></i></a>
 					</td>
 				</tr>
 			</c:forEach>
