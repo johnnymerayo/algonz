@@ -10,7 +10,7 @@
 			Portal nº:	<c:if test='${predio.portal.teNombre!=null}'> ${predio.portal.teNombre}</c:if>
 			<br />
 			<c:if test='${predio.cnPredio==null}'>Nuevo Predio</c:if>
-			<c:if test='${predio.cnPredio!=null}'>Datos Predio: ${predio.tePredio}
+			<c:if test='${predio.cnPredio!=null}'>Predio: ${predio.tePlanta } - ${predio.tePredio}
 			</c:if>
 		</legend>
 		

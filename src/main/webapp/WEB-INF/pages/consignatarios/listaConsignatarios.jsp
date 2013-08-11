@@ -45,7 +45,7 @@
 					<td>
 						<a href="action/consignatarios/editar?codEmpresa=${consignatario.codEmpresa }&codigo=${consignatario.codigo}">
 							<i class="glyphicon glyphicon-edit"></i></a> &nbsp;
-						<a href="action/consignatarios/eliminar?codEmpresa=${consignatario.codEmpresa }&codigo=${consignatario.codigo}">
+						<a data-toggle="modal" href="#modalDelete" class="delete_row" data-id="action/consignatarios/eliminar?codEmpresa=${consignatario.codEmpresa }&codigo=${consignatario.codigo}">
 							<i class="glyphicon glyphicon-remove"></i></a>
 					</td>
 				</tr>

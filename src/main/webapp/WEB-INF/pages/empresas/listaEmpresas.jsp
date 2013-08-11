@@ -43,7 +43,7 @@
 					<td>
 						<a href="action/empresas/editar?id=${empresa.cnEmpresa }">
 							<i class="glyphicon glyphicon-edit"></i></a> &nbsp;
-						<a href="action/empresas/eliminar?id=${empresa.cnEmpresa }">
+						<a data-toggle="modal" href="#modalDelete" class="delete_row" data-id="action/empresas/eliminar?id=${empresa.cnEmpresa }">
 							<i class="glyphicon glyphicon-remove"></i></a>
 					</td>
 				</tr>

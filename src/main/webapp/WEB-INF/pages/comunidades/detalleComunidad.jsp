@@ -78,7 +78,7 @@
 					<td>
 						<a href="action/portales/editar?id=${portal.cnPortal }">
 							<i class="glyphicon glyphicon-edit"></i></a> &nbsp;
-						<a href="action/portales/eliminar?id=${portal.cnPortal }">
+						<a data-toggle="modal" href="#modalDelete" class="delete_row" data-id="action/portales/eliminar?id=${portal.cnPortal }">
 							<i class="glyphicon glyphicon-remove"></i></a>
 					</td>
 				</tr>
@@ -209,7 +209,7 @@
 					<td>
 						<a href="action/empresasComunidad/editar?id=${empresaComunidad.cnEmpresaComunidad }">
 							<i class="glyphicon glyphicon-edit"></i></a> &nbsp;
-						<a href="action/empresasComunidad/eliminar?id=${empresaComunidad.cnEmpresaComunidad }">
+						<a data-toggle="modal" href="#modalDelete" class="delete_row" data-id="action/empresasComunidad/eliminar?id=${empresaComunidad.cnEmpresaComunidad }">
 							<i class="glyphicon glyphicon-remove"></i></a>
 					</td>
 				</tr>

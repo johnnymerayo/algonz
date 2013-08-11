@@ -95,7 +95,7 @@
 					<td>
 						<a href="action/actuaciones/editar?id=${actuacion.cnActuacion }">
 							<i class="glyphicon glyphicon-edit"></i></a> &nbsp;
-						<a href="action/actuaciones/eliminar?id=${actuacion.cnActuacion }">
+						<a data-toggle="modal" href="#modalDelete" class="delete_row" data-id="action/actuaciones/eliminar?id=${actuacion.cnActuacion }">
 							<i class="glyphicon glyphicon-remove"></i></a>
 					</td>
 				</tr>

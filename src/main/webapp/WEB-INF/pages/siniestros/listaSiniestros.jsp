@@ -35,7 +35,7 @@
 					<td>
 						<a href="action/siniestros/editar?id=${siniestro.cnSiniestro }">
 							<i class="glyphicon glyphicon-edit"></i></a> &nbsp;
-						<a href="action/siniestros/eliminar?id=${siniestro.cnSiniestro }">
+						<a data-toggle="modal" href="#modalDelete" class="delete_row" data-id="action/siniestros/eliminar?id=${siniestro.cnSiniestro }">
 							<i class="glyphicon glyphicon-remove"></i></a>
 					</td>
 				</tr>

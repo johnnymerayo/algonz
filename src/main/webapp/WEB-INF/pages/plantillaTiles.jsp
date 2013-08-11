@@ -101,4 +101,34 @@ body {
 
 </body>
 
+
+
+  <!-- Modal  confirmar eliminar-->
+  <div class="modal fade" id="modalDelete">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Confirmar</h4>
+        </div>
+        <div class="modal-body">
+        	<p>Está a punto de borrar el registro seleccionado. Estre proceso es irreversible</p> 
+        	<p>¿Desea continuar?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	  <span id="delete-url">
+
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+
+<script>
+$('.delete_row').click('show.bs.modal', function () {	
+    $('#delete-url').html('<a href="' + $(this).attr('data-id') + '" class="btn btn-primary danger">Eliminar</a>');
+});
+</script>
+
 </html>

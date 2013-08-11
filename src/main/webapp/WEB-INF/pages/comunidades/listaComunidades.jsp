@@ -31,7 +31,7 @@
 					<td>
 						<a href="action/comunidades/editar?id=${comunidad.cnComunidad }">
 							<i class="glyphicon glyphicon-edit"></i></a> &nbsp;
-						<a href="action/comunidades/eliminar?id=${comunidad.cnComunidad }">
+						<a data-toggle="modal" href="#modalDelete" class="delete_row" data-id="action/comunidades/eliminar?id=${comunidad.cnComunidad }">
 							<i class="glyphicon glyphicon-remove"></i></a>
 					</td>
 				</tr>

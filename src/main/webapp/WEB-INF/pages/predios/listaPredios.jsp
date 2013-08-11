@@ -41,7 +41,7 @@
 					<td>
 						<a href="action/predios/editar?id=${predio.cnPredio }">
 							<i class="glyphicon glyphicon-edit"></i></a> &nbsp;
-						<a href="action/predios/eliminar?id=${predio.cnPredio }">
+						<a data-toggle="modal" href="#modalDelete" class="delete_row" data-id="action/predios/eliminar?id=${predio.cnPredio }">
 							<i class="glyphicon glyphicon-remove"></i></a>
 					</td>
 				</tr>

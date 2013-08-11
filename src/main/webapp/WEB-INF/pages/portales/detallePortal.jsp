@@ -10,7 +10,7 @@
 			<br/>
 			<c:if test='${portal.cnPortal==null}'>Nuevo Portal</c:if>
 			<c:if test='${portal.cnPortal!=null}'>
-			Datos del portal nº: ${portal.teNombre}
+			Portal Nº: ${portal.teNombre}
 			</c:if>
 		</legend>
 		
@@ -94,7 +94,7 @@
 					<td>
 						<a href="action/predios/editar?id=${predio.cnPredio }">
 							<i class="glyphicon glyphicon-edit"></i></a> &nbsp;
-						<a href="action/predios/eliminar?id=${predio.cnPredio }">
+						<a data-toggle="modal" href="#modalDelete" class="delete_row" data-id="action/predios/eliminar?id=${predio.cnPredio }">
 							<i class="glyphicon glyphicon-remove"></i></a>
 					</td>
 				</tr>
@@ -148,7 +148,7 @@
 					<td>
 						<a href="action/siniestros/editar?id=${siniestro.cnSiniestro }">
 							<i class="glyphicon glyphicon-edit"></i></a> &nbsp;
-						<a href="action/siniestros/eliminar?id=${siniestro.cnSiniestro }">
+						<a data-toggle="modal" href="#modalDelete" class="delete_row" data-id="action/siniestros/eliminar?id=${siniestro.cnSiniestro }">
 							<i class="glyphicon glyphicon-remove"></i></a>
 					</td>
 				</tr>
