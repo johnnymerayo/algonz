@@ -10,7 +10,7 @@
 			Portal nº:	<c:if test='${predio.portal.teNombre!=null}'> ${predio.portal.teNombre}</c:if>
 			<br />
 			<c:if test='${predio.cnPredio==null}'>Nuevo Predio</c:if>
-			<c:if test='${predio.cnPredio!=null}'>Predio: ${predio.tePlanta } - ${predio.tePredio}
+			<c:if test='${predio.cnPredio!=null}'>Predio: ${predio.planta.tePlanta } - ${predio.tePredio}
 			</c:if>
 		</legend>
 		
@@ -86,7 +86,7 @@
 </div>
 
 <div class="row">
-<t:input path="terceroByCnPropietario.teTlfFijo" label="Teléfono" required="true" maxlength="50" tabindex="12" gridClass="col-lg-4" />
+<t:input path="terceroByCnPropietario.teTlfFijo" label="Teléfono" required="false" maxlength="50" tabindex="12" gridClass="col-lg-4" />
 <t:input path="terceroByCnPropietario.teTlfMovil1" label="Móvil" required="false" maxlength="50" tabindex="13" gridClass="col-lg-4" />
 <t:input path="terceroByCnPropietario.teTlfMovil2" label="Otro" required="false" maxlength="50" tabindex="14" gridClass="col-lg-4" />
 </div>

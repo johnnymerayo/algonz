@@ -20,7 +20,7 @@ public class PredioValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "planta.cnPlanta",  "error.requerido",new Object[]{"Planta"});
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "terceroByCnPropietario.teNombre",  "error.requerido",new Object[]{"Nombre"});
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "terceroByCnPropietario.teApellido1",  "error.requerido",new Object[]{"Número"});
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "terceroByCnPropietario.teTlfFijo",  "error.requerido",new Object[]{"Teléfono"});
+		//ValidationUtils.rejectIfEmptyOrWhitespace(errors, "terceroByCnPropietario.teTlfFijo",  "error.requerido",new Object[]{"Teléfono"});
 		
 	}
 }

@@ -26,7 +26,7 @@
     <div class="form-group ${status.error ? 'has-error' : '' }">
         <label class="control-label" for="${path}">${label}<c:if test="${required}">&nbsp;<span class="required">*</span></c:if></label>
         <div class="controls">        
-            <form:select path="${path}" required="${empty required?false:required }" cssClass="form-control ${empty cssClass ? 'input-xlarge' : cssClass}" id="${empty id?path:id }" tabindex="${empty tabindex?'':tabindex }" disabled="${empty disabled?false:disabled }">
+            <form:select path="${path}" cssClass="form-control ${empty cssClass ? 'input-xlarge' : cssClass}" id="${empty id?path:id }" tabindex="${empty tabindex?'':tabindex }" disabled="${empty disabled?false:disabled }">
            
 			<c:if test="${emptyOption}">
            		<form:option value="">Seleccionar...</form:option>
