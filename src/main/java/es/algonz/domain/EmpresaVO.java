@@ -177,5 +177,17 @@ public class EmpresaVO implements java.io.Serializable {
 	public void setDocumentos(Set<DocumentoVO> documentos) {
 		this.documentos = documentos;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof EmpresaVO) {
+			EmpresaVO other = (EmpresaVO) obj;
+			if ((this.cnEmpresa == null && other.cnEmpresa != null) || (this.cnEmpresa != null && !this.cnEmpresa.equals(other.cnEmpresa))) {
+				return false;
+			}
+			return true;
+		}
+		return false;
+	}
 
 }

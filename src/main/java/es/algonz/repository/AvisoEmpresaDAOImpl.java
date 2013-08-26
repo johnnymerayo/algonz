@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import es.algonz.domain.AvisoEmpresaVO;
+import es.algonz.web.utils.ConstantesKeys;
 
 /**
  * DAOImpl object for domain model class AvisoEmpresa.
@@ -99,7 +100,7 @@ public class AvisoEmpresaDAOImpl implements AvisoEmpresaDAO{
 	public List<AvisoEmpresaVO> getAvisosEmpresaProximoVencimiento() {				
 		// El aviso salta nu_dias_aviso antes de la fecha de vencimiento o bien 15 días antes si no se indica.
 		String query="select * from aviso_empresa " +
-				"where fe_vencimiento <= DATE_ADD(CURDATE(),INTERVAL IFNULL (nu_dias_aviso, 15) DAY) " +
+				"where fe_vencimiento <= DATE_ADD(CURDATE(),INTERVAL IFNULL (nu_dias_aviso, 0) + " + ConstantesKeys.DIAS_AVISO_ALARMAS + " DAY) " +
 				"and cn_estado <> 2 " + // Estado CERRADO no se muestran
 				"order by fe_vencimiento asc;";
 		List<AvisoEmpresaVO> resultList = entityManager.createNativeQuery(query,AvisoEmpresaVO.class).getResultList();

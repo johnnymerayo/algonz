@@ -1,5 +1,7 @@
 package es.algonz.controller.utils;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import es.algonz.domain.EmpresaComunidadVO;
 import es.algonz.domain.EmpresaVO;
 import es.algonz.domain.EstadoVO;
 import es.algonz.domain.PlantaVO;
+import es.algonz.domain.PropertyBean;
 import es.algonz.domain.TipoEmpresaVO;
 import es.algonz.domain.TipoRepresentanteVO;
 import es.algonz.service.EmpresaComunidadManager;
@@ -40,13 +43,28 @@ public class CombosUtils
 		return empresaManager.getEmpresas(new EmpresaVO());
 		
 	}
-	public List<EmpresaVO> loadEmpresasByTipo(Integer idTipo)
+	public List<PropertyBean> loadEmpresasByTipo(Integer idTipo)
 	{
 		EmpresaVO empresa = new EmpresaVO();
 		TipoEmpresaVO tipoEmpresa = new TipoEmpresaVO();
 		tipoEmpresa.setCnTipoEmpresa(idTipo);
 		empresa.setTipoEmpresa(tipoEmpresa);
-		return empresaManager.getEmpresas(empresa);
+		
+		List<PropertyBean> listaPB = new ArrayList<PropertyBean>();
+		
+		Iterator<EmpresaVO> itr = empresaManager.getEmpresas(empresa).iterator();
+		
+		while (itr.hasNext()){
+			EmpresaVO e = itr.next();
+			PropertyBean pb = new PropertyBean();
+			
+			pb.setId(e.getCnEmpresa());
+			pb.setValue(e.getTeNombre());
+			
+			listaPB.add(pb);
+		}
+		
+		return listaPB;
 		
 	}
 	
@@ -61,6 +79,40 @@ public class CombosUtils
 		return empresaComunidadManager.getEmpresasComunidad(empresaComunidad);
 	}
 	
+
+	public List<PropertyBean> loadEmpresasComunidadByTipo(Integer cnComunidad, Integer idTipo) {
+
+		EmpresaComunidadVO empresaComunidad = new EmpresaComunidadVO();
+		ComunidadVO comunidad = new ComunidadVO();
+		comunidad.setCnComunidad(cnComunidad);
+		empresaComunidad.setComunidad(comunidad);
+		
+		
+		EmpresaVO empresa = new EmpresaVO();
+		TipoEmpresaVO tipoEmpresa = new TipoEmpresaVO();
+		tipoEmpresa.setCnTipoEmpresa(idTipo);
+		empresa.setTipoEmpresa(tipoEmpresa);	
+		empresaComunidad.setEmpresa(empresa);
+		
+		
+		
+
+		List<PropertyBean> listaPB = new ArrayList<PropertyBean>();
+		
+		Iterator<EmpresaComunidadVO> itr = empresaComunidadManager.getEmpresasComunidad(empresaComunidad).iterator();
+		
+		while (itr.hasNext()){
+			EmpresaComunidadVO ec = itr.next();
+			PropertyBean pb = new PropertyBean();
+			
+			pb.setId(ec.getCnEmpresaComunidad());
+			pb.setValue(ec.getEmpresa().getTeNombre());
+			
+			listaPB.add(pb);
+		}
+		
+		return listaPB;
+	}
 	
 
 	public List<PlantaVO> loadPlantas()

@@ -221,11 +221,10 @@
 <div>&nbsp;</div>
 
 		
-<sec:authorize access="hasRole('ROLE_ADMIN')">
 <div>
 	<a href="action/empresasComunidad/nuevaEmpresaComunidad?codComunidad=${comunidad.cnComunidad }" class="btn btn-primary"> <i class="glyphicon glyphicon-plus glyphicon-white"></i> <span>Añadir empresa</span></a>
 </div>
-</sec:authorize>
+
 
 <div>&nbsp;</div>
 	
@@ -278,6 +277,12 @@
 </c:if>
 <div>&nbsp;</div>
 
+    <div id="progress" class="progress"  style="display:none">
+        <div class="progress-bar progress-bar-success"></div>
+    </div>
+    
+<div>&nbsp;</div>
+
 
 		
 <sec:authorize access="hasRole('ROLE_ADMIN')">
@@ -289,11 +294,19 @@
                    <input id="fileupload" type="file" name="files[]" data-url="action/comunidades/uploadDocument?codComunidad=${comunidad.cnComunidad }" multiple>
                 </span>
 	</div>
+	
+ 	
 </sec:authorize>
 		</fieldset>
 </c:if>	
 
 </form:form>
+
+<div>&nbsp;</div>
+
+
+<div>&nbsp;</div>
+
 
 
 

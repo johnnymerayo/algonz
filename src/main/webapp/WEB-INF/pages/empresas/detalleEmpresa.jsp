@@ -19,13 +19,13 @@
 
 
 <div class="row">
-<t:input path="caCif" label="CIF" required="true" tabindex="2" maxlength="10" gridClass="col-lg-4"/>
+<t:input path="caCif" label="CIF" required="false" tabindex="2" maxlength="10" gridClass="col-lg-4"/>
 <t:input path="teNombre" label="Nombre" required="true" tabindex="3" maxlength="100" gridClass="col-lg-4"/>
 </div>
 
 
 <div class="row">
-<t:input path="teTlfFijo" label="Teléfono Fijo" required="false" tabindex="4" maxlength="50" gridClass="col-lg-4"/>
+<t:input path="teTlfFijo" label="Teléfono Fijo" required="true" tabindex="4" maxlength="50" gridClass="col-lg-4"/>
 <t:input path="teTlfMovil1" label="Teléfono Móvil 1" required="false" tabindex="5" maxlength="50" gridClass="col-lg-4"/>
 <t:input path="teTlfMovil2" label="Teléfono Movil 2" required="false" tabindex="6" maxlength="50" gridClass="col-lg-4"/>
 </div>

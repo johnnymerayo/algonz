@@ -1,12 +1,18 @@
 package es.algonz.domain;
 
+import java.io.Serializable;
+
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
  
 //ignore "bytes" when return json format
 @JsonIgnoreProperties({"bytes"}) 
-public class FileMeta {
+public class FileMeta implements Serializable{
  
-    private String fileName;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -8351348369050569818L;
+	private String fileName;
     private String fileSize;
     private String fileType;
  

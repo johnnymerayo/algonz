@@ -25,7 +25,7 @@
 
 
 <div class="row">
-<t:input path="teCalle" label="Calle" required="false" maxlength="100" tabindex="1" gridClass="col-lg-6"/>
+<t:input path="teCalle" label="Calle" required="true" maxlength="100" tabindex="1" gridClass="col-lg-6"/>
 <t:input path="teNombre" label="Número" required="true" maxlength="100" tabindex="2" gridClass="col-lg-3"/>
 </div>
 
@@ -159,13 +159,12 @@
 </c:if>
 <div>&nbsp;</div>
 		
-<sec:authorize access="hasRole('ROLE_ADMIN')">
+
 
 <div>
 	<a href="action/siniestros/nuevoSiniestro?codPortal=${portal.cnPortal }" class="btn btn-primary"><i class="glyphicon glyphicon-plus glyphicon-white"></i> <span>Nuevo siniestro</span></a>
 </div>
- </sec:authorize>
-		
+
 		</fieldset>
 		</c:if>
 </form:form>

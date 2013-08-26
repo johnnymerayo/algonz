@@ -127,7 +127,15 @@
 </c:if>
 <div>&nbsp;</div>
 
+    <div id="progress" class="progress"  style="display:none">
+        <div class="progress-bar progress-bar-success"></div>
+    </div>
+    
+<div>&nbsp;</div>
 
+
+
+<sec:authorize access="hasRole('ROLE_ADMIN')">
 
 <div>
 <span class="btn btn-success fileinput-button">
@@ -136,11 +144,12 @@
                    <input id="fileupload" type="file" name="files[]" data-url="action/avisosEmpresa/uploadDocument?codAvisoEmpresa=${avisoEmpresa.cnAvisoEmpresa }" multiple>
                 </span>
 	</div>
-
+</sec:authorize>
 		</fieldset>
 </c:if>
 		
 </form:form>
 
+<div>&nbsp;</div>
 
 

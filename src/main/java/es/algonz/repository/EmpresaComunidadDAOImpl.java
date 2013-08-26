@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.apache.commons.logging.Log;
@@ -94,6 +95,14 @@ public class EmpresaComunidadDAOImpl implements EmpresaComunidadDAO{
 		cq.select(root);
 		if(object != null && object.getCnEmpresaComunidad() != null)
 			cq.where(cb.equal(root.get("cnEmpresaComunidad"), object.getCnEmpresaComunidad()));
+		else if (object != null && object.getComunidad() != null && object.getComunidad().getCnComunidad() != null && object.getEmpresa() != null && object.getEmpresa().getTipoEmpresa() != null 
+				&& object.getEmpresa().getTipoEmpresa().getCnTipoEmpresa() != null){
+
+			cq.where(  cb.and( cb.equal(root.get("empresa").get("tipoEmpresa"), object.getEmpresa().getTipoEmpresa()), 
+					           cb.equal(root.get("comunidad"), object.getComunidad())  
+					           )   
+					 );
+		}
 		//Sino se devuelven todos
 		return entityManager.createQuery(cq).getResultList();
 	}

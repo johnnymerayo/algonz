@@ -1,5 +1,6 @@
 package es.algonz.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -17,10 +18,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import es.algonz.controller.utils.CombosUtils;
 import es.algonz.domain.PortalVO;
+import es.algonz.domain.PropertyBean;
 import es.algonz.domain.SiniestroVO;
 import es.algonz.service.PortalManager;
 import es.algonz.service.SiniestroManager;
@@ -66,9 +69,8 @@ public class SiniestroController {
 				
 				// Cargamos el combo de tipos de empresa
 				model.addAttribute("tiposEmpresaCombo", combosUtils.loadTiposEmpresa());
-				// TODO hacerlo dinamico desde la vista
 				// Cargamos el combo de empresa
-				model.addAttribute("empresasComunidadCombo", combosUtils.loadEmpresasComunidad(siniestro.getPortal().getComunidad().getCnComunidad()));
+				model.addAttribute("empresasComunidadCombo", combosUtils.loadEmpresasComunidadByTipo(siniestro.getPortal().getComunidad().getCnComunidad(), siniestro.getEmpresaComunidad().getEmpresa().getTipoEmpresa().getCnTipoEmpresa()));
 			
 		}
 		
@@ -99,9 +101,7 @@ public class SiniestroController {
 		model.addAttribute(RequestKeys.SINIESTRO, siniestro);
 		// Cargamos el combo de tipos de empresa
 		model.addAttribute("tiposEmpresaCombo", combosUtils.loadTiposEmpresa());
-		// TODO hacerlo dinamico desde la vista
-		// Cargamos el combo de empresa
-		model.addAttribute("empresasComunidadCombo", combosUtils.loadEmpresasComunidad(siniestro.getPortal().getComunidad().getCnComunidad()));
+		//model.addAttribute("empresasComunidadCombo", combosUtils.loadEmpresasComunidad(siniestro.getPortal().getComunidad().getCnComunidad()));
 		return "detalleSiniestro";
 	}
 	
@@ -116,9 +116,7 @@ public class SiniestroController {
 		model.addAttribute(RequestKeys.SINIESTRO, siniestro);
 		// Cargamos el combo de tipos de empresa
 		model.addAttribute("tiposEmpresaCombo", combosUtils.loadTiposEmpresa());
-		// TODO hacerlo dinamico desde la vista
-		// Cargamos el combo de empresa
-		model.addAttribute("empresasComunidadCombo", combosUtils.loadEmpresasComunidad(siniestro.getPortal().getComunidad().getCnComunidad()));
+		//  model.addAttribute("empresasComunidadCombo", combosUtils.loadEmpresasComunidad(siniestro.getPortal().getComunidad().getCnComunidad()));
 		return "detalleSiniestro";
 	}
 	
@@ -138,6 +136,12 @@ public class SiniestroController {
 			// TODO hacerlo dinamico desde la vista
 			// Cargamos el combo de empresa
 			model.addAttribute("empresasComunidadCombo", combosUtils.loadEmpresasComunidad(siniestro.getPortal().getComunidad().getCnComunidad()));
+
+			if (siniestro.getEmpresaComunidad() != null && siniestro.getEmpresaComunidad().getEmpresa() != null && siniestro.getEmpresaComunidad().getEmpresa().getTipoEmpresa() != null) {
+				model.addAttribute("empresasComunidadCombo", combosUtils.loadEmpresasComunidadByTipo(siniestro.getPortal().getComunidad().getCnComunidad(), siniestro.getEmpresaComunidad().getEmpresa().getTipoEmpresa().getCnTipoEmpresa()));
+				}
+			
+			
 			return "detalleSiniestro";
 		}
 		if (siniestro != null) {
@@ -153,4 +157,22 @@ public class SiniestroController {
 		return "redirect:/action/portales/editar?id=" + siniestro.getPortal().getCnPortal();
 	}
 
+	
+
+	@RequestMapping(value = "cargarEmpresasComunidad", method = RequestMethod.POST)
+	public @ResponseBody
+	List<PropertyBean> cargarEmpresasComunidad(
+			@RequestParam(value = RequestKeys.CODIGO_COMUNIDAD) String codComunidad, @RequestParam(value = "idTipoEmpresa") String idTipoEmpresa) {
+
+		List<PropertyBean> listaPB = new ArrayList<PropertyBean>();
+
+		if (idTipoEmpresa == null) {
+			return listaPB;
+		}
+
+		listaPB = combosUtils.loadEmpresasComunidadByTipo(new Integer(codComunidad) ,new Integer(idTipoEmpresa));	
+		
+		return listaPB;
+
+	}
 }

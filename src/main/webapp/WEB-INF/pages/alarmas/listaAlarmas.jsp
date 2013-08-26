@@ -1,6 +1,6 @@
 <%@ include file="/WEB-INF/pages/include.jsp"%>
 <jsp:useBean id="now" class="java.util.Date" />
-<fmt:formatDate value="${now}" pattern="dd/MM/yyyy" var="hoy" />
+<fmt:formatDate value="${now}" pattern="yyyy/MM/dd" var="hoy" />
 
 <h3>Alarmas</h3>
 
@@ -34,7 +34,7 @@
 				<c:forEach items="${listaActuaciones}" var="actuacion"
 					varStatus="status">
 				
-<fmt:formatDate value="${actuacion.feVencimiento}" pattern="dd/MM/yyyy" var="vencimiento" />
+<fmt:formatDate value="${actuacion.feVencimiento}" pattern="yyyy/MM/dd" var="vencimiento" />
 										
 					<tr class="				
 <c:if test="${vencimiento lt hoy}">
@@ -92,6 +92,7 @@ warning
 					<th>Comunidad</th>
 					<th>Empresa</th>
 					<th>Fecha Inicio</th>
+					<th>Fecha Notificación</th>
 					<th>Fecha Vencimiento</th>
 					<th>Estado</th>
 					<th>Descripción</th>
@@ -102,7 +103,7 @@ warning
 				<c:forEach items="${listaAvisosEmpresa}" var="aviso"
 					varStatus="status">
 					
-<fmt:formatDate value="${aviso.feVencimiento}" pattern="dd/MM/yyyy" var="vencimiento" />
+<fmt:formatDate value="${aviso.feLimite}" pattern="yyyy/MM/dd" var="vencimiento" />
 										
 					<tr class="				
 <c:if test="${vencimiento lt hoy}">
@@ -117,6 +118,8 @@ warning
 						<td>${aviso.empresaComunidad.comunidad.teNombre}</td>
 						<td>${aviso.empresaComunidad.empresa.teNombre}</td>
 						<td><fmt:formatDate value="${aviso.feInicio}"
+								pattern="dd/MM/yyyy" /></td>
+						<td><fmt:formatDate value="${aviso.feLimite}"
 								pattern="dd/MM/yyyy" /></td>
 						<td><fmt:formatDate value="${aviso.feVencimiento}"
 								pattern="dd/MM/yyyy" /></td>

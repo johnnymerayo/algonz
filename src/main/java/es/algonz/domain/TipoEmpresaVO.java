@@ -20,10 +20,11 @@ import javax.persistence.Table;
 @Table(name = "tipo_empresa", catalog = "algonz")
 public class TipoEmpresaVO implements java.io.Serializable {
 
+	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 39604383599098111L;
 	private Integer cnTipoEmpresa;
 	private String teTipoEmpresa;
 	private Set<EmpresaVO> empresas = new HashSet<EmpresaVO>(0);

@@ -21,8 +21,8 @@
 
 		<div class="row">
 		
-		<t:select itemLabel="teTipoEmpresa" itemValue="cnTipoEmpresa" items="${tiposEmpresaCombo}" path="empresa.tipoEmpresa.cnTipoEmpresa" required="true" label="Tipo Empresa" emptyOption="true" tabindex="1" gridClass="col-lg-4"/>	
-		<t:select itemLabel="teNombre" itemValue="cnEmpresa" items="${empresasCombo}" path="empresa.cnEmpresa" required="true" label="Empresa" emptyOption="true" tabindex="2" gridClass="col-lg-6"/>
+		<t:select itemLabel="teTipoEmpresa" itemValue="cnTipoEmpresa" items="${tiposEmpresaCombo}" path="empresa.tipoEmpresa.cnTipoEmpresa" required="true" label="Tipo Empresa" emptyOption="true" tabindex="1" gridClass="col-lg-4 " onchange="cargarEmpresas(this.value)"/>	
+		<t:select itemLabel="value" itemValue="id" items="${empresasCombo}" path="empresa.cnEmpresa" required="true" label="Empresa" emptyOption="true" tabindex="2" gridClass="col-lg-4"/>
 		</div>	
     		
     		<div class="row">
@@ -75,6 +75,7 @@
 		<thead>
 			<tr>
 				<th>Fecha Inicio</th>
+				<th>Fecha Notificación</th>
 				<th>Fecha Vencimiento</th>
 				<th>Fecha Cierre</th>
 				<th>Estado </th>
@@ -87,6 +88,7 @@
 				<tr>
 				
 					<td><fmt:formatDate value="${aviso.feInicio}" pattern="dd/MM/yyyy"/></td>
+					<td><fmt:formatDate value="${aviso.feLimite}" pattern="dd/MM/yyyy" /></td>
 					<td><fmt:formatDate value="${aviso.feVencimiento}" pattern="dd/MM/yyyy"/></td>
 					<td><fmt:formatDate value="${aviso.feCierre}" pattern="dd/MM/yyyy"/></td>
 					<td>
@@ -115,6 +117,30 @@
 	</c:if>
 	
 </form:form>
+
+<script type="text/javascript">
+
+function cargarEmpresas(idTipoEmpresa) {
+	jQuery.ajax({
+		type : "POST",
+		url : "/algonz/action/empresasComunidad/cargarEmpresas",
+		data : "idTipoEmpresa=" + idTipoEmpresa,
+		success : function(response) {
+			while (document.getElementById("empresa.cnEmpresa").options.length > 0) {
+				document.getElementById("empresa.cnEmpresa").options.remove(0);
+			}
+			document.getElementById("empresa.cnEmpresa").options.add(new Option("Seleccionar...",
+					""))
+			for ( var i = 0; i < response.length; i++) {
+				var d = response[i];
+				document.getElementById("empresa.cnEmpresa").options.add(new Option(d.value, d.id))
+			}
+
+		}
+	});
+}
+
+</script>
 
 
 

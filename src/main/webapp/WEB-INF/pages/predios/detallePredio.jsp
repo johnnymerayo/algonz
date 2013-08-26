@@ -184,13 +184,17 @@
 	<div class="control-group" style="clear: both">
 		<div class="controls">
 			<button type="submit" class="btn btn-primary">Guardar</button>
+				
 			<!--  <button type="button" class="btn btn-default"
-				onclick="changeAction('mainForm','action/predios/listado')">Cancelar</button>  -->
+				onclick="changeAction('mainForm','action/predios/listado')">Cancelar</button> -->
 				<a href="action/portales/editar?id=${predio.portal.cnPortal}" class="btn btn-default">Cancelar</a>
+				<a href="action/predios/imprimirPropietario?codPredio=${predio.cnPredio}" class="btn btn-default">Imprimir</a> 
+			
 		</div>
 	</div>
 
 
+<div>&nbsp;</div>
 
 
 </form:form>

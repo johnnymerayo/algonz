@@ -15,6 +15,8 @@
 <%@attribute name="itemLabel" required="true" type="java.lang.String"%>
 <%@attribute name="itemValue" required="true" type="java.lang.String"%>
 <%@attribute name="gridClass" required="false" type="java.lang.String"%>
+<%@attribute name="onchange" required="false" type="java.lang.String"%>
+
 
 <c:if test="${empty label}">
     <c:set var="label" value="${fn:toUpperCase(fn:substring(path, 0, 1))}${fn:toLowerCase(fn:substring(path, 1,fn:length(path)))}" />
@@ -26,7 +28,7 @@
     <div class="form-group ${status.error ? 'has-error' : '' }">
         <label class="control-label" for="${path}">${label}<c:if test="${required}">&nbsp;<span class="required">*</span></c:if></label>
         <div class="controls">        
-            <form:select path="${path}" cssClass="form-control ${empty cssClass ? 'input-xlarge' : cssClass}" id="${empty id?path:id }" tabindex="${empty tabindex?'':tabindex }" disabled="${empty disabled?false:disabled }">
+            <form:select path="${path}" cssClass="form-control ${empty cssClass ? 'input-xlarge' : cssClass}" id="${empty id?path:id }" tabindex="${empty tabindex?'':tabindex }" disabled="${empty disabled?false:disabled }" onchange="${empty onchange?'':onchange }">
            
 			<c:if test="${emptyOption}">
            		<form:option value="">Seleccionar...</form:option>

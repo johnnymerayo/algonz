@@ -1,6 +1,7 @@
 package es.algonz.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,11 +21,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import es.algonz.controller.utils.CombosUtils;
 import es.algonz.domain.ComunidadVO;
 import es.algonz.domain.EmpresaComunidadVO;
+import es.algonz.domain.PropertyBean;
 import es.algonz.service.ComunidadManager;
 import es.algonz.service.EmpresaComunidadManager;
 import es.algonz.validator.EmpresaComunidadValidator;
@@ -72,14 +75,14 @@ public class EmpresaComunidadController {
 		if (id != null) {	
 				EmpresaComunidadVO empresaComunidad  = empresaComunidadManager.findById(new Integer (id).intValue());
 				model.addAttribute(RequestKeys.EMPRESA_COMUNIDAD, empresaComunidad);
-			
+				
+
+				// Cargamos el combo de tipos de empresa
+				model.addAttribute("tiposEmpresaCombo", combosUtils.loadTiposEmpresa());
+				model.addAttribute("empresasCombo", combosUtils.loadEmpresasByTipo(empresaComunidad.getEmpresa().getTipoEmpresa().getCnTipoEmpresa()));			
 		}
 
-		// Cargamos el combo de tipos de empresa
-		model.addAttribute("tiposEmpresaCombo", combosUtils.loadTiposEmpresa());
-		// TODO hacerlo dinamico desde la vista
-		// Cargamos el combo de empresa
-		model.addAttribute("empresasCombo", combosUtils.loadEmpresas());
+
 		
 		return "detalleEmpresaComunidad";
 	}
@@ -106,9 +109,7 @@ public class EmpresaComunidadController {
 		model.addAttribute(RequestKeys.EMPRESA_COMUNIDAD, empresaComunidad);
 		// Cargamos el combo de tipos de empresa
 		model.addAttribute("tiposEmpresaCombo", combosUtils.loadTiposEmpresa());
-		// TODO hacerlo dinamico desde la vista
-		// Cargamos el combo de empresa
-		model.addAttribute("empresasCombo", combosUtils.loadEmpresas());
+		//model.addAttribute("empresasCombo", combosUtils.loadEmpresas());
 		return "detalleEmpresaComunidad";
 	}
 	
@@ -123,9 +124,7 @@ public class EmpresaComunidadController {
 		model.addAttribute(RequestKeys.EMPRESA_COMUNIDAD, empresaComunidad);
 		// Cargamos el combo de tipos de empresa
 		model.addAttribute("tiposEmpresaCombo", combosUtils.loadTiposEmpresa());
-		// TODO hacerlo dinamico desde la vista
-		// Cargamos el combo de empresa
-		model.addAttribute("empresasCombo", combosUtils.loadEmpresas());
+		// model.addAttribute("empresasCombo", combosUtils.loadEmpresas());
 		return "detalleEmpresaComunidad";
 	}
 	
@@ -138,9 +137,11 @@ public class EmpresaComunidadController {
 			model.addAttribute(RequestKeys.EMPRESA_COMUNIDAD, empresaComunidad);
 			// Cargamos el combo de tipos de empresa
 			model.addAttribute("tiposEmpresaCombo", combosUtils.loadTiposEmpresa());
-			// TODO hacerlo dinamico desde la vista
-			// Cargamos el combo de empresa
-			model.addAttribute("empresasCombo", combosUtils.loadEmpresas());
+
+			if (empresaComunidad != null && empresaComunidad.getEmpresa() != null && empresaComunidad.getEmpresa().getTipoEmpresa() != null) {
+				model.addAttribute("empresasCombo", combosUtils.loadEmpresasByTipo(empresaComunidad.getEmpresa().getTipoEmpresa().getCnTipoEmpresa()));		
+			}
+			
 			return "detalleEmpresaComunidad";
 		}
 		if (empresaComunidad != null) {
@@ -154,6 +155,25 @@ public class EmpresaComunidadController {
 		}
 		//return "forward:/action/empresasComunidad/listado";
 		return "redirect:/action/comunidades/editar?id=" + empresaComunidad.getComunidad().getCnComunidad();
+	}
+	
+	
+	
+	@RequestMapping(value = "cargarEmpresas", method = RequestMethod.POST)
+	public @ResponseBody
+	List<PropertyBean> cargarEmpresas(
+			@RequestParam(value = "idTipoEmpresa") String idTipoEmpresa) {
+
+		List<PropertyBean> listaPB = new ArrayList<PropertyBean>();
+
+		if (idTipoEmpresa == null) {
+			return listaPB;
+		}
+
+		listaPB = combosUtils.loadEmpresasByTipo(new Integer(idTipoEmpresa));	
+		
+		return listaPB;
+
 	}
 
 }

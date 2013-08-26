@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -157,7 +158,7 @@ public class ActuacionController {
 	
 
 	@RequestMapping(value = "/uploadDocument", method = RequestMethod.POST)
-	public LinkedList<FileMeta> uploadDocument(Model model, HttpSession session, MultipartRequest request, @RequestParam(RequestKeys.CODIGO_ACTUACION) String codActuacion) {
+	public  @ResponseBody LinkedList<FileMeta> uploadDocument(Model model, HttpSession session, MultipartRequest request, @RequestParam(RequestKeys.CODIGO_ACTUACION) String codActuacion) {
 		
 		LinkedList<FileMeta> ficherosSubidos = new LinkedList<FileMeta>();
 		

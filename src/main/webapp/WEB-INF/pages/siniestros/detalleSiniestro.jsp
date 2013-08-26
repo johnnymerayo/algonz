@@ -23,9 +23,9 @@
 		<div class="row">
 
     
-    	<t:select gridClass="col-lg-4" itemLabel="teTipoEmpresa" itemValue="cnTipoEmpresa" items="${tiposEmpresaCombo}" path="cnTipoSiniestro" required="true" label="Tipo siniestro" emptyOption="true" tabindex="1"/>
+    	<t:select gridClass="col-lg-4" itemLabel="teTipoEmpresa" itemValue="cnTipoEmpresa" items="${tiposEmpresaCombo}" path="cnTipoSiniestro" required="true" label="Tipo siniestro" emptyOption="true" tabindex="1" onchange="cargarEmpresasComunidad(${siniestro.portal.comunidad.cnComunidad },this.value)"/>
 			
-		<t:select gridClass="col-lg-6" itemLabel="empresa.teNombre" itemValue="cnEmpresaComunidad" items="${empresasComunidadCombo}" path="empresaComunidad.cnEmpresaComunidad" required="true" label="Empresa" emptyOption="true" tabindex="2"/>
+		<t:select gridClass="col-lg-6" itemLabel="value" itemValue="id" items="${empresasComunidadCombo}" path="empresaComunidad.cnEmpresaComunidad" required="true" label="Empresa" emptyOption="true" tabindex="2"/>
 
 		</div>
 
@@ -52,6 +52,8 @@
 			</div>
 		</div>
 	
+<div>&nbsp;</div>
+
 	<c:if test="${not empty siniestro.cnSiniestro }">	
 	
 	
@@ -114,6 +116,33 @@
 	</c:if>
 	
 </form:form>
+
+
+
+<script type="text/javascript">
+
+function cargarEmpresasComunidad(codComunidad, idTipoEmpresa) {
+	jQuery.ajax({
+		type : "POST",
+		url : "/algonz/action/siniestros/cargarEmpresasComunidad",
+		data : {"codComunidad":codComunidad, "idTipoEmpresa":idTipoEmpresa},
+		success : function(response) {
+			while (document.getElementById("empresaComunidad.cnEmpresaComunidad").options.length > 0) {
+				document.getElementById("empresaComunidad.cnEmpresaComunidad").options.remove(0);
+			}
+			document.getElementById("empresaComunidad.cnEmpresaComunidad").options.add(new Option("Seleccionar...",
+					""))
+			for ( var i = 0; i < response.length; i++) {
+				var d = response[i];
+				document.getElementById("empresaComunidad.cnEmpresaComunidad").options.add(new Option(d.value, d.id))
+			}
+
+		}
+	});
+}
+
+</script>
+
 
 
 

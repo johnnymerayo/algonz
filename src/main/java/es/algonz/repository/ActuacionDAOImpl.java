@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import es.algonz.domain.ActuacionVO;
+import es.algonz.web.utils.ConstantesKeys;
 
 /**
  * DAOImpl object for domain model class Actuacion.
@@ -99,7 +100,7 @@ public class ActuacionDAOImpl implements ActuacionDAO {
 	public List<ActuacionVO> getActuacionesProximoVencimiento() {
 		// El aviso salta 15 días antes de la fecha de vencimiento
 		String query="select * from actuacion " +
-				"where fe_vencimiento <= DATE_ADD(CURDATE(),INTERVAL 15 DAY) " +
+				"where fe_vencimiento <= DATE_ADD(CURDATE(),INTERVAL " + ConstantesKeys.DIAS_AVISO_SINIESTRO +" DAY) " +
 				"and cn_estado <> 2 " + // Estado CERRADO no se muestran
 				"order by fe_vencimiento asc;";
 		List<ActuacionVO> resultList = entityManager.createNativeQuery(query,ActuacionVO.class).getResultList();

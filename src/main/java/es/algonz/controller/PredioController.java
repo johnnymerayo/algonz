@@ -1,5 +1,25 @@
 package es.algonz.controller;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.MediaTracker;
+import java.awt.RenderingHints;
+import java.awt.Toolkit;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Rectangle2D;
+import java.awt.print.PageFormat;
+import java.awt.print.Paper;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -29,7 +49,7 @@ import es.algonz.web.utils.RequestKeys;
 
 @Controller
 @RequestMapping("predios")
-public class PredioController {
+public class PredioController implements Printable{
 	@Autowired
 	private PredioManager predioManager;
 	@Autowired
@@ -148,5 +168,152 @@ public class PredioController {
 		//return "forward:/action/predios/listado";
 		return "redirect:/action/portales/editar?id=" + predio.getPortal().getCnPortal();
 	}
+	
+	
+	@RequestMapping(value = "/imprimirPropietario", method = RequestMethod.GET)
+	public String imprimirPropietario(Model model, HttpSession session, @RequestParam(RequestKeys.CODIGO_PREDIO) String codPredio, RedirectAttributes redirectAttrs) {
+		
+	
+		if (!GenericValidator.isBlankOrNull(codPredio)) {
+			
+			 // Create an object that will hold all print parameters, such as
+		      // page size, printer resolution. In addition, it manages the print
+		      // process (job).
+		      PrinterJob job = PrinterJob.getPrinterJob();
+
+		      // It is first called to tell it what object will print each page.
+		      job.setPrintable(new PredioController());
+		      
+		      // Then it is called to display the standard print options dialog.
+		      if (job.printDialog())
+		      {
+		    	  // Predio con la información a imprimir
+		    	  predioPrint = predioManager.findById(new Integer(codPredio));
+										
+		      try { job.print(); }
+		         catch (PrinterException e) { System.out.println(e); }
+		      }
+			
+		}
+
+		return "redirect:/action/predios/editar?id=" + codPredio;
+	}
+	
+	public static PredioVO predioPrint;
+
+
+	@Override
+	 public int print (Graphics g1, PageFormat f, int pageIndex)
+	   {
+		   Graphics2D g = (Graphics2D) g1; 		   
+		
+		   if (pageIndex > 0) {
+		         return NO_SUCH_PAGE;
+		    }
+
+			
+			
+			Font font = new Font("Serif", Font.PLAIN, 10);
+			FontMetrics metrics = g.getFontMetrics(font);
+			int lineHeight = metrics.getHeight()+2;
+			
+			Paper paper = new Paper();
+			paper.setSize(312, 652); 
+			
+			paper.setImageableArea(20, 20, 250, 600);
+			f.setPaper(paper);
+			f.setOrientation(PageFormat.PORTRAIT);
+					
+		
+		     //--- Translate the origin to 0,0 for the top left corner
+		      g.translate(f.getImageableX(), f
+		          .getImageableY());
+
+		      //--- Set the default drawing color to black
+		      g.setPaint(Color.black);
+			
+		      Rectangle2D.Double border = new Rectangle2D.Double(0, 0, f
+		          .getImageableWidth(), f.getImageableHeight());
+		      g.draw(border);
+			
+			
+		    int x = 130;  
+			int y = 270; 
+			
+
+		        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+		                RenderingHints.VALUE_ANTIALIAS_ON);
+			
+			
+
+			if (GenericValidator.isBlankOrNull(predioPrint.getTerceroByCnPropietario().getTeDireccionSecundaria())){
+			// Imprimimos la dirección primaria
+				
+				label_line(g, x, y, predioPrint.getTerceroByCnPropietario().getNombreCompleto());
+				x -= lineHeight;
+				label_line(g, x, y, predioPrint.getPortal().getTeCalle() + " " 
+						 + predioPrint.getPortal().getTeNombre() + "     " + predioPrint.getPlanta().getTePlanta() + " - " + predioPrint.getTePredio());
+				x -= lineHeight;
+				label_line(g, x, y, predioPrint.getPortal().getComunidad().getTeCp() + " GIJÓN");
+				x -= lineHeight;
+				label_line(g, x, y, "ASTURIAS - ESPAÑA");
+				x -= lineHeight;
+				
+				
+				
+			}else{
+			// Imprimimos la dirección secundaria
+				label_line(g, x, y, predioPrint.getTerceroByCnPropietario().getNombreCompleto());
+			    String direccion = predioPrint.getTerceroByCnPropietario().getTeDireccionSecundaria();
+			    String[] labels = direccion.split("\n");
+			    
+
+				int start = 0;
+				int end   = labels.length;
+			    
+				for (int line=start; line<end; line++) {
+			    x -= lineHeight;
+				label_line(g, x, y, labels[line]);
+			}
+			}
+		
+
+
+
+		    return PAGE_EXISTS;
+			
+	   }
+	
+	
+	
+	
+
+	  
+	  
+	  private void label_line(Graphics g, double x, double y, String label) {
+
+		     Graphics2D g2D = (Graphics2D)g;
+		     
+		     double theta = 90 * java.lang.Math.PI/180;
+
+		    // Create a rotation transformation for the font.
+		    AffineTransform fontAT = new AffineTransform();
+
+		    // get the current font
+		    Font theFont = g2D.getFont();
+
+		    // Derive a new font using a rotatation transform
+		    fontAT.rotate(theta);
+		    Font theDerivedFont = theFont.deriveFont(fontAT);
+
+		    // set the derived font in the Graphics2D context
+		    g2D.setFont(theDerivedFont);
+
+		    // Render a string using the derived font
+		    g2D.drawString(label, (int)x, (int)y);
+
+		    // put the original font back
+		    g2D.setFont(theFont);
+		}
 
 }
