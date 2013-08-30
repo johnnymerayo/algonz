@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 /**
@@ -104,6 +105,7 @@ public class PortalVO implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "portal")
+	@OrderBy ("planta tePredio ASC")
 	public Set<PredioVO> getPredios() {
 		return this.predios;
 	}
