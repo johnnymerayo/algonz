@@ -284,10 +284,8 @@
 <div>&nbsp;</div>
 
 
-		
-<sec:authorize access="hasRole('ROLE_ADMIN')">
-
 <div>
+
 <span class="btn btn-success fileinput-button">
                     <i class="glyphicon glyphicon-plus glyphicon-white"></i>
                     <span>Añadir documento</span>
@@ -296,7 +294,6 @@
 	</div>
 	
  	
-</sec:authorize>
 		</fieldset>
 </c:if>	
 

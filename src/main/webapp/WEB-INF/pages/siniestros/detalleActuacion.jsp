@@ -26,7 +26,7 @@
 
 
 		<div class="row">	
-			<t:select gridClass="col-lg-4" itemLabel="teEstado" itemValue="cnEstado" items="${estadosCombo}" path="estado.cnEstado" required="true" label="Estado" tabindex="1"/>
+			<t:select  id="estado" search="false" gridClass="col-lg-4" itemLabel="teEstado" itemValue="cnEstado" items="${estadosCombo}" path="estado.cnEstado" required="true" label="Estado" tabindex="1"/>
 </div>
 
 <div class="row">
@@ -113,7 +113,7 @@
 <div>&nbsp;</div>
 
 
-<sec:authorize access="hasRole('ROLE_ADMIN')">
+
 
 <div>
 <span class="btn btn-success fileinput-button">
@@ -124,9 +124,6 @@
 	</div>
 
 
-	
-</sec:authorize>
-
 		</fieldset>
 </c:if>
 
@@ -135,3 +132,6 @@
 </form:form>
 
 <div>&nbsp;</div>
+
+<div>&nbsp;</div>
+

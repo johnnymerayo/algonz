@@ -20,7 +20,7 @@
 
 
 		<div class="row">	
-			<t:select gridClass="col-lg-4" itemLabel="teEstado" itemValue="cnEstado" items="${estadosCombo}" path="estado.cnEstado" required="true" label="Estado" emptyOption="true" tabindex="1"/>
+			<t:select  id="estado" search="false"  gridClass="col-lg-4" itemLabel="teEstado" itemValue="cnEstado" items="${estadosCombo}" path="estado.cnEstado" required="true" label="Estado" emptyOption="true" tabindex="1"/>
 		</div>
 
 		<div class="row">	
@@ -36,6 +36,9 @@
 			<div class="form-group ${status.error ? 'error' : '' }">
 				<label class="control-label" for="nuDiasAviso">Días para aviso</label>
 				<div class="controls">
+				  <script>
+		       			 $(document).ready(function() { $("#nuDiasAviso").select2({minimumResultsForSearch: -1}); });
+		    		</script>    
 					<form:select path="nuDiasAviso" cssClass="form-control input-xlarge"
 						id="nuDiasAviso" tabindex="5">
 						<form:option value="" label="Seleccionar..." />
@@ -135,7 +138,6 @@
 
 
 
-<sec:authorize access="hasRole('ROLE_ADMIN')">
 
 <div>
 <span class="btn btn-success fileinput-button">
@@ -144,11 +146,14 @@
                    <input id="fileupload" type="file" name="files[]" data-url="action/avisosEmpresa/uploadDocument?codAvisoEmpresa=${avisoEmpresa.cnAvisoEmpresa }" multiple>
                 </span>
 	</div>
-</sec:authorize>
+
 		</fieldset>
 </c:if>
 		
 </form:form>
+
+<div>&nbsp;</div>
+
 
 <div>&nbsp;</div>
 

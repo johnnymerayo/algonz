@@ -16,6 +16,7 @@
 <%@attribute name="itemValue" required="true" type="java.lang.String"%>
 <%@attribute name="gridClass" required="false" type="java.lang.String"%>
 <%@attribute name="onchange" required="false" type="java.lang.String"%>
+<%@attribute name="search" required="false" type="java.lang.Boolean"%>
 
 
 <c:if test="${empty label}">
@@ -26,8 +27,21 @@
 	    <div class="${gridClass}">
 	</c:if>
     <div class="form-group ${status.error ? 'has-error' : '' }">
+    
         <label class="control-label" for="${path}">${label}<c:if test="${required}">&nbsp;<span class="required">*</span></c:if></label>
-        <div class="controls">        
+        <div class="controls">    
+        
+		
+		      <script>
+		        $(document).ready(function() { $("#${empty id?path:id }").select2(  
+
+		       		 <c:if test="${!search}">
+		        	        		{minimumResultsForSearch: -1}
+		        	   </c:if>
+		                ); });
+		    </script>    
+	
+  
             <form:select path="${path}" cssClass="form-control ${empty cssClass ? 'input-xlarge' : cssClass}" id="${empty id?path:id }" tabindex="${empty tabindex?'':tabindex }" disabled="${empty disabled?false:disabled }" onchange="${empty onchange?'':onchange }">
            
 			<c:if test="${emptyOption}">
@@ -44,4 +58,8 @@
 	<c:if test="${not empty gridClass}">
 	    </div>
 	</c:if>  
+	
+	
+	
+	
 </spring:bind>

@@ -32,8 +32,11 @@
 				<label class="control-label" for="tipoPredio.cnTipoPredio">Tipo
 					predio *</label>
 				<div class="controls">
+				 <script>
+		       			 $(document).ready(function() { $("#tipoPredio").select2({minimumResultsForSearch: -1}); });
+		    		</script>    
 					<form:select path="tipoPredio.cnTipoPredio" cssClass="form-control input-xlarge"
-						id="tipoPredio.cnTipoPredio" tabindex="1">
+						id="tipoPredio" tabindex="1">
 						<form:option value="1" label="Piso" />
 						<form:option value="2" label="Garaje" />
 					</form:select>

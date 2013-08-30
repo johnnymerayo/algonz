@@ -21,8 +21,8 @@
 
 		<div class="row">
 		
-		<t:select itemLabel="teTipoEmpresa" itemValue="cnTipoEmpresa" items="${tiposEmpresaCombo}" path="empresa.tipoEmpresa.cnTipoEmpresa" required="true" label="Tipo Empresa" emptyOption="true" tabindex="1" gridClass="col-lg-4 " onchange="cargarEmpresas(this.value)"/>	
-		<t:select itemLabel="value" itemValue="id" items="${empresasCombo}" path="empresa.cnEmpresa" required="true" label="Empresa" emptyOption="true" tabindex="2" gridClass="col-lg-4"/>
+		<t:select  id="tipoEmpresa" search="false"  itemLabel="teTipoEmpresa" itemValue="cnTipoEmpresa" items="${tiposEmpresaCombo}" path="empresa.tipoEmpresa.cnTipoEmpresa" required="true" label="Tipo Empresa" emptyOption="true" tabindex="1" gridClass="col-lg-4 " onchange="cargarEmpresas(this.value)"/>	
+		<t:select  id="empresa" search="false" itemLabel="value" itemValue="id" items="${empresasCombo}" path="empresa.cnEmpresa" required="true" label="Empresa" emptyOption="true" tabindex="2" gridClass="col-lg-4"/>
 		</div>	
     		
     		<div class="row">
@@ -126,14 +126,17 @@ function cargarEmpresas(idTipoEmpresa) {
 		url : "/algonz/action/empresasComunidad/cargarEmpresas",
 		data : "idTipoEmpresa=" + idTipoEmpresa,
 		success : function(response) {
-			while (document.getElementById("empresa.cnEmpresa").options.length > 0) {
-				document.getElementById("empresa.cnEmpresa").options.remove(0);
+			while (document.getElementById("empresa").options.length > 0) {
+				document.getElementById("empresa").options.remove(0);
 			}
-			document.getElementById("empresa.cnEmpresa").options.add(new Option("Seleccionar...",
+
+
+			$("#empresa").select2("val", "Seleccionar..."); 
+			document.getElementById("empresa").options.add(new Option("Seleccionar...",
 					""))
 			for ( var i = 0; i < response.length; i++) {
 				var d = response[i];
-				document.getElementById("empresa.cnEmpresa").options.add(new Option(d.value, d.id))
+				document.getElementById("empresa").options.add(new Option(d.value, d.id))
 			}
 
 		}

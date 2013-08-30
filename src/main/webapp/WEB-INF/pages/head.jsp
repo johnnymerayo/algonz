@@ -3,6 +3,7 @@
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
 <base href='<c:out value="${pageContext.request.scheme}" />://<c:out value="${pageContext.request.serverName}" />:<c:out value="${pageContext.request.serverPort}" /><c:out value="${pageContext.request.contextPath}" />/'/>
 
+
 <!-- Bootstrap -->
 <link href="css/bootstrap.min.css" rel="stylesheet" media="screen"/>    
 <link rel="stylesheet" type="text/css" href="css/DT_bootstrap.css">
@@ -32,3 +33,10 @@
 <!-- we code these -->
 <link href="css/dropzone.css" type="text/css" rel="stylesheet" />
 <script src="js/myuploadfunction.js"></script>
+
+
+
+
+<!-- select2 mejroa combos en windows -->
+<link href="css/select2.css" rel="stylesheet"/>
+<script src="js/select2.js"></script>
