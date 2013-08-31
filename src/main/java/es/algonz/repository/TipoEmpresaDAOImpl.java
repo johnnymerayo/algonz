@@ -92,6 +92,8 @@ public class TipoEmpresaDAOImpl implements TipoEmpresaDAO{
 		cq.select(root);
 		if(object != null && object.getCnTipoEmpresa() != null)
 			cq.where(cb.equal(root.get("cnTipoEmpresa"), object.getCnTipoEmpresa()));
+
+		cq.orderBy(cb.asc(root.get("teTipoEmpresa")));
 		//Sino se devuelven todos
 		return entityManager.createQuery(cq).getResultList();
 	}
