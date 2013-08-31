@@ -17,6 +17,7 @@
 <script src="js/jquery.dataTables.min.js"></script>
 <script src="js/DT_bootstrap.js"></script>
 <script src="js/bootstrap-datepicker.js"></script>
+<script src="js/locales/bootstrap-datepicker.es.js"></script>
 <script src="js/application.js"></script>
 
 <!-- DataTables Tools -->

@@ -39,6 +39,8 @@
      <c:if test="${not empty date and date==true }">
 		<script>
 		$('#<c:out value="${empty id?path:id }"/>').datepicker({
+			autoclose: true,
+			language: 'es',
 			format: 'dd/mm/yyyy'
 		});
 		</script>
