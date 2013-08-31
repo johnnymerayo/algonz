@@ -119,7 +119,7 @@
 					<td>
 						<a href="action/avisosEmpresa/downloadDocument?id=${documento.cnDocumento }">
 							<i class="glyphicon glyphicon-download"></i></a> &nbsp;
-						<a href="action/avisosEmpresa/deleteDocument?codAvisoEmpresa=${avisoEmpresa.cnAvisoEmpresa }&amp;id=${documento.cnDocumento }">
+							<a data-toggle="modal" href="#modalDelete" class="delete_row" data-id="action/avisosEmpresa/deleteDocument?codAvisoEmpresa=${avisoEmpresa.cnAvisoEmpresa }&amp;id=${documento.cnDocumento }">
 							<i class="glyphicon glyphicon-remove"></i></a>
 					</td>
 				</tr>

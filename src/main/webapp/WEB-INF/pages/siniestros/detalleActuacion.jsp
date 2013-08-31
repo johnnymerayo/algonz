@@ -94,8 +94,8 @@
 					<td><fmt:formatDate value="${documento.feGuardado}" pattern="dd/MM/yyyy"/></td>
 					<td>
 						<a href="action/actuaciones/downloadDocument?id=${documento.cnDocumento }">
-							<i class="glyphicon glyphicon-download"></i></a> &nbsp;
-						<a href="action/actuaciones/deleteDocument?codActuacion=${actuacion.cnActuacion }&amp;id=${documento.cnDocumento }">
+							<i class="glyphicon glyphicon-download"></i></a> &nbsp;							
+							<a data-toggle="modal" href="#modalDelete" class="delete_row" data-id="action/actuaciones/deleteDocument?codActuacion=${actuacion.cnActuacion }&amp;id=${documento.cnDocumento }">
 							<i class="glyphicon glyphicon-remove"></i></a>
 					</td>
 				</tr>

@@ -2,14 +2,17 @@ package es.algonz.repository;
 
 // Generated 15-jul-2013 17:23:48 by Hibernate Tools 3.4.0.CR1
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
@@ -86,8 +89,41 @@ public class PredioDAOImpl implements PredioDAO {
 		CriteriaQuery<PredioVO> cq = cb.createQuery(PredioVO.class);
 		Root<PredioVO> root = cq.from(PredioVO.class);
 		cq.select(root);
-		if(object != null && object.getCnPredio() != null)
-			cq.where(cb.equal(root.get("cnPredio"), object.getCnPredio()));
+		
+		if (object != null){
+
+			List<Predicate> andPredicates = new ArrayList<Predicate>();
+			if(object.getCnPredio() != null)
+				andPredicates.add(cb.equal(root.get("cnPredio"), object.getCnPredio()));
+			
+
+			if(!StringUtils.isEmpty(object.getTePredio()))
+				andPredicates.add(cb.equal(root.get("tePredio"), object.getTePredio()));
+
+
+			if(object.getPlanta() != null && object.getPlanta().getCnPlanta() != null )
+				andPredicates.add(cb.equal(root.get("planta").get("cnPlanta"), object.getPlanta().getCnPlanta()));
+
+
+
+			if(object.getPlanta() != null && !StringUtils.isEmpty(object.getPlanta().getTePlanta()))
+				andPredicates.add(cb.equal(root.get("planta").get("tePlanta"), object.getPlanta().getTePlanta()));
+
+
+
+			if(object.getPortal() != null && object.getPortal().getCnPortal() != null )
+				andPredicates.add(cb.equal(root.get("portal").get("cnPortal"), object.getPortal().getCnPortal()));
+
+			
+			if(object.getPortal() != null && !StringUtils.isEmpty(object.getPortal().getTeNombre()))
+				andPredicates.add(cb.equal(root.get("portal").get("teNombre"), object.getPortal().getTeNombre()));
+
+			
+			if (andPredicates.size() > 0)
+				cq.where(andPredicates.toArray(new Predicate[andPredicates.size()]));
+		
+		}
+			
 		//Sino se devuelven todos
 		return entityManager.createQuery(cq).getResultList();
 	}

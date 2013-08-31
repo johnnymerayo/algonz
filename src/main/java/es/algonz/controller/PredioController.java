@@ -1,16 +1,11 @@
 package es.algonz.controller;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.MediaTracker;
 import java.awt.RenderingHints;
-import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.awt.print.PageFormat;
@@ -18,8 +13,6 @@ import java.awt.print.Paper;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -157,8 +150,49 @@ public class PredioController implements Printable{
 			
 			
 			
-			if (predio.getCnPredio() != null && !StringUtils.isBlank(predio.getCnPredio().toString()))
+
+			// Fin de la busqueda de repetidos
+			// Debemos buscar si ya existe la combinación planta / predio para ese portal
+			
+			PredioVO predioSearch = new PredioVO();
+			predioSearch.setPortal(predio.getPortal());
+			predioSearch.setPlanta(predio.getPlanta());
+			//if (predio.getTipoPredio().getCnTipoPredio() == 1)
+				predioSearch.setTePredio(predio.getTePredio());
+//			else
+//				predioSearch.setTePlaza(predio.getTePlaza());
+				
+			List<PredioVO> prediosList = predioManager.getPredios(predioSearch);
+			if(prediosList!= null && prediosList.size() > 0){
+				
+				PredioVO encontrado = prediosList.get(0);
+				
+				if (predio.getCnPredio() == null || predio.getCnPredio() != encontrado.getCnPredio()){
+				// Si es null es que estoy insertando y encontre uno repetido. ERROR
+					// Si los cn son distintos es que estoy actualizando y encontre otro que coincidia. ERROR
+//					if (predio.getTipoPredio().getCnTipoPredio() == 0)
+						binding.rejectValue("tePredio", null, "El predio ya existe");
+//					else
+//						binding.rejectValue("tePlaza", null, "La plaza ya existe");
+	
+					
+					model.addAttribute(RequestKeys.PREDIO, predio);
+					//Cargamos el combo de plantas
+					model.addAttribute("plantasCombo", comboUtils.loadPlantas());
+					//Cargamos el combo de representantes
+					model.addAttribute("tiposRepresentanteCombo", comboUtils.loadTiposRrepresentante());
+					return "detallePredio";
+				}
+				
+			}
+			
+			// Fin de la busqueda de repetidos
+			
+			
+			
+			if (predio.getCnPredio() != null && !StringUtils.isBlank(predio.getCnPredio().toString())){
 				predioManager.merge(predio);
+			}
 			else {
 				predioManager.persist(predio);
 			}

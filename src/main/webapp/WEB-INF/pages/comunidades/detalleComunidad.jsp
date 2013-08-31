@@ -266,8 +266,9 @@
 					<td>
 						<a href="action/comunidades/downloadDocument?id=${documento.cnDocumento }">
 							<i class="glyphicon glyphicon-download"></i></a> &nbsp;
-						<a href="action/comunidades/deleteDocument?codComunidad=${comunidad.cnComunidad }&amp;id=${documento.cnDocumento }">
+						<a data-toggle="modal" href="#modalDelete" class="delete_row" data-id="action/comunidades/deleteDocument?codComunidad=${comunidad.cnComunidad }&amp;id=${documento.cnDocumento }">
 							<i class="glyphicon glyphicon-remove"></i></a>
+							
 					</td>
 				</tr>
 			</c:forEach>
