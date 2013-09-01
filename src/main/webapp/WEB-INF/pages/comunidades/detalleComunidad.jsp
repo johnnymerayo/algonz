@@ -287,7 +287,7 @@
 
 <div>
 
-<span class="btn btn-success fileinput-button">
+<span class="btn btn-primary fileinput-button">
                     <i class="glyphicon glyphicon-plus glyphicon-white"></i>
                     <span>Añadir documento</span>
                    <input id="fileupload" type="file" name="files[]" data-url="action/comunidades/uploadDocument?codComunidad=${comunidad.cnComunidad }" multiple>
