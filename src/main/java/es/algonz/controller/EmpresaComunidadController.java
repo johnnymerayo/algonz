@@ -94,10 +94,15 @@ public class EmpresaComunidadController {
 		if (id != null) {
 			EmpresaComunidadVO empresaComunidad  = empresaComunidadManager.findById(new Integer (id).intValue());
 				idComunidad = empresaComunidad.getComunidad().getCnComunidad().toString();
+				try{
 				empresaComunidadManager.remove(empresaComunidad);
+		}catch (Exception e){
+			redirectAttrs.addFlashAttribute(RequestKeys.ERROR, "No se ha podido eliminar el elemento seleccionado.");
+			return "redirect:/action/comunidades/editar?id=" + idComunidad;
+		}
 				//model.addAttribute(RequestKeys.MESSAGE,
 					//	"Eliminado correctamente");
-				redirectAttrs.addFlashAttribute(RequestKeys.MESSAGE, "Almacenado correctamente");
+				redirectAttrs.addFlashAttribute(RequestKeys.MESSAGE, "Eliminado correctamente");
 		}
 		//return "forward:/action/empresasComunidad/listado";
 		return "redirect:/action/comunidades/editar?id=" + idComunidad;

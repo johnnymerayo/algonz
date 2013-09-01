@@ -95,7 +95,7 @@ public class ActuacionController {
 
 	@RequestMapping(value = "/eliminar", method = RequestMethod.GET)
 	public String eliminar(Model model,
-			@RequestParam(RequestKeys.ID) String id, HttpSession session) {
+			@RequestParam(RequestKeys.ID) String id, HttpSession session, RedirectAttributes redirectAttrs) {
 
 		
 		String idSiniestro = "";
@@ -103,8 +103,13 @@ public class ActuacionController {
 			ActuacionVO actuacion  = actuacionManager.findById(new Integer (id).intValue());
 				
 			idSiniestro = actuacion.getSiniestro().getCnSiniestro().toString();	
+			try{
 			actuacionManager.remove(actuacion);
-				model.addAttribute(RequestKeys.MESSAGE,
+		}catch (Exception e){
+			redirectAttrs.addFlashAttribute(RequestKeys.ERROR, "No se ha podido eliminar el elemento seleccionado.");
+			return "redirect:/action/siniestros/editar?id=" + idSiniestro;
+		}
+			redirectAttrs.addFlashAttribute(RequestKeys.MESSAGE,
 						"Eliminado correctamente");
 		}
 //		return "forward:/action/actuaciones/listado";

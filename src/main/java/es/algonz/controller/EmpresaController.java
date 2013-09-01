@@ -92,7 +92,12 @@ public class EmpresaController {
 			@RequestParam(RequestKeys.ID) String id, HttpSession session) {
 		if (id != null) {
 			EmpresaVO empresa  = empresaManager.findById(new Integer (id).intValue());
+			try{
 				empresaManager.remove(empresa);
+		}catch (Exception e){
+			model.addAttribute(RequestKeys.ERROR, "No se ha podido eliminar el elemento seleccionado.");
+			return "forward:/action/empresas/listado";
+		}
 				model.addAttribute(RequestKeys.MESSAGE,
 						"Eliminado correctamente");
 		}

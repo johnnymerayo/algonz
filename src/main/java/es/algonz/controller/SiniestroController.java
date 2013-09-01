@@ -86,7 +86,12 @@ public class SiniestroController {
 			SiniestroVO siniestro  = siniestroManager.findById(new Integer (id).intValue());
 			idPortal = siniestro.getPortal().getCnPortal().toString();
 			
+			try{
 				siniestroManager.remove(siniestro);
+		}catch (Exception e){
+			redirectAttrs.addFlashAttribute(RequestKeys.ERROR, "No se ha podido eliminar el elemento seleccionado.");
+			return "redirect:/action/portales/editar?id=" + idPortal;
+		}
 				model.addAttribute(RequestKeys.MESSAGE,
 						"Eliminado correctamente");
 				redirectAttrs.addFlashAttribute(RequestKeys.MESSAGE, "Almacenado correctamente");

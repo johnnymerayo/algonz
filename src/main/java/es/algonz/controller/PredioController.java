@@ -92,7 +92,12 @@ public class PredioController implements Printable{
 		PredioVO predio = new PredioVO();
 		if (id != null) {
 			predio  = predioManager.findById(new Integer (id).intValue());
+			try{
 				predioManager.remove(predio);
+		}catch (Exception e){
+			redirectAttrs.addFlashAttribute(RequestKeys.ERROR, "No se ha podido eliminar el elemento seleccionado.");
+			return "redirect:/action/portales/editar?id=" + predio.getPortal().getCnPortal();
+		}
 				model.addAttribute(RequestKeys.MESSAGE,
 						"Eliminado correctamente");
 				redirectAttrs.addFlashAttribute(RequestKeys.MESSAGE, "Eliminado correctamente");

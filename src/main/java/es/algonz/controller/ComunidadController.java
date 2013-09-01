@@ -80,7 +80,14 @@ public class ComunidadController {
 			@RequestParam(RequestKeys.ID) String id, HttpSession session) {
 		if (id != null) {
 			ComunidadVO comunidad  = comunidadManager.findById(new Integer (id).intValue());
-				comunidadManager.remove(comunidad);
+			
+			try{
+						comunidadManager.remove(comunidad);
+			}catch (Exception e){
+				model.addAttribute(RequestKeys.ERROR, "No se ha podido eliminar el elemento seleccionado.");
+				return "forward:/action/comunidades/listado";
+			}
+				
 				model.addAttribute(RequestKeys.MESSAGE,
 						"Eliminado correctamente");
 		}

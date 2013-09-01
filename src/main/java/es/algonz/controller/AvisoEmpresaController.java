@@ -96,14 +96,19 @@ public class AvisoEmpresaController {
 
 	@RequestMapping(value = "/eliminar", method = RequestMethod.GET)
 	public String eliminar(Model model,
-			@RequestParam(RequestKeys.ID) String id, HttpSession session) {
+			@RequestParam(RequestKeys.ID) String id, HttpSession session, RedirectAttributes redirectAttrs) {
 		
 		String idEmpresaComunidad = "";
 		if (id != null) {
 			AvisoEmpresaVO avisoEmpresa  = avisoEmpresaManager.findById(new Integer (id).intValue());
 			idEmpresaComunidad = avisoEmpresa.getEmpresaComunidad().getCnEmpresaComunidad().toString();
+			try{
 				avisoEmpresaManager.remove(avisoEmpresa);
-				model.addAttribute(RequestKeys.MESSAGE,
+		}catch (Exception e){
+			redirectAttrs.addFlashAttribute(RequestKeys.ERROR, "No se ha podido eliminar el elemento seleccionado.");
+			return "redirect:/action/empresasComunidad/editar?id=" + idEmpresaComunidad;
+		}
+			redirectAttrs.addFlashAttribute(RequestKeys.MESSAGE,
 						"Eliminado correctamente");
 		}
 		//return "forward:/action/avisosEmpresa/listado";

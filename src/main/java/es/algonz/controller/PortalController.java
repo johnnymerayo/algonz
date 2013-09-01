@@ -74,7 +74,12 @@ public class PortalController {
 		PortalVO portal = new PortalVO();
 		if (id != null) {
 			 portal  = portalManager.findById(new Integer (id).intValue());
+			 try{
 				portalManager.remove(portal);
+		}catch (Exception e){
+			redirectAttrs.addFlashAttribute(RequestKeys.ERROR, "No se ha podido eliminar el elemento seleccionado.");
+			return "redirect:/action/comunidades/editar?id=" + portal.getComunidad().getCnComunidad();
+		}
 				model.addAttribute(RequestKeys.MESSAGE,
 						"Eliminado correctamente");
 				redirectAttrs.addFlashAttribute(RequestKeys.MESSAGE, "Eliminado correctamente");
