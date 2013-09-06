@@ -37,6 +37,15 @@
 		</property>
 	</bean>
 	
+	
+	<context:property-placeholder location="classpath:algonz.properties" order="2"/>
+	
+	
+	<bean id="algonzProperties" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
+		<property name="location" value="classpath:algonz.properties" /> 
+	</bean>
+	
+	
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">       
     </bean>
     

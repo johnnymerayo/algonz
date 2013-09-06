@@ -15,6 +15,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -29,6 +30,10 @@ public class DocumentoManagerImpl implements DocumentoManager {
 
 	private static final long serialVersionUID = 1913666680422746714L;
 
+	
+	@Value( "${documentPath}" )
+	private String documentPath;
+	
 	@Autowired
 	private DocumentoDAO documentoDAO;
 
@@ -96,8 +101,11 @@ public class DocumentoManagerImpl implements DocumentoManager {
 				OutputStream outputStream = null;
 				InputStream inputStream = null;
 				
-				String path = "/tmp/documentos";
-						
+				
+				String path = documentPath;
+				
+				
+				
 				// Creamos la estructura de directorios
 				new File (path).mkdirs();
 				
