@@ -38,6 +38,8 @@
 				<button type="submit" class="btn btn-primary">Guardar</button>
 				<button type="button" class="btn btn-default"
 					onclick="changeAction('mainForm','action/comunidades/listado')">Cancelar</button>
+					
+			 <a href="action/comunidades/informeComunidad?codComunidad=${comunidad.cnComunidad }" class="btn btn-default">Imprimir informe</a> 
 			</div>
 		</div>
 		
