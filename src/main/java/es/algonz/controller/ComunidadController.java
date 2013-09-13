@@ -18,6 +18,7 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.export.JRRtfExporter;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 
 import org.apache.commons.lang.StringUtils;
@@ -225,6 +226,18 @@ public class ComunidadController {
          exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
          exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, response.getOutputStream());
          exporter.exportReport();
+         
+         
+//         JRRtfExporter exporter2= new JRRtfExporter();
+
+//         // Set content type
+//         fileName = "UserReport.rtf";
+//         response.setHeader("Content-Disposition", "inline; filename="+ fileName);
+//         response.setContentType("application/rtf");
+//         exporter2.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+//         exporter2.setParameter(JRExporterParameter.OUTPUT_STREAM, response.getOutputStream());
+//         exporter2.exportReport();
+//         
 
 
          return this.editar(model, codComunidad, session);

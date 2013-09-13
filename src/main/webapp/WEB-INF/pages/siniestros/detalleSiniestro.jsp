@@ -23,7 +23,7 @@
 		<div class="row">
 
     
-    	<t:select  id="tipoEmpresa" search="false"  gridClass="col-lg-4" itemLabel="teTipoEmpresa" itemValue="cnTipoEmpresa" items="${tiposEmpresaCombo}" path="cnTipoSiniestro" required="true" label="Tipo siniestro" emptyOption="true" tabindex="1" onchange="cargarEmpresasComunidad(${siniestro.portal.comunidad.cnComunidad },this.value)"/>
+    	<t:select  id="tipoEmpresa" search="true"  gridClass="col-lg-4" itemLabel="teTipoEmpresa" itemValue="cnTipoEmpresa" items="${tiposEmpresaCombo}" path="cnTipoSiniestro" required="true" label="Tipo siniestro" emptyOption="true" tabindex="1" onchange="cargarEmpresasComunidad(${siniestro.portal.comunidad.cnComunidad },this.value)"/>
 			
 		<t:select  id="empresaComunidad" search="false" gridClass="col-lg-6" itemLabel="value" itemValue="id" items="${empresasComunidadCombo}" path="empresaComunidad.cnEmpresaComunidad" required="true" label="Empresa" emptyOption="true" tabindex="2"/>
 

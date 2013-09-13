@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 /**
@@ -205,6 +206,7 @@ public class PredioVO implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "predio")
+	@OrderBy ("teNombre ASC")
 	public Set<DocumentoVO> getDocumentos() {
 		return this.documentos;
 	}

@@ -100,7 +100,7 @@
 </div>
 
 <div class="row">
-<t:input path="terceroByCnPropietario.nuCuentaCorriente" label="Cuenta corriente" maxlength="20" required="false" tabindex="16" gridClass="col-lg-6" />
+<t:input path="terceroByCnPropietario.nuCuentaCorriente" label="Cuenta corriente" maxlength="23" required="false" tabindex="16" gridClass="col-lg-6" />
 </div>
 
 <div class="row">
@@ -134,7 +134,7 @@
 </div>
 
 <div class="row">
-<t:input path="terceroByCnConyuge.nuCuentaCorriente" label="Cuenta corriente" required="false" maxlength="20" tabindex="27" gridClass="col-lg-6" />
+<t:input path="terceroByCnConyuge.nuCuentaCorriente" label="Cuenta corriente" required="false" maxlength="23" tabindex="27" gridClass="col-lg-6" />
 </div>
 
 <div class="row">
@@ -168,7 +168,7 @@
 </div>
 
 <div class="row">
-<t:input path="terceroByCnInquilino.nuCuentaCorriente" label="Cuenta corriente" maxlength="20" required="false" tabindex="38" gridClass="col-lg-6" />
+<t:input path="terceroByCnInquilino.nuCuentaCorriente" label="Cuenta corriente" maxlength="23" required="false" tabindex="38" gridClass="col-lg-6" />
 </div>
 
     </div>
@@ -187,12 +187,19 @@
 	<div class="control-group" style="clear: both">
 		<div class="controls">
 			<button type="submit" class="btn btn-primary">Guardar</button>
+			<a href="action/portales/editar?id=${predio.portal.cnPortal}" class="btn btn-default">Cancelar</a>
 				
 			<!--  <button type="button" class="btn btn-default"
-				onclick="changeAction('mainForm','action/predios/listado')">Cancelar</button> -->
-				<a href="action/portales/editar?id=${predio.portal.cnPortal}" class="btn btn-default">Cancelar</a>
+				onclick="changeAction('mainForm','action/predios/listado')">Cancelar</button>
 				<a href="action/predios/imprimirPropietario?codPredio=${predio.cnPredio}" class="btn btn-default">Imprimir</a> 
-			
+				<a href="" style="text-decoration:none"
+                 onclick='javascript:imprimirPDF("/algonz/action/comunidades/listado");return false;'
+                 tabindex="1" id="impresoraPortadaSalida">
+                 pdf
+              </a>
+              <a href="" onclick='javascript:imprimirEtiquetaSobre("/algonz/action/comunidades/listado");return false;' tabindex="1" id="enlaceEtiquetaSobre">Sobre
+              </a>
+			 -->
 		</div>
 	</div>
 
@@ -204,3 +211,27 @@
 
 
 
+
+<script>
+function callback(direccion)
+	{
+		window.location = direccion;
+	}
+
+
+	/**
+	 * Lanza el popup de imprimir PDF
+	 *
+	 * @param ruta
+	 * @return
+	 */
+	function imprimirPDF(ruta){
+		// desactivarPantalla('capa_transparente');
+		ventana_hija =  window.open(ruta, '_blank', 'height=120,width=250,left=450,top=300,toolbar=no,directories=no,status=no,linemenubar=no,scrollbars=no,resizable=no,modal=yes')
+	}
+	
+	
+	function imprimirEtiquetaSobre(ruta){
+		callback(ruta);
+	}
+	</script>

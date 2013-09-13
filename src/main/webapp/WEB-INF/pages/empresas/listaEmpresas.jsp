@@ -39,7 +39,7 @@
 						${empresa.teTlfMovil2}
 						
 					</td>
-					<td>${empresa.teEmail}</td>
+					<td><a href="mailto:${empresa.teEmail}">${empresa.teEmail}</a></td>
 					<td>
 						<a href="action/empresas/editar?id=${empresa.cnEmpresa }">
 							<i class="glyphicon glyphicon-edit"></i></a> &nbsp;

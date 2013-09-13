@@ -172,7 +172,7 @@ public class PredioController implements Printable{
 				
 				PredioVO encontrado = prediosList.get(0);
 				
-				if (predio.getCnPredio() == null || predio.getCnPredio() != encontrado.getCnPredio()){
+				if (predio.getCnPredio() == null || predio.getCnPredio().intValue() != encontrado.getCnPredio().intValue()){
 				// Si es null es que estoy insertando y encontre uno repetido. ERROR
 					// Si los cn son distintos es que estoy actualizando y encontre otro que coincidia. ERROR
 //					if (predio.getTipoPredio().getCnTipoPredio() == 0)

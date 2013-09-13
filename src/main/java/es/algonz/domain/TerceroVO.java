@@ -35,7 +35,7 @@ public class TerceroVO implements java.io.Serializable {
 	private String teTlfMovil1;
 	private String teTlfMovil2;
 	private Long cnBanco;
-	private BigDecimal nuCuentaCorriente;
+	private String nuCuentaCorriente;
 	private String teDireccion;
 	private String teDireccionSecundaria;
 	private String teEmail;
@@ -53,7 +53,7 @@ public class TerceroVO implements java.io.Serializable {
 	public TerceroVO(Integer cnTercero, String teNombre, String teApellido1,
 			String teApellido2, String caNif, String teTlfFijo,
 			String teTlfMovil1, String teTlfMovil2, Long cnBanco,
-			BigDecimal nuCuentaCorriente, String teDireccion,
+			String nuCuentaCorriente, String teDireccion,
 			String teDireccionSecundaria, String teEmail,
 			Set<PredioVO> prediosForCnPropietario,
 			Set<PredioVO> prediosForCnConyuge, Set<PredioVO> prediosForCnInquilino) {
@@ -158,12 +158,12 @@ public class TerceroVO implements java.io.Serializable {
 		this.cnBanco = cnBanco;
 	}
 
-	@Column(name = "NU_CUENTA_CORRIENTE", precision = 20, scale = 0)
-	public BigDecimal getNuCuentaCorriente() {
+	@Column(name = "NU_CUENTA_CORRIENTE", length = 25)
+	public String getNuCuentaCorriente() {
 		return this.nuCuentaCorriente;
 	}
 
-	public void setNuCuentaCorriente(BigDecimal nuCuentaCorriente) {
+	public void setNuCuentaCorriente(String nuCuentaCorriente) {
 		this.nuCuentaCorriente = nuCuentaCorriente;
 	}
 

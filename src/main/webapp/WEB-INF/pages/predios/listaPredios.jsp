@@ -37,7 +37,7 @@
 						${predio.terceroByCnPropietario.teTlfMovil2}
 						
 					</td>
-					<td>${predio.terceroByCnPropietario.teEmail}</td>
+					<td><a href="mailto:${predio.terceroByCnPropietario.teEmail}">${predio.terceroByCnPropietario.teEmail}</a></td>
 					<td>
 						<a href="action/predios/editar?id=${predio.cnPredio }">
 							<i class="glyphicon glyphicon-edit"></i></a> &nbsp;

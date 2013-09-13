@@ -21,7 +21,7 @@
 
 		<div class="row">
 		
-		<t:select  id="tipoEmpresa" search="false"  itemLabel="teTipoEmpresa" itemValue="cnTipoEmpresa" items="${tiposEmpresaCombo}" path="empresa.tipoEmpresa.cnTipoEmpresa" required="true" label="Tipo Empresa" emptyOption="true" tabindex="1" gridClass="col-lg-4 " onchange="cargarEmpresas(this.value)"/>	
+		<t:select  id="tipoEmpresa" search="true"  itemLabel="teTipoEmpresa" itemValue="cnTipoEmpresa" items="${tiposEmpresaCombo}" path="empresa.tipoEmpresa.cnTipoEmpresa" required="true" label="Tipo Empresa" emptyOption="true" tabindex="1" gridClass="col-lg-4 " onchange="cargarEmpresas(this.value)"/>	
 		<t:select  id="empresa" search="false" itemLabel="value" itemValue="id" items="${empresasCombo}" path="empresa.cnEmpresa" required="true" label="Empresa" emptyOption="true" tabindex="2" gridClass="col-lg-4"/>
 		</div>	
     		

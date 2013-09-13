@@ -127,6 +127,7 @@ public class ComunidadVO implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "comunidad")
+	@OrderBy ("teNombre ASC")
 	public Set<DocumentoVO> getDocumentos() {
 		return this.documentos;
 	}

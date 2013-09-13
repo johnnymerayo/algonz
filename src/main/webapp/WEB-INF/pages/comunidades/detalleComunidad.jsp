@@ -38,8 +38,9 @@
 				<button type="submit" class="btn btn-primary">Guardar</button>
 				<button type="button" class="btn btn-default"
 					onclick="changeAction('mainForm','action/comunidades/listado')">Cancelar</button>
-					
+					<!-- 
 			 <a href="action/comunidades/informeComunidad?codComunidad=${comunidad.cnComunidad }" class="btn btn-default">Imprimir informe</a> 
+			 -->
 			</div>
 		</div>
 		
@@ -121,7 +122,7 @@
 				<th>Tipo</th>
 				<th>Nombre</th>
 				<th>Teléfono</th>
-				<th>Email</th>
+				<th>E-mail</th>
 				<th>Calle</th>	
 				<th>Portal</th>	
 				<th>Planta</th>	
@@ -142,8 +143,7 @@
 						${predio.terceroByCnPropietario.teTlfMovil2}
 						
 					</td>
-					<td>${predio.terceroByCnPropietario.teEmail}</td>
-					<!-- <td><a href="mailto:${predio.terceroByCnPropietario.teEmail}">${predio.terceroByCnPropietario.teEmail}</a></td> -->
+					<td><a href="mailto:${predio.terceroByCnPropietario.teEmail}">${predio.terceroByCnPropietario.teEmail}</a></td>
 					<td>${predio.portal.teCalle}</td>
 					<td>${predio.portal.teNombre}</td>
 					<td>${predio.planta.tePlanta}</td>
@@ -204,8 +204,7 @@
 						${empresaComunidad.empresa.teTlfMovil2}
 						
 					</td>
-					<td>${empresaComunidad.empresa.teEmail}</td>
-					<!--<td><a href="mailto:${empresaComunidad.empresa.teEmail}">${empresaComunidad.empresa.teEmail}</a></td>-->
+					<td><a href="mailto:${empresaComunidad.empresa.teEmail}">${empresaComunidad.empresa.teEmail}</a></td>
 					<td><fmt:formatDate value="${empresaComunidad.feInicio}" pattern="dd/MM/yyyy"/></td>
 					<td><fmt:formatDate value="${empresaComunidad.feFin}" pattern="dd/MM/yyyy"/></td>
 					<td>
