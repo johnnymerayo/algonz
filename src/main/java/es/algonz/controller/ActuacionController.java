@@ -1,13 +1,31 @@
 package es.algonz.controller;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JRParameter;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.fill.JRSwapFileVirtualizer;
+import net.sf.jasperreports.engine.util.JRSwapFile;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.validator.GenericValidator;
@@ -199,6 +217,90 @@ public class ActuacionController {
 		
 		
 	}
+
+
+    public static JasperDesign jasperDesign;
+    public static JasperPrint jasperPrint;
+    public static JasperReport jasperReport;
+    public static String reportTemplateUrl = "actuacion.jrxml";
+    
+	@RequestMapping(value = "/informeActuacion", method = RequestMethod.GET)
+	public String informeActuacion(Model model, @RequestParam(RequestKeys.CODIGO_ACTUACION) String codActuacion, HttpSession session, HttpServletResponse response) {
+
+		try
+        {
+        	BufferedInputStream resourceAsStream = ((BufferedInputStream) Thread.currentThread().getContextClassLoader()
+                    .getResourceAsStream(reportTemplateUrl));
+            //get report file and then load into jasperDesign
+            jasperDesign = JRXmlLoader.load(resourceAsStream);
+            //compile the jasperDesign
+            jasperReport = JasperCompileManager.compileReport(jasperDesign);
+            
+    		
+  		   List<ActuacionVO> dataReport = new LinkedList<ActuacionVO>();
+            
+            if (codActuacion != null) {	
+            	ActuacionVO actuacion  = actuacionManager.findById(new Integer (codActuacion).intValue());
+  				dataReport.add(actuacion);
+            }
+            
+        	
+            JRSwapFileVirtualizer virtualizer = null;
+            try {
+                JRSwapFile swapFile = new JRSwapFile("/tmp", 1024, 100);
+                virtualizer = new JRSwapFileVirtualizer(50, swapFile, true);
+
+                Map params = new HashMap();
+                params.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
+              
+                //fill the ready report with data and parameter
+                jasperPrint = JasperFillManager.fillReport(jasperReport, params,  new JRBeanCollectionDataSource(dataReport));
+                //view the report using JasperViewer
+                // JasperViewer.viewReport(jasperPrint);
+                 
+            }
+            finally {
+                if (virtualizer != null) virtualizer.cleanup();
+            }    
+           
+
+         // Set our response properties
+         // Here you can declare a custom filename
+         String fileName = "UserReport.pdf";
+         response.setHeader("Content-Disposition", "inline; filename="+ fileName);
+
+         // Set content type
+         response.setContentType("application/pdf");
+
+
+         // Export is most important part of reports
+         JRPdfExporter exporter = new JRPdfExporter(); 
+         exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+         exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, response.getOutputStream());
+         exporter.exportReport();
+         
+         
+
+
+         return this.editar(model, codActuacion, session);
+        }
+        catch (JRException e)
+        {
+            e.printStackTrace();
+
+            return this.editar(model, codActuacion, session);
+        } catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+            return this.editar(model, codActuacion, session);
+		} 
+		
+	}
+	
+	
 	
 
+	
+	
 }

@@ -93,7 +93,7 @@ public class SiniestroVO implements java.io.Serializable {
 		this.empresaComunidad = empresaComunidad;
 	}
 
-	@Column(name = "TE_NOMBRE", length = 50)
+	@Column(name = "TE_NOMBRE", length = 100)
 	public String getTeNombre() {
 		return this.teNombre;
 	}
@@ -112,6 +112,7 @@ public class SiniestroVO implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "siniestro")
+	@OrderBy ("feVencimiento DESC")
 	public Set<ActuacionVO> getActuaciones() {
 		return this.actuaciones;
 	}

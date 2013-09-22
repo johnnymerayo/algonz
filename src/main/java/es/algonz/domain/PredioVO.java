@@ -166,7 +166,7 @@ public class PredioVO implements java.io.Serializable {
 	}
 
 	public void setTePredio(String tePredio) {
-		this.tePredio = tePredio;
+			this.tePredio = tePredio;
 	}
 
 	@Column(name = "TE_PISO", length = 50)

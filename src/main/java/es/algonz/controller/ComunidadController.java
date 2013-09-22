@@ -2,8 +2,10 @@ package es.algonz.controller;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -11,6 +13,7 @@ import javax.validation.Valid;
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JRParameter;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -18,7 +21,8 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
-import net.sf.jasperreports.engine.export.JRRtfExporter;
+import net.sf.jasperreports.engine.fill.JRSwapFileVirtualizer;
+import net.sf.jasperreports.engine.util.JRSwapFile;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 
 import org.apache.commons.lang.StringUtils;
@@ -203,13 +207,24 @@ public class ComunidadController {
   				dataReport.add(comunidad);
             }
             
-            //fill the ready report with data and parameter
-            jasperPrint = JasperFillManager.fillReport(jasperReport, null,
-                    new JRBeanCollectionDataSource(dataReport));
-            //view the report using JasperViewer
-           // JasperViewer.viewReport(jasperPrint);
-            
-            
+        	
+            JRSwapFileVirtualizer virtualizer = null;
+            try {
+                JRSwapFile swapFile = new JRSwapFile("/tmp", 1024, 100);
+                virtualizer = new JRSwapFileVirtualizer(50, swapFile, true);
+
+                Map params = new HashMap();
+                params.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
+              
+                //fill the ready report with data and parameter
+                jasperPrint = JasperFillManager.fillReport(jasperReport, params,  new JRBeanCollectionDataSource(dataReport));
+                //view the report using JasperViewer
+                // JasperViewer.viewReport(jasperPrint);
+                 
+            }
+            finally {
+                if (virtualizer != null) virtualizer.cleanup();
+            }
             
 
          // Set our response properties

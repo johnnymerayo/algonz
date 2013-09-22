@@ -144,9 +144,24 @@
 		<field name="teObservaciones" class="java.lang.String">
 			<fieldDescription><![CDATA[teObservaciones]]></fieldDescription>
 		</field>
+		<field name="tipoRepresentante" class="es.algonz.domain.TipoRepresentanteVO">
+			<fieldDescription><![CDATA[tipoRepresentante]]></fieldDescription>
+		</field>
+		<field name="portal" class="es.algonz.domain.PortalVO">
+			<fieldDescription><![CDATA[portal]]></fieldDescription>
+		</field>
+		<field name="planta" class="es.algonz.domain.PlantaVO">
+			<fieldDescription><![CDATA[planta]]></fieldDescription>
+		</field>
+		<field name="terceroByCnPropietario" class="es.algonz.domain.TerceroVO">
+			<fieldDescription><![CDATA[terceroByCnPropietario]]></fieldDescription>
+		</field>
+		<field name="tePredio" class="java.lang.String">
+			<fieldDescription><![CDATA[tePredio]]></fieldDescription>
+		</field>
 	</subDataset>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["/desarrollo/java/proyectos/algonz/src/main/resources/"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["../webapps/algonz/WEB-INF/classes/resources/"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[]]>
@@ -184,34 +199,35 @@
 	<background>
 		<band splitType="Stretch"/>
 	</background>
-	<title>
-		<band height="30" splitType="Stretch"/>
-	</title>
 	<pageHeader>
-		<band height="40" splitType="Stretch">
-			<textField isStretchWithOverflow="true">
-				<reportElement uuid="fa04d683-4173-43ab-bb46-5a362310c25d" x="155" y="0" width="245" height="20"/>
-				<textElement textAlignment="Center"/>
+		<band height="118" splitType="Stretch">
+			<image>
+				<reportElement uuid="0dd9d7ab-ab3f-4854-9488-af66e0908a80" mode="Opaque" x="0" y="0" width="207" height="118"/>
+				<imageExpression><![CDATA["../webapps/algonz/images/ALGONZ-logo.jpg"]]></imageExpression>
+			</image>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="fa04d683-4173-43ab-bb46-5a362310c25d" x="152" y="34" width="245" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{teNombre}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement uuid="df22aa37-f059-45c1-a093-bcb9985e592a" x="227" y="20" width="100" height="20"/>
-				<textElement textAlignment="Center"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="df22aa37-f059-45c1-a093-bcb9985e592a" x="224" y="54" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{caCif}]]></textFieldExpression>
 			</textField>
-			<image>
-				<reportElement uuid="445a0e26-a2c6-4fbd-844c-8d7852df08ed" x="0" y="0" width="192" height="40"/>
-				<imageExpression><![CDATA["/desarrollo/java/proyectos/algonz/src/main/webapp/images/AlGonz.png"]]></imageExpression>
-			</image>
 		</band>
 	</pageHeader>
 	<columnHeader>
 		<band height="25" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="479" splitType="Stretch">
+		<band height="76" splitType="Stretch">
 			<subreport>
-				<reportElement uuid="3c9c02af-1d03-4117-bce8-ae5b6010ade1" x="0" y="28" width="555" height="114"/>
+				<reportElement uuid="3c9c02af-1d03-4117-bce8-ae5b6010ade1" x="0" y="28" width="555" height="1"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{empresasComunidad})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "empresasComunidad.jasper"]]></subreportExpression>
 			</subreport>
@@ -223,72 +239,124 @@
 				<text><![CDATA[TELEFONOS DE EMERGENCIA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="13ef9bd9-3d7c-4ee7-89e8-96088bd0ea37" x="157" y="166" width="240" height="20"/>
+				<reportElement uuid="13ef9bd9-3d7c-4ee7-89e8-96088bd0ea37" positionType="Float" x="157" y="36" width="240" height="20"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[REPRESENTANTES DE LA COMUNIDAD]]></text>
 			</staticText>
 			<subreport>
-				<reportElement uuid="cb2f4d12-d821-4238-9ca4-394335623dbf" x="0" y="186" width="555" height="100"/>
+				<reportElement uuid="cb2f4d12-d821-4238-9ca4-394335623dbf" positionType="Float" x="0" y="61" width="555" height="1"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{representantes})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "representantesComunidad.jasper"]]></subreportExpression>
 			</subreport>
 			<componentElement>
-				<reportElement uuid="4555e1dd-2059-498b-98b9-5b6d95b46356" key="table 4" style="table 4" x="0" y="312" width="360" height="80"/>
+				<reportElement uuid="4555e1dd-2059-498b-98b9-5b6d95b46356" key="table 4" style="table 4" positionType="Float" x="0" y="67" width="555" height="1">
+					<printWhenExpression><![CDATA[false]]></printWhenExpression>
+				</reportElement>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="Table Dataset 1" uuid="ab4bb395-9a42-479b-941e-dce4b93665ff">
 						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{representantes})]]></dataSourceExpression>
 					</datasetRun>
-					<jr:column width="180" uuid="f5b78aab-2e53-4769-afc0-61cfa75e1463">
+					<jr:column width="114" uuid="f5b78aab-2e53-4769-afc0-61cfa75e1463">
 						<jr:columnHeader style="table 4_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement uuid="ab43a3c5-b02c-499b-96f2-d616a8f72be8" x="0" y="0" width="180" height="30"/>
-								<textElement/>
-								<text><![CDATA[Nombre]]></text>
+								<reportElement uuid="6df8e84e-a258-48a5-afc7-70f33dbbb67b" x="0" y="0" width="114" height="30"/>
+								<textElement>
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Representante]]></text>
 							</staticText>
 						</jr:columnHeader>
 						<jr:columnFooter style="table 4_CH" height="30" rowSpan="1"/>
 						<jr:detailCell style="table 4_TD" height="20" rowSpan="1">
-							<staticText>
-								<reportElement uuid="2f316edd-07ba-473e-b0ef-219eafb683bd" x="0" y="0" width="180" height="20"/>
+							<textField isStretchWithOverflow="true">
+								<reportElement uuid="077c70e7-2672-45a5-9962-6df621233764" x="0" y="0" width="114" height="20" isPrintWhenDetailOverflows="true"/>
 								<textElement/>
-								<text><![CDATA[Static text]]></text>
-							</staticText>
+								<textFieldExpression><![CDATA[$F{tipoRepresentante}.teTipoRepresentante]]></textFieldExpression>
+							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="195" uuid="6710c310-0980-4d2e-b8e6-8e41884c3c4b">
-						<jr:columnHeader style="table 4_CH" height="30" rowSpan="1"/>
+					<jr:column width="135" uuid="6710c310-0980-4d2e-b8e6-8e41884c3c4b">
+						<jr:columnHeader style="table 4_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="0082e766-34c8-40f8-8091-a4583403bd4e" x="0" y="0" width="135" height="30"/>
+								<textElement>
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Portal]]></text>
+							</staticText>
+						</jr:columnHeader>
 						<jr:columnFooter style="table 4_CH" height="30" rowSpan="1"/>
 						<jr:detailCell style="table 4_TD" height="20" rowSpan="1">
 							<textField>
-								<reportElement uuid="1d2b5b4a-43ba-4831-af21-e7097353c9df" x="0" y="0" width="195" height="20"/>
+								<reportElement uuid="4e998b0f-5121-4bb9-a909-b8d47a5e8c70" x="0" y="0" width="135" height="20" isPrintWhenDetailOverflows="true"/>
 								<textElement/>
-								<textFieldExpression><![CDATA[$F{teObservaciones}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{portal}.teNombre]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
 					<jr:column width="90" uuid="62605937-6235-4cc5-828a-ae7637350cd9">
-						<jr:columnHeader style="table 4_CH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 4_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="9a608f7b-dc8a-4ec9-b92c-f1d2572dfc2f" x="0" y="0" width="90" height="30"/>
+								<textElement>
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Piso]]></text>
+							</staticText>
+						</jr:columnHeader>
 						<jr:columnFooter style="table 4_CH" height="30" rowSpan="1"/>
-						<jr:detailCell style="table 4_TD" height="20" rowSpan="1"/>
+						<jr:detailCell style="table 4_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true">
+								<reportElement uuid="b0c6986e-615a-4a1e-b833-7ab4ef2ad71e" x="0" y="0" width="90" height="20" isPrintWhenDetailOverflows="true"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{planta}.tePlanta + " - " + $F{tePredio}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="853b1242-811d-4b97-aa1f-510324804d58">
-						<jr:columnHeader style="table 4_CH" height="30" rowSpan="1"/>
+					<jr:column width="185" uuid="853b1242-811d-4b97-aa1f-510324804d58">
+						<jr:columnHeader style="table 4_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="7893821a-9756-419f-bdfd-f8eaee58d3cb" x="0" y="0" width="163" height="30"/>
+								<textElement>
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Nombre y apellidos]]></text>
+							</staticText>
+						</jr:columnHeader>
 						<jr:columnFooter style="table 4_CH" height="30" rowSpan="1"/>
-						<jr:detailCell style="table 4_TD" height="20" rowSpan="1"/>
+						<jr:detailCell style="table 4_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true">
+								<reportElement uuid="ca583d05-06ba-45f7-9557-e8f988b2f87a" x="0" y="0" width="163" height="20" isPrintWhenDetailOverflows="true"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{terceroByCnPropietario}.teNombre + " " + $F{terceroByCnPropietario}.teApellido1 + " " + $F{terceroByCnPropietario}.teApellido2]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
 					</jr:column>
 				</jr:table>
 			</componentElement>
 		</band>
 	</detail>
-	<columnFooter>
-		<band height="45" splitType="Stretch"/>
-	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="dfea952c-a213-409b-b66b-c7a5ec75e20a" x="0" y="20" width="555" height="20"/>
+				<textElement/>
+				<text><![CDATA[MARIA ANGELES GONZALEZ GUTIERREZ ( angeles@algonz.es)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e3ddb583-8454-4e02-9088-d958d5ae020b" x="0" y="0" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[AlGonz Asesoría]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2007664c-ad64-416a-aa52-f51d5738f43f" x="0" y="40" width="555" height="20"/>
+				<textElement/>
+				<text><![CDATA[C/ Les Cigarreres Nº25 Bajo, 33211 Gijón, Asturias Tel: 985.14.98.36 / 626.09.94.02 Fax: 985.14.98.36]]></text>
+			</staticText>
+		</band>
 	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
 </jasperReport>

@@ -32,11 +32,7 @@
 					<td>${empresa.caCif}</td>
 					<td>${empresa.teNombre}</td>
 					<td>
-						${empresa.teTlfFijo}
-						<c:if test="${not empty empresa.teTlfFijo and not empty empresa.teTlfMovil1}">/</c:if>
-						${empresa.teTlfMovil1}
-						<c:if test="${not empty empresa.teTlfMovil1 and not empty empresa.teTlfMovil2}">/</c:if>						
-						${empresa.teTlfMovil2}
+						${empresa.telefonos}
 						
 					</td>
 					<td><a href="mailto:${empresa.teEmail}">${empresa.teEmail}</a></td>

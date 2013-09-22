@@ -52,6 +52,8 @@
 			<div class="controls">
 				<button type="submit" class="btn btn-primary">Guardar</button>
 					<a href="action/siniestros/editar?id=${actuacion.siniestro.cnSiniestro}" class="btn btn-default">Cancelar</a>
+					
+			 <a href="action/actuaciones/informeActuacion?codActuacion=${actuacion.cnActuacion }" class="btn btn-default">Generar informe</a> 
 			</div>
 		</div>
 		

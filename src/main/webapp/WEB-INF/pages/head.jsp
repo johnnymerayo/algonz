@@ -35,6 +35,22 @@
 <link href="css/dropzone.css" type="text/css" rel="stylesheet" />
 <script src="js/myuploadfunction.js"></script>
 
+<!-- Place inside the <head> of your HTML -->
+<script type="text/javascript" src="js/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+tinymce.init({
+    selector: "textarea#teObservaciones",
+language: "es",
+     theme: "modern",
+    menubar: false,
+	    plugins: [
+        "textcolor"
+    ],
+    toolbar1: "bold forecolor backcolor",
+    image_advtab: true
+ });
+</script>
+
 
 
 

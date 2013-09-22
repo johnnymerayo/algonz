@@ -84,28 +84,31 @@
 				</textElement>
 				<text><![CDATA[Portal]]></text>
 			</staticText>
+			<line>
+				<reportElement uuid="18f7be9b-239b-4456-86c0-0c42654df8d3" x="0" y="19" width="555" height="1"/>
+			</line>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="20">
+		<band height="25">
 			<textField isStretchWithOverflow="true">
 				<reportElement uuid="f2ce0c01-7809-4d93-8d5f-9a5316941953" x="17" y="0" width="113" height="20"/>
-				<textElement/>
+				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{tipoRepresentante}.teTipoRepresentante]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement uuid="4b486dfd-59d1-452b-b990-921723b18f42" x="330" y="0" width="248" height="20"/>
-				<textElement/>
+				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{terceroByCnPropietario}.teNombre + " " + $F{terceroByCnPropietario}.teApellido1 + " " + $F{terceroByCnPropietario}.teApellido2]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement uuid="a4cdd63a-cffe-47e1-9634-adc3436e2d70" x="230" y="0" width="100" height="20"/>
-				<textElement/>
+				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{planta}.tePlanta + " - " + $F{tePredio}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement uuid="e9af7f03-8fba-47b1-a848-e3938deafab3" x="130" y="0" width="100" height="20"/>
-				<textElement/>
+				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{portal}.teNombre]]></textFieldExpression>
 			</textField>
 		</band>

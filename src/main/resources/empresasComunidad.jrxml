@@ -42,44 +42,47 @@
 	<columnHeader>
 		<band height="20" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="c336ff07-1323-4cb3-ad17-0fbcd92ac44a" x="144" y="0" width="100" height="20"/>
+				<reportElement uuid="c336ff07-1323-4cb3-ad17-0fbcd92ac44a" x="193" y="0" width="100" height="20"/>
 				<textElement>
-					<font isBold="true"/>
+					<font size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="5f28e6c0-5764-45e1-89b7-787b0d6832f0" x="17" y="0" width="100" height="20"/>
+				<reportElement uuid="5f28e6c0-5764-45e1-89b7-787b0d6832f0" x="17" y="0" width="146" height="20"/>
 				<textElement>
-					<font isBold="true"/>
+					<font size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Tipo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="b811de3c-3167-4f78-9be1-f70a5c56fa16" x="329" y="0" width="100" height="20"/>
+				<reportElement uuid="b811de3c-3167-4f78-9be1-f70a5c56fa16" x="399" y="0" width="100" height="20"/>
 				<textElement>
-					<font isBold="true"/>
+					<font size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Teléfono]]></text>
 			</staticText>
+			<line>
+				<reportElement uuid="3ca359a1-37e9-41b5-a048-29ba83f07316" x="0" y="18" width="555" height="1"/>
+			</line>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="20" splitType="Stretch">
+		<band height="25" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
-				<reportElement uuid="61740661-a3e1-468a-9097-07c496a83d42" x="144" y="0" width="146" height="20"/>
-				<textElement/>
+				<reportElement uuid="61740661-a3e1-468a-9097-07c496a83d42" x="193" y="0" width="171" height="20"/>
+				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[""+$F{empresa}.teNombre]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement uuid="bc2edbf0-205e-41bd-b029-feb065aa41c4" x="17" y="0" width="100" height="20"/>
-				<textElement/>
+				<reportElement uuid="bc2edbf0-205e-41bd-b029-feb065aa41c4" x="17" y="0" width="146" height="20"/>
+				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{empresa}.tipoEmpresa.teTipoEmpresa]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement uuid="ef272677-d005-4c0b-8019-c105ca8485d7" x="329" y="0" width="100" height="20"/>
-				<textElement/>
-				<textFieldExpression><![CDATA[""+$F{empresa}.teTlfFijo]]></textFieldExpression>
+				<reportElement uuid="ef272677-d005-4c0b-8019-c105ca8485d7" x="399" y="0" width="156" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[""+$F{empresa}.telefonos]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

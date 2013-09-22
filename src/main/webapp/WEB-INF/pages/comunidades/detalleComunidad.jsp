@@ -1,4 +1,6 @@
 <%@ include file="/WEB-INF/pages/include.jsp"%>
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate value="${now}" pattern="yyyy/MM/dd" var="hoy" />
 
 
 <form:form class=".form-horizontal" id="mainForm"
@@ -38,9 +40,9 @@
 				<button type="submit" class="btn btn-primary">Guardar</button>
 				<button type="button" class="btn btn-default"
 					onclick="changeAction('mainForm','action/comunidades/listado')">Cancelar</button>
-					<!-- 
-			 <a href="action/comunidades/informeComunidad?codComunidad=${comunidad.cnComunidad }" class="btn btn-default">Imprimir informe</a> 
-			 -->
+	
+			 <a href="action/comunidades/informeComunidad?codComunidad=${comunidad.cnComunidad }" class="btn btn-default">Generar informe</a> 
+			
 			</div>
 		</div>
 		
@@ -191,18 +193,22 @@
 		</thead>
 		<tbody>
 			<c:forEach items="${comunidad.empresasComunidad}" var="empresaComunidad" varStatus="status">
-				<tr>
+			
+			
+<fmt:formatDate value="${empresaComunidad.feFin}" pattern="yyyy/MM/dd" var="finalizada" />
+
+				<tr class="				
+<c:if test="${finalizada lt hoy}">
+ warning
+</c:if>	
+
+">
 				
 					<td>${empresaComunidad.empresa.tipoEmpresa.teTipoEmpresa}</td>
 					<td>${empresaComunidad.empresa.caCif}</td>
 					<td>${empresaComunidad.empresa.teNombre}</td>
 					<td>
-						${empresaComunidad.empresa.teTlfFijo}
-						<c:if test="${not empty empresaComunidad.empresa.teTlfFijo and not empty empresaComunidad.empresa.teTlfMovil1}">/</c:if>
-						${empresaComunidad.empresa.teTlfMovil1}
-						<c:if test="${not empty empresaComunidad.empresa.teTlfMovil1 and not empty empresaComunidad.empresa.teTlfMovil2}">/</c:if>						
-						${empresaComunidad.empresa.teTlfMovil2}
-						
+						${empresaComunidad.empresa.telefonos}
 					</td>
 					<td><a href="mailto:${empresaComunidad.empresa.teEmail}">${empresaComunidad.empresa.teEmail}</a></td>
 					<td><fmt:formatDate value="${empresaComunidad.feInicio}" pattern="dd/MM/yyyy"/></td>

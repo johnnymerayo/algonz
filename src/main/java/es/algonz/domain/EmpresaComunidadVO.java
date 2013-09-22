@@ -136,6 +136,7 @@ public class EmpresaComunidadVO implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "empresaComunidad")
+	@OrderBy ("feVencimiento DESC")
 	public Set<AvisoEmpresaVO> getAvisosEmpresa() {
 		return this.avisosEmpresa;
 	}

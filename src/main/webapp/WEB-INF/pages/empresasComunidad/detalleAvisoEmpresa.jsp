@@ -32,6 +32,8 @@
 			
 			
 		<div class="row">	
+		
+		<!-- 
 			<div class="col-lg-4">			
 			<div class="form-group ${status.error ? 'error' : '' }">
 				<label class="control-label" for="nuDiasAviso">Días para aviso</label>
@@ -56,8 +58,9 @@
 					</c:if>
 				</div>
 			</div>
-			</div>
-			
+			</div 
+			-->
+			<t:input gridClass="col-lg-4" path="nuDiasAviso" label="Días para aviso" required="false" maxlength="3" tabindex="6"/>
    
 			<t:input gridClass="col-lg-8" path="teDescripcion" label="Descripción" required="true" maxlength="100" tabindex="6"/>
 		</div>
@@ -74,6 +77,8 @@
 			<div class="controls">
 				<button type="submit" class="btn btn-primary">Guardar</button>
 					<a href="action/empresasComunidad/editar?id=${avisoEmpresa.empresaComunidad.cnEmpresaComunidad}" class="btn btn-default">Cancelar</a>
+					
+			 <a href="action/avisosEmpresa/informeAviso?codAvisoEmpresa=${avisoEmpresa.cnAvisoEmpresa }" class="btn btn-default">Generar informe</a> 
 			</div>
 		</div>
 		
