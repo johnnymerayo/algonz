@@ -47,6 +47,8 @@
 		<div class="control-group" style="clear: both">
 			<div class="controls">
 				<button type="submit" class="btn btn-primary">Guardar</button>
+				<button type="button" class="btn btn-default"
+					onclick="changeAction('mainForm','action/siniestros/guardarToActuacion')">Nueva actuación</button>
 				<a href="action/portales/editar?id=${siniestro.portal.cnPortal}" class="btn btn-default">Cancelar</a>
 			
 			</div>

@@ -107,7 +107,27 @@
 <t:area path="terceroByCnPropietario.teDireccionSecundaria" label="Dirección secundaria" required="false" tabindex="18" gridClass="col-lg-6"/>
 </div>
 
-     
+    
+	<div class="control-group" style="clear: both">
+		<div class="controls">
+			<button type="submit" class="btn btn-primary">Guardar</button>
+			<a href="action/portales/editar?id=${predio.portal.cnPortal}" class="btn btn-default">Cancelar</a>
+			
+				<a href="action/predios/imprimirPropietario?codPredio=${predio.cnPredio}" class="btn btn-default">Imprimir</a> 
+				
+			<!--  <button type="button" class="btn btn-default"
+				onclick="changeAction('mainForm','action/predios/listado')">Cancelar</button>
+				<a href="action/predios/imprimirPropietario?codPredio=${predio.cnPredio}" class="btn btn-default">Imprimir</a> 
+				<a href="" style="text-decoration:none"
+                 onclick='javascript:imprimirPDF("/algonz/action/comunidades/listado");return false;'
+                 tabindex="1" id="impresoraPortadaSalida">
+                 pdf
+              </a>
+              <a href="" onclick='javascript:imprimirEtiquetaSobre("/algonz/action/comunidades/listado");return false;' tabindex="1" id="enlaceEtiquetaSobre">Sobre
+              </a>
+			 -->
+		</div>
+	</div> 
     </div>
     <div id="conyuge" class="tab-pane fade">
 
@@ -141,6 +161,13 @@
 <t:area path="terceroByCnConyuge.teDireccionSecundaria" label="Dirección secundaria" required="false" tabindex="29" gridClass="col-lg-6"/>
 </div>
 
+	<div class="control-group" style="clear: both">
+		<div class="controls">
+			<button type="submit" class="btn btn-primary">Guardar</button>
+			<a href="action/portales/editar?id=${predio.portal.cnPortal}" class="btn btn-default">Cancelar</a>	
+				<a href="action/predios/imprimirConyuge?codPredio=${predio.cnPredio}" class="btn btn-default">Imprimir</a> 
+		</div>
+	</div>
 
     </div>
     <div id="inquilino" class="tab-pane fade">
@@ -171,6 +198,14 @@
 <t:input path="terceroByCnInquilino.nuCuentaCorriente" label="Cuenta corriente" maxlength="23" required="false" tabindex="38" gridClass="col-lg-6" />
 </div>
 
+
+	<div class="control-group" style="clear: both">
+		<div class="controls">
+			<button type="submit" class="btn btn-primary">Guardar</button>
+			<a href="action/portales/editar?id=${predio.portal.cnPortal}" class="btn btn-default">Cancelar</a>
+		</div>
+	</div>
+
     </div>
    
   </div> 
@@ -184,24 +219,6 @@
 
 
 
-	<div class="control-group" style="clear: both">
-		<div class="controls">
-			<button type="submit" class="btn btn-primary">Guardar</button>
-			<a href="action/portales/editar?id=${predio.portal.cnPortal}" class="btn btn-default">Cancelar</a>
-				
-			<!--  <button type="button" class="btn btn-default"
-				onclick="changeAction('mainForm','action/predios/listado')">Cancelar</button>
-				<a href="action/predios/imprimirPropietario?codPredio=${predio.cnPredio}" class="btn btn-default">Imprimir</a> 
-				<a href="" style="text-decoration:none"
-                 onclick='javascript:imprimirPDF("/algonz/action/comunidades/listado");return false;'
-                 tabindex="1" id="impresoraPortadaSalida">
-                 pdf
-              </a>
-              <a href="" onclick='javascript:imprimirEtiquetaSobre("/algonz/action/comunidades/listado");return false;' tabindex="1" id="enlaceEtiquetaSobre">Sobre
-              </a>
-			 -->
-		</div>
-	</div>
 
 
 <div>&nbsp;</div>

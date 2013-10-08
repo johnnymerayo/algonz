@@ -8,15 +8,40 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
 import java.awt.print.PageFormat;
 import java.awt.print.Paper;
 import java.awt.print.Printable;
-import java.awt.print.PrinterException;
-import java.awt.print.PrinterJob;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JRParameter;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.fill.JRSwapFileVirtualizer;
+import net.sf.jasperreports.engine.util.JRSwapFile;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.validator.GenericValidator;
@@ -32,7 +57,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.ListItem;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.codec.Base64.OutputStream;
+
 import es.algonz.controller.utils.CombosUtils;
+import es.algonz.domain.ActuacionVO;
 import es.algonz.domain.PortalVO;
 import es.algonz.domain.PredioVO;
 import es.algonz.service.PortalManager;
@@ -209,34 +247,249 @@ public class PredioController implements Printable{
 	}
 	
 	
+
+    public static JasperDesign jasperDesign;
+    public static JasperPrint jasperPrint;
+    public static JasperReport jasperReport;
+    public static String reportTemplateUrl = "etiquetasSobre.jrxml";
 	@RequestMapping(value = "/imprimirPropietario", method = RequestMethod.GET)
-	public String imprimirPropietario(Model model, HttpSession session, @RequestParam(RequestKeys.CODIGO_PREDIO) String codPredio, RedirectAttributes redirectAttrs) {
+	public String imprimirPropietario(Model model, HttpSession session, @RequestParam(RequestKeys.CODIGO_PREDIO) String codPredio, RedirectAttributes redirectAttrs, HttpServletResponse response) {
+		
+		
+		
+		try
+        {
+        	BufferedInputStream resourceAsStream = ((BufferedInputStream) Thread.currentThread().getContextClassLoader()
+                    .getResourceAsStream(reportTemplateUrl));
+            //get report file and then load into jasperDesign
+            jasperDesign = JRXmlLoader.load(resourceAsStream);
+            //compile the jasperDesign
+            jasperReport = JasperCompileManager.compileReport(jasperDesign);
+            
+    	
+        	
+            JRSwapFileVirtualizer virtualizer = null;
+            try {
+                JRSwapFile swapFile = new JRSwapFile("/tmp", 1024, 100);
+                virtualizer = new JRSwapFileVirtualizer(50, swapFile, true);
+
+                Map params = new HashMap();
+                params.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
+                
+                PredioVO predio =  predioManager.findById(new Integer(codPredio));
+                String linea1, linea2, linea3, linea4, linea5 , linea6 = ""; 
+
+    			if (GenericValidator.isBlankOrNull(predio.getTerceroByCnPropietario().getTeDireccionSecundaria())){
+    			// Imprimimos la dirección primaria
+    				
+    				linea1	=  predio.getTerceroByCnPropietario().getNombreCompleto();
+    				linea2 = predio.getPortal().getTeCalle() + " " 
+    						 + predio.getPortal().getTeNombre() + "     " + predio.getPlanta().getTePlanta() + " - " + predio.getTePredio();
+    				linea3 = predio.getPortal().getComunidad().getTeCp() + " GIJÓN";
+    				linea4 =  "ASTURIAS - ESPAÑA";
+
+  				   params.put("linea1", linea1);
+ 				   params.put("linea2", linea2);
+ 				   params.put("linea3", linea3);
+ 				   params.put("linea4", linea4);
+    			}else{
+    			// Imprimimos la dirección secundaria
+    				linea1 = predio.getTerceroByCnPropietario().getNombreCompleto();
+ 				   params.put("linea1", linea1);
+    			    String direccion = predio.getTerceroByCnPropietario().getTeDireccionSecundaria();
+    			    String[] labels = direccion.split("\n");
+    			    
+
+    				int start = 0;
+    				int end   = labels.length;
+    				for (int line=start; line<end; line++) {
+    				   params.put("linea"+(line+2), labels[line]);
+    				}
+    			}
+                
+              
+                //fill the ready report with data and parameter
+                jasperPrint = JasperFillManager.fillReport(jasperReport, params,  new JREmptyDataSource());
+                //view the report using JasperViewer
+                // JasperViewer.viewReport(jasperPrint);
+                 
+            }
+            finally {
+                if (virtualizer != null) virtualizer.cleanup();
+            }    
+           
+
+         // Set our response properties
+         // Here you can declare a custom filename
+         String fileName = "UserReport.pdf";
+         response.setHeader("Content-Disposition", "inline; filename="+ fileName);
+
+         // Set content type
+         response.setContentType("application/pdf");
+
+
+         // Export is most important part of reports
+         JRPdfExporter exporter = new JRPdfExporter(); 
+         exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+         exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, response.getOutputStream());
+         exporter.exportReport();
+         
+         
+
+
+ 		return "redirect:/action/predios/editar?id=" + codPredio;
+        }
+        catch (JRException e)
+        {
+            e.printStackTrace();
+
+    		return "redirect:/action/predios/editar?id=" + codPredio;
+        } catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+			return "redirect:/action/predios/editar?id=" + codPredio;
+		} 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 	
-		if (!GenericValidator.isBlankOrNull(codPredio)) {
-			
-			 // Create an object that will hold all print parameters, such as
-		      // page size, printer resolution. In addition, it manages the print
-		      // process (job).
-		      PrinterJob job = PrinterJob.getPrinterJob();
-
-		      // It is first called to tell it what object will print each page.
-		      job.setPrintable(new PredioController());
-		      
-		      // Then it is called to display the standard print options dialog.
-		      if (job.printDialog())
-		      {
-		    	  // Predio con la información a imprimir
-		    	  predioPrint = predioManager.findById(new Integer(codPredio));
-										
-		      try { job.print(); }
-		         catch (PrinterException e) { System.out.println(e); }
-		      }
-			
-		}
-
-		return "redirect:/action/predios/editar?id=" + codPredio;
+//		if (!GenericValidator.isBlankOrNull(codPredio)) {
+//			
+//			 // Create an object that will hold all print parameters, such as
+//		      // page size, printer resolution. In addition, it manages the print
+//		      // process (job).
+//		      PrinterJob job = PrinterJob.getPrinterJob();
+//
+//		      // It is first called to tell it what object will print each page.
+//		      job.setPrintable(new PredioController());
+//		      
+//		      // Then it is called to display the standard print options dialog.
+//		      if (job.printDialog())
+//		      {
+//		    	  // Predio con la información a imprimir
+//		    	  predioPrint = predioManager.findById(new Integer(codPredio));
+//										
+//		      try { job.print(); }
+//		         catch (PrinterException e) { System.out.println(e); }
+//		      }
+//			
+//		}
+//
+//		return "redirect:/action/predios/editar?id=" + codPredio;
 	}
+	
+	
+	
+	@RequestMapping(value = "/imprimirConyuge", method = RequestMethod.GET)
+	public String imprimirConyuge(Model model, HttpSession session, @RequestParam(RequestKeys.CODIGO_PREDIO) String codPredio, RedirectAttributes redirectAttrs, HttpServletResponse response) {
+		
+		
+		
+		try
+        {
+        	BufferedInputStream resourceAsStream = ((BufferedInputStream) Thread.currentThread().getContextClassLoader()
+                    .getResourceAsStream(reportTemplateUrl));
+            //get report file and then load into jasperDesign
+            jasperDesign = JRXmlLoader.load(resourceAsStream);
+            //compile the jasperDesign
+            jasperReport = JasperCompileManager.compileReport(jasperDesign);
+            
+    	
+        	
+            JRSwapFileVirtualizer virtualizer = null;
+            try {
+                JRSwapFile swapFile = new JRSwapFile("/tmp", 1024, 100);
+                virtualizer = new JRSwapFileVirtualizer(50, swapFile, true);
+
+                Map params = new HashMap();
+                params.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
+                
+                PredioVO predio =  predioManager.findById(new Integer(codPredio));
+                String linea1, linea2, linea3, linea4, linea5 , linea6 = ""; 
+
+    			if (GenericValidator.isBlankOrNull(predio.getTerceroByCnConyuge().getTeDireccionSecundaria())){
+    			// Imprimimos la dirección primaria
+    				
+    				linea1	=  predio.getTerceroByCnConyuge().getNombreCompleto();
+    				linea2 = predio.getPortal().getTeCalle() + " " 
+    						 + predio.getPortal().getTeNombre() + "     " + predio.getPlanta().getTePlanta() + " - " + predio.getTePredio();
+    				linea3 = predio.getPortal().getComunidad().getTeCp() + " GIJÓN";
+    				linea4 =  "ASTURIAS - ESPAÑA";
+
+  				   params.put("linea1", linea1);
+ 				   params.put("linea2", linea2);
+ 				   params.put("linea3", linea3);
+ 				   params.put("linea4", linea4);
+    			}else{
+    			// Imprimimos la dirección secundaria
+    				linea1 = predio.getTerceroByCnConyuge().getNombreCompleto();
+ 				   params.put("linea1", linea1);
+    			    String direccion = predio.getTerceroByCnConyuge().getTeDireccionSecundaria();
+    			    String[] labels = direccion.split("\n");
+    			    
+
+    				int start = 0;
+    				int end   = labels.length;
+    				for (int line=start; line<end; line++) {
+    				   params.put("linea"+(line+2), labels[line]);
+    				}
+    			}
+                
+              
+                //fill the ready report with data and parameter
+                jasperPrint = JasperFillManager.fillReport(jasperReport, params,  new JREmptyDataSource());
+                //view the report using JasperViewer
+                // JasperViewer.viewReport(jasperPrint);
+                 
+            }
+            finally {
+                if (virtualizer != null) virtualizer.cleanup();
+            }    
+           
+
+         // Set our response properties
+         // Here you can declare a custom filename
+         String fileName = "UserReport.pdf";
+         response.setHeader("Content-Disposition", "inline; filename="+ fileName);
+
+         // Set content type
+         response.setContentType("application/pdf");
+
+
+         // Export is most important part of reports
+         JRPdfExporter exporter = new JRPdfExporter(); 
+         exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+         exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, response.getOutputStream());
+         exporter.exportReport();
+         
+         
+
+
+ 		return "redirect:/action/predios/editar?id=" + codPredio;
+        }
+        catch (JRException e)
+        {
+            e.printStackTrace();
+
+    		return "redirect:/action/predios/editar?id=" + codPredio;
+        } catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+			return "redirect:/action/predios/editar?id=" + codPredio;
+		} 
+		
+	}
+	
 	
 	public static PredioVO predioPrint;
 

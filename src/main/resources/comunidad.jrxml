@@ -161,7 +161,11 @@
 		</field>
 	</subDataset>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["../webapps/algonz/WEB-INF/classes/resources/"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logo" class="Object" isForPrompting="false">
+		<parameterDescription><![CDATA[The letterhead image]]></parameterDescription>
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[]]>
@@ -202,8 +206,8 @@
 	<pageHeader>
 		<band height="118" splitType="Stretch">
 			<image>
-				<reportElement uuid="0dd9d7ab-ab3f-4854-9488-af66e0908a80" mode="Opaque" x="0" y="0" width="207" height="118"/>
-				<imageExpression><![CDATA["../webapps/algonz/images/ALGONZ-logo.jpg"]]></imageExpression>
+				<reportElement uuid="6142cbd6-d753-451e-aa70-fef8d934214d" x="0" y="0" width="207" height="118"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement uuid="fa04d683-4173-43ab-bb46-5a362310c25d" x="152" y="34" width="245" height="20"/>

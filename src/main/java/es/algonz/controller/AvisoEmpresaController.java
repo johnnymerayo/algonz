@@ -1,5 +1,6 @@
 package es.algonz.controller;
 
+import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -9,6 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -26,7 +28,6 @@ import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.fill.JRSwapFileVirtualizer;
 import net.sf.jasperreports.engine.util.JRSwapFile;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
-import net.sf.jasperreports.view.JasperViewer;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.validator.GenericValidator;
@@ -255,6 +256,9 @@ public class AvisoEmpresaController {
 
                 Map params = new HashMap();
                 params.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
+
+                BufferedImage image = ImageIO.read(Thread.currentThread().getContextClassLoader().getResource("../../images/ALGONZ-logo.jpg"));
+                params.put("logo", image );
               
                 //fill the ready report with data and parameter
                 jasperPrint = JasperFillManager.fillReport(jasperReport, params,  new JRBeanCollectionDataSource(dataReport));

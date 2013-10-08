@@ -144,7 +144,9 @@ public class SiniestroController {
 
 			if (siniestro.getEmpresaComunidad() != null && siniestro.getEmpresaComunidad().getEmpresa() != null && siniestro.getEmpresaComunidad().getEmpresa().getTipoEmpresa() != null) {
 				model.addAttribute("empresasComunidadCombo", combosUtils.loadEmpresasComunidadByTipo(siniestro.getPortal().getComunidad().getCnComunidad(), siniestro.getEmpresaComunidad().getEmpresa().getTipoEmpresa().getCnTipoEmpresa()));
-				}
+			}else {
+				model.addAttribute("empresasComunidadCombo",new ArrayList<PropertyBean>());
+			}
 			
 			
 			return "detalleSiniestro";
@@ -162,6 +164,24 @@ public class SiniestroController {
 		return "redirect:/action/portales/editar?id=" + siniestro.getPortal().getCnPortal();
 	}
 
+	@RequestMapping(value = "/guardarToActuacion", method = RequestMethod.POST)
+	public String guardarToActuacion(
+			@Valid @ModelAttribute(RequestKeys.SINIESTRO) SiniestroVO siniestro,
+			BindingResult binding, Model model, RedirectAttributes redirectAttrs) {
+		
+		String retorno = this.guardar(siniestro, binding, model, redirectAttrs);
+		
+		if (retorno.equalsIgnoreCase("detalleSiniestro")){
+			return retorno;
+		}else{
+
+			return "redirect:/action/actuaciones/nuevo?codSiniestro=" + siniestro.getCnSiniestro();
+		}
+		
+		
+	}
+
+	
 	
 
 	@RequestMapping(value = "cargarEmpresasComunidad", method = RequestMethod.POST)

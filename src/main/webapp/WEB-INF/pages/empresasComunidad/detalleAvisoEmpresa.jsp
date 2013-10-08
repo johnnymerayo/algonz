@@ -78,7 +78,10 @@
 				<button type="submit" class="btn btn-primary">Guardar</button>
 					<a href="action/empresasComunidad/editar?id=${avisoEmpresa.empresaComunidad.cnEmpresaComunidad}" class="btn btn-default">Cancelar</a>
 					
+				
+		<c:if test="${not empty avisoEmpresa.cnAvisoEmpresa }">		
 			 <a href="action/avisosEmpresa/informeAviso?codAvisoEmpresa=${avisoEmpresa.cnAvisoEmpresa }" class="btn btn-default">Generar informe</a> 
+			 </c:if>
 			</div>
 		</div>
 		

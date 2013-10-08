@@ -1,5 +1,6 @@
 package es.algonz.controller;
 
+import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -9,6 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -252,6 +254,10 @@ public class ActuacionController {
 
                 Map params = new HashMap();
                 params.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
+                
+
+                BufferedImage image = ImageIO.read(Thread.currentThread().getContextClassLoader().getResource("../../images/ALGONZ-logo.jpg"));
+                params.put("logo", image );
               
                 //fill the ready report with data and parameter
                 jasperPrint = JasperFillManager.fillReport(jasperReport, params,  new JRBeanCollectionDataSource(dataReport));
