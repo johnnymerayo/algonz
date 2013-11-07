@@ -166,6 +166,9 @@
 
 		</fieldset>
 		</c:if>
+		
+		
+<div>&nbsp;</div>
 </form:form>
 
 

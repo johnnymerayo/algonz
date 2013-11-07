@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="actuacion" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d5418677-994b-4248-91bf-c38abadd45c2">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="26"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -217,6 +217,18 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{linea1}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement uuid="384bfefe-5960-431f-9df3-813dc9ead63c" x="410" y="22" width="15" height="225" isPrintWhenDetailOverflows="true"/>
+				<textElement rotation="Right">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[AlGonz Asesoría]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="877316a4-344e-4dde-9231-4e1c8e6389fb" x="388" y="22" width="22" height="261" isPrintWhenDetailOverflows="true"/>
+				<textElement rotation="Right"/>
+				<text><![CDATA[C/ Les Cigarreres Nº25 Bajo, 33211 Gijón, Asturias]]></text>
+			</staticText>
 		</band>
 	</detail>
 </jasperReport>

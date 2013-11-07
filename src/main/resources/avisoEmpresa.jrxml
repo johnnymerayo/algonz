@@ -274,7 +274,7 @@
 			<staticText>
 				<reportElement uuid="2007664c-ad64-416a-aa52-f51d5738f43f" x="0" y="40" width="555" height="20"/>
 				<textElement/>
-				<text><![CDATA[C/ Les Cigarreres Nº25 Bajo, 33211 Gijón, Asturias Tel: 985.14.98.36 / 626.09.94.02 Fax: 985.14.98.36]]></text>
+				<text><![CDATA[C/ Les Cigarreres Nº25 Bajo, 33211 Gijón, Asturias Tel: 985.14.98.36 / 626.09.94.01 Fax: 985.14.98.36]]></text>
 			</staticText>
 		</band>
 	</pageFooter>

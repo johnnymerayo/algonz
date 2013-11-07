@@ -40,14 +40,14 @@ public class AlarmaController {
 				listaAvisos);
 		
 		
-		try {
-			if ((new Date()).after(DateUtils.parseDate("12/01/2014",new String[] { "dd/MM/yyyy"})) ){
-				return "redirect:/j_spring_security_logout";
-			}
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			if ((new Date()).after(DateUtils.parseDate("12/01/2014",new String[] { "dd/MM/yyyy"})) ){
+//				return "redirect:/j_spring_security_logout";
+//			}
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 		
 		return "listadoAlarmas";

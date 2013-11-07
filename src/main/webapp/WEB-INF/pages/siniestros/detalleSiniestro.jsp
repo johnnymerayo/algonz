@@ -47,8 +47,11 @@
 		<div class="control-group" style="clear: both">
 			<div class="controls">
 				<button type="submit" class="btn btn-primary">Guardar</button>
+				
+				<c:if test="${empty siniestro.cnSiniestro }">	
 				<button type="button" class="btn btn-default"
 					onclick="changeAction('mainForm','action/siniestros/guardarToActuacion')">Nueva actuación</button>
+				</c:if>	
 				<a href="action/portales/editar?id=${siniestro.portal.cnPortal}" class="btn btn-default">Cancelar</a>
 			
 			</div>
@@ -90,7 +93,7 @@
 				<tr>
 				
 					<td><fmt:formatDate value="${actuacion.feInicio}" pattern="dd/MM/yyyy"/></td>			
-					<td><fmt:formatDate value="${actuacion.feInicio}" pattern="dd/MM/yyyy"/></td>
+					<td><fmt:formatDate value="${actuacion.feVencimiento}" pattern="dd/MM/yyyy"/></td>
 					<td><fmt:formatDate value="${actuacion.feCierre}" pattern="dd/MM/yyyy"/></td>
 					<td>
 						${actuacion.estado.teEstado}				
@@ -117,6 +120,7 @@
 		</fieldset>
 	</c:if>
 	
+<div>&nbsp;</div>
 </form:form>
 
 

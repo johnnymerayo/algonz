@@ -16,7 +16,7 @@ body {
 		method='POST' class="form-signin">
 		<h2 class="form-signin-heading text-center">Plataforma ALGONZ</h2>
 		<p class="text-center">
-			<em>(En construcción)</em>
+			<em>v1.0</em>
 		</p>
 		<c:if test="${not empty error}">
 			<div class="errorblock">
