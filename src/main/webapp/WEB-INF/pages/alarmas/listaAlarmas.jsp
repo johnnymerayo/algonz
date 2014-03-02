@@ -1,6 +1,9 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.util.Calendar"%>
 <%@ include file="/WEB-INF/pages/include.jsp"%>
 <jsp:useBean id="now" class="java.util.Date" />
 <fmt:formatDate value="${now}" pattern="yyyy/MM/dd" var="hoy" />
+
 
 <h3>Alarmas</h3>
 
@@ -17,7 +20,7 @@
 
 	<c:if test="${not empty listaActuaciones}">
 
-		<table id="tablaPaginada" class="table table-striped table-bordered">
+		<table id="tablaAlarmas" class="table table-striped table-bordered">
 			<thead>
 				<tr>
 					<th>Comunidad</th>
@@ -34,7 +37,21 @@
 				<c:forEach items="${listaActuaciones}" var="actuacion"
 					varStatus="status">
 				
+				
 <fmt:formatDate value="${actuacion.feVencimiento}" pattern="yyyy/MM/dd" var="vencimiento" />
+				
+				
+<%
+String vencimiento = (String) pageContext.getAttribute("vencimiento");
+Calendar c = Calendar.getInstance();
+c.setTime(new Date (vencimiento)); 
+c.add(Calendar.DATE, -5);  
+pageContext.setAttribute("date", c.getTime());%>
+<c:set var="date" value="${date}" />
+
+<fmt:formatDate value="${date}" pattern="yyyy/MM/dd" var="before" />
+				
+				
 										
 					<tr class="				
 <c:if test="${vencimiento lt hoy}">
@@ -43,7 +60,8 @@
 <c:if test="${vencimiento eq hoy}">
 warning
 </c:if>
-<c:if test="${vencimiento gt hoy}">
+<c:if test="${vencimiento gt hoy && hoy gt before }">
+success
 </c:if>
 ">
 						<td>${actuacion.siniestro.portal.comunidad.teNombre}</td>
@@ -86,7 +104,7 @@ warning
 
 	<c:if test="${not empty listaAvisosEmpresa}">
 
-		<table id="tablaPaginada2" class="table table-striped table-bordered">
+		<table id="tablaAlarmas2" class="table table-striped table-bordered">
 			<thead>
 				<tr>
 					<th>Comunidad</th>
@@ -104,6 +122,22 @@ warning
 					varStatus="status">
 					
 <fmt:formatDate value="${aviso.feLimite}" pattern="yyyy/MM/dd" var="vencimiento" />
+								
+												
+<%
+String vencimiento = (String) pageContext.getAttribute("vencimiento");
+Calendar c = Calendar.getInstance();
+c.setTime(new Date (vencimiento)); 
+c.add(Calendar.DATE, -5);  
+pageContext.setAttribute("date", c.getTime());%>
+<c:set var="date" value="${date}" />
+
+<fmt:formatDate value="${date}" pattern="yyyy/MM/dd" var="before" />
+				
+				
+				
+								
+								
 										
 					<tr class="				
 <c:if test="${vencimiento lt hoy}">
@@ -112,7 +146,8 @@ warning
 <c:if test="${vencimiento eq hoy}">
 warning
 </c:if>
-<c:if test="${vencimiento gt hoy}">
+<c:if test="${vencimiento gt hoy && hoy gt before }">
+success
 </c:if>
 ">
 						<td>${aviso.empresaComunidad.comunidad.teNombre}</td>

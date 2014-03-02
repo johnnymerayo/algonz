@@ -133,60 +133,140 @@ $.extend($.fn.dataTableExt.oStdClasses, {
 $(document)
 .ready(
 		function() {
-			$('#tablaPaginada')
-					.dataTable(
-							{
-								"sDom": "<'row'<'col-6'l><'col-6'f>r>t<'row'<'col-6'i><'col-6'p>>",
-								"sPaginationType" : "bootstrap",
-								"oLanguage" : {											
-									"sLengthMenu" : "Mostrando _MENU_ registros por página",
-									"sInfo" : "_TOTAL_ registros encontrados, Mostrando del _START_ al _END_",
-									"sInfoFiltered" : "(Filtrados de un total de _MAX_ registros)",
-									"sZeroRecords": "No hay registros coincidentes",
-									"sSearch" : "Filtrar resultados:",
-									"sInfoEmpty": "0 registros encontrados",
-									"oPaginate" : {
-										"sNext" : " Siguiente ",
-										"sPrevious" : " Anterior "
-									}
-								},
-								"bAutoWidth" : false,
-								"bLengthChange" : false,
-								"bInfo" : true,
-								"bPaginate" : true,
-								"bFilter" : true,
-								"bSort" : true,
-								"iDisplayLength" : 10,
-								"aaSorting": [ ]
-							});
 			
-				$('#tablaPaginada2')
-						.dataTable(
-								{
-    								"sDom": "<'row'<'col-6'l><'col-6'f>r>t<'row'<'col-6'i><'col-6'p>>",
-									"sPaginationType" : "bootstrap",
-									"oLanguage" : {											
-										"sLengthMenu" : "Mostrando _MENU_ registros por página",
-										"sInfo" : "_TOTAL_ registros encontrados, Mostrando del _START_ al _END_",
-										"sInfoFiltered" : "(Filtrados de un total de _MAX_ registros)",
-										"sZeroRecords": "No hay registros coincidentes",
-										"sSearch" : "Filtrar resultados:",
-										"sInfoEmpty": "0 registros encontrados",
-										"oPaginate" : {
-											"sNext" : " Siguiente ",
-											"sPrevious" : " Anterior "
-										}
-									},
-									"bAutoWidth" : false,
-									"bLengthChange" : false,
-									"bInfo" : true,
-									"bPaginate" : true,
-									"bFilter" : true,
-									"bSort" : true,
-									"iDisplayLength" : 10,
-									"aaSorting": [ ]
-								});
-				
+			$('#tablaAlarmas')
+			.dataTable(
+					{
+						"sDom": "<'row'<'col-6'l><'col-6'f>r>t<'row'<'col-6'i><'col-6'p>>",
+						"sPaginationType" : "bootstrap",
+						"oLanguage" : {											
+							"sLengthMenu" : "Mostrando _MENU_ registros por página",
+							"sInfo" : "_TOTAL_ registros encontrados, Mostrando del _START_ al _END_",
+							"sInfoFiltered" : "(Filtrados de un total de _MAX_ registros)",
+							"sZeroRecords": "No hay registros coincidentes",
+							"sSearch" : "Filtrar resultados:",
+							"sInfoEmpty": "0 registros encontrados",
+							"oPaginate" : {
+								"sNext" : " Siguiente ",
+								"sPrevious" : " Anterior "
+							}
+						},
+						"bAutoWidth" : false,
+						"bLengthChange" : false,
+						"bInfo" : true,
+						"bPaginate" : true,
+						"bFilter" : true,
+						"bSort" : true,
+						"iDisplayLength" : 10,
+						"aaSorting": [[ 4, "asc" ] ],
+						"aoColumnDefs": [{ "aTargets": [ '_all' ], "bSortable": true , "sType": "natural"}],
+						"aoColumns": [ 
+									null,
+									null,
+									null,
+								            { "bSortable": true, "sType": "uk_date2" },
+								            { "bSortable": true, "sType": "uk_date2" },
+									null,
+									null,
+									null
+							            ]
+					});
+	
+		$('#tablaAlarmas2')
+				.dataTable(
+						{
+							"sDom": "<'row'<'col-6'l><'col-6'f>r>t<'row'<'col-6'i><'col-6'p>>",
+							"sPaginationType" : "bootstrap",
+							"oLanguage" : {											
+								"sLengthMenu" : "Mostrando _MENU_ registros por página",
+								"sInfo" : "_TOTAL_ registros encontrados, Mostrando del _START_ al _END_",
+								"sInfoFiltered" : "(Filtrados de un total de _MAX_ registros)",
+								"sZeroRecords": "No hay registros coincidentes",
+								"sSearch" : "Filtrar resultados.:",
+								"sInfoEmpty": "0 registros encontrados",
+								"oPaginate" : {
+									"sNext" : " Siguiente ",
+									"sPrevious" : " Anterior "
+								}
+							},
+							"bAutoWidth" : false,
+							"bLengthChange" : false,
+							"bInfo" : true,
+							"bPaginate" : true,
+							"bFilter" : true,
+							"bSort" : true,
+							"iDisplayLength" : 10,
+							"aaSorting": [[ 3, "asc" ] ],
+							"aoColumnDefs": [{ "aTargets": [ '_all' ], "bSortable": true , "sType": "natural"}],
+							"aoColumns": [
+									null,
+									null,
+								            { "bSortable": true, "sType": "uk_date2" },
+								            { "bSortable": true, "sType": "uk_date2" },
+								            { "bSortable": true, "sType": "uk_date2" },
+									null,
+									null,
+									null
+								            ]
+						});
+		
+		
+		$('#tablaPaginada')
+		.dataTable(
+				{
+					"sDom": "<'row'<'col-6'l><'col-6'f>r>t<'row'<'col-6'i><'col-6'p>>",
+					"sPaginationType" : "bootstrap",
+					"oLanguage" : {											
+						"sLengthMenu" : "Mostrando _MENU_ registros por página",
+						"sInfo" : "_TOTAL_ registros encontrados, Mostrando del _START_ al _END_",
+						"sInfoFiltered" : "(Filtrados de un total de _MAX_ registros)",
+						"sZeroRecords": "No hay registros coincidentes",
+						"sSearch" : "Filtrar resultados:",
+						"sInfoEmpty": "0 registros encontrados",
+						"oPaginate" : {
+							"sNext" : " Siguiente ",
+							"sPrevious" : " Anterior "
+						}
+					},
+					"bAutoWidth" : false,
+					"bLengthChange" : false,
+					"bInfo" : true,
+					"bPaginate" : true,
+					"bFilter" : true,
+					"bSort" : true,
+					"iDisplayLength" : 10,
+					"aaSorting": [ ],
+					"aoColumnDefs": [{ "aTargets": [ '_all' ], "bSortable": true , "sType": "natural"}]
+				});
+
+	$('#tablaPaginada2')
+			.dataTable(
+					{
+						"sDom": "<'row'<'col-6'l><'col-6'f>r>t<'row'<'col-6'i><'col-6'p>>",
+						"sPaginationType" : "bootstrap",
+						"oLanguage" : {											
+							"sLengthMenu" : "Mostrando _MENU_ registros por página",
+							"sInfo" : "_TOTAL_ registros encontrados, Mostrando del _START_ al _END_",
+							"sInfoFiltered" : "(Filtrados de un total de _MAX_ registros)",
+							"sZeroRecords": "No hay registros coincidentes",
+							"sSearch" : "Filtrar resultados:",
+							"sInfoEmpty": "0 registros encontrados",
+							"oPaginate" : {
+								"sNext" : " Siguiente ",
+								"sPrevious" : " Anterior "
+							}
+						},
+						"bAutoWidth" : false,
+						"bLengthChange" : false,
+						"bInfo" : true,
+						"bPaginate" : true,
+						"bFilter" : true,
+						"bSort" : true,
+						"iDisplayLength" : 10,
+						"aaSorting": [ ],
+						"aoColumnDefs": [{ "aTargets": [ '_all' ], "bSortable": true , "sType": "natural"}]
+					});
+	
 
 					$('#tablaPaginada3')
 							.dataTable(
@@ -212,7 +292,8 @@ $(document)
 										"bFilter" : true,
 										"bSort" : true,
 										"iDisplayLength" : 10,
-										"aaSorting": [ ]
+										"aaSorting": [ ],
+										"aoColumnDefs": [{ "aTargets": [ '_all' ], "bSortable": true , "sType": "natural"}]
 									});
 
 
@@ -240,7 +321,8 @@ $(document)
 											"bFilter" : true,
 											"bSort" : true,
 											"iDisplayLength" : 10,
-											"aaSorting": [ ]
+											"aaSorting": [ ],
+											"aoColumnDefs": [{ "aTargets": [ '_all' ], "bSortable": true , "sType": "natural"}]
 										});
 						
 
@@ -269,6 +351,7 @@ $(document)
 											"bSort" : true,
 											"iDisplayLength" : 10,
 											"aaSorting": [ ],
+											"aoColumnDefs": [{ "aTargets": [ '_all' ], "bSortable": true , "sType": "natural"}],
 									        "oTableTools": {
 									            "aButtons": [{
 									                    "sExtends":    "print",
@@ -302,6 +385,7 @@ $(document)
 									"bSort" : true,
 									"iDisplayLength" : 10,
 									"aaSorting": [ ],
+									"aoColumnDefs": [{ "aTargets": [ '_all' ], "bSortable": true , "sType": "natural"}],
 							        "oTableTools": {
 							            "aButtons": [{
 							                    "sExtends":    "print",
@@ -312,6 +396,103 @@ $(document)
 		});
 
 
+
+/* Ordenar fechas*/
+
+jQuery.fn.dataTableExt.aTypes.push(
+    function ( sData )
+    {
+        if (sData.match(/^(0[1-9]|[12][0-9]|3[01])\-(0[1-9]|1[012])\-(19|20|21)\d\d$/))
+        {
+            return 'uk_date2';
+        }
+        else
+        {
+            return null;
+        }
+    }
+);
+ 
+jQuery.fn.dataTableExt.oSort['uk_date2-asc']  = function(a,b) {
+    var ukDatea = a.split('/');
+    var ukDateb = b.split('/');
+     
+    var x = (ukDatea[2] + ukDatea[1] + ukDatea[0]) * 1;
+    var y = (ukDateb[2] + ukDateb[1] + ukDateb[0]) * 1;
+     
+    return ((x < y) ? -1 : ((x > y) ?  1 : 0));
+     
+     
+};
+ 
+jQuery.fn.dataTableExt.oSort['uk_date2-desc'] = function(a,b) {
+    var ukDatea = a.split('/');
+    var ukDateb = b.split('/');
+     
+    var x = (ukDatea[2] + ukDatea[1] + ukDatea[0]) * 1;
+    var y = (ukDateb[2] + ukDateb[1] + ukDateb[0]) * 1;
+     
+    return ((x < y) ? 1 : ((x > y) ?  -1 : 0));
+};
+
+
+
+(function() {
+	 
+	/*
+	 * Natural Sort algorithm for Javascript - Version 0.7 - Released under MIT license
+	 * Author: Jim Palmer (based on chunking idea from Dave Koelle)
+	 * Contributors: Mike Grier (mgrier.com), Clint Priest, Kyle Adams, guillermo
+	 * See: http://js-naturalsort.googlecode.com/svn/trunk/naturalSort.js
+	 */
+	function naturalSort (a, b) {
+	    var re = /(^-?[0-9]+(\.?[0-9]*)[df]?e?[0-9]?$|^0x[0-9a-f]+$|[0-9]+)/gi,
+	        sre = /(^[ ]*|[ ]*$)/g,
+	        dre = /(^([\w ]+,?[\w ]+)?[\w ]+,?[\w ]+\d+:\d+(:\d+)?[\w ]?|^\d{1,4}[\/\-]\d{1,4}[\/\-]\d{1,4}|^\w+, \w+ \d+, \d{4})/,
+	        hre = /^0x[0-9a-f]+$/i,
+	        ore = /^0/,
+	        // convert all to strings and trim()
+	        x = a.toString().replace(sre, '') || '',
+	        y = b.toString().replace(sre, '') || '',
+	        // chunk/tokenize
+	        xN = x.replace(re, '\0$1\0').replace(/\0$/,'').replace(/^\0/,'').split('\0'),
+	        yN = y.replace(re, '\0$1\0').replace(/\0$/,'').replace(/^\0/,'').split('\0'),
+	        // numeric, hex or date detection
+	        xD = parseInt(x.match(hre)) || (xN.length != 1 && x.match(dre) && Date.parse(x)),
+	        yD = parseInt(y.match(hre)) || xD && y.match(dre) && Date.parse(y) || null;
+	    // first try and sort Hex codes or Dates
+	    if (yD)
+	        if ( xD < yD ) return -1;
+	        else if ( xD > yD )  return 1;
+	    // natural sorting through split numeric strings and default strings
+	    for(var cLoc=0, numS=Math.max(xN.length, yN.length); cLoc < numS; cLoc++) {
+	        // find floats not starting with '0', string or 0 if not defined (Clint Priest)
+	        var oFxNcL = !(xN[cLoc] || '').match(ore) && parseFloat(xN[cLoc]) || xN[cLoc] || 0;
+	        var oFyNcL = !(yN[cLoc] || '').match(ore) && parseFloat(yN[cLoc]) || yN[cLoc] || 0;
+	        // handle numeric vs string comparison - number < string - (Kyle Adams)
+	        if (isNaN(oFxNcL) !== isNaN(oFyNcL)) return (isNaN(oFxNcL)) ? 1 : -1;
+	        // rely on string comparison if different types - i.e. '02' < 2 != '02' < '2'
+	        else if (typeof oFxNcL !== typeof oFyNcL) {
+	            oFxNcL += '';
+	            oFyNcL += '';
+	        }
+	        if (oFxNcL < oFyNcL) return -1;
+	        if (oFxNcL > oFyNcL) return 1;
+	    }
+	    return 0;
+	}
+	 
+	jQuery.extend( jQuery.fn.dataTableExt.oSort, {
+	    "natural-asc": function ( a, b ) {
+	        return naturalSort(a,b);
+	    },
+	 
+	    "natural-desc": function ( a, b ) {
+	        return naturalSort(a,b) * -1;
+	    }
+	} );
+	 
+	}());
 
 
 

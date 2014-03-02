@@ -210,7 +210,14 @@
  <version>2.1.7</version>
 </dependency>
 
-	
+<!-- HTML Cleaner
+
+<dependency>
+    <groupId>net.sourceforge.htmlcleaner</groupId>
+    <artifactId>htmlcleaner</artifactId>
+    <version>2.6</version>
+  </dependency>
+	 -->
 	</dependencies>
 
 	<build>

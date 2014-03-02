@@ -1,9 +1,36 @@
 package es.algonz.controller;
 
+import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JRParameter;
+import net.sf.jasperreports.engine.JRPrintPage;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.fill.JRSwapFileVirtualizer;
+import net.sf.jasperreports.engine.util.JRSwapFile;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.validator.GenericValidator;
@@ -22,6 +49,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import es.algonz.controller.utils.ControladorUtils;
 import es.algonz.domain.ComunidadVO;
 import es.algonz.domain.PortalVO;
+import es.algonz.domain.PredioVO;
 import es.algonz.service.ComunidadManager;
 import es.algonz.service.PortalManager;
 import es.algonz.validator.PortalValidator;
@@ -130,4 +158,298 @@ public class PortalController {
 		return "redirect:/action/comunidades/editar?id=" + portal.getComunidad().getCnComunidad();
 		}
 
+	
+	
+
+    public static JasperPrint jasperPrint;
+    public static JasperDesign jasperDesign;
+    public static JasperReport jasperReport;
+    public static String reportTemplateUrl = "etiquetasSobrePortal.jrxml";
+
+	@RequestMapping(value = "/imprimirSobresPortal", method = RequestMethod.GET)
+	public String imprimirSobresPortal(Model model, HttpSession session, @RequestParam(RequestKeys.CODIGO_PORTAL) String codPortal, RedirectAttributes redirectAttrs, HttpServletResponse response) {
+		
+		
+		try
+        {
+			jasperPrint = null;
+			
+        	BufferedInputStream resourceAsStream = ((BufferedInputStream) Thread.currentThread().getContextClassLoader()
+                    .getResourceAsStream(reportTemplateUrl));
+            //get report file and then load into jasperDesign
+            jasperDesign = JRXmlLoader.load(resourceAsStream);
+            //compile the jasperDesign
+            jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+        	
+    		List<PredioVO> dataReport = new LinkedList<PredioVO>();
+           
+        	
+            JRSwapFileVirtualizer virtualizer = null;
+            try {
+                JRSwapFile swapFile = new JRSwapFile("/tmp", 1024, 100);
+                virtualizer = new JRSwapFileVirtualizer(50, swapFile, true);
+
+                Map params = new HashMap();
+                params.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
+               
+                
+                PortalVO portal =  portalManager.findById(new Integer(codPortal));
+                
+                
+                
+                Set<PredioVO>  predios = (java.util.Set<PredioVO>) portal.getPredios();
+                
+                Iterator<PredioVO> itr = predios.iterator();
+                
+             //   List listaPDFs = new  ArrayList<Object>();
+                while (itr.hasNext()){
+                	
+                	PredioVO predio = itr.next();
+                	
+                	dataReport.add(predio);
+                	
+		                
+		                String linea1, linea2, linea3, linea4, linea5  = ""; 
+		                String linea6 = ""; 
+		
+		    			if (GenericValidator.isBlankOrNull(predio.getTerceroByCnPropietario().getTeDireccionSecundaria())){
+		    			// Imprimimos la dirección primaria
+		    				
+		    				linea1	=  predio.getTerceroByCnPropietario().getNombreCompleto();
+		    				linea2 = predio.getPortal().getTeCalle() + " " 
+		    						 + predio.getPortal().getTeNombre() + "     " + predio.getPlanta().getTePlanta() + " - " + predio.getTePredio();
+		    				linea3 = predio.getPortal().getComunidad().getTeCp() + " GIJÓN";
+		    				linea4 =  "ASTURIAS - ESPAÑA";
+		
+		  				   params.put("linea1", linea1);
+		 				   params.put("linea2", linea2);
+		 				   params.put("linea3", linea3);
+		 				   params.put("linea4", linea4);
+		 				   params.put("linea5", "");
+		 				   params.put("linea6", "");
+		    			}else{
+		    			// Imprimimos la dirección secundaria
+		    				linea1 = predio.getTerceroByCnPropietario().getNombreCompleto();
+		 				   params.put("linea1", linea1);
+		    			    String direccion = predio.getTerceroByCnPropietario().getTeDireccionSecundaria();
+		    			    String[] labels = direccion.split("\n");
+		    			    
+		
+		    				int start = 0;
+		    				int end   = labels.length;
+		    				
+		    				
+		    				// Reseteo los valores de los parametros
+
+			 				   params.put("linea2", "");
+			 				   params.put("linea3", "");
+			 				   params.put("linea4", "");
+			 				   params.put("linea5", "");
+			 				   params.put("linea6", "");
+		    				
+		    				for (int line=start; line<end; line++) {
+		    				   params.put("linea"+(line+2), labels[line]);
+		    				}
+		    			}
+
+					if (jasperPrint != null) {
+
+						JasperPrint jasperPrintAux = JasperFillManager
+								.fillReport(jasperReport, params,
+										new JREmptyDataSource());
+
+						List pages = jasperPrintAux.getPages();
+						for (int j = 0; j < pages.size(); j++) {
+							JRPrintPage object = (JRPrintPage) pages.get(j);
+							jasperPrint.addPage(object);
+						}
+
+					} else {
+
+						// fill the ready report with data and parameter
+						jasperPrint = JasperFillManager.fillReport(
+								jasperReport, params, new JREmptyDataSource());
+
+						// view the report using JasperViewer
+						// JasperViewer.viewReport(jasperPrint);
+					}
+
+				}
+                
+            }
+            finally {
+                if (virtualizer != null) virtualizer.cleanup();
+            }    
+           
+            
+         // Set our response properties
+         // Here you can declare a custom filename
+         String fileName = "UserReport.pdf";
+         response.setHeader("Content-Disposition", "inline; filename="+ fileName);
+
+         // Set content type
+         response.setContentType("application/pdf");
+
+
+         // Export is most important part of reports
+         JRPdfExporter exporter = new JRPdfExporter(); 
+         exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+         exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, response.getOutputStream());
+         exporter.exportReport();
+         
+//
+// 		jasperPrint = JasperFillManager.fillReport(jasperReport, jasperParameter, con);
+// 		 
+// 		list.add(jasperPrint);
+// 		 
+// 		exp.setParameter(JRPdfExporterParameter.JASPER_PRINT_LIST, list);
+// 		 
+// 		exp.setParameter(JRPdfExporterParameter.OUTPUT_FILE, new File("test.pdf"));
+// 		 
+// 		exp.exportReport();
+
+
+ 		return "redirect:/action/portales/editar?id=" + codPortal;
+        }
+        catch (JRException e)
+        {
+            e.printStackTrace();
+
+    		return "redirect:/action/portales/editar?id=" + codPortal;
+        } catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+			return "redirect:/action/portales/editar?id=" + codPortal;
+		} 
+		
+	}
+	
+	
+
+
+    public static JasperDesign jasperDesignResumen;
+    public static JasperReport jasperReportResumen;
+    public static String reportTemplateUrlResumen = "resumenSobrePortal.jrxml";
+	@RequestMapping(value = "/imprimirResumenSobres", method = RequestMethod.GET)
+	public String imprimirResumenSobres(Model model, HttpSession session, @RequestParam(RequestKeys.CODIGO_PORTAL) String codPortal, RedirectAttributes redirectAttrs, HttpServletResponse response) {
+		
+		
+		try
+        {
+			jasperPrint = null;
+		
+            
+            BufferedInputStream resourceAsStreamResumen = ((BufferedInputStream) Thread.currentThread().getContextClassLoader()
+                    .getResourceAsStream(reportTemplateUrlResumen));
+            //get report file and then load into jasperDesign
+            jasperDesignResumen = JRXmlLoader.load(resourceAsStreamResumen);
+            //compile the jasperDesign
+            jasperReportResumen = JasperCompileManager.compileReport(jasperDesignResumen);
+            
+            
+
+        	
+    		List<PredioVO> dataReport = new LinkedList<PredioVO>();
+           
+        	
+            JRSwapFileVirtualizer virtualizer = null;
+            try {
+                JRSwapFile swapFile = new JRSwapFile("/tmp", 1024, 100);
+                virtualizer = new JRSwapFileVirtualizer(50, swapFile, true);
+
+                PortalVO portal =  portalManager.findById(new Integer(codPortal));
+             
+                
+                Set<PredioVO>  predios = (java.util.Set<PredioVO>) portal.getPredios();
+                
+                Iterator<PredioVO> itr = predios.iterator();
+                
+             //   List listaPDFs = new  ArrayList<Object>();
+                while (itr.hasNext()){
+                	
+                	PredioVO predio = itr.next();
+                	
+                	dataReport.add(predio);
+                	
+				}
+
+
+                Map paramsResumen = new HashMap();
+                paramsResumen.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
+                BufferedImage image = ImageIO.read(Thread.currentThread().getContextClassLoader().getResource("../../images/ALGONZ-logo.jpg"));
+                paramsResumen.put("logo", image );
+                
+                paramsResumen.put("comunidad", portal.getComunidad().getTeNombre());
+                paramsResumen.put("portal", portal.getTeCalle() + " " + portal.getTeNombre());
+
+
+    				// fill the ready report with data and parameter
+    				jasperPrint = JasperFillManager.fillReport(
+    						jasperReportResumen, paramsResumen, 	new JRBeanCollectionDataSource(dataReport));
+
+    				// view the report using JasperViewer
+    				// JasperViewer.viewReport(jasperPrint);
+
+                
+                
+                
+            }
+            finally {
+                if (virtualizer != null) virtualizer.cleanup();
+            }    
+           
+            
+            
+
+         // Set our response properties
+         // Here you can declare a custom filename
+         String fileName = "UserReport.pdf";
+         response.setHeader("Content-Disposition", "inline; filename="+ fileName);
+
+         // Set content type
+         response.setContentType("application/pdf");
+
+
+         // Export is most important part of reports
+         JRPdfExporter exporter = new JRPdfExporter(); 
+         exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+         exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, response.getOutputStream());
+         exporter.exportReport();
+         
+//
+// 		jasperPrint = JasperFillManager.fillReport(jasperReport, jasperParameter, con);
+// 		 
+// 		list.add(jasperPrint);
+// 		 
+// 		exp.setParameter(JRPdfExporterParameter.JASPER_PRINT_LIST, list);
+// 		 
+// 		exp.setParameter(JRPdfExporterParameter.OUTPUT_FILE, new File("test.pdf"));
+// 		 
+// 		exp.exportReport();
+
+
+ 		return "redirect:/action/portales/editar?id=" + codPortal;
+        }
+        catch (JRException e)
+        {
+            e.printStackTrace();
+
+    		return "redirect:/action/portales/editar?id=" + codPortal;
+        } catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+			return "redirect:/action/portales/editar?id=" + codPortal;
+		} 
+		
+	}
+	
+	
+	
+	
+	
+	
+	
 }

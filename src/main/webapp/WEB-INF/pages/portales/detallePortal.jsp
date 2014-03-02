@@ -42,6 +42,13 @@
 				<button type="submit" class="btn btn-primary">Guardar</button>
 				<!-- <button type="button" class="btn btn-default" onclick="changeAction('mainForm','action/comunidades/editar?id=${portal.comunidad.cnComunidad}')">Cancelar</button>  -->
 				<a href="action/comunidades/editar?id=${portal.comunidad.cnComunidad}" class="btn btn-default">Cancelar</a>
+				
+				<a href="action/portales/imprimirSobresPortal?codPortal=${portal.cnPortal}" class="btn btn-default">Imprimir Sobres</a> 
+				
+				<a href="action/portales/imprimirResumenSobres?codPortal=${portal.cnPortal}" class="btn btn-default">Resumen Sobres</a> 
+				<!--
+					<a href="mailto:angeles@algonz.es?bcc=${portal.emailsPortal}&subject=Acta reunión" class="btn btn-default"> Enviar mails</a> 
+					-->
 			</div>
 		</div>
 	

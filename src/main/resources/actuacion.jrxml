@@ -175,9 +175,9 @@
 		<band splitType="Stretch"/>
 	</background>
 	<pageHeader>
-		<band height="118" splitType="Stretch">
+		<band height="83" splitType="Stretch">
 			<image>
-				<reportElement uuid="0dd9d7ab-ab3f-4854-9488-af66e0908a80" mode="Opaque" x="0" y="0" width="207" height="118"/>
+				<reportElement uuid="0dd9d7ab-ab3f-4854-9488-af66e0908a80" mode="Opaque" x="0" y="0" width="180" height="83"/>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
@@ -273,23 +273,27 @@
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="60" splitType="Stretch">
+		<band height="35" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="dfea952c-a213-409b-b66b-c7a5ec75e20a" x="0" y="20" width="555" height="20"/>
-				<textElement/>
+				<reportElement uuid="a257a641-a77d-45e4-9498-6e3e3206039e" x="6" y="15" width="555" height="10"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
 				<text><![CDATA[MARIA ANGELES GONZALEZ GUTIERREZ ( angeles@algonz.es)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="e3ddb583-8454-4e02-9088-d958d5ae020b" x="0" y="0" width="100" height="20"/>
+				<reportElement uuid="6f8cff2b-1c54-49a1-a576-1d3181dd6058" x="6" y="25" width="555" height="10"/>
 				<textElement>
-					<font isBold="true"/>
+					<font size="8"/>
 				</textElement>
-				<text><![CDATA[AlGonz Asesoría]]></text>
+				<text><![CDATA[C/ Les Cigarreres Nº25 Bajo, 33211 Gijón, Asturias Tel: 985.14.98.36 / 626.09.94.01 Fax: 985.14.98.36]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="2007664c-ad64-416a-aa52-f51d5738f43f" x="0" y="40" width="555" height="20"/>
-				<textElement/>
-				<text><![CDATA[C/ Les Cigarreres Nº25 Bajo, 33211 Gijón, Asturias Tel: 985.14.98.36 / 626.09.94.01 Fax: 985.14.98.36]]></text>
+				<reportElement uuid="9c700f5e-c07c-443b-a44b-d4aa1a173adb" x="6" y="4" width="100" height="10"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[AlGonz Asesoría]]></text>
 			</staticText>
 		</band>
 	</pageFooter>

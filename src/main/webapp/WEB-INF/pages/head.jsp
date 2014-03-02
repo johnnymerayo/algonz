@@ -43,11 +43,13 @@ tinymce.init({
 language: "es",
      theme: "modern",
     menubar: false,
-	    plugins: [
-        "textcolor"
+    plugins: [
+        "textcolor",
+       "paste"
     ],
     toolbar1: "bold forecolor backcolor",
-    image_advtab: true
+    image_advtab: true,
+    oninit : "setPlainText"
  });
 </script>
 
