@@ -11,6 +11,8 @@
 			<br />
 			Siniestro: ${actuacion.siniestro.teNombre} 
 			<br />
+			Empresa: ${actuacion.siniestro.empresaComunidad.empresa.teNombre} (${actuacion.siniestro.empresaComunidad.empresa.telefonos})
+			<br />
 			<c:if test='${actuacion.cnActuacion==null}'>Nueva Actuacion</c:if>
 			<c:if test='${actuacion.cnActuacion!=null}'>Datos de la actuacion: ${actuacion.teDescripcion}
 			</c:if>
