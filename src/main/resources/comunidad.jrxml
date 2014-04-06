@@ -340,23 +340,23 @@
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="41" splitType="Stretch">
+		<band height="39" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="dfea952c-a213-409b-b66b-c7a5ec75e20a" x="0" y="13" width="555" height="10"/>
+				<reportElement uuid="dfea952c-a213-409b-b66b-c7a5ec75e20a" x="0" y="15" width="555" height="10"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[MARIA ANGELES GONZALEZ GUTIERREZ ( angeles@algonz.es)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="e3ddb583-8454-4e02-9088-d958d5ae020b" x="0" y="2" width="100" height="10"/>
+				<reportElement uuid="e3ddb583-8454-4e02-9088-d958d5ae020b" x="0" y="4" width="100" height="10"/>
 				<textElement>
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[AlGonz Asesoría]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="2007664c-ad64-416a-aa52-f51d5738f43f" x="0" y="23" width="555" height="10"/>
+				<reportElement uuid="2007664c-ad64-416a-aa52-f51d5738f43f" x="0" y="25" width="555" height="10"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
