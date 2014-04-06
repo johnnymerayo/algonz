@@ -2225,7 +2225,7 @@ TableTools.BUTTONS = {
 
 	"print": $.extend( {}, TableTools.buttonBase, {
 		"sInfo": "<h6>Vista de impresión</h6><p>Por favor, use la función de impresión de su navegador "+
-		  "para imprimir esta página. Pulse 'escape' cuando haya finalizado.",
+		  "para imprimir esta página. Pulse 'escape' cuando haya finalizado.</p>",
 		"sMessage": null,
 		"bShowAll": true,
 		"sToolTip": "View print view",

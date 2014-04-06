@@ -137,7 +137,7 @@ $(document)
 			$('#tablaAlarmas')
 			.dataTable(
 					{
-						"sDom": "<'row'<'col-6'l><'col-6'f>r>t<'row'<'col-6'i><'col-6'p>>",
+						"sDom": "<'row'<'col-6'T><'col-6'f>r>t<'row'<'col-6'i><'col-6'p>>",
 						"sPaginationType" : "bootstrap",
 						"oLanguage" : {											
 							"sLengthMenu" : "Mostrando _MENU_ registros por página",
@@ -169,7 +169,13 @@ $(document)
 									null,
 									null,
 									null
-							            ]
+							            ],
+								        "oTableTools": {
+								            "aButtons": [{
+								                    "sExtends":    "print",
+								                    "sButtonText": "Imprimir"
+								                }]
+								        }
 					});
 	
 		$('#tablaAlarmas2')

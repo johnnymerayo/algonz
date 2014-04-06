@@ -24,7 +24,7 @@
 <script type="text/javascript" charset="utf-8" src="js/ZeroClipboard.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/TableTools.js"></script>
 <link href="css/TableTools.css" rel="stylesheet" media="screen"/> 
-<script src="js/dataTables.bootstrap.js"></script>
+<!-- <script src="js/dataTables.bootstrap.js"></script> --> 
 
 <!-- file uploader -->
 <script src="js/vendor/jquery.ui.widget.js"></script>
