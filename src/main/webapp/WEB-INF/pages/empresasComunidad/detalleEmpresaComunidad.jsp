@@ -74,10 +74,10 @@
 	<table id="tablaPaginada" class="table table-striped table-bordered">
 		<thead>
 			<tr>
-				<th>Fecha Inicio</th>
-				<th>Fecha Notificación</th>
-				<th>Fecha Vencimiento</th>
-				<th>Fecha Cierre</th>
+				<th class="dateColumn">Fecha Inicio</th>
+				<th class="dateColumn">Fecha Notificación</th>
+				<th class="dateColumn">Fecha Vencimiento</th>
+				<th class="dateColumn">Fecha Cierre</th>
 				<th>Estado </th>
 				<th>Descripción</th>
 				<th>Acciones</th>

@@ -210,14 +210,14 @@
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement uuid="fa04d683-4173-43ab-bb46-5a362310c25d" x="152" y="10" width="245" height="20"/>
+				<reportElement uuid="fa04d683-4173-43ab-bb46-5a362310c25d" x="155" y="9" width="245" height="20"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{teNombre}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement uuid="df22aa37-f059-45c1-a093-bcb9985e592a" x="224" y="30" width="100" height="20"/>
+				<reportElement uuid="df22aa37-f059-45c1-a093-bcb9985e592a" x="227" y="37" width="100" height="20"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
@@ -226,33 +226,33 @@
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="68" splitType="Stretch">
+		<band height="43" splitType="Stretch">
 			<subreport>
-				<reportElement uuid="3c9c02af-1d03-4117-bce8-ae5b6010ade1" x="0" y="28" width="555" height="1"/>
+				<reportElement uuid="3c9c02af-1d03-4117-bce8-ae5b6010ade1" x="0" y="3" width="555" height="1"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{empresasComunidad})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "empresasComunidad.jasper"]]></subreportExpression>
 			</subreport>
 			<staticText>
-				<reportElement uuid="6db32023-f715-40b7-9a7a-a51e3b7cdda6" x="192" y="0" width="193" height="20"/>
+				<reportElement uuid="6db32023-f715-40b7-9a7a-a51e3b7cdda6" x="192" y="-21" width="193" height="20"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[TELEFONOS DE EMERGENCIA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="13ef9bd9-3d7c-4ee7-89e8-96088bd0ea37" positionType="Float" x="157" y="36" width="240" height="20"/>
+				<reportElement uuid="13ef9bd9-3d7c-4ee7-89e8-96088bd0ea37" positionType="Float" x="157" y="13" width="240" height="20"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[REPRESENTANTES DE LA COMUNIDAD]]></text>
 			</staticText>
 			<subreport>
-				<reportElement uuid="cb2f4d12-d821-4238-9ca4-394335623dbf" positionType="Float" x="0" y="61" width="555" height="1"/>
+				<reportElement uuid="cb2f4d12-d821-4238-9ca4-394335623dbf" positionType="Float" x="0" y="36" width="555" height="1"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{representantes})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "representantesComunidad.jasper"]]></subreportExpression>
 			</subreport>
 			<componentElement>
-				<reportElement uuid="4555e1dd-2059-498b-98b9-5b6d95b46356" key="table 4" style="table 4" positionType="Float" x="0" y="67" width="555" height="1">
+				<reportElement uuid="4555e1dd-2059-498b-98b9-5b6d95b46356" key="table 4" style="table 4" positionType="Float" x="0" y="42" width="555" height="1">
 					<printWhenExpression><![CDATA[false]]></printWhenExpression>
 				</reportElement>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
@@ -340,26 +340,22 @@
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="39" splitType="Stretch">
+		<band height="34" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="dfea952c-a213-409b-b66b-c7a5ec75e20a" x="0" y="15" width="555" height="10"/>
-				<textElement>
-					<font size="8"/>
-				</textElement>
-				<text><![CDATA[MARIA ANGELES GONZALEZ GUTIERREZ ( angeles@algonz.es)]]></text>
+				<reportElement uuid="dfea952c-a213-409b-b66b-c7a5ec75e20a" x="90" y="3" width="452" height="15"/>
+				<textElement/>
+				<text><![CDATA[- MARIA ANGELES GONZALEZ GUTIERREZ ( angeles@algonz.es)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="e3ddb583-8454-4e02-9088-d958d5ae020b" x="0" y="4" width="100" height="10"/>
+				<reportElement uuid="e3ddb583-8454-4e02-9088-d958d5ae020b" x="2" y="3" width="88" height="15"/>
 				<textElement>
-					<font size="8" isBold="true"/>
+					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[AlGonz Asesoría]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="2007664c-ad64-416a-aa52-f51d5738f43f" x="0" y="25" width="555" height="10"/>
-				<textElement>
-					<font size="8"/>
-				</textElement>
+				<reportElement uuid="2007664c-ad64-416a-aa52-f51d5738f43f" x="2" y="19" width="540" height="15"/>
+				<textElement/>
 				<text><![CDATA[C/ Les Cigarreres Nº25 Bajo, 33211 Gijón, Asturias Tel: 985.14.98.36 / 626.09.94.01 Fax: 985.14.98.36]]></text>
 			</staticText>
 		</band>

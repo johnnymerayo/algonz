@@ -3,10 +3,14 @@ package es.algonz.controller;
 import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
@@ -46,6 +50,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import es.algonz.controller.utils.ControladorUtils;
 import es.algonz.domain.ComunidadVO;
 import es.algonz.domain.DocumentoVO;
+import es.algonz.domain.EmpresaComunidadVO;
 import es.algonz.domain.FileMeta;
 import es.algonz.service.ComunidadManager;
 import es.algonz.service.DocumentoManager;
@@ -205,6 +210,22 @@ public class ComunidadController {
             
             if (codComunidad != null) {	
   				ComunidadVO comunidad  = comunidadManager.findById(new Integer (codComunidad).intValue());
+  				
+  				// Eliminamos del informe las empresas que no esten activas
+  				Set<EmpresaComunidadVO> empresasComunidad =   comunidad.getEmpresasComunidad();
+  				
+  				Iterator<EmpresaComunidadVO> itr = empresasComunidad.iterator();
+  				Set<EmpresaComunidadVO> empresasActivas = new HashSet<EmpresaComunidadVO>();
+  				
+  				while(itr.hasNext()){
+  					EmpresaComunidadVO empresa = itr.next();
+  					 if (new Date().before(empresa.getFeFin())){
+  						 empresasActivas.add(empresa);
+  					 }
+  				}
+  				
+  				comunidad.setEmpresasComunidad(empresasActivas);
+  				
   				comunidad.setRepresentantes(comunidadManager.getRepresentantes(comunidad.getCnComunidad()));
   				dataReport.add(comunidad);
             }

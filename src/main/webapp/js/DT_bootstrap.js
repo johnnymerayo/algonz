@@ -159,17 +159,8 @@ $(document)
 						"bSort" : true,
 						"iDisplayLength" : 10,
 						"aaSorting": [[ 4, "asc" ] ],
-						"aoColumnDefs": [{ "aTargets": [ '_all' ], "bSortable": true , "sType": "natural"}],
-						"aoColumns": [ 
-									null,
-									null,
-									null,
-								            { "bSortable": true, "sType": "uk_date2" },
-								            { "bSortable": true, "sType": "uk_date2" },
-									null,
-									null,
-									null
-							            ],
+						"aoColumnDefs": [{ "aTargets": [ 'dateColumn' ], "bSortable": true, "sType": "uk_date2"},
+						                 { "aTargets": [ '_all' ], "bSortable": true , "sType": "natural"}],
 								        "oTableTools": {
 								            "aButtons": [{
 								                    "sExtends":    "print",
@@ -203,17 +194,8 @@ $(document)
 							"bSort" : true,
 							"iDisplayLength" : 10,
 							"aaSorting": [[ 3, "asc" ] ],
-							"aoColumnDefs": [{ "aTargets": [ '_all' ], "bSortable": true , "sType": "natural"}],
-							"aoColumns": [
-									null,
-									null,
-								            { "bSortable": true, "sType": "uk_date2" },
-								            { "bSortable": true, "sType": "uk_date2" },
-								            { "bSortable": true, "sType": "uk_date2" },
-									null,
-									null,
-									null
-								            ]
+							"aoColumnDefs": [{ "aTargets": [ 'dateColumn' ], "bSortable": true, "sType": "uk_date2"},
+							                 { "aTargets": [ '_all' ], "bSortable": true , "sType": "natural"}]
 						});
 		
 		
@@ -242,7 +224,8 @@ $(document)
 					"bSort" : true,
 					"iDisplayLength" : 10,
 					"aaSorting": [ ],
-					"aoColumnDefs": [{ "aTargets": [ '_all' ], "bSortable": true , "sType": "natural"}]
+					"aoColumnDefs": [{ "aTargets": [ 'dateColumn' ], "bSortable": true, "sType": "uk_date2"},
+					                 { "aTargets": [ '_all' ], "bSortable": true , "sType": "natural"}]
 				});
 
 	$('#tablaPaginada2')
@@ -270,7 +253,8 @@ $(document)
 						"bSort" : true,
 						"iDisplayLength" : 10,
 						"aaSorting": [ ],
-						"aoColumnDefs": [{ "aTargets": [ '_all' ], "bSortable": true , "sType": "natural"}]
+						"aoColumnDefs": [{ "aTargets": [ 'dateColumn' ], "bSortable": true, "sType": "uk_date2"},
+						                 { "aTargets": [ '_all' ], "bSortable": true , "sType": "natural"}]
 					});
 	
 
@@ -299,7 +283,8 @@ $(document)
 										"bSort" : true,
 										"iDisplayLength" : 10,
 										"aaSorting": [ ],
-										"aoColumnDefs": [{ "aTargets": [ '_all' ], "bSortable": true , "sType": "natural"}]
+										"aoColumnDefs": [{ "aTargets": [ 'dateColumn' ], "bSortable": true, "sType": "uk_date2"},
+										                 { "aTargets": [ '_all' ], "bSortable": true , "sType": "natural"}]
 									});
 
 
@@ -328,7 +313,8 @@ $(document)
 											"bSort" : true,
 											"iDisplayLength" : 10,
 											"aaSorting": [ ],
-											"aoColumnDefs": [{ "aTargets": [ '_all' ], "bSortable": true , "sType": "natural"}]
+											"aoColumnDefs": [{ "aTargets": [ 'dateColumn' ], "bSortable": true, "sType": "uk_date2"},
+											                 { "aTargets": [ '_all' ], "bSortable": true , "sType": "natural"}]
 										});
 						
 
@@ -357,7 +343,8 @@ $(document)
 											"bSort" : true,
 											"iDisplayLength" : 10,
 											"aaSorting": [ ],
-											"aoColumnDefs": [{ "aTargets": [ '_all' ], "bSortable": true , "sType": "natural"}],
+											"aoColumnDefs": [{ "aTargets": [ 'dateColumn' ], "bSortable": true, "sType": "uk_date2"},
+											                 { "aTargets": [ '_all' ], "bSortable": true , "sType": "natural"}],
 									        "oTableTools": {
 									            "aButtons": [{
 									                    "sExtends":    "print",
@@ -391,7 +378,10 @@ $(document)
 									"bSort" : true,
 									"iDisplayLength" : 10,
 									"aaSorting": [ ],
-									"aoColumnDefs": [{ "aTargets": [ '_all' ], "bSortable": true , "sType": "natural"}],
+									"aoColumnDefs": [
+									                 { "aTargets": [ 'dateColumn' ], "bSortable": true, "sType": "uk_date2"},
+									                 { "aTargets": [ '_all' ], "bSortable": true , "sType": "natural"}
+									                 ],
 							        "oTableTools": {
 							            "aButtons": [{
 							                    "sExtends":    "print",

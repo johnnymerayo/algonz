@@ -7,6 +7,8 @@
 		<legend>
 			Comunidad: ${avisoEmpresa.empresaComunidad.comunidad.teNombre} 
 			<br />
+			Empresa: ${avisoEmpresa.empresaComunidad.empresa.teNombre} (${avisoEmpresa.empresaComunidad.empresa.telefonos})
+			<br />
 			<c:if test='${avisoEmpresa.cnAvisoEmpresa==null}'>Nuevo aviso</c:if>
 			<c:if test='${avisoEmpresa.cnAvisoEmpresa!=null}'>Datos del aviso
 			</c:if>
@@ -114,7 +116,7 @@
 		<thead>
 			<tr>
 				<th>Nombre</th>
-				<th>Fecha</th>
+				<th class="dateColumn">Fecha</th>
 				<th>Acciones</th>
 			</tr>
 		</thead>

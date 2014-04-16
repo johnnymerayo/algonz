@@ -186,8 +186,8 @@
 				<th>Nombre</th>
 				<th>Teléfonos</th>
 				<th>E-mail</th>
-				<th>Fecha inicio</th>
-				<th>Fecha fin</th>
+				<th class="dateColumn">Fecha inicio</th>
+				<th class="dateColumn">Fecha fin</th>
 				<th>Acciones</th>
 			</tr>
 		</thead>
@@ -260,7 +260,7 @@
 		<thead>
 			<tr>
 				<th>Nombre</th>
-				<th>Fecha</th>
+				<th class="dateColumn">Fecha</th>
 				<th>Acciones</th>
 			</tr>
 		</thead>

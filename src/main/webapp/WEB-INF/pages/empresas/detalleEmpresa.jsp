@@ -77,8 +77,8 @@
 				<tr>
 					<th>Comunidad</th>
 					<th>Portal</th>
-					<th>Fecha Inicio</th>
-					<th>Fecha Vencimiento</th>
+					<th class="dateColumn">Fecha Inicio</th>
+					<th class="dateColumn">Fecha Vencimiento</th>
 					<th>Estado</th>
 					<th>Descripción</th>
 					<th>Acciones</th>
@@ -131,8 +131,8 @@
 			<thead>
 				<tr>
 					<th>Comunidad</th>
-					<th>Fecha Inicio</th>
-					<th>Fecha Vencimiento</th>
+					<th class="dateColumn">Fecha Inicio</th>
+					<th class="dateColumn">Fecha Vencimiento</th>
 					<th>Estado</th>
 					<th>Descripción</th>
 					<th>Acciones</th>

@@ -35,6 +35,14 @@ body {
 	}
 }
 </style>
+
+<style type="text/css" media="print">
+    .NonPrintable
+    {
+      display: none;
+    }
+  </style>
+  
 <body>
 
 
@@ -104,7 +112,7 @@ body {
 
 
   <!-- Modal  confirmar eliminar-->
-  <div class="modal fade" id="modalDelete">
+  <div class="modal fade NonPrintable" id="modalDelete">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -112,7 +120,7 @@ body {
           <h4 class="modal-title">Confirmar</h4>
         </div>
         <div class="modal-body">
-        	<p>Está a punto de borrar el registro seleccionado. Estre proceso es irreversible</p> 
+        	<p>Está a punto de borrar el registro seleccionado. Este proceso es irreversible</p> 
         	<p>¿Desea continuar?</p>
         </div>
         <div class="modal-footer">

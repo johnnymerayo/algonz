@@ -2229,8 +2229,8 @@ TableTools.BUTTONS = {
 		"sMessage": null,
 		"bShowAll": true,
 		"sToolTip": "View print view",
-		"sButtonClass": "DTTT_button_print",
-		"sButtonText": "Print",
+		"sButtonClass": "btn-default",
+		"sButtonText": "Imprimir",
 		"fnClick": function ( nButton, oConfig ) {
 			this.fnPrint( true, oConfig );
 		}
@@ -2356,7 +2356,7 @@ TableTools.BUTTONS = {
 TableTools.classes = {
 	"container": "DTTT_container",
 	"buttons": {
-		"normal": "DTTT_button",
+		"normal": "btn",
 		"disabled": "DTTT_disabled"
 	},
 	"collection": {
