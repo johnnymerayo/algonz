@@ -26,7 +26,7 @@ import org.apache.commons.lang.StringUtils;
  */
 @Entity
 @Table(name = "empresa", catalog = "algonz")
-public class EmpresaVO implements java.io.Serializable {
+public class EmpresaVO extends AuditableBaseEntity implements java.io.Serializable {
 
 	/**
 	 * 

@@ -22,7 +22,7 @@ import javax.persistence.Transient;
  */
 @Entity
 @Table(name = "siniestro", catalog = "algonz")
-public class SiniestroVO implements java.io.Serializable {
+public class SiniestroVO extends AuditableBaseEntity implements java.io.Serializable {
 
 	/**
 	 * 

@@ -24,7 +24,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "empresa_comunidad", catalog = "algonz")
-public class EmpresaComunidadVO implements java.io.Serializable {
+public class EmpresaComunidadVO extends AuditableBaseEntity implements java.io.Serializable {
 
 	/**
 	 * 

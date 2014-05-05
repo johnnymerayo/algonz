@@ -28,7 +28,7 @@ import org.apache.commons.lang.time.DateUtils;
  */
 @Entity
 @Table(name = "aviso_empresa", catalog = "algonz")
-public class AvisoEmpresaVO implements java.io.Serializable {
+public class AvisoEmpresaVO extends AuditableBaseEntity implements java.io.Serializable {
 
 	/**
 	 * 

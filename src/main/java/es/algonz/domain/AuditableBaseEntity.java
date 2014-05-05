@@ -21,7 +21,7 @@ public abstract class AuditableBaseEntity {
 	private Date modifiedDtTm;
 	private String modifiedBy;
 
-	@Column(name = "CreatedBy", length = 30)
+	@Column(name = "CreatedBy", length = 30, updatable = false)
 	public String getCreatedBy() {
 		return createdBy;
 	}
@@ -31,7 +31,7 @@ public abstract class AuditableBaseEntity {
 	}
 
 
-	@Column(name = "CreatedDtTm", length = 23)
+	@Column(name = "CreatedDtTm", length = 23, updatable = false)
 	public Date getCreatedDtTm() {
 		return createdDtTm;
 	}

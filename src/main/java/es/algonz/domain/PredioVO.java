@@ -26,7 +26,7 @@ import org.apache.commons.validator.GenericValidator;
  */
 @Entity
 @Table(name = "predio", catalog = "algonz")
-public class PredioVO implements java.io.Serializable {
+public class PredioVO extends AuditableBaseEntity implements java.io.Serializable {
 
 	/**
 	 * 
