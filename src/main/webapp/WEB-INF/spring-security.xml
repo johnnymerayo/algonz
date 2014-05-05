@@ -8,6 +8,7 @@
 	<http use-expressions="true">
 		<intercept-url pattern="/action/login" access="hasRole('ROLE_ANONYMOUS')" />
 		<intercept-url pattern="/action/loginfailed" access="hasRole('ROLE_ANONYMOUS')" />
+		<intercept-url pattern="/action/admin/**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/action/**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
 		<intercept-url pattern="/css/**" access="hasRole('ROLE_ANONYMOUS')" />
 		<intercept-url pattern="/js/**" access="hasRole('ROLE_ANONYMOUS')" />

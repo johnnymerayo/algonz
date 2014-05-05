@@ -23,23 +23,7 @@
 	<definition name="login" extends="plantillaLogin">			
 		<put-attribute name="body" value="/WEB-INF/pages/login.jsp" />
 	</definition>
-	
-	<!-- Consignatario -->
-	
-	<definition name="listadoConsignatarios" extends="plantillaTiles">			
-		<put-attribute name="content" value="/WEB-INF/pages/consignatarios/listaConsignatarios.jsp" />
-	</definition>
-	
-	<definition name="detalleConsignatario" extends="plantillaTiles">			
-		<put-attribute name="content" value="/WEB-INF/pages/consignatarios/detalleConsignatario.jsp" />
-	</definition>
-	
-	<definition name="nuevoConsignatario" extends="plantillaTiles">			
-		<put-attribute name="content" value="/WEB-INF/pages/consignatarios/detalleConsignatario.jsp" />
-	</definition>
-	
-	
-	
+
 		
 	<!-- Comunidad -->
 	
@@ -126,7 +110,10 @@
 		<put-attribute name="content" value="/WEB-INF/pages/alarmas/listaAlarmas.jsp" />
 	</definition>
 	
-	
+	<!-- Usuario -->
+	<definition name="detalleUsuario" extends="plantillaTiles">			
+		<put-attribute name="content" value="/WEB-INF/pages/usuario/detalleUsuario.jsp" />
+	</definition>
 	
 	
 </tiles-definitions>

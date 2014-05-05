@@ -128,9 +128,9 @@
 					<td><fmt:formatDate value="${documento.feGuardado}" pattern="dd/MM/yyyy"/></td>
 					<td>
 						<a href="action/avisosEmpresa/downloadDocument?id=${documento.cnDocumento }">
-							<i class="glyphicon glyphicon-download"></i></a> &nbsp;
+							<i class="glyphicon glyphicon-download"  title="Descargar"></i></a> &nbsp;
 							<a data-toggle="modal" href="#modalDelete" class="delete_row" data-id="action/avisosEmpresa/deleteDocument?codAvisoEmpresa=${avisoEmpresa.cnAvisoEmpresa }&amp;id=${documento.cnDocumento }">
-							<i class="glyphicon glyphicon-remove"></i></a>
+							<i class="glyphicon glyphicon-remove"  title="Eliminar"></i></a>
 					</td>
 				</tr>
 			</c:forEach>

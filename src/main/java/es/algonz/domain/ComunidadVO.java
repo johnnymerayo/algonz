@@ -5,12 +5,15 @@ package es.algonz.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
@@ -21,7 +24,7 @@ import javax.persistence.Transient;
  */
 @Entity
 @Table(name = "comunidad", catalog = "algonz")
-public class ComunidadVO implements java.io.Serializable {
+public class ComunidadVO extends AuditableBaseEntity implements java.io.Serializable{
 
 	/**
 	 * 
@@ -38,6 +41,10 @@ public class ComunidadVO implements java.io.Serializable {
 	private Set<DocumentoVO> documentos = new HashSet<DocumentoVO>(0);
 	// Transient: Para mostrarlos en el detalle de la comunidad
 	private List<PredioVO> representantes;
+	
+	
+	private UsuarioVO gestor;
+	
 
 	public ComunidadVO() {
 	}
@@ -144,6 +151,23 @@ public class ComunidadVO implements java.io.Serializable {
 	public void setRepresentantes(List<PredioVO> representantes) {
 		this.representantes = representantes;
 	}
+
+	
+	
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "IdUsuario", nullable = false)
+	public UsuarioVO getGestor() {
+		return gestor;
+	}
+
+	public void setGestor(UsuarioVO gestor) {
+		this.gestor = gestor;
+	}
+
+	
+	
+	
 	
 
 }

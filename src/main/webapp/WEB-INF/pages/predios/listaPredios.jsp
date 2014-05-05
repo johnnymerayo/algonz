@@ -40,9 +40,9 @@
 					<td><a href="mailto:${predio.terceroByCnPropietario.teEmail}">${predio.terceroByCnPropietario.teEmail}</a></td>
 					<td>
 						<a href="action/predios/editar?id=${predio.cnPredio }">
-							<i class="glyphicon glyphicon-edit"></i></a> &nbsp;
+							<i class="glyphicon glyphicon-edit"  title="Consultar"></i></a> &nbsp;
 						<a data-toggle="modal" href="#modalDelete" class="delete_row" data-id="action/predios/eliminar?id=${predio.cnPredio }">
-							<i class="glyphicon glyphicon-remove"></i></a>
+							<i class="glyphicon glyphicon-remove"  title="Eliminar"></i></a>
 					</td>
 				</tr>
 			</c:forEach>

@@ -19,6 +19,23 @@
 
 
 
+
+<div class="row">
+
+<sec:authorize access="hasRole('ROLE_ADMIN')">
+	<t:select id="gestor" search="false" itemLabel="idSistema" itemValue="idUsuario" items="${usuariosCombo}" path="gestor.idUsuario" required="false" label="Gestionada por:" emptyOption="true" tabindex="1" gridClass="col-lg-4"/>
+</sec:authorize>		
+
+
+<sec:authorize access="not hasRole('ROLE_ADMIN')">
+	<t:select id="gestor" search="false" itemLabel="idSistema" itemValue="idUsuario" items="${usuariosCombo}" path="gestor.idUsuario" required="false" label="Gestionada por:" emptyOption="true" tabindex="1" gridClass="col-lg-4" disabled="true"/>
+</sec:authorize>		
+
+
+
+</div>
+
+
 <div class="row">
 <t:input path="caCif" label="CIF" required="true" maxlength="10" tabindex="1" gridClass="col-lg-3"/>
 <t:input path="teNombre" label="Nombre" required="true" maxlength="100" tabindex="2" gridClass="col-lg-6"/>
@@ -82,9 +99,9 @@
 					<td>${portal.teNombre}</td>
 					<td>
 						<a href="action/portales/editar?id=${portal.cnPortal }">
-							<i class="glyphicon glyphicon-edit"></i></a> &nbsp;
+							<i class="glyphicon glyphicon-edit"  title="Consultar"></i></a> &nbsp;
 						<a data-toggle="modal" href="#modalDelete" class="delete_row" data-id="action/portales/eliminar?id=${portal.cnPortal }">
-							<i class="glyphicon glyphicon-remove"></i></a>
+							<i class="glyphicon glyphicon-remove"  title="Eliminar"></i></a>
 					</td>
 				</tr>
 			</c:forEach>
@@ -152,7 +169,7 @@
 					<td>${predio.tePredio}</td>
 					<!-- <td>
 						<a href="action/predios/editar?id=${predio.cnPredio }">
-							<i class="glyphicon glyphicon-edit"></i></a>
+							<i class="glyphicon glyphicon-edit"  title="Consultar"></i></a>
 					</td> -->	
 				</tr>
 			</c:forEach>
@@ -215,9 +232,9 @@
 					<td><fmt:formatDate value="${empresaComunidad.feFin}" pattern="dd/MM/yyyy"/></td>
 					<td>
 						<a href="action/empresasComunidad/editar?id=${empresaComunidad.cnEmpresaComunidad }">
-							<i class="glyphicon glyphicon-edit"></i></a> &nbsp;
+							<i class="glyphicon glyphicon-edit"  title="Consultar"></i></a> &nbsp;
 						<a data-toggle="modal" href="#modalDelete" class="delete_row" data-id="action/empresasComunidad/eliminar?id=${empresaComunidad.cnEmpresaComunidad }">
-							<i class="glyphicon glyphicon-remove"></i></a>
+							<i class="glyphicon glyphicon-remove"  title="Eliminar"></i></a>
 					</td>
 				</tr>
 			</c:forEach>
@@ -272,9 +289,9 @@
 					<td><fmt:formatDate value="${documento.feGuardado}" pattern="dd/MM/yyyy"/></td>
 					<td>
 						<a href="action/comunidades/downloadDocument?id=${documento.cnDocumento }">
-							<i class="glyphicon glyphicon-download"></i></a> &nbsp;
+							<i class="glyphicon glyphicon-download"  title="Descargar"></i></a> &nbsp;
 						<a data-toggle="modal" href="#modalDelete" class="delete_row" data-id="action/comunidades/deleteDocument?codComunidad=${comunidad.cnComunidad }&amp;id=${documento.cnDocumento }">
-							<i class="glyphicon glyphicon-remove"></i></a>
+							<i class="glyphicon glyphicon-remove"  title="Eliminar"></i></a>
 							
 					</td>
 				</tr>

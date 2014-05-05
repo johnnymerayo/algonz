@@ -47,6 +47,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import es.algonz.controller.utils.CombosUtils;
 import es.algonz.controller.utils.ControladorUtils;
 import es.algonz.domain.ComunidadVO;
 import es.algonz.domain.DocumentoVO;
@@ -69,6 +70,10 @@ public class ComunidadController {
 	@Autowired
 	private ControladorUtils controladorUtils;
 
+	@Autowired
+	private CombosUtils combosUtils;
+	
+	
 	@InitBinder(RequestKeys.COMUNIDAD)
 	protected void comunidad(WebDataBinder binder) {
 		binder.setValidator(new ComunidadValidator());
@@ -92,9 +97,12 @@ public class ComunidadController {
 	public String editar(Model model,
 			@RequestParam(RequestKeys.ID) String id, HttpSession session) {
 		if (id != null) {	
-				ComunidadVO comunidad  = comunidadManager.findById(new Integer (id).intValue());
+				ComunidadVO comunidad  = comunidadManager.findById(new Integer (id).intValue()); 
 				comunidad.setRepresentantes(comunidadManager.getRepresentantes(comunidad.getCnComunidad()));
 				model.addAttribute(RequestKeys.COMUNIDAD, comunidad);
+				
+				// Cargamos el combo usuarios
+				model.addAttribute("usuariosCombo", combosUtils.loadUsuarios());
 			
 		}
 		return "detalleComunidad";
@@ -123,6 +131,10 @@ public class ComunidadController {
 	public String nuevo(Model model, HttpSession session) {
 		ComunidadVO comunidad = new ComunidadVO();		
 		model.addAttribute(RequestKeys.COMUNIDAD, comunidad);
+
+		// Cargamos el combo usuarios
+		model.addAttribute("usuariosCombo", combosUtils.loadUsuarios());
+		
 		return "detalleComunidad";
 	}
 
@@ -132,12 +144,26 @@ public class ComunidadController {
 			BindingResult binding, Model model) {
 		if (binding.hasErrors()) {
 			model.addAttribute(RequestKeys.COMUNIDAD, comunidad);
+
+			// Cargamos el combo usuarios
+			model.addAttribute("usuariosCombo", combosUtils.loadUsuarios());
+			
 			return "detalleComunidad";
 		}
 		if (comunidad != null) {
-			if (comunidad.getCnComunidad() != null && !StringUtils.isBlank(comunidad.getCnComunidad().toString()))
+			if (comunidad.getCnComunidad() != null && !StringUtils.isBlank(comunidad.getCnComunidad().toString())){
+				
+				if (comunidad.getGestor() != null  && StringUtils.isBlank(comunidad.getGestor().getIdUsuario())){
+					// Para que no de error en la FK
+					comunidad.setGestor(null);
+				}
 				comunidadManager.merge(comunidad);
+			}
 			else {
+				if (comunidad.getGestor() != null  && StringUtils.isBlank(comunidad.getGestor().getIdUsuario())){
+					// Para que no de error en la FK
+					comunidad.setGestor(null);
+				}
 				comunidadManager.persist(comunidad);
 			}
 			model.addAttribute(RequestKeys.MESSAGE, "Almacenado correctamente");

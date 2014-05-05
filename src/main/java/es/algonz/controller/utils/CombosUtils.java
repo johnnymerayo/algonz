@@ -15,12 +15,14 @@ import es.algonz.domain.PlantaVO;
 import es.algonz.domain.PropertyBean;
 import es.algonz.domain.TipoEmpresaVO;
 import es.algonz.domain.TipoRepresentanteVO;
+import es.algonz.domain.UsuarioVO;
 import es.algonz.service.EmpresaComunidadManager;
 import es.algonz.service.EmpresaManager;
 import es.algonz.service.EstadoManager;
 import es.algonz.service.PlantaManager;
 import es.algonz.service.TipoEmpresaManager;
 import es.algonz.service.TipoRepresentanteManager;
+import es.algonz.service.UsuarioManager;
 
 @Service("combosUtils")
 public class CombosUtils
@@ -37,6 +39,9 @@ public class CombosUtils
 	private TipoEmpresaManager tipoEmpresaManager;
 	@Autowired
 	private EstadoManager estadoManager;
+	@Autowired
+	private UsuarioManager usuarioManager;
+	
 
 	public List<EmpresaVO> loadEmpresas()
 	{
@@ -141,5 +146,11 @@ public class CombosUtils
 		
 	}
 	
+	
+
+	public List<UsuarioVO> loadUsuarios()
+	{
+		return usuarioManager.getUsuarios(new UsuarioVO());
+	}
 	
 }

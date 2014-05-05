@@ -30,9 +30,9 @@
 					<td>${comunidad.teCp}</td>
 					<td>
 						<a href="action/comunidades/editar?id=${comunidad.cnComunidad }">
-							<i class="glyphicon glyphicon-edit"></i></a> &nbsp;
+							<i class="glyphicon glyphicon-edit"  title="Consultar"></i></a> &nbsp;
 						<a data-toggle="modal" href="#modalDelete" class="delete_row" data-id="action/comunidades/eliminar?id=${comunidad.cnComunidad }">
-							<i class="glyphicon glyphicon-remove"></i></a>
+							<i class="glyphicon glyphicon-remove"  title="Eliminar"></i></a>
 					</td>
 				</tr>
 			</c:forEach>

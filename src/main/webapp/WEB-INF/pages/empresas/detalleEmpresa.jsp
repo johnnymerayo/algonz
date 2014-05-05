@@ -98,7 +98,7 @@
 						<td>${actuacion.teDescripcion}</td>
 						<td><a
 							href="action/actuaciones/editar?id=${actuacion.cnActuacion }">
-								<i class="glyphicon glyphicon-edit"></i>
+								<i class="glyphicon glyphicon-edit"  title="Consultar"></i>
 						</a></td>
 					</tr>
 				</c:forEach>
@@ -152,7 +152,7 @@
 						<td>${aviso.teDescripcion}</td>
 						<td><a
 							href="action/avisosEmpresa/editar?id=${aviso.cnAvisoEmpresa }">
-								<i class="glyphicon glyphicon-edit"></i></a>
+								<i class="glyphicon glyphicon-edit"  title="Consultar"></i></a>
 						</td>
 					</tr>
 				</c:forEach>

@@ -1,6 +1,8 @@
 package es.algonz.domain;
 
 import java.io.Serializable;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -12,6 +14,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.apache.commons.lang.StringUtils;
 
 @Entity
 @Table(name = "USUARIO")
@@ -28,12 +33,33 @@ public class UsuarioVO implements Serializable {
 	private String pwdSistema;
 	@Column(name = "Enabled")
 	private boolean enabled;
-	@OneToOne(mappedBy = "usuario")
-	private ConsignatarioVO consignatario;
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "USUARIO_ROL", joinColumns = { @JoinColumn(name = "IdUsuario", referencedColumnName = "IdUsuario") }, inverseJoinColumns = { @JoinColumn(name = "IdRol", referencedColumnName = "IdRol") })
 	private List<RolVO> roles;
 
+	
+
+	@Column(name = "teNombre")
+	private String teNombre;
+	@Column(name = "teApellido1")
+	private String teApellido1;
+	@Column(name = "teApellido2")
+	private String teApellido2;
+	@Column(name = "teEmail")
+	private String teEmail;
+
+
+	@Transient
+	private String pwdSistemaOld;
+	@Transient
+	private String pwdSistemaNew;
+	@Transient
+	private String pwdSistemaConfirm;
+	
+	
+	
+	
+	
 	public String getIdUsuario() {
 		return idUsuario;
 	}
@@ -66,13 +92,6 @@ public class UsuarioVO implements Serializable {
 		this.enabled = enabled;
 	}
 
-	public ConsignatarioVO getConsignatario() {
-		return consignatario;
-	}
-
-	public void setConsignatario(ConsignatarioVO consignatario) {
-		this.consignatario = consignatario;
-	}
 
 	public List<RolVO> getRoles() {
 		return roles;
@@ -80,6 +99,82 @@ public class UsuarioVO implements Serializable {
 
 	public void setRoles(List<RolVO> roles) {
 		this.roles = roles;
+	}
+	
+	
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="gestor")
+	private List<ComunidadVO> comunidades;
+	
+
+	public List<ComunidadVO> getComunidades() {
+		return comunidades;
+	}
+
+	public void setComunidades(List<ComunidadVO> comunidades) {
+		this.comunidades = comunidades;
+	}
+	
+	
+	
+	
+
+	public String getTeNombre() {
+		return teNombre;
+	}
+
+	public void setTeNombre(String teNombre) {
+		this.teNombre = teNombre;
+	}
+
+	public String getTeApellido1() {
+		return teApellido1;
+	}
+
+	public void setTeApellido1(String teApellido1) {
+		this.teApellido1 = teApellido1;
+	}
+
+	public String getTeApellido2() {
+		return teApellido2;
+	}
+
+	public void setTeApellido2(String teApellido2) {
+		this.teApellido2 = teApellido2;
+	}
+
+	public String getTeEmail() {
+		return teEmail;
+	}
+
+	public void setTeEmail(String teEmail) {
+		this.teEmail = teEmail;
+	}
+
+
+	@Transient
+	public String getPwdSistemaOld() {
+		return getSecurePasswordSHA1(pwdSistemaOld);
+	}
+
+	public void setPwdSistemaOld(String pwdSistemaOld) {
+		this.pwdSistemaOld = pwdSistemaOld;
+	}
+
+	public String getPwdSistemaNew() {
+		return getSecurePasswordSHA1(pwdSistemaNew);
+	}
+
+	public void setPwdSistemaNew(String pwdSistemaNew) {
+		this.pwdSistemaNew = pwdSistemaNew;
+	}
+
+	public String getPwdSistemaConfirm() {
+		return getSecurePasswordSHA1(pwdSistemaConfirm);
+	}
+
+	public void setPwdSistemaConfirm(String pwdSistemaConfirm) {
+		this.pwdSistemaConfirm = pwdSistemaConfirm;
 	}
 
 	@Override
@@ -94,6 +189,38 @@ public class UsuarioVO implements Serializable {
 			return true;
 		}
 		return false;
+	}
+	
+	
+	
+
+	private static String getSecurePasswordSHA1(String passwordToHash) {
+		String generatedPassword = null;
+		
+		if (passwordToHash == null)
+			return null;
+		if (StringUtils.isEmpty(passwordToHash))
+			return "";
+	
+		try {
+			 
+	        MessageDigest md = MessageDigest.getInstance("SHA-1");
+	        md.update(passwordToHash.getBytes());
+	 
+	        byte byteData[] = md.digest();
+	 
+	        //convert the byte to hex format method 1
+	        StringBuffer sb = new StringBuffer();
+	        for (int i = 0; i < byteData.length; i++) {
+	         sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+	        }
+
+			generatedPassword = sb.toString();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		
+		return generatedPassword;
 	}
 
 }

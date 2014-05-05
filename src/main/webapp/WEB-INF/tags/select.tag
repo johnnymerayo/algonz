@@ -41,13 +41,17 @@
 		                ); });
 		    </script>    
 	
+	
+			<c:if test="${empty disabled?false:disabled }">   		
+					<form:hidden path="${path}" />
+			</c:if>
   
             <form:select path="${path}" cssClass="form-control ${empty cssClass ? 'input-xlarge' : cssClass}" id="${empty id?path:id }" tabindex="${empty tabindex?'':tabindex }" disabled="${empty disabled?false:disabled }" onchange="${empty onchange?'':onchange }">
            
 			<c:if test="${emptyOption}">
            		<form:option value="">Seleccionar...</form:option>
 			</c:if>
-           
+			
             <form:options items="${items }" itemLabel="${itemLabel }" itemValue="${itemValue }"/>
             </form:select>
             <c:if test="${status.error}">

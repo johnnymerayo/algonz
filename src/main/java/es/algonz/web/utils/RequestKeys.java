@@ -8,9 +8,6 @@ public class RequestKeys
 	public static final String ID = "id";
 	public static final String MESSAGE = "message";
 	public static final String CODIGO = "codigo";
-
-	public final static String CONSIGNATARIO = "consignatario";
-	public final static String LISTA_CONSIGNATARIOS = "listaConsignatarios";
 	
 	public final static String EMPRESA = "empresa";
 	public static final String CODIGO_EMPRESA = "codEmpresa";
@@ -45,6 +42,10 @@ public class RequestKeys
 	public static final String AVISO_EMPRESA = "avisoEmpresa";
 	public static final String CODIGO_AVISO_EMPRESA = "codAvisoEmpresa";
 	public static final String LISTA_AVISOS_EMPRESA = "listaAvisosEmpresa";
+	
+	public static final String USUARIO = "usuario";
+	public static final String CODIGO_USUARIO = "codUsuario";
+	public static final String LISTA_USUARIOS = "listaUsuarios";
 
 
 }
