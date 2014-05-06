@@ -34,7 +34,10 @@ public class UsuarioController {
 	protected void usuario(WebDataBinder binder) {
 		binder.setValidator(new UsuarioValidator());
 	}
-
+	
+	
+	
+/*
 	@RequestMapping(value = "/listado", method = RequestMethod.GET)
 	public String listado(Model model, HttpSession session) {		
 		List<UsuarioVO> listaUsuarios = null;
@@ -48,6 +51,7 @@ public class UsuarioController {
 	public String listadoPost(Model model, HttpSession session) {
 		return listado(model, session);
 	}
+*/
 
 	@RequestMapping(value = "/editar", method = RequestMethod.GET)
 	public String editar(Model model,
@@ -64,6 +68,7 @@ public class UsuarioController {
 	return "detalleUsuario";
 	}
 
+	/*
 	@RequestMapping(value = "/eliminar", method = RequestMethod.GET)
 	public String eliminar(Model model,
 			@RequestParam(RequestKeys.ID) String id, HttpSession session, RedirectAttributes redirectAttrs) {
@@ -77,7 +82,7 @@ public class UsuarioController {
 		model.addAttribute(RequestKeys.USUARIO, usuario);
 		return "detalleUsuario";
 	}
-	
+	*/
 	
 	@RequestMapping(value = "/guardar", method = RequestMethod.POST)
 	public String guardar(
@@ -110,7 +115,7 @@ public class UsuarioController {
 				usuarioManager.merge(usuario);
 			}
 			else {
-				usuarioManager.persist(usuario);
+				usuarioManager.merge(usuario);
 			}
 			
 

@@ -38,6 +38,9 @@
 	<t:input path="teApellido2" label="Segundo apellido" required="false" maxlength="100" tabindex="4" gridClass="col-lg-4"/>
 </div>
 
+
+
+<c:if test="${not empty usuario.idUsuario}">
 <div class="panel-group" id="accordion">
 
   <div class="panel panel-default">
@@ -66,6 +69,8 @@
   </div>
   
 </div>
+
+</c:if>
 
 	<div>&nbsp;</div>
 

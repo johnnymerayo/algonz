@@ -115,5 +115,10 @@
 		<put-attribute name="content" value="/WEB-INF/pages/usuario/detalleUsuario.jsp" />
 	</definition>
 	
+	<definition name="listadoUsuarios" extends="plantillaTiles">			
+		<put-attribute name="content" value="/WEB-INF/pages/usuario/listaUsuarios.jsp" />
+	</definition>
+	
+	
 	
 </tiles-definitions>

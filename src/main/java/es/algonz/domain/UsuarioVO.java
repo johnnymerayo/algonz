@@ -8,6 +8,8 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -25,6 +27,7 @@ public class UsuarioVO implements Serializable {
 	private static final long serialVersionUID = 2412879844301530763L;
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "IdUsuario")
 	private String idUsuario;
 	@Column(name = "IdSistema")
@@ -56,7 +59,10 @@ public class UsuarioVO implements Serializable {
 	@Transient
 	private String pwdSistemaConfirm;
 	
-	
+	@Transient
+	public String getNombreCompleto(){
+		return this.teNombre + " " + this.teApellido1 + " " + this.teApellido2;
+	}
 	
 	
 	

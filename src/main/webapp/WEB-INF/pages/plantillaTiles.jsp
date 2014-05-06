@@ -64,9 +64,9 @@ body {
             <!-- <li><a href="http://www.bootply.com" target="ext">About</a></li> -->
             <!-- <li><a href="#contact">Contact</a></li> -->
            <li class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i>	${usuario.idSistema } <b class="caret"></b></a>
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i>	${usuario_ses.idSistema } <b class="caret"></b></a>
 		<ul class="dropdown-menu">
-			<li><a href="<c:url value="action/usuario/editar?id=${usuario.idUsuario }" />">Preferencias</a></li>
+			<li><a href="<c:url value="action/usuario/editar?id=${usuario_ses.idUsuario }" />">Preferencias</a></li>
 			<li><a href="<c:url value="/j_spring_security_logout" />">Salir</a></li>
 		</ul>
 	</li>			
@@ -87,9 +87,13 @@ body {
 			<div class="well sidebar-nav-fixed">
 				<ul class="nav nav-list">
 				<sec:authorize access="hasRole('ROLE_ADMIN')">
-					<li class="nav-header">Administración</li>			
+					<li class="nav-header">Administración</li>		
+					<li><a href="action/admin/usuario/listado">Usuarios</a></li>		
 						<!-- <li><a href="action/siniestros/listado">Siniestros</a></li>		
 						<li><a href="action/portales/listado">Portales</a></li>				-->				
+					
+					<li class="nav-header">Gestión</li>			
+					
 					</sec:authorize>					
 					
 						<li><a href="action/alarmas/listado">Alarmas</a></li>	
