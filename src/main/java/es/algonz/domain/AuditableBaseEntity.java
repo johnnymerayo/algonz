@@ -5,13 +5,9 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
-import org.hibernate.annotations.Generated;
-import org.hibernate.annotations.GenerationTime;
 
 @MappedSuperclass
 @EntityListeners(value={ AuditableListener.class })

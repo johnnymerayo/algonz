@@ -1,6 +1,6 @@
 package es.algonz.repository;
 
-// Generated 15-jul-2013 17:23:48 by Hibernate Tools 3.4.0.CR1
+
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -13,9 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 import es.algonz.domain.TipoPredioVO;
 
 /**
- * DAOImpl object for domain model class TipoPredio.
+ * DAO TipoPredio.
  * @see es.algonz.TipoPredioVO
- * @author Hibernate Tools
+ * 
  */
 @Repository(value = "TipoPredioDAO")
 public class TipoPredioDAOImpl implements TipoPredioDAO{

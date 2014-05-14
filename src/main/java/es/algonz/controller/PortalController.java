@@ -3,7 +3,6 @@ package es.algonz.controller;
 import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -112,7 +111,6 @@ public class PortalController {
 						"Eliminado correctamente");
 				redirectAttrs.addFlashAttribute(RequestKeys.MESSAGE, "Eliminado correctamente");
 			}
-			//return "forward:/action/portales/listado";
 			return "redirect:/action/comunidades/editar?id=" + portal.getComunidad().getCnComunidad();
 	}
 
@@ -151,10 +149,8 @@ public class PortalController {
 			else {
 				portalManager.persist(portal);
 			}
-			//model.addAttribute(RequestKeys.MESSAGE, "Almacenado correctamente");
 			redirectAttrs.addFlashAttribute(RequestKeys.MESSAGE, "Almacenado correctamente");
 		}
-		//return "forward:/action/portales/listado";
 		return "redirect:/action/comunidades/editar?id=" + portal.getComunidad().getCnComunidad();
 		}
 
@@ -176,9 +172,8 @@ public class PortalController {
 			
         	BufferedInputStream resourceAsStream = ((BufferedInputStream) Thread.currentThread().getContextClassLoader()
                     .getResourceAsStream(reportTemplateUrl));
-            //get report file and then load into jasperDesign
+
             jasperDesign = JRXmlLoader.load(resourceAsStream);
-            //compile the jasperDesign
             jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
         	
@@ -196,8 +191,6 @@ public class PortalController {
                 
                 PortalVO portal =  portalManager.findById(new Integer(codPortal));
                 
-                
-                
                 Set<PredioVO>  predios = (java.util.Set<PredioVO>) portal.getPredios();
                 
                 Iterator<PredioVO> itr = predios.iterator();
@@ -210,8 +203,8 @@ public class PortalController {
                 	dataReport.add(predio);
                 	
 		                
-		                String linea1, linea2, linea3, linea4, linea5  = ""; 
-		                String linea6 = ""; 
+		                String linea1, linea2, linea3, linea4  = ""; 
+		                
 		
 		    			if (GenericValidator.isBlankOrNull(predio.getTerceroByCnPropietario().getTeDireccionSecundaria())){
 		    			// Imprimimos la dirección primaria
@@ -283,31 +276,15 @@ public class PortalController {
             }    
            
             
-         // Set our response properties
-         // Here you can declare a custom filename
          String fileName = "UserReport.pdf";
          response.setHeader("Content-Disposition", "inline; filename="+ fileName);
 
-         // Set content type
          response.setContentType("application/pdf");
 
-
-         // Export is most important part of reports
          JRPdfExporter exporter = new JRPdfExporter(); 
          exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
          exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, response.getOutputStream());
          exporter.exportReport();
-         
-//
-// 		jasperPrint = JasperFillManager.fillReport(jasperReport, jasperParameter, con);
-// 		 
-// 		list.add(jasperPrint);
-// 		 
-// 		exp.setParameter(JRPdfExporterParameter.JASPER_PRINT_LIST, list);
-// 		 
-// 		exp.setParameter(JRPdfExporterParameter.OUTPUT_FILE, new File("test.pdf"));
-// 		 
-// 		exp.exportReport();
 
 
  		return "redirect:/action/portales/editar?id=" + codPortal;
@@ -326,8 +303,6 @@ public class PortalController {
 		
 	}
 	
-	
-
 
     public static JasperDesign jasperDesignResumen;
     public static JasperReport jasperReportResumen;
@@ -347,10 +322,7 @@ public class PortalController {
             jasperDesignResumen = JRXmlLoader.load(resourceAsStreamResumen);
             //compile the jasperDesign
             jasperReportResumen = JasperCompileManager.compileReport(jasperDesignResumen);
-            
-            
 
-        	
     		List<PredioVO> dataReport = new LinkedList<PredioVO>();
            
         	
@@ -385,12 +357,8 @@ public class PortalController {
                 paramsResumen.put("portal", portal.getTeCalle() + " " + portal.getTeNombre());
 
 
-    				// fill the ready report with data and parameter
     				jasperPrint = JasperFillManager.fillReport(
     						jasperReportResumen, paramsResumen, 	new JRBeanCollectionDataSource(dataReport));
-
-    				// view the report using JasperViewer
-    				// JasperViewer.viewReport(jasperPrint);
 
                 
                 
@@ -401,33 +369,16 @@ public class PortalController {
             }    
            
             
-            
-
-         // Set our response properties
-         // Here you can declare a custom filename
          String fileName = "UserReport.pdf";
          response.setHeader("Content-Disposition", "inline; filename="+ fileName);
 
-         // Set content type
          response.setContentType("application/pdf");
 
 
-         // Export is most important part of reports
          JRPdfExporter exporter = new JRPdfExporter(); 
          exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
          exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, response.getOutputStream());
          exporter.exportReport();
-         
-//
-// 		jasperPrint = JasperFillManager.fillReport(jasperReport, jasperParameter, con);
-// 		 
-// 		list.add(jasperPrint);
-// 		 
-// 		exp.setParameter(JRPdfExporterParameter.JASPER_PRINT_LIST, list);
-// 		 
-// 		exp.setParameter(JRPdfExporterParameter.OUTPUT_FILE, new File("test.pdf"));
-// 		 
-// 		exp.exportReport();
 
 
  		return "redirect:/action/portales/editar?id=" + codPortal;

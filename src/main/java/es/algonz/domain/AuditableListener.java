@@ -12,8 +12,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 public class AuditableListener implements java.io.Serializable {
 
 
+	private static final long serialVersionUID = 5166917970075893930L;
 
-	 @PrePersist
+	@PrePersist
 	 public void prePersist(AuditableBaseEntity e) {
 		 
 		 String name = "UNKNOWN";

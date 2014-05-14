@@ -1,6 +1,6 @@
 package es.algonz.repository;
 
-// Generated 15-jul-2013 17:23:48 by Hibernate Tools 3.4.0.CR1
+
 
 import java.util.List;
 
@@ -19,9 +19,9 @@ import es.algonz.domain.AvisoEmpresaVO;
 import es.algonz.web.utils.ConstantesKeys;
 
 /**
- * DAOImpl object for domain model class AvisoEmpresa.
+ * DAO AvisoEmpresa.
  * @see es.algonz.AvisoEmpresaVO
- * @author Hibernate Tools
+ * 
  */
 @Repository(value = "AvisoEmpresaDAO")
 public class AvisoEmpresaDAOImpl implements AvisoEmpresaDAO{

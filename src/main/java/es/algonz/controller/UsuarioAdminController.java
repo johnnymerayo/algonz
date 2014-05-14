@@ -122,7 +122,6 @@ public class UsuarioAdminController {
 			model.addAttribute("colapsar", true);
 			
 			model.addAttribute(RequestKeys.MESSAGE, "Almacenado correctamente");
-			//redirectAttrs.addFlashAttribute(RequestKeys.MESSAGE, "Almacenado correctamente");
 		}
 
 		return "detalleUsuario";

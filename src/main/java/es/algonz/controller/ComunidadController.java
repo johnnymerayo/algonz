@@ -280,33 +280,16 @@ public class ComunidadController {
             }
             
 
-         // Set our response properties
-         // Here you can declare a custom filename
          String fileName = "UserReport.pdf";
          response.setHeader("Content-Disposition", "inline; filename="+ fileName);
-
-         // Set content type
          response.setContentType("application/pdf");
 
 
-         // Export is most important part of reports
          JRPdfExporter exporter = new JRPdfExporter(); 
          exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
          exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, response.getOutputStream());
          exporter.exportReport();
          
-         
-//         JRRtfExporter exporter2= new JRRtfExporter();
-
-//         // Set content type
-//         fileName = "UserReport.rtf";
-//         response.setHeader("Content-Disposition", "inline; filename="+ fileName);
-//         response.setContentType("application/rtf");
-//         exporter2.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
-//         exporter2.setParameter(JRExporterParameter.OUTPUT_STREAM, response.getOutputStream());
-//         exporter2.exportReport();
-//         
-
 
          return this.editar(model, codComunidad, session);
         }

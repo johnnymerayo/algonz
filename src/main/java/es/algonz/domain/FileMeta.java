@@ -50,6 +50,5 @@ public class FileMeta implements Serializable{
 		this.bytes = bytes;
 	}
  
-         //setters & getters
     
 }

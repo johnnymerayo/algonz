@@ -100,11 +100,8 @@ public class EmpresaComunidadController {
 			redirectAttrs.addFlashAttribute(RequestKeys.ERROR, "No se ha podido eliminar el elemento seleccionado.");
 			return "redirect:/action/comunidades/editar?id=" + idComunidad;
 		}
-				//model.addAttribute(RequestKeys.MESSAGE,
-					//	"Eliminado correctamente");
 				redirectAttrs.addFlashAttribute(RequestKeys.MESSAGE, "Eliminado correctamente");
 		}
-		//return "forward:/action/empresasComunidad/listado";
 		return "redirect:/action/comunidades/editar?id=" + idComunidad;
 	}
 
@@ -114,7 +111,6 @@ public class EmpresaComunidadController {
 		model.addAttribute(RequestKeys.EMPRESA_COMUNIDAD, empresaComunidad);
 		// Cargamos el combo de tipos de empresa
 		model.addAttribute("tiposEmpresaCombo", combosUtils.loadTiposEmpresa());
-		//model.addAttribute("empresasCombo", combosUtils.loadEmpresas());
 		return "detalleEmpresaComunidad";
 	}
 	
@@ -129,7 +125,6 @@ public class EmpresaComunidadController {
 		model.addAttribute(RequestKeys.EMPRESA_COMUNIDAD, empresaComunidad);
 		// Cargamos el combo de tipos de empresa
 		model.addAttribute("tiposEmpresaCombo", combosUtils.loadTiposEmpresa());
-		// model.addAttribute("empresasCombo", combosUtils.loadEmpresas());
 		return "detalleEmpresaComunidad";
 	}
 	
@@ -155,10 +150,8 @@ public class EmpresaComunidadController {
 			else {
 				empresaComunidadManager.persist(empresaComunidad);
 			}
-			//model.addAttribute(RequestKeys.MESSAGE, "Almacenado correctamente");
 			redirectAttrs.addFlashAttribute(RequestKeys.MESSAGE, "Almacenado correctamente");
 		}
-		//return "forward:/action/empresasComunidad/listado";
 		return "redirect:/action/comunidades/editar?id=" + empresaComunidad.getComunidad().getCnComunidad();
 	}
 	

@@ -1,7 +1,5 @@
 package es.algonz.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -36,22 +34,6 @@ public class UsuarioController {
 	}
 	
 	
-	
-/*
-	@RequestMapping(value = "/listado", method = RequestMethod.GET)
-	public String listado(Model model, HttpSession session) {		
-		List<UsuarioVO> listaUsuarios = null;
-		listaUsuarios = usuarioManager.getUsuarios(null);
-		model.addAttribute(RequestKeys.LISTA_USUARIOS,
-				listaUsuarios);
-		return "listadoUsuarios";
-	}
-
-	@RequestMapping(value = "/listado", method = RequestMethod.POST)
-	public String listadoPost(Model model, HttpSession session) {
-		return listado(model, session);
-	}
-*/
 
 	@RequestMapping(value = "/editar", method = RequestMethod.GET)
 	public String editar(Model model,
@@ -68,21 +50,6 @@ public class UsuarioController {
 	return "detalleUsuario";
 	}
 
-	/*
-	@RequestMapping(value = "/eliminar", method = RequestMethod.GET)
-	public String eliminar(Model model,
-			@RequestParam(RequestKeys.ID) String id, HttpSession session, RedirectAttributes redirectAttrs) {
-		
-			return "forward:/action/usuario/listado";
-	}
-
-	@RequestMapping(value = "/nuevo", method = RequestMethod.GET)
-	public String nuevo(Model model, HttpSession session) {
-		UsuarioVO usuario = new UsuarioVO();		
-		model.addAttribute(RequestKeys.USUARIO, usuario);
-		return "detalleUsuario";
-	}
-	*/
 	
 	@RequestMapping(value = "/guardar", method = RequestMethod.POST)
 	public String guardar(
@@ -127,7 +94,6 @@ public class UsuarioController {
 			model.addAttribute("colapsar", true);
 			
 			model.addAttribute(RequestKeys.MESSAGE, "Almacenado correctamente");
-			//redirectAttrs.addFlashAttribute(RequestKeys.MESSAGE, "Almacenado correctamente");
 		}
 
 		return "detalleUsuario";

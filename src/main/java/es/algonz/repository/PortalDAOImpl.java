@@ -1,6 +1,6 @@
 package es.algonz.repository;
 
-// Generated 15-jul-2013 17:23:48 by Hibernate Tools 3.4.0.CR1
+
 
 import java.util.List;
 
@@ -18,9 +18,9 @@ import org.springframework.transaction.annotation.Transactional;
 import es.algonz.domain.PortalVO;
 
 /**
- * DAOImpl object for domain model class Portal.
+ * DAO Portal.
  * @see es.algonz.PortalVO
- * @author Hibernate Tools
+ * 
  */
 @Repository(value = "PortalDAO")
 public class PortalDAOImpl implements PortalDAO{

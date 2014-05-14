@@ -175,7 +175,6 @@ public class AvisoEmpresaController {
 
 			redirectAttrs.addFlashAttribute(RequestKeys.MESSAGE, "Almacenado correctamente");
 		}
-		//return "forward:/action/avisosEmpresa/listado";
 
 		return "redirect:/action/empresasComunidad/editar?id=" + avisoEmpresa.getEmpresaComunidad().getCnEmpresaComunidad();
 	}
@@ -270,17 +269,11 @@ public class AvisoEmpresaController {
                 if (virtualizer != null) virtualizer.cleanup();
             }    
            
-
-         // Set our response properties
-         // Here you can declare a custom filename
          String fileName = "UserReport.pdf";
          response.setHeader("Content-Disposition", "inline; filename="+ fileName);
-
-         // Set content type
          response.setContentType("application/pdf");
 
 
-         // Export is most important part of reports
          JRPdfExporter exporter = new JRPdfExporter(); 
          exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
          exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, response.getOutputStream());

@@ -96,7 +96,6 @@ public class SiniestroController {
 						"Eliminado correctamente");
 				redirectAttrs.addFlashAttribute(RequestKeys.MESSAGE, "Almacenado correctamente");
 			}
-//			return "forward:/action/siniestros/listado";
 			return "redirect:/action/portales/editar?id=" + idPortal;
 	}
 
@@ -157,10 +156,8 @@ public class SiniestroController {
 			else {
 				siniestroManager.persist(siniestro);
 			}
-			//model.addAttribute(RequestKeys.MESSAGE, "Almacenado correctamente");
 			redirectAttrs.addFlashAttribute(RequestKeys.MESSAGE, "Almacenado correctamente");
 		}
-//		return "forward:/action/siniestros/listado";
 		return "redirect:/action/portales/editar?id=" + siniestro.getPortal().getCnPortal();
 	}
 
@@ -180,10 +177,7 @@ public class SiniestroController {
 		
 		
 	}
-
 	
-	
-
 	@RequestMapping(value = "cargarEmpresasComunidad", method = RequestMethod.POST)
 	public @ResponseBody
 	List<PropertyBean> cargarEmpresasComunidad(

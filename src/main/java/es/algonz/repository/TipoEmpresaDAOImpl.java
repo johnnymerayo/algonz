@@ -1,8 +1,5 @@
 package es.algonz.repository;
 
-// Generated 20-jul-2013 18:00:17 by Hibernate Tools 3.4.0.CR1
-
-
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -19,9 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 import es.algonz.domain.TipoEmpresaVO;
 
 /**
- * Home object for domain model class TipoEmpresa.
+ * DAO TipoEmpresa.
  * @see es.algonz.TipoEmpresaVO
- * @author Hibernate Tools
+ * 
  */
 @Repository(value = "TipoEmpresaDAO")
 public class TipoEmpresaDAOImpl implements TipoEmpresaDAO{

@@ -75,7 +75,6 @@ public class ActuacionController {
 	protected void actuacion(WebDataBinder binder) {
 		binder.setValidator(new ActuacionValidator());
 		
-		
 		// Para que salga la fecha formateada al entrar en los detalles
 		// y permitir guardar vacias
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -132,7 +131,6 @@ public class ActuacionController {
 			redirectAttrs.addFlashAttribute(RequestKeys.MESSAGE,
 						"Eliminado correctamente");
 		}
-//		return "forward:/action/actuaciones/listado";
 
 		return "redirect:/action/siniestros/editar?id=" + idSiniestro;
 	}
@@ -172,11 +170,9 @@ public class ActuacionController {
 			else {
 				actuacionManager.persist(actuacion);
 			}
-			//model.addAttribute(RequestKeys.MESSAGE, "Almacenado correctamente");
 
 			redirectAttrs.addFlashAttribute(RequestKeys.MESSAGE, "Almacenado correctamente");
 		}
-		//return "forward:/action/actuaciones/listado";
 
 		return "redirect:/action/siniestros/editar?id=" + actuacion.getSiniestro().getCnSiniestro();
 	}
