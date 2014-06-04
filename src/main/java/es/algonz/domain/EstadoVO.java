@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "estado", catalog = "algonz")
+@Table(name = "estado")
 public class EstadoVO implements java.io.Serializable {
 
 	/**

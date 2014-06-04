@@ -20,7 +20,10 @@ public interface AvisoEmpresaDAO {
 	public List<AvisoEmpresaVO> getAvisosEmpresa(AvisoEmpresaVO object);
 
 	public List<AvisoEmpresaVO> getAvisosEmpresaProximoVencimiento();
+	
+	public List<AvisoEmpresaVO> getAvisosEmpresaUsuarioProximoVencimiento(String idUsuario);
 
 	public List<AvisoEmpresaVO> getAvisosEmpresaAbiertas(Integer cnEmpresa);
+
 	
 }

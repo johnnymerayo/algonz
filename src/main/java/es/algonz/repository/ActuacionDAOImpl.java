@@ -106,6 +106,21 @@ public class ActuacionDAOImpl implements ActuacionDAO {
 		List<ActuacionVO> resultList = entityManager.createNativeQuery(query,ActuacionVO.class).getResultList();
 		return  resultList;
 	}
+	
+	@Override
+	public List<ActuacionVO> getActuacionesUsuarioProximoVencimiento(String idUsuario) {
+		// El aviso salta 15 días antes de la fecha de vencimiento
+		String query="select a.* from actuacion a, siniestro s, portal p,  comunidad c " +
+				"where fe_vencimiento <= DATE_ADD(CURDATE(),INTERVAL " + ConstantesKeys.DIAS_AVISO_SINIESTRO +" DAY) " +
+				"and cn_estado <> 2 " + // Estado CERRADO no se muestran
+				"and a.cn_siniestro = s.cn_siniestro " +
+				"and s.cn_portal = p.cn_portal  " +
+				"and p.cn_comunidad = c.cn_comunidad " +
+				"and c.idUsuario = " + idUsuario + " " +
+				"order by fe_vencimiento asc;";
+		List<ActuacionVO> resultList = entityManager.createNativeQuery(query,ActuacionVO.class).getResultList();
+		return  resultList;
+	}
 
 	@Override
 	public List<ActuacionVO> getActuacionesAbiertas(Integer cnEmpresa) {
@@ -118,4 +133,7 @@ public class ActuacionDAOImpl implements ActuacionDAO {
 		List<ActuacionVO> resultList = entityManager.createNativeQuery(query,ActuacionVO.class).getResultList();
 		return  resultList;
 	}
+	
+	
+	
 }

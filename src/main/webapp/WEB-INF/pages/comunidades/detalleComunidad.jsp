@@ -216,7 +216,7 @@
 
 				<tr class="				
 <c:if test="${finalizada lt hoy}">
- warning
+ warning textoRojo
 </c:if>	
 
 ">

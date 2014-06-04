@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "tercero", catalog = "algonz")
+@Table(name = "tercero")
 public class TerceroVO implements java.io.Serializable {
 
 	/**

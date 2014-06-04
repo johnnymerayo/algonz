@@ -48,9 +48,15 @@ public class AvisoEmpresaManagerImpl implements AvisoEmpresaManager {
 	public List<AvisoEmpresaVO> getAvisosEmpresaProximoVencimiento() {
 		return avisoEmpresaDAO.getAvisosEmpresaProximoVencimiento();
 	}
+	
+	@Override
+	public List<AvisoEmpresaVO> getAvisosEmpresaUsuarioProximoVencimiento(String idUsuario) {
+		return avisoEmpresaDAO.getAvisosEmpresaUsuarioProximoVencimiento(idUsuario);
+	}
 
 	@Override
 	public List<AvisoEmpresaVO> getAvisosEmpresaAbiertas(Integer cnEmpresa) {
 		return avisoEmpresaDAO.getAvisosEmpresaAbiertas(cnEmpresa);
 	}
+
 }

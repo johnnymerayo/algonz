@@ -53,4 +53,9 @@ public class ActuacionManagerImpl implements ActuacionManager {
 	public List<ActuacionVO> getActuacionesAbiertas(Integer cnEmpresa) {
 		return actuacionDAO.getActuacionesAbiertas(cnEmpresa);
 	}
+
+	@Override
+	public List<ActuacionVO> getActuacionesUsuarioProximoVencimiento(String idUsuario) {
+		return actuacionDAO.getActuacionesUsuarioProximoVencimiento(idUsuario);
+	}
 }

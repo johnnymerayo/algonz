@@ -20,7 +20,7 @@ import javax.persistence.Transient;
 import org.apache.commons.validator.GenericValidator;
 
 @Entity
-@Table(name = "predio", catalog = "algonz")
+@Table(name = "predio")
 public class PredioVO extends AuditableBaseEntity implements java.io.Serializable {
 
 	/**

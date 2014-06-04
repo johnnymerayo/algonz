@@ -10,8 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import es.algonz.controller.utils.ControladorUtils;
 import es.algonz.domain.ActuacionVO;
 import es.algonz.domain.AvisoEmpresaVO;
+import es.algonz.domain.UsuarioVO;
 import es.algonz.service.ActuacionManager;
 import es.algonz.service.AvisoEmpresaManager;
 import es.algonz.web.utils.RequestKeys;
@@ -23,16 +25,32 @@ public class AlarmaController {
 	private ActuacionManager actuacionManager;
 	@Autowired
 	private AvisoEmpresaManager avisoEmpresaManager;
+	
+	@Autowired
+	private ControladorUtils controladorUtils;
+
 
 	@RequestMapping(value = "/listado", method = RequestMethod.GET)
 	public String listado(Model model, HttpSession session) {
-		List<ActuacionVO> listaActuaciones = null;
-		listaActuaciones = actuacionManager.getActuacionesProximoVencimiento();
+		
+		
+		UsuarioVO usuario = controladorUtils.loadUser(session);
+		
+		String idUsuario = usuario.getIdUsuario();
+		
+		List<ActuacionVO> listaActuaciones  = actuacionManager.getActuacionesProximoVencimiento();
 		model.addAttribute(RequestKeys.LISTA_ACTUACIONES, listaActuaciones);
+		
+		
+		List<ActuacionVO> listaActuacionesUsuario = actuacionManager.getActuacionesUsuarioProximoVencimiento(idUsuario);
+		model.addAttribute(RequestKeys.LISTA_ACTUACIONES_USUARIO, listaActuacionesUsuario);
+		
 
-		List<AvisoEmpresaVO> listaAvisos = null;
-		listaAvisos = avisoEmpresaManager.getAvisosEmpresaProximoVencimiento();
+		List<AvisoEmpresaVO> listaAvisos = avisoEmpresaManager.getAvisosEmpresaProximoVencimiento();
 		model.addAttribute(RequestKeys.LISTA_AVISOS_EMPRESA, listaAvisos);
+		
+		List<AvisoEmpresaVO> listaAvisosUsuario = avisoEmpresaManager.getAvisosEmpresaUsuarioProximoVencimiento(idUsuario);
+		model.addAttribute(RequestKeys.LISTA_AVISOS_EMPRESA_USUARIO, listaAvisosUsuario);
 
 
 		return "listadoAlarmas";

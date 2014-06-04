@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "planta", catalog = "algonz")
+@Table(name = "planta")
 public class PlantaVO implements java.io.Serializable {
 
 	/**

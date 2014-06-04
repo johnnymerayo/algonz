@@ -168,8 +168,76 @@ $(document)
 								                }]
 								        }
 					});
+			
+			
+			$('#tablaMisAlarmas')
+			.dataTable(
+					{
+						"sDom": "<'row'<'col-6'T><'col-6'f>r>t<'row'<'col-6'i><'col-6'p>>",
+						"sPaginationType" : "bootstrap",
+						"oLanguage" : {											
+							"sLengthMenu" : "Mostrando _MENU_ registros por página",
+							"sInfo" : "_TOTAL_ registros encontrados, Mostrando del _START_ al _END_",
+							"sInfoFiltered" : "(Filtrados de un total de _MAX_ registros)",
+							"sZeroRecords": "No hay registros coincidentes",
+							"sSearch" : "Filtrar resultados:",
+							"sInfoEmpty": "0 registros encontrados",
+							"oPaginate" : {
+								"sNext" : " Siguiente ",
+								"sPrevious" : " Anterior "
+							}
+						},
+						"bAutoWidth" : false,
+						"bLengthChange" : false,
+						"bInfo" : true,
+						"bPaginate" : true,
+						"bFilter" : true,
+						"bSort" : true,
+						"iDisplayLength" : 10,
+						"aaSorting": [[ 4, "asc" ] ],
+						"aoColumnDefs": [{ "aTargets": [ 'dateColumn' ], "bSortable": true, "sType": "uk_date2"},
+						                 { "aTargets": [ '_all' ], "bSortable": true , "sType": "natural"}],
+								        "oTableTools": {
+								            "aButtons": [{
+								                    "sExtends":    "print",
+								                    "sButtonText": "Imprimir"
+								                }]
+								        }
+					});
 	
 		$('#tablaAlarmas2')
+				.dataTable(
+						{
+							"sDom": "<'row'<'col-6'l><'col-6'f>r>t<'row'<'col-6'i><'col-6'p>>",
+							"sPaginationType" : "bootstrap",
+							"oLanguage" : {											
+								"sLengthMenu" : "Mostrando _MENU_ registros por página",
+								"sInfo" : "_TOTAL_ registros encontrados, Mostrando del _START_ al _END_",
+								"sInfoFiltered" : "(Filtrados de un total de _MAX_ registros)",
+								"sZeroRecords": "No hay registros coincidentes",
+								"sSearch" : "Filtrar resultados.:",
+								"sInfoEmpty": "0 registros encontrados",
+								"oPaginate" : {
+									"sNext" : " Siguiente ",
+									"sPrevious" : " Anterior "
+								}
+							},
+							"bAutoWidth" : false,
+							"bLengthChange" : false,
+							"bInfo" : true,
+							"bPaginate" : true,
+							"bFilter" : true,
+							"bSort" : true,
+							"iDisplayLength" : 10,
+							"aaSorting": [[ 3, "asc" ] ],
+							"aoColumnDefs": [{ "aTargets": [ 'dateColumn' ], "bSortable": true, "sType": "uk_date2"},
+							                 { "aTargets": [ '_all' ], "bSortable": true , "sType": "natural"}]
+						});
+		
+		
+			
+	
+		$('#tablaMisAlarmas2')
 				.dataTable(
 						{
 							"sDom": "<'row'<'col-6'l><'col-6'f>r>t<'row'<'col-6'i><'col-6'p>>",

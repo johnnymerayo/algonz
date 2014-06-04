@@ -27,10 +27,10 @@
 				
 				users-by-username-query="
 					select idsistema,pwdsistema, enabled 
-					from USUARIO where idsistema=?" 
+					from usuario where idsistema=?" 
 				
 				authorities-by-username-query="
-					select u.idsistema, r.authority from USUARIO u, USUARIO_ROL ur, ROL r 
+					select u.idsistema, r.authority from usuario u, usuario_rol ur, rol r 
 					where u.idUsuario = ur.idUsuario and ur.idRol=r.idRol and u.idsistema =?  " 
 					
 			/>

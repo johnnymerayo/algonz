@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tipo_representante", catalog = "algonz")
+@Table(name = "tipo_representante")
 public class TipoRepresentanteVO implements java.io.Serializable {
 
 	/**

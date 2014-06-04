@@ -20,7 +20,7 @@ import javax.persistence.Transient;
 import org.apache.commons.lang.StringUtils;
 
 @Entity
-@Table(name = "portal", catalog = "algonz")
+@Table(name = "portal")
 public class PortalVO extends AuditableBaseEntity implements java.io.Serializable {
 
 	/**

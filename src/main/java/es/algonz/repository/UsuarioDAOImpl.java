@@ -13,7 +13,9 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import es.algonz.domain.ActuacionVO;
 import es.algonz.domain.UsuarioVO;
+import es.algonz.web.utils.ConstantesKeys;
 
 @Repository(value = "usuarioDAO")
 public class UsuarioDAOImpl implements UsuarioDAO
@@ -79,7 +81,16 @@ public class UsuarioDAOImpl implements UsuarioDAO
 	public void persist(UsuarioVO transientInstance) {
 		log.debug("persisting Siniestro instance");
 		try {
-			entityManager.persist(transientInstance);
+			// entityManager.persist(transientInstance);
+			
+			UsuarioVO result = entityManager.merge(transientInstance);
+			
+			
+			String query="INSERT INTO usuario_rol VALUES ("+ result.getIdUsuario()  +",2); ";
+			entityManager.createNativeQuery(query).executeUpdate();
+			
+			
+			
 			log.debug("persist successful");
 		} catch (RuntimeException re) {
 			log.error("persist failed", re);

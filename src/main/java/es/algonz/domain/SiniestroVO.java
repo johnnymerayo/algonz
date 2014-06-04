@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "siniestro", catalog = "algonz")
+@Table(name = "siniestro")
 public class SiniestroVO extends AuditableBaseEntity implements java.io.Serializable {
 
 	/**

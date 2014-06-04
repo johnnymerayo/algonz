@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "tipo_empresa", catalog = "algonz")
+@Table(name = "tipo_empresa")
 public class TipoEmpresaVO implements java.io.Serializable {
 
 	

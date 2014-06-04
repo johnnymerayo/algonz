@@ -408,6 +408,8 @@ CREATE TABLE `tipo_empresa` (
 LOCK TABLES `tipo_empresa` WRITE;
 /*!40000 ALTER TABLE `tipo_empresa` DISABLE KEYS */;
 INSERT INTO `tipo_empresa` VALUES (1,'Abogados'),(2,'Administradores de fincas'),(3,'Antenistas'),(4,'Arquitectos'),(5,'Ascensores'),(6,'Carpinterías metálicas'),(7,'Cerrajeros'),(8,'Constructoras'),(9,'Contratistas'),(10,'Desatascos'),(11,'Desinfección'),(12,'E.M.A'),(13,'Electricistas'),(14,'Entidades financieras'),(15,'Fontaneros'),(16,'Grupos de presión'),(17,'Jardinería'),(18,'Limpiezas'),(19,'Mantenimiento calderas'),(20,'Mantenimiento de piscinas'),(21,'O.C.A.S'),(22,'Organismos Gubernamentales'),(23,'Otras'),(24,'Pintores'),(25,'Portones'),(26,'Protección contra incendios'),(27,'Seguros'),(28,'Suministro comercializadora'),(29,'Telefonía'),(30,'Presupuestos');
+INSERT INTO `algonz`.`tipo_empresa` (`CN_TIPO_EMPRESA`, `TE_TIPO_EMPRESA`) VALUES ('31', 'Carpinteros');
+INSERT INTO `algonz`.`tipo_empresa` (`CN_TIPO_EMPRESA`, `TE_TIPO_EMPRESA`) VALUES ('32', 'Clientes asesoría');
 /*!40000 ALTER TABLE `tipo_empresa` ENABLE KEYS */;
 UNLOCK TABLES;
 

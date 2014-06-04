@@ -108,6 +108,23 @@ public class AvisoEmpresaDAOImpl implements AvisoEmpresaDAO{
 	
 	}
 
+
+	@Override
+	public List<AvisoEmpresaVO> getAvisosEmpresaUsuarioProximoVencimiento(String idUsuario) {				
+		// El aviso salta nu_dias_aviso antes de la fecha de vencimiento o bien 15 días antes si no se indica.
+		String query="select * from aviso_empresa ae, empresa_comunidad ec, comunidad c " +
+				"where fe_vencimiento <= DATE_ADD(CURDATE(),INTERVAL IFNULL (nu_dias_aviso, 0) + " + ConstantesKeys.DIAS_AVISO_ALARMAS + " DAY) " +
+				"and cn_estado <> 2 " + // Estado CERRADO no se muestran
+				"and ae.cn_empresa_comunidad = ec.cn_empresa_comunidad " +
+				"and ec.cn_comunidad = c.cn_comunidad " +
+				"and c.idUsuario = " + idUsuario + " " +
+				"order by fe_vencimiento asc;";
+		List<AvisoEmpresaVO> resultList = entityManager.createNativeQuery(query,AvisoEmpresaVO.class).getResultList();
+		return  resultList;
+	
+	}
+
+	
 	@Override
 	public List<AvisoEmpresaVO> getAvisosEmpresaAbiertas(Integer cnEmpresa) {
 		String query="select a.* from aviso_empresa a, empresa_comunidad ec " +

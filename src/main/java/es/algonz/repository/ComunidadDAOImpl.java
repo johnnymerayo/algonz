@@ -92,7 +92,11 @@ public class ComunidadDAOImpl implements ComunidadDAO {
 		cq.select(root);
 		if(object != null && object.getCnComunidad() != null)
 			cq.where(cb.equal(root.get("cnComunidad"), object.getCnComunidad()));
-
+		
+		if(object != null && object.getGestor() != null  && object.getGestor().getIdUsuario() != null)
+			cq.where(cb.equal(root.get("gestor").get("idUsuario"), object.getGestor().getIdUsuario()));
+		
+			
 		cq.orderBy(cb.asc(root.get("teNombre")));
 		//Sino se devuelven todos
 		return entityManager.createQuery(cq).getResultList();

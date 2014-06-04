@@ -53,6 +53,7 @@ import es.algonz.domain.ComunidadVO;
 import es.algonz.domain.DocumentoVO;
 import es.algonz.domain.EmpresaComunidadVO;
 import es.algonz.domain.FileMeta;
+import es.algonz.domain.UsuarioVO;
 import es.algonz.service.ComunidadManager;
 import es.algonz.service.DocumentoManager;
 import es.algonz.validator.ComunidadValidator;
@@ -74,6 +75,7 @@ public class ComunidadController {
 	private CombosUtils combosUtils;
 	
 	
+	
 	@InitBinder(RequestKeys.COMUNIDAD)
 	protected void comunidad(WebDataBinder binder) {
 		binder.setValidator(new ComunidadValidator());
@@ -83,8 +85,16 @@ public class ComunidadController {
 	public String listado(Model model, HttpSession session) {		
 		List<ComunidadVO> listaComunidades = null;
 		listaComunidades = comunidadManager.getComunidades(null);
-		model.addAttribute(RequestKeys.LISTA_COMUNIDADES,
-				listaComunidades);
+		model.addAttribute(RequestKeys.LISTA_COMUNIDADES, listaComunidades);
+		
+		
+		UsuarioVO usuarioLogado = controladorUtils.loadUser(session);
+		ComunidadVO comunidad = new ComunidadVO();
+		comunidad.setGestor(usuarioLogado);
+		List<ComunidadVO> listaComunidadesUsuario = comunidadManager.getComunidades(comunidad);
+		model.addAttribute(RequestKeys.LISTA_COMUNIDADES_USUARIO, listaComunidadesUsuario);
+		
+		
 		return "listadoComunidades";
 	}
 

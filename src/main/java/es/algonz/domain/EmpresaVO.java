@@ -20,7 +20,7 @@ import javax.persistence.Transient;
 import org.apache.commons.lang.StringUtils;
 
 @Entity
-@Table(name = "empresa", catalog = "algonz")
+@Table(name = "empresa")
 public class EmpresaVO extends AuditableBaseEntity implements java.io.Serializable {
 
 	/**

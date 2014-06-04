@@ -20,6 +20,10 @@ public interface ActuacionDAO {
 
 	public List<ActuacionVO> getActuacionesProximoVencimiento();
 
+	public List<ActuacionVO> getActuacionesUsuarioProximoVencimiento(String idUsuario);;
+
 	public List<ActuacionVO> getActuacionesAbiertas(Integer cnEmpresa);
+
+	
 	
 }

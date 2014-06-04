@@ -22,7 +22,7 @@ import javax.persistence.Transient;
 import org.apache.commons.lang.time.DateUtils;
 
 @Entity
-@Table(name = "aviso_empresa", catalog = "algonz")
+@Table(name = "aviso_empresa")
 public class AvisoEmpresaVO extends AuditableBaseEntity implements java.io.Serializable {
 
 	/**

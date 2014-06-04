@@ -18,7 +18,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "comunidad", catalog = "algonz")
+@Table(name = "comunidad")
 public class ComunidadVO extends AuditableBaseEntity implements java.io.Serializable{
 
 	/**
