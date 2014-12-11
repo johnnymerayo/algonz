@@ -25,6 +25,8 @@ public class UsuarioVO implements Serializable {
 
 	private static final long serialVersionUID = 2412879844301530763L;
 	
+	public static final int SOME_NUMBER_PRIME= 31;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "IdUsuario")
@@ -183,6 +185,15 @@ public class UsuarioVO implements Serializable {
 	}
 
 	@Override
+	public int hashCode() {
+		int result = 1;
+		result = SOME_NUMBER_PRIME * result
+				+ ((idUsuario == null) ? 0 : idUsuario.hashCode());
+		return result;
+	}
+
+
+	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof UsuarioVO) {
 			UsuarioVO other = (UsuarioVO) obj;
@@ -195,8 +206,6 @@ public class UsuarioVO implements Serializable {
 		}
 		return false;
 	}
-	
-	
 	
 
 	private static String getSecurePasswordSHA1(String passwordToHash) {

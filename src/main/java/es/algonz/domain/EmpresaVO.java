@@ -27,6 +27,9 @@ public class EmpresaVO extends AuditableBaseEntity implements java.io.Serializab
 	 * 
 	 */
 	private static final long serialVersionUID = -8701321094704797219L;
+	
+	public static final int SOME_NUMBER_PRIME= 31;
+	
 	private Integer cnEmpresa;
 	private TipoEmpresaVO tipoEmpresa;
 	private String teNombre;
@@ -207,7 +210,15 @@ public class EmpresaVO extends AuditableBaseEntity implements java.io.Serializab
 	public void setDocumentos(Set<DocumentoVO> documentos) {
 		this.documentos = documentos;
 	}
-	
+
+	@Override
+	public int hashCode() {
+		int result = 1;
+		result = SOME_NUMBER_PRIME * result
+				+ ((cnEmpresa == null) ? 0 : cnEmpresa.hashCode());
+		return result;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof EmpresaVO) {
@@ -219,5 +230,7 @@ public class EmpresaVO extends AuditableBaseEntity implements java.io.Serializab
 		}
 		return false;
 	}
+	
+	
 
 }

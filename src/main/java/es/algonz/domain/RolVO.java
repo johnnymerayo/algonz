@@ -13,6 +13,8 @@ public class RolVO implements Serializable {
 
 	private static final long serialVersionUID = 237892378234L;
 	
+	public static final int SOME_NUMBER_PRIME= 31;
+	
 	@Id
 	@Column(name = "IdRol")
 	private String idRol;
@@ -51,7 +53,14 @@ public class RolVO implements Serializable {
 	public void setDescRol(String descRol) {
 		this.descRol = descRol;
 	}
-	
+
+	@Override
+	public int hashCode() {
+		int result = 1;
+		result = SOME_NUMBER_PRIME * result + ((idRol == null) ? 0 : idRol.hashCode());
+		return result;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof RolVO) {
