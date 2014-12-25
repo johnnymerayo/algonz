@@ -1,12 +1,13 @@
 <%@ include file="/WEB-INF/pages/include.jsp"%>
 
-<h3>Empresas</h3>
+<div class="page-header">
+	<h2>Empresas</h2>
+</div>
 
-
-		<!-- Muestra los mensajes de validación -->
-		<jsp:include page="../include_messages.jsp"/>
-
-
+		
+<div class="panel panel-default">
+  	<div class="panel-body">
+		
 <c:if test="${listaEmpresas != null && empty listaEmpresas}">
 	<p class="text-info">NO SE HAN ENCONTRADO RESULTADOS</p>
 </c:if>
@@ -39,7 +40,7 @@
 					<td>
 						<a href="action/empresas/editar?id=${empresa.cnEmpresa }">
 							<i class="glyphicon glyphicon-edit"  title="Consultar"></i></a> &nbsp;
-						<a data-toggle="modal" href="#modalDelete" class="delete_row" data-id="action/empresas/eliminar?id=${empresa.cnEmpresa }">
+						<a data-toggle="modal" href="#modalDeleteGET" class="delete_row" data-id="action/empresas/eliminar?id=${empresa.cnEmpresa }">
 							<i class="glyphicon glyphicon-remove"  title="Eliminar"></i></a>
 					</td>
 				</tr>
@@ -48,7 +49,11 @@
 	</table>
 
 </c:if>
-<div>&nbsp;</div>
-<div>
-	<a href="action/empresas/nuevo" class="btn btn-primary">Nueva empresa</a>
+		
+	</div>
+
+	 <div class="panel-footer">
+			<a href="action/empresas/nuevo" class="btn btn-primary">Nueva empresa</a>
+	</div>
+
 </div>

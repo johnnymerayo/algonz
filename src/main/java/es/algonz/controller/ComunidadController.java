@@ -32,6 +32,8 @@ import net.sf.jasperreports.engine.util.JRSwapFile;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.commons.validator.GenericValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -74,7 +76,8 @@ public class ComunidadController {
 	@Autowired
 	private CombosUtils combosUtils;
 	
-	
+
+	private static final Log LOGGER = LogFactory.getLog(ComunidadController.class);
 	
 	@InitBinder(RequestKeys.COMUNIDAD)
 	protected void comunidad(WebDataBinder binder) {
@@ -305,12 +308,12 @@ public class ComunidadController {
         }
         catch (JRException e)
         {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(),e);
 
             return this.editar(model, codComunidad, session);
         } catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error(e.getMessage(),e);
 
             return this.editar(model, codComunidad, session);
 		} 

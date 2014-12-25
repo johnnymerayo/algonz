@@ -30,6 +30,8 @@ import net.sf.jasperreports.engine.util.JRSwapFile;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.commons.validator.GenericValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -51,6 +53,7 @@ import es.algonz.domain.ActuacionVO;
 import es.algonz.domain.DocumentoVO;
 import es.algonz.domain.FileMeta;
 import es.algonz.domain.SiniestroVO;
+import es.algonz.domain.UsuarioVO;
 import es.algonz.service.ActuacionManager;
 import es.algonz.service.DocumentoManager;
 import es.algonz.service.SiniestroManager;
@@ -68,6 +71,9 @@ public class ActuacionController {
 	@Autowired
 	private CombosUtils combosUtils;
 
+
+	private static final Log LOGGER = LogFactory.getLog(ActuacionController.class);
+	
 	@Autowired
 	private DocumentoManager documentoManager;
 
@@ -288,13 +294,11 @@ public class ActuacionController {
         }
         catch (JRException e)
         {
-            e.printStackTrace();
-
+            LOGGER.error(e.getMessage(),e);
             return this.editar(model, codActuacion, session);
         } catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-
+        	LOGGER.error(e.getMessage(),e);
             return this.editar(model, codActuacion, session);
 		} 
 		

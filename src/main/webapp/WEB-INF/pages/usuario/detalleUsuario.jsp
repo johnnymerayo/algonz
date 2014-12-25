@@ -4,30 +4,29 @@
 <jsp:useBean id="now" class="java.util.Date" />
 <fmt:formatDate value="${now}" pattern="yyyy/MM/dd" var="hoy" />
 
-
-<h3>Preferencias</h3>
+<div class="page-header">
+	<h2>Preferencias</h2>
+</div>
 
 
 
 
 <form:form class=".form-horizontal" id="mainForm"
 	modelAttribute="usuario" method="POST" action="action/usuario/guardar">
-	
-	
-	
-		<!-- Muestra los mensajes de validación -->
-		<jsp:include page="../include_messages.jsp"/>
-		
+
 		<form:hidden path="idUsuario" />
 		<form:hidden path="pwdSistema" />
 		<form:hidden path="enabled" />
 	
 	
-	
-<fieldset>
-	<legend>Datos de usuario</legend>
+	<div class="panel panel-default">
 
+	<div class="panel-heading">
+		<h3 class="panel-title">Datos de usuario</h3>
+	</div>
 
+  	<div class="panel-body">
+		
 <div class="row">
 	<t:input path="idSistema" label="Username" required="true" maxlength="10" tabindex="1" gridClass="col-lg-3"/>
 </div>
@@ -71,18 +70,18 @@
 </div>
 
 </c:if>
+		
+	</div>
 
-	<div>&nbsp;</div>
-
+	 <div class="panel-footer">
 		<div class="control-group" style="clear: both">
 			<div class="controls">
 				<button type="submit" class="btn btn-primary">Guardar</button>		
 			</div>
 		</div>
-		
+	</div>
 
-
-</fieldset>
+</div>
 
 
 </form:form>

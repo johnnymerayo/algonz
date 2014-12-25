@@ -1,9 +1,11 @@
 <%@ include file="/WEB-INF/pages/include.jsp"%>
 
-<h3>Usuarios</h3>
-
-		<!-- Muestra los mensajes de validación -->
-		<jsp:include page="../include_messages.jsp"/>
+<div class="page-header">
+	<h2>Usuarios</h2>
+</div>
+		
+<div class="panel panel-default">
+  	<div class="panel-body">
 
 <c:if test="${listaUsuarios != null && empty listaUsuarios}">
 	<p class="text-info">NO SE HAN ENCONTRADO RESULTADOS</p>
@@ -32,7 +34,7 @@
 						<a href="action/admin/usuario/editar?id=${usuario.idUsuario }">
 							<i class="glyphicon glyphicon-edit"  title="Consultar"></i></a> &nbsp;
 					<!-- 	
-						<a data-toggle="modal" href="#modalDelete" class="delete_row" data-id="action/admin/usuario/eliminar?id=${usuario.idUsuario }">
+						<a data-toggle="modal" href="#modalDeleteGET" class="delete_row" data-id="action/admin/usuario/eliminar?id=${usuario.idUsuario }">
 							<i class="glyphicon glyphicon-remove"  title="Eliminar"></i></a>
 							 -->
 					</td>
@@ -42,7 +44,13 @@
 	</table>
 
 </c:if>
-<div>&nbsp;</div>
-<div>
-	<a href="action/admin/usuario/nuevo" class="btn btn-primary">Nuevo usuario</a>
-</div>
+  	
+		
+	</div>
+
+	 <div class="panel-footer">
+			<a href="action/admin/usuario/nuevo" class="btn btn-primary">Nuevo usuario</a>
+	</div>
+
+</div>		
+		

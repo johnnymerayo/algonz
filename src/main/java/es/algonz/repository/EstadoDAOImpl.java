@@ -25,66 +25,66 @@ import es.algonz.domain.EstadoVO;
 @Repository(value = "EstadoDAO")
 public class EstadoDAOImpl implements EstadoDAO {
 
-	private static final Log log = LogFactory.getLog(EstadoDAOImpl.class);
+	private static final Log LOGGER = LogFactory.getLog(EstadoDAOImpl.class);
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
 	@Transactional
 	public void persist(EstadoVO transientInstance) {
-		log.debug("persisting Estado instance");
+		LOGGER.debug("persisting Estado instance");
 		try {
 			entityManager.persist(transientInstance);
 			entityManager.flush();
 			entityManager.refresh(transientInstance);
-			log.debug("persist successful");
+			LOGGER.debug("persist successful");
 		} catch (RuntimeException re) {
-			log.error("persist failed", re);
+			LOGGER.error("persist failed", re);
 			throw re;
 		}
 	}
 
 	@Transactional
 	public void remove(EstadoVO persistentInstance) {
-		log.debug("removing Estado instance");
+		LOGGER.debug("removing Estado instance");
 		try {
 			entityManager.remove(persistentInstance);
 			entityManager.flush();
-			log.debug("remove successful");
+			LOGGER.debug("remove successful");
 		} catch (RuntimeException re) {
-			log.error("remove failed", re);
+			LOGGER.error("remove failed", re);
 			throw re;
 		}
 	}
 
 	@Transactional
 	public EstadoVO merge(EstadoVO detachedInstance) {
-		log.debug("merging Estado instance");
+		LOGGER.debug("merging Estado instance");
 		try {
 			EstadoVO result = entityManager.merge(detachedInstance);
-			log.debug("merge successful");
+			LOGGER.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
-			log.error("merge failed", re);
+			LOGGER.error("merge failed", re);
 			throw re;
 		}
 	}
 
 	public EstadoVO findById(Integer id) {
-		log.debug("getting Estado instance with id: " + id);
+		LOGGER.debug("getting Estado instance with id: " + id);
 		try {
 			EstadoVO instance = entityManager.find(EstadoVO.class, id);
-			log.debug("get successful");
+			LOGGER.debug("get successful");
 			return instance;
 		} catch (RuntimeException re) {
-			log.error("get failed", re);
+			LOGGER.error("get failed", re);
 			throw re;
 		}
 	}
 
 	@Override
 	public List<EstadoVO> getEstados(EstadoVO object) {
-		log.debug("getting Estado list ");
+		LOGGER.debug("getting Estado list ");
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 		CriteriaQuery<EstadoVO> cq = cb.createQuery(EstadoVO.class);
 		Root<EstadoVO> root = cq.from(EstadoVO.class);

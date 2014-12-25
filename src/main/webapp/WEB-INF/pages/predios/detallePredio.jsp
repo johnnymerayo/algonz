@@ -1,30 +1,32 @@
 <%@ include file="/WEB-INF/pages/include.jsp"%>
 
 
-<form:form class=".form-horizontal" id="mainForm"
-	modelAttribute="predio" method="POST" action="action/predios/guardar">
-	<fieldset>
-		<legend>
-			Comunidad: ${predio.portal.comunidad.teNombre} 
+<p class="bs-callout bs-callout-info" role="alert"> 
+			<strong>Comunidad:</strong> ${predio.portal.comunidad.teNombre} 
 			<br />
-			Portal nº:	<c:if test='${predio.portal.teNombre!=null}'> ${predio.portal.teNombre}</c:if>
-			<br />
+			<strong>Portal nº:</strong>	<c:if test='${predio.portal.teNombre!=null}'> ${predio.portal.teNombre}</c:if>
+</p>			
+
+<div class="page-header">
+	<h2>
 			<c:if test='${predio.cnPredio==null}'>Nuevo Predio</c:if>
 			<c:if test='${predio.cnPredio!=null}'>Predio: ${predio.planta.tePlanta } - ${predio.tePredio}
-			</c:if>
-		</legend>
-		
-		
-		<!-- Muestra los mensajes de validación -->
-		<jsp:include page="../include_messages.jsp"/>
-		
+			</c:if></h2>
+</div>
+
+<form:form class=".form-horizontal" id="mainForm"
+	modelAttribute="predio" method="POST" action="action/predios/guardar">
+	
 		<form:hidden path="cnPredio" />
 		<form:hidden path="portal.cnPortal" />
 		<form:hidden path="terceroByCnPropietario.cnTercero" />
 		<form:hidden path="terceroByCnConyuge.cnTercero" />
 		<form:hidden path="terceroByCnInquilino.cnTercero" />
-
-
+	
+	
+	<div class="panel panel-default">
+  	<div class="panel-body">
+		
 <div class="row">
 
 <div class="col-lg-2">
@@ -60,13 +62,14 @@
 <div class="row">
 <t:area path="teObservaciones" label="Observaciones" cols="500"	tabindex="9" gridClass="col-lg-12" />
 </div>
-			
-	</fieldset>
+	</div>
+</div>
+
 
 
 
 <ul id="tabMenu" class="nav nav-tabs">
-  <li id="propietario-tab"><a href="#propietario" data-toggle="tab">Datos del propietario</a></li>
+  <li id="propietario-tab" class="active"><a href="#propietario" data-toggle="tab">Datos del propietario</a></li>
   <li id="conyuge-tab"><a href="#conyuge" data-toggle="tab">Datos del cónyuge</a></li>
   <li id="inquilino-tab"><a href="#inquilino" data-toggle="tab">Datos del inquilino</a></li></ul>
 
@@ -209,19 +212,6 @@
     </div>
    
   </div> 
-
-	
-	<script>
-  $(function () {
-    $('#tabMenu a:first').tab('show');
-  })
-</script>
-
-
-
-
-
-<div>&nbsp;</div>
 
 
 </form:form>

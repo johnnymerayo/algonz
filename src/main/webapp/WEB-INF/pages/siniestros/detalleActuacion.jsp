@@ -1,32 +1,30 @@
 <%@ include file="/WEB-INF/pages/include.jsp"%>
 
+<p class="bs-callout bs-callout-info" role="alert"> 
+			<strong>Comunidad:</strong> ${actuacion.siniestro.portal.comunidad.teNombre} 
+			<br />
+			<strong>Portal nº:</strong>	<c:if test='${actuacion.siniestro.portal.teNombre!=null}'> ${actuacion.siniestro.portal.teNombre}</c:if>
+			<br />
+			<strong>Siniestro:</strong> ${actuacion.siniestro.teNombre} 
+			<br />
+			<strong>Empresa:</strong> ${actuacion.siniestro.empresaComunidad.empresa.teNombre} (${actuacion.siniestro.empresaComunidad.empresa.telefonos})
+</p>
+
+<div class="page-header">
+	<h2>
+			<c:if test='${actuacion.cnActuacion==null}'>Nueva Actuacion</c:if>
+			<c:if test='${actuacion.cnActuacion!=null}'>Datos de la actuacion: ${actuacion.teDescripcion}
+			</c:if></h2>
+</div>
 
 <form:form class=".form-horizontal" id="mainForm"
 	modelAttribute="actuacion" method="POST" action="action/actuaciones/guardar">
-	<fieldset>
-		<legend>
-			Comunidad: ${actuacion.siniestro.portal.comunidad.teNombre} 
-			<br />
-			Portal nº:	<c:if test='${actuacion.siniestro.portal.teNombre!=null}'> ${actuacion.siniestro.portal.teNombre}</c:if>
-			<br />
-			Siniestro: ${actuacion.siniestro.teNombre} 
-			<br />
-			Empresa: ${actuacion.siniestro.empresaComunidad.empresa.teNombre} (${actuacion.siniestro.empresaComunidad.empresa.telefonos})
-			<br />
-			<c:if test='${actuacion.cnActuacion==null}'>Nueva Actuacion</c:if>
-			<c:if test='${actuacion.cnActuacion!=null}'>Datos de la actuacion: ${actuacion.teDescripcion}
-			</c:if>
-		</legend>
-		
-
-		<!-- Muestra los mensajes de validación -->
-		<jsp:include page="../include_messages.jsp"/>
-		
+	
 		<form:hidden path="cnActuacion" />
 		<form:hidden path="siniestro.cnSiniestro" />
-
-
-
+	
+<div class="panel panel-default">
+  	<div class="panel-body">
 		<div class="row">	
 			<t:select  id="estado" search="false" gridClass="col-lg-4" itemLabel="teEstado" itemValue="cnEstado" items="${estadosCombo}" path="estado.cnEstado" required="true" label="Estado" tabindex="1"/>
 </div>
@@ -46,10 +44,9 @@
 			<div class="row">
 			<t:area gridClass="col-lg-12" path="teObservaciones" label="Observaciones" required="false" tabindex="6"/>
 		</div>
-		
-	</fieldset>
-	
-	
+	</div>
+
+	 <div class="panel-footer">
 		<div class="control-group" style="clear: both">
 			<div class="controls">
 				<button type="submit" class="btn btn-primary">Guardar</button>
@@ -60,23 +57,25 @@
 			 </c:if>
 			</div>
 		</div>
+	</div>
+
+</div>
 		
-<div>&nbsp;</div>
+	
+		
+
 	
 	<c:if test="${not empty actuacion.cnActuacion }">		
 		
-					
-<fieldset>
-		<legend>
-		Documentos
-		</legend>
-		
-		
-<div>&nbsp;</div>
+	
+<div class="panel panel-default">
 
+	<div class="panel-heading">
+		<h3 class="panel-title">Documentos</h3>
+	</div>
 
-
-<c:if test="${actuacion.documentos != null && empty actuacion.documentos}">
+  	<div class="panel-body">
+		<c:if test="${actuacion.documentos != null && empty actuacion.documentos}">
 	<p class="text-info">NO SE HAN ENCONTRADO RESULTADOS</p>
 </c:if>
 
@@ -101,7 +100,7 @@
 					<td>
 						<a href="action/actuaciones/downloadDocument?id=${documento.cnDocumento }">
 							<i class="glyphicon glyphicon-download"  title="Descargar"></i></a> &nbsp;							
-							<a data-toggle="modal" href="#modalDelete" class="delete_row" data-id="action/actuaciones/deleteDocument?codActuacion=${actuacion.cnActuacion }&amp;id=${documento.cnDocumento }">
+							<a data-toggle="modal" href="#modalDeleteGET" class="delete_row" data-id="action/actuaciones/deleteDocument?codActuacion=${actuacion.cnActuacion }&amp;id=${documento.cnDocumento }">
 							<i class="glyphicon glyphicon-remove"  title="Eliminar"></i></a>
 					</td>
 				</tr>
@@ -110,17 +109,15 @@
 	</table>
 
 </c:if>
-<div>&nbsp;</div>
+
 
     <div id="progress" class="progress"  style="display:none">
         <div class="progress-bar progress-bar-success"></div>
     </div>
-    
-<div>&nbsp;</div>
+	</div>
 
-
-
-
+	 <div class="panel-footer">
+		
 <div>
 <span class="btn btn-primary fileinput-button">
                     <i class="glyphicon glyphicon-plus glyphicon-white"></i>
@@ -128,16 +125,19 @@
                    <input id="fileupload" type="file" name="files[]" data-url="action/actuaciones/uploadDocument?codActuacion=${actuacion.cnActuacion }" multiple>
                 </span>
 	</div>
+		
+	</div>
 
+</div>	
+					
 
-		</fieldset>
 </c:if>
 
 		
 		
 </form:form>
 
-<div>&nbsp;</div>
 
-<div>&nbsp;</div>
+
+
 

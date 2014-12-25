@@ -21,7 +21,7 @@ import es.algonz.web.utils.ConstantesKeys;
 public class UsuarioDAOImpl implements UsuarioDAO
 {
 
-	private static final Log log = LogFactory
+	private static final Log LOGGER = LogFactory
 			.getLog(UsuarioDAOImpl.class);
 	
 	@PersistenceContext
@@ -40,7 +40,7 @@ public class UsuarioDAOImpl implements UsuarioDAO
 
 	@Override
 	public List<UsuarioVO> getUsuarios(UsuarioVO usuarioVO) {
-		log.debug("getting TipoRepresentante list ");
+		LOGGER.debug("getting TipoRepresentante list ");
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 		CriteriaQuery<UsuarioVO> cq = cb.createQuery(UsuarioVO.class);
 		Root<UsuarioVO> root = cq.from(UsuarioVO.class);
@@ -53,33 +53,33 @@ public class UsuarioDAOImpl implements UsuarioDAO
 
 	@Override
 	public UsuarioVO findById(int id) {
-		log.debug("getting Siniestro instance with id: " + id);
+		LOGGER.debug("getting Siniestro instance with id: " + id);
 		try {
 			UsuarioVO instance = entityManager.find(UsuarioVO.class, new Integer (id).toString());
-			log.debug("get successful");
+			LOGGER.debug("get successful");
 			return instance;
 		} catch (RuntimeException re) {
-			log.error("get failed", re);
+			LOGGER.error("get failed", re);
 			throw re;
 		}
 	}
 
 	@Transactional
 	public UsuarioVO merge(UsuarioVO detachedInstance) {
-		log.debug("merging Siniestro instance");
+		LOGGER.debug("merging Siniestro instance");
 		try {
 			UsuarioVO result = entityManager.merge(detachedInstance);
-			log.debug("merge successful");
+			LOGGER.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
-			log.error("merge failed", re);
+			LOGGER.error("merge failed", re);
 			throw re;
 		}
 	}
 
 	@Transactional
 	public void persist(UsuarioVO transientInstance) {
-		log.debug("persisting Siniestro instance");
+		LOGGER.debug("persisting Siniestro instance");
 		try {
 			// entityManager.persist(transientInstance);
 			
@@ -91,21 +91,21 @@ public class UsuarioDAOImpl implements UsuarioDAO
 			
 			
 			
-			log.debug("persist successful");
+			LOGGER.debug("persist successful");
 		} catch (RuntimeException re) {
-			log.error("persist failed", re);
+			LOGGER.error("persist failed", re);
 			throw re;
 		}
 	}
 
 	@Transactional
 	public void remove(UsuarioVO persistentInstance) {
-		log.debug("removing Siniestro instance");
+		LOGGER.debug("removing Siniestro instance");
 		try {
 			entityManager.remove(persistentInstance);
-			log.debug("remove successful");
+			LOGGER.debug("remove successful");
 		} catch (RuntimeException re) {
-			log.error("remove failed", re);
+			LOGGER.error("remove failed", re);
 			throw re;
 		}
 		

@@ -23,7 +23,6 @@ public class LoginController
 	{
 		UsuarioVO usuario = controladorUtils.loadUser(session);
 		model.addAttribute("username", usuario.getIdSistema());
-		//return "inicio";
 		// Redirigimos al listado de alarmas
 		return "forward:/action/alarmas/listado";
 	}

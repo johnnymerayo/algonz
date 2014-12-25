@@ -11,6 +11,8 @@ import java.util.LinkedList;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,9 +24,12 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import es.algonz.domain.FileMeta;
 
+
 @Controller
 @RequestMapping("/controller")
 public class FileController {
+
+	private static final Log LOGGER = LogFactory.getLog(FileController.class);
 
 	LinkedList<FileMeta> files = new LinkedList<FileMeta>();
 	FileMeta fileMeta = null;
@@ -69,7 +74,7 @@ public class FileController {
 				fileMeta.setBytes(mpf.getBytes());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOGGER.error(e.getMessage(),e);
 			}
 			// 2.4 add to files
 			files.add(fileMeta);
@@ -97,10 +102,10 @@ public class FileController {
 
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOGGER.error(e.getMessage(),e);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOGGER.error(e.getMessage(),e);
 			}
 
 		}
@@ -128,7 +133,7 @@ public class FileController {
 			FileCopyUtils.copy(getFile.getBytes(), response.getOutputStream());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error(e.getMessage(),e);
 		}
 	}
 }

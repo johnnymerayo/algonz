@@ -1,10 +1,11 @@
 <%@ include file="/WEB-INF/pages/include.jsp"%>
 
-<h3>Portales</h3>
+<div class="page-header">
+	<h2>Portales</h2>
+</div>
 
-
-		<!-- Muestra los mensajes de validación -->
-		<jsp:include page="../include_messages.jsp"/>
+		
+		
 
 
 <c:if test="${listaPortales != null && empty listaPortales}">
@@ -35,7 +36,7 @@
 					<td>
 						<a href="action/portales/editar?id=${portal.cnPortal }">
 							<i class="glyphicon glyphicon-edit"  title="Consultar"></i></a> &nbsp;
-						<a data-toggle="modal" href="#modalDelete" class="delete_row" data-id="action/portales/eliminar?id=${portal.cnPortal }">
+						<a data-toggle="modal" href="#modalDeleteGET" class="delete_row" data-id="action/portales/eliminar?id=${portal.cnPortal }">
 							<i class="glyphicon glyphicon-remove"  title="Eliminar"></i></a>
 					</td>
 				</tr>
@@ -44,7 +45,7 @@
 	</table>
 
 </c:if>
-<div>&nbsp;</div>
+
 <!--
 <div>
 	<a href="action/portales/nuevo" class="btn btn-primary">Nuevo portal</a>

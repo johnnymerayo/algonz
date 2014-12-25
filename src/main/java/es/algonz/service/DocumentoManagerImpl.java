@@ -14,6 +14,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -29,6 +31,8 @@ import es.algonz.repository.DocumentoDAO;
 public class DocumentoManagerImpl implements DocumentoManager {
 
 	private static final long serialVersionUID = 1913666680422746714L;
+	
+	private static final Log LOGGER = LogFactory.getLog(DocumentoManagerImpl.class);
 
 	
 	@Value( "${documentPath}" )
@@ -93,7 +97,7 @@ public class DocumentoManagerImpl implements DocumentoManager {
 					fileMeta.setBytes(mpf.getBytes());
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					LOGGER.error(e.getMessage(),e);
 				}
 				
 				
@@ -136,10 +140,10 @@ public class DocumentoManagerImpl implements DocumentoManager {
 				
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOGGER.error(e.getMessage(),e);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOGGER.error(e.getMessage(),e);
 			}
 
 		}
@@ -163,10 +167,10 @@ public class DocumentoManagerImpl implements DocumentoManager {
 				FileCopyUtils.copy(fis, response.getOutputStream());
 			} catch (FileNotFoundException e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				LOGGER.error(e1.getMessage(),e1);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOGGER.error(e.getMessage(),e);
 			}
 		
 	}
@@ -212,7 +216,7 @@ public class DocumentoManagerImpl implements DocumentoManager {
 //					fileMeta.setBytes(mpf.getBytes());
 //				} catch (IOException e) {
 //					// TODO Auto-generated catch block
-//					e.printStackTrace();
+//					LOGGER.error(e.getMessage(),e);
 //				}
 //				
 //				
@@ -252,10 +256,10 @@ public class DocumentoManagerImpl implements DocumentoManager {
 //				
 //			} catch (FileNotFoundException e) {
 //				// TODO Auto-generated catch block
-//				e.printStackTrace();
+//				LOGGER.error(e.getMessage(),e);
 //			} catch (IOException e) {
 //				// TODO Auto-generated catch block
-//				e.printStackTrace();
+//				LOGGER.error(e.getMessage(),e);
 //			}
 //
 //		}
@@ -295,7 +299,7 @@ public class DocumentoManagerImpl implements DocumentoManager {
 //					fileMeta.setBytes(mpf.getBytes());
 //				} catch (IOException e) {
 //					// TODO Auto-generated catch block
-//					e.printStackTrace();
+//					LOGGER.error(e.getMessage(),e);
 //				}
 //				
 //				
@@ -335,10 +339,10 @@ public class DocumentoManagerImpl implements DocumentoManager {
 //				
 //			} catch (FileNotFoundException e) {
 //				// TODO Auto-generated catch block
-//				e.printStackTrace();
+//				LOGGER.error(e.getMessage(),e);
 //			} catch (IOException e) {
 //				// TODO Auto-generated catch block
-//				e.printStackTrace();
+//				LOGGER.error(e.getMessage(),e);
 //			}
 //
 //		}
@@ -377,7 +381,7 @@ public class DocumentoManagerImpl implements DocumentoManager {
 //					fileMeta.setBytes(mpf.getBytes());
 //				} catch (IOException e) {
 //					// TODO Auto-generated catch block
-//					e.printStackTrace();
+//					LOGGER.error(e.getMessage(),e);
 //				}
 //				
 //				
@@ -417,10 +421,10 @@ public class DocumentoManagerImpl implements DocumentoManager {
 //				
 //			} catch (FileNotFoundException e) {
 //				// TODO Auto-generated catch block
-//				e.printStackTrace();
+//				LOGGER.error(e.getMessage(),e);
 //			} catch (IOException e) {
 //				// TODO Auto-generated catch block
-//				e.printStackTrace();
+//				LOGGER.error(e.getMessage(),e);
 //			}
 //
 //		}

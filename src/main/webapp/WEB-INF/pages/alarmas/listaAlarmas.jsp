@@ -5,25 +5,25 @@
 <fmt:formatDate value="${now}" pattern="yyyy/MM/dd" var="hoy" />
 
 
-<h3>Alarmas</h3>
+
+<div class="page-header">
+	<h2>Alarmas</h2>
+</div>
+
 
 <fieldset>
 	<legend> Incidencias abiertas </legend>
 
 
-	<div>&nbsp;</div>
-
-
 
 	<ul id="tabMenuAlarmas" class="nav nav-tabs">
-		<li id="mis-avisos-tab"><a href="#misAlarmas" data-toggle="tab">Mis
+		<li id="mis-avisos-tab" class="active"><a href="#misAlarmas" data-toggle="tab">Mis
 				Alarmas</a></li>
 		<li id="todos-alarmas-tab"><a href="#todosAlarmas"
 			data-toggle="tab">Todas las Alarmas</a></li>
 	</ul>
 
 
-	<div>&nbsp;</div>
 
 	<div id="tabContent" class="tab-content">
 		<div id="misAlarmas" class="tab-pane fade in active">
@@ -198,8 +198,8 @@
 
 
 
-<div>&nbsp;</div>
 
+<br/>
 
 
 
@@ -207,18 +207,13 @@
 	<legend> Listado de avisos </legend>
 
 
-	<div>&nbsp;</div>
-
-
 	<ul id="tabMenuAvisos" class="nav nav-tabs">
-		<li id="mis-avisos-tab"><a href="#misAvisos" data-toggle="tab">Mis
+		<li id="mis-avisos-tab"  class="active"><a href="#misAvisos" data-toggle="tab">Mis
 				Avisos</a></li>
 		<li id="todos-avisos-tab"><a href="#todosAvisos"
 			data-toggle="tab">Todos los Avisos</a></li>
 	</ul>
 
-
-	<div>&nbsp;</div>
 
 	<div id="tabContent" class="tab-content">
 		<div id="misAvisos" class="tab-pane fade in active">
@@ -298,7 +293,7 @@
 				</table>
 
 			</c:if>
-			<div>&nbsp;</div>
+			
 
 		</div>
 		<div id="todosAvisos" class="tab-pane fade">
@@ -390,14 +385,6 @@
 	</div>
 
 </fieldset>
-
-
-<script>
-	$(function() {
-		$('#tabMenuAlarmas a:first').tab('show');
-		$('#tabMenuAvisos a:first').tab('show');
-	})
-</script>
 
 
 

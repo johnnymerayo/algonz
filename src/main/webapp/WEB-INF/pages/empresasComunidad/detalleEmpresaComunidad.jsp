@@ -1,20 +1,23 @@
 <%@ include file="/WEB-INF/pages/include.jsp"%>
 
 
+	<p class="bs-callout bs-callout-info" role="alert"> 
+			<strong>Comunidad:</strong>  ${empresaComunidad.comunidad.teNombre} 
+	</p>
+	
+<div class="page-header">
+	<h2>
+			<c:if test='${empresaComunidad.cnEmpresaComunidad==null}'>Nueva Empresa Comunidad</c:if>
+			<c:if test='${empresaComunidad.cnEmpresaComunidad!=null}'>Datos Empresa Comunidad
+			</c:if></h2>
+</div>
+
 <form:form class=".form-horizontal" id="mainForm"
 	modelAttribute="empresaComunidad" method="POST" action="action/empresasComunidad/guardar">
-	<fieldset>
-		<legend>
-			Comunidad: ${empresaComunidad.comunidad.teNombre} 
-			<br />
-			<c:if test='${empresaComunidad.cnEmpresaComunidad==null}'>Nueva EmpresaComunidad</c:if>
-			<c:if test='${empresaComunidad.cnEmpresaComunidad!=null}'>Datos EmpresaComunidad
-			</c:if>
-		</legend>
-		
-		
-		<!-- Muestra los mensajes de validación -->
-		<jsp:include page="../include_messages.jsp"/>
+	
+	
+<div class="panel panel-default">
+  	<div class="panel-body">
 		
 		<form:hidden path="cnEmpresaComunidad" />
 		<form:hidden path="comunidad.cnComunidad" />
@@ -33,12 +36,8 @@
 			<div class="row">
 			<t:area path="teObservaciones" label="Observaciones" cols="500" tabindex="9" gridClass="col-lg-12"/>
 		</div>
-	</fieldset>
-	
-	
-<div>&nbsp;</div>
-
-	
+	</div>
+	 <div class="panel-footer">
 		<div class="control-group" style="clear: both">
 			<div class="controls">
 				<button type="submit" class="btn btn-primary">Guardar</button>
@@ -48,21 +47,23 @@
 				<a href="action/comunidades/editar?id=${empresaComunidad.comunidad.cnComunidad}" class="btn btn-default">Cancelar</a>
 			</div>
 		</div>
+	</div>
+</div>
 		
 		
 	
-<div>&nbsp;</div>	
 		
 	<c:if test="${not empty empresaComunidad.cnEmpresaComunidad }">	
 	
 	
-	<fieldset>
-		<legend>
-			Listado de avisos
-		</legend>
+	<div class="panel panel-default">
+
+	<div class="panel-heading">
+		<h3 class="panel-title">Listado de avisos</h3>
+	</div>
+
+  	<div class="panel-body">
 		
-			
-<div>&nbsp;</div>
 		
 <c:if test="${empresaComunidad.avisosEmpresa != null && empty empresaComunidad.avisosEmpresa}">
 	<p class="text-info">NO SE HAN ENCONTRADO RESULTADOS</p>
@@ -98,7 +99,7 @@
 					<td>
 						<a href="action/avisosEmpresa/editar?id=${aviso.cnAvisoEmpresa }">
 							<i class="glyphicon glyphicon-edit"  title="Consultar"></i></a> &nbsp;
-						<a data-toggle="modal" href="#modalDelete" class="delete_row" data-id="action/avisosEmpresa/eliminar?id=${aviso.cnAvisoEmpresa }">
+						<a data-toggle="modal" href="#modalDeleteGET" class="delete_row" data-id="action/avisosEmpresa/eliminar?id=${aviso.cnAvisoEmpresa }">
 							<i class="glyphicon glyphicon-remove"  title="Eliminar"></i></a>
 					</td>
 				</tr>
@@ -107,13 +108,16 @@
 	</table>
 
 </c:if>
-<div>&nbsp;</div>
-
-<div>
-	<a href="action/avisosEmpresa/nuevo?codEmpresaComunidad=${empresaComunidad.cnEmpresaComunidad}" class="btn btn-primary"> <i class="glyphicon glyphicon-plus glyphicon-white"></i> <span>Nuevo aviso</span></a>
-</div>
 		
-		</fieldset>
+	</div>
+
+	 <div class="panel-footer">
+			<a href="action/avisosEmpresa/nuevo?codEmpresaComunidad=${empresaComunidad.cnEmpresaComunidad}" class="btn btn-primary"> <i class="glyphicon glyphicon-plus glyphicon-white"></i> <span>Nuevo aviso</span></a>
+	</div>
+
+</div>
+	
+	
 	</c:if>
 	
 </form:form>

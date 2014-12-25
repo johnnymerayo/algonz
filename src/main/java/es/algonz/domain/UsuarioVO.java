@@ -18,6 +18,10 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import es.algonz.repository.ActuacionDAOImpl;
 
 @Entity
 @Table(name = "USUARIO")
@@ -26,6 +30,8 @@ public class UsuarioVO implements Serializable {
 	private static final long serialVersionUID = 2412879844301530763L;
 	
 	public static final int SOME_NUMBER_PRIME= 31;
+
+	private static final Log LOGGER = LogFactory.getLog(UsuarioVO.class);
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -231,7 +237,7 @@ public class UsuarioVO implements Serializable {
 
 			generatedPassword = sb.toString();
 		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
+			LOGGER.error(e.getMessage(),e);
 		}
 		
 		return generatedPassword;

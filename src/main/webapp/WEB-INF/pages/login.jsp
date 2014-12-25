@@ -1,42 +1,64 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="/WEB-INF/pages/include.jsp"%>
 <%@ taglib uri="http://efsavage.com/twitter-bootstrap" prefix="bs"%>
-<style type="text/css">
-body {
-	padding-top: 40px;
-	padding-bottom: 40px;
-	background-color: #f5f5f5;
-}
-</style>
-<body onload='document.f.j_username.focus();'>
 
 
+<body onload='document.signinForm.j_username.focus();'>
 
-
-	<form name='f' action="<c:url value='/j_spring_security_check' />"
-		method='POST' class="form-signin">
-		<h2 class="form-signin-heading text-center">Plataforma ALGONZ</h2>
-		<p class="text-center">
-			<em>v1.0</em>
-		</p>
-		<c:if test="${not empty error}">
-			<div class="errorblock">
-				<p class="text-error">${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
-			</div>
-		</c:if>
-		<div class="form-group">
-			<label class="control-label" for="j_username">Usuario</label>
-			<div class="controls">
-				<input type='text' name='j_username' value='' id="j_username"
-					placeholder="Usuario" class="form-control input-block-level">
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="control-label" for="j_password">Password</label>
-			<div class="controls">
-				<input type="password" name="j_password" id="j_password"
-					placeholder="Password" class="form-control input-block-level">
-			</div>
-		</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-6  col-sm-6 col-md-5 col-xs-offset-3 col-sm-offset-3 col-md-offset-4 ">
+				<div class="panel panel-dark">
+					<!-- <div class="panel-heading page-icon">
+						<div class="row">
+							<div class="text-center ">
+								<a href="#">
+								<img src="" alt="">
+								</a>
+							</div>	
+						</div>	
+					</div> -->
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-12 col-md-12  col-sm-12 col-xs-12 text-center">					
+								<h2 class="blue-dark">  <strong>Plataforma AlGonz 2.0</strong></h2>
+								
+								<h3><em><i class="fa fa-lock"></i> Log in </em></h3>
+							
+								<form  id="signinForm" class="form-horizontal col-sm-12 " action="<c:url value='j_spring_security_check'/>" method="POST" role="form">
+				
+							<c:if test="${not empty error }">
+								<p class="alert alert-danger  well-sm" role="alert"> ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
+							</c:if>
+								
+	                        
+	                        <div class="form-group">
+	                        
+	                            <label for="j_username" class="control-label"></label>
+	                            <div class="col-sm-12 ">
+		                            <div class="input-group">
+										<span class="input-group-addon">
+											<i class="fa fa-user"></i>
+										</span>
+			                               	 <input id="j_username" type='text'  class="form-control" required autofocus  name='j_username' 
+			                                value='<c:if test="${not empty messError}" ><c:out value="${SPRING_SECURITY_LAST_USERNAME}"/></c:if>' 
+			                                placeholder="Usuario"/>
+	            	            	 </div>
+	            	              </div>
+	                                                                                   
+	                        </div>
+	                        <div class="form-group">
+	                            <label for="password" class="control-label"></label>
+	                            <div class="col-sm-12 ">
+	                              <div class="input-group ">
+										<span class="input-group-addon">
+											<i class="fa fa-lock"></i>
+										</span>
+									<input id="password" class="form-control" type='password' name='j_password' placeholder="Password" required />
+				                </div>
+				                </div>
+				                
+	                        </div>
+	      
 		<div class="form-group">
 			<div class="controls">
 
@@ -45,7 +67,17 @@ body {
 				<bs:button type="reset" value="Limpiar" text="Limpiar" />
 			</div>
 		</div>
-	</form>	
+	                                           
+	                    </form>
+	                    
+			       
+							</div>	
+							</div>	
+						</div>	
+					</div>
+			</div>
+	</div>
+</div>
+
 	
 
-</body>

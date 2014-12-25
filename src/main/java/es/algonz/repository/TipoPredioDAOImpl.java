@@ -20,56 +20,56 @@ import es.algonz.domain.TipoPredioVO;
 @Repository(value = "TipoPredioDAO")
 public class TipoPredioDAOImpl implements TipoPredioDAO{
 
-	private static final Log log = LogFactory.getLog(TipoPredioDAOImpl.class);
+	private static final Log LOGGER = LogFactory.getLog(TipoPredioDAOImpl.class);
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
 	@Transactional
 	public void persist(TipoPredioVO transientInstance) {
-		log.debug("persisting TipoPredio instance");
+		LOGGER.debug("persisting TipoPredio instance");
 		try {
 			entityManager.persist(transientInstance);
-			log.debug("persist successful");
+			LOGGER.debug("persist successful");
 		} catch (RuntimeException re) {
-			log.error("persist failed", re);
+			LOGGER.error("persist failed", re);
 			throw re;
 		}
 	}
 
 	@Transactional
 	public void remove(TipoPredioVO persistentInstance) {
-		log.debug("removing TipoPredio instance");
+		LOGGER.debug("removing TipoPredio instance");
 		try {
 			entityManager.remove(persistentInstance);
-			log.debug("remove successful");
+			LOGGER.debug("remove successful");
 		} catch (RuntimeException re) {
-			log.error("remove failed", re);
+			LOGGER.error("remove failed", re);
 			throw re;
 		}
 	}
 
 	@Transactional
 	public TipoPredioVO merge(TipoPredioVO detachedInstance) {
-		log.debug("merging TipoPredio instance");
+		LOGGER.debug("merging TipoPredio instance");
 		try {
 			TipoPredioVO result = entityManager.merge(detachedInstance);
-			log.debug("merge successful");
+			LOGGER.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
-			log.error("merge failed", re);
+			LOGGER.error("merge failed", re);
 			throw re;
 		}
 	}
 
 	public TipoPredioVO findById(Integer id) {
-		log.debug("getting TipoPredio instance with id: " + id);
+		LOGGER.debug("getting TipoPredio instance with id: " + id);
 		try {
 			TipoPredioVO instance = entityManager.find(TipoPredioVO.class, id);
-			log.debug("get successful");
+			LOGGER.debug("get successful");
 			return instance;
 		} catch (RuntimeException re) {
-			log.error("get failed", re);
+			LOGGER.error("get failed", re);
 			throw re;
 		}
 	}

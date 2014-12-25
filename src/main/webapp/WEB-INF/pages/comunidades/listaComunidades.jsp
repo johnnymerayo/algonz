@@ -1,26 +1,21 @@
 <%@ include file="/WEB-INF/pages/include.jsp"%>
 
-<h3>Comunidades</h3>
-
-		<!-- Muestra los mensajes de validación -->
-		<jsp:include page="../include_messages.jsp"/>
+<div class="page-header">
+	<h2>Comunidades</h2>
+</div>
 		
-		
-		
-		
+		<div role="tabpanel">
 
-	<ul id="tabMenuComunidades" class="nav nav-tabs">
-		<li id="mis-comunidades-tab"><a href="#misComunidades" data-toggle="tab">Mis
-				Comunidades</a></li>
-		<li id="todos-comunidades-tab"><a href="#todasComunidades"
-			data-toggle="tab">Todas las Comunidades</a></li>
-	</ul>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#misComunidades" aria-controls="misComunidades" role="tab" data-toggle="tab">Mis Comunidades</a></li>
+    <li role="presentation"><a href="#todasComunidades" aria-controls="todasComunidades" role="tab" data-toggle="tab">Todas las Comunidades</a></li>
+  </ul>
 
-
-	<div>&nbsp;</div>
-
-	<div id="tabContent" class="tab-content">
-		<div id="misComunidades" class="tab-pane fade in active">
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane fade in active" id="misComunidades">
+    
 
 		
 
@@ -50,7 +45,7 @@
 					<td>
 						<a href="action/comunidades/editar?id=${comunidad.cnComunidad }">
 							<i class="glyphicon glyphicon-edit"  title="Consultar"></i></a> &nbsp;
-						<a data-toggle="modal" href="#modalDelete" class="delete_row" data-id="action/comunidades/eliminar?id=${comunidad.cnComunidad }">
+						<a data-toggle="modal" href="#modalDeleteGET" class="delete_row" data-id="action/comunidades/eliminar?id=${comunidad.cnComunidad }">
 							<i class="glyphicon glyphicon-remove"  title="Eliminar"></i></a>
 					</td>
 				</tr>
@@ -59,14 +54,10 @@
 	</table>
 
 </c:if>
-
-
-		</div>
-		<div id="todasComunidades" class="tab-pane fade">
-		
-		
-
-<c:if test="${listaComunidades != null && empty listaComunidades}">
+    
+    </div>
+    <div role="tabpanel" class="tab-pane fade in" id="todasComunidades">
+    <c:if test="${listaComunidades != null && empty listaComunidades}">
 	<p class="text-info">NO SE HAN ENCONTRADO RESULTADOS</p>
 </c:if>
 
@@ -92,7 +83,7 @@
 					<td>
 						<a href="action/comunidades/editar?id=${comunidad.cnComunidad }">
 							<i class="glyphicon glyphicon-edit"  title="Consultar"></i></a> &nbsp;
-						<a data-toggle="modal" href="#modalDelete" class="delete_row" data-id="action/comunidades/eliminar?id=${comunidad.cnComunidad }">
+						<a data-toggle="modal" href="#modalDeleteGET" class="delete_row" data-id="action/comunidades/eliminar?id=${comunidad.cnComunidad }">
 							<i class="glyphicon glyphicon-remove"  title="Eliminar"></i></a>
 					</td>
 				</tr>
@@ -101,16 +92,14 @@
 	</table>
 
 </c:if>
+    </div>
+  </div>
 
-		</div>
-
-	</div>
+</div>
 		
+<br/>
 
 
-
-
-<div>&nbsp;</div>
 <div>
 	<a href="action/comunidades/nuevo" class="btn btn-primary">Nueva comunidad</a>
 </div>
@@ -120,6 +109,6 @@
 
 <script>
 	$(function() {
-		$('#tabMenuComunidades a:first').tab('show');
+		/* $('#tabMenuComunidades a:first').tab('show'); */
 	})
 </script>

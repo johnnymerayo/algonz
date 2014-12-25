@@ -5,25 +5,30 @@
 	       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
 <tiles-definitions>
+	
+	<definition name="plantillaLogin" template="/WEB-INF/pages/templates/login_template.jsp">		
+		<put-attribute name="title" value="/WEB-INF/pages/blank.jsp" />
+		<put-attribute name="head" value="/WEB-INF/pages/head.jsp" />        
+        <put-attribute name="header" value="/WEB-INF/pages/header.jsp" />
+        <put-attribute name="body" value="/WEB-INF/pages/blank.jsp" />
+        <put-attribute name="foot" value="/WEB-INF/pages/blank.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/pages/blank.jsp" />
+	</definition>
 
-	<definition name="plantillaTiles" template="/WEB-INF/pages/plantillaTiles.jsp">
-		<put-attribute name="header" value="/WEB-INF/pages/head.jsp" />		
-		<put-attribute name="content" value="/WEB-INF/pages/blank.jsp" />		
+	<definition name="plantillaTiles" template="/WEB-INF/pages/templates/main_template.jsp">		
+		<put-attribute name="title" value="/WEB-INF/pages/blank.jsp" />
+        <put-attribute name="head" value="/WEB-INF/pages/head.jsp" />
+        <put-attribute name="header" value="/WEB-INF/pages/header.jsp" />
+        <put-attribute name="messages" value="/WEB-INF/pages/messages.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/pages/menu.jsp" />
+        <put-attribute name="content" value="/WEB-INF/pages/blank.jsp" />
+        <put-attribute name="foot" value="/WEB-INF/pages/blank.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/pages/footer.jsp" />	
 	</definition>
-	<definition name="plantillaLogin" template="/WEB-INF/pages/plantillaLogin.jsp">
-		<put-attribute name="header" value="/WEB-INF/pages/head.jsp" />		
-		<put-attribute name="body" value="/WEB-INF/pages/blank.jsp" />		
-	</definition>
-	
-	
-	<definition name="inicio" extends="plantillaTiles">			
-		<put-attribute name="content" value="/WEB-INF/pages/inicio.jsp" />
-	</definition>
-	
+
 	<definition name="login" extends="plantillaLogin">			
 		<put-attribute name="body" value="/WEB-INF/pages/login.jsp" />
 	</definition>
-
 		
 	<!-- Comunidad -->
 	

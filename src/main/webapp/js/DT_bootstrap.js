@@ -137,7 +137,7 @@ $(document)
 			$('#tablaAlarmas')
 			.dataTable(
 					{
-						"sDom": "<'row'<'col-6'T><'col-6'f>r>t<'row'<'col-6'i><'col-6'p>>",
+						"sDom": "<'row'<'col-xs-2'T><'col-xs-10'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
 						"sPaginationType" : "bootstrap",
 						"oLanguage" : {											
 							"sLengthMenu" : "Mostrando _MENU_ registros por página",
@@ -173,7 +173,7 @@ $(document)
 			$('#tablaMisAlarmas')
 			.dataTable(
 					{
-						"sDom": "<'row'<'col-6'T><'col-6'f>r>t<'row'<'col-6'i><'col-6'p>>",
+						"sDom": "<'row'<'col-xs-2'T><'col-xs-10'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
 						"sPaginationType" : "bootstrap",
 						"oLanguage" : {											
 							"sLengthMenu" : "Mostrando _MENU_ registros por página",
@@ -208,7 +208,7 @@ $(document)
 		$('#tablaAlarmas2')
 				.dataTable(
 						{
-							"sDom": "<'row'<'col-6'l><'col-6'f>r>t<'row'<'col-6'i><'col-6'p>>",
+							"sDom": "<'row'<'col-xs-6'l><'col-xs-6'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
 							"sPaginationType" : "bootstrap",
 							"oLanguage" : {											
 								"sLengthMenu" : "Mostrando _MENU_ registros por página",
@@ -240,7 +240,7 @@ $(document)
 		$('#tablaMisAlarmas2')
 				.dataTable(
 						{
-							"sDom": "<'row'<'col-6'l><'col-6'f>r>t<'row'<'col-6'i><'col-6'p>>",
+							"sDom": "<'row'<'col-xs-6'l><'col-xs-6'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
 							"sPaginationType" : "bootstrap",
 							"oLanguage" : {											
 								"sLengthMenu" : "Mostrando _MENU_ registros por página",
@@ -270,7 +270,7 @@ $(document)
 		$('#tablaPaginada')
 		.dataTable(
 				{
-					"sDom": "<'row'<'col-6'l><'col-6'f>r>t<'row'<'col-6'i><'col-6'p>>",
+					"sDom": "<'row'<'col-xs-6'l><'col-xs-6'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
 					"sPaginationType" : "bootstrap",
 					"oLanguage" : {											
 						"sLengthMenu" : "Mostrando _MENU_ registros por página",
@@ -299,7 +299,7 @@ $(document)
 	$('#tablaPaginada2')
 			.dataTable(
 					{
-						"sDom": "<'row'<'col-6'l><'col-6'f>r>t<'row'<'col-6'i><'col-6'p>>",
+						"sDom": "<'row'<'col-xs-6'l><'col-xs-6'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
 						"sPaginationType" : "bootstrap",
 						"oLanguage" : {											
 							"sLengthMenu" : "Mostrando _MENU_ registros por página",
@@ -329,7 +329,7 @@ $(document)
 					$('#tablaPaginada3')
 							.dataTable(
 									{
-	    								"sDom": "<'row'<'col-6'l><'col-6'f>r>t<'row'<'col-6'i><'col-6'p>>",
+	    								"sDom": "<'row'<'col-xs-6'l><'col-xs-6'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
 										"sPaginationType" : "bootstrap",
 										"oLanguage" : {											
 											"sLengthMenu" : "Mostrando _MENU_ registros por página",
@@ -359,7 +359,7 @@ $(document)
 						$('#tablaPaginada4')
 								.dataTable(
 										{
-		    								"sDom": "<'row'<'col-6'l><'col-6'f>r>t<'row'<'col-6'i><'col-6'p>>",
+		    								"sDom": "<'row'<'col-xs-6'l><'col-xs-6'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
 											"sPaginationType" : "bootstrap",
 											"oLanguage" : {											
 												"sLengthMenu" : "Mostrando _MENU_ registros por página",
@@ -389,7 +389,7 @@ $(document)
 						$('#tablaPaginada_print')
 								.dataTable(
 										{
-											"sDom": "<'row'<'col-6'T><'col-6'f>r>t<'row'<'col-6'i><'col-6'p>>",
+											"sDom": "<'row'<'col-xs-2'T><'col-xs-10'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
 											"sPaginationType" : "bootstrap",
 											"oLanguage" : {											
 												"sLengthMenu" : "Mostrando _MENU_ registros por página",
@@ -424,7 +424,7 @@ $(document)
 						$('#tablaPaginada2_print')
 						.dataTable(
 								{
-									"sDom": "<'row'<'col-6'T><'col-6'f>r>t<'row'<'col-6'i><'col-6'p>>",
+									"sDom": "<'row'<'col-xs-2'T><'col-xs-10'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
 									"sPaginationType" : "bootstrap",
 									"oLanguage" : {											
 										"sLengthMenu" : "Mostrando _MENU_ registros por página",

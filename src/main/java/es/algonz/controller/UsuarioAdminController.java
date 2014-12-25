@@ -113,9 +113,6 @@ public class UsuarioAdminController {
 				usuario.setEnabled(true);
 				usuario.setPwdSistema("42d9d2622f862cd803d4395be2c1edd362213525"); //temporal
 				usuarioManager.persist(usuario);
-				
-				
-				
 			}
 			
 

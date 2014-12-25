@@ -1,29 +1,28 @@
 <%@ include file="/WEB-INF/pages/include.jsp"%>
 
 
-<form:form class=".form-horizontal" id="mainForm"
-	modelAttribute="portal" method="POST" action="action/portales/guardar">
-	<fieldset>
-		<legend>
-		
-			Comunidad:  ${portal.comunidad.teNombre}
-			<br/>
+<p class="bs-callout bs-callout-info" role="alert"> 
+			<strong>Comunidad:</strong>  ${portal.comunidad.teNombre}
+</p>
+
+<div class="page-header">
+	<h2>
 			<c:if test='${portal.cnPortal==null}'>Nuevo Portal</c:if>
 			<c:if test='${portal.cnPortal!=null}'>
 			Portal Nº: ${portal.teNombre}
-			</c:if>
-		</legend>
-		
+			</c:if></h2>
+</div>
 
-		<!-- Muestra los mensajes de validación -->
-		<jsp:include page="../include_messages.jsp"/>
-
+<form:form class=".form-horizontal" id="mainForm"
+	modelAttribute="portal" method="POST" action="action/portales/guardar">
+	
+	
 		<form:hidden path="cnPortal" />
 		<form:hidden path="comunidad.cnComunidad" />
-
-
-
-
+		
+		<div class="panel panel-default">
+  	<div class="panel-body">
+		
 <div class="row">
 <t:input path="teCalle" label="Calle" required="true" maxlength="100" tabindex="1" gridClass="col-lg-6"/>
 <t:input path="teNombre" label="Número" required="true" maxlength="100" tabindex="2" gridClass="col-lg-3"/>
@@ -32,11 +31,10 @@
 <div class="row">
 <t:area path="teObservaciones" label="Observaciones" required="false" tabindex="3" gridClass="col-lg-12"/>
 </div>
-
-
 		
-	</fieldset>
-	
+	</div>
+
+	 <div class="panel-footer">
 		<div class="control-group" style="clear: both">
 			<div class="controls">
 				<button type="submit" class="btn btn-primary">Guardar</button>
@@ -51,19 +49,26 @@
 					-->
 			</div>
 		</div>
+	</div>
+
+</div>
 	
-<div>&nbsp;</div>
+
 		
 	<c:if test="${not empty portal.cnPortal }">	
 		
-	<fieldset>
-		<legend>
-		Predios
-		</legend>
 		
 		
-<div>&nbsp;</div>
-		
+	
+	
+	<div class="panel panel-default">
+
+	<div class="panel-heading">
+		<h3 class="panel-title">Predios</h3>
+	</div>
+
+  	<div class="panel-body">
+				
 <c:if test="${portal.predios != null && empty portal.predios}">
 	<p class="text-info">NO SE HAN ENCONTRADO RESULTADOS</p>
 </c:if>
@@ -100,7 +105,7 @@
 					<td>
 						<a href="action/predios/editar?id=${predio.cnPredio }">
 							<i class="glyphicon glyphicon-edit"  title="Consultar"></i></a> &nbsp;
-						<a data-toggle="modal" href="#modalDelete" class="delete_row" data-id="action/predios/eliminar?id=${predio.cnPredio }">
+						<a data-toggle="modal" href="#modalDeleteGET" class="delete_row" data-id="action/predios/eliminar?id=${predio.cnPredio }">
 							<i class="glyphicon glyphicon-remove"  title="Eliminar"></i></a>
 					</td>
 				</tr>
@@ -109,26 +114,23 @@
 	</table>
 
 </c:if>
-<div>&nbsp;</div>
+	</div>
 
-<div>
-	<a href="action/predios/nuevoPredio?codPortal=${portal.cnPortal}" class="btn btn-primary"> <i class="glyphicon glyphicon-plus glyphicon-white"></i> <span>Nuevo predio</span></a>
+	 <div class="panel-footer">
+			<a href="action/predios/nuevoPredio?codPortal=${portal.cnPortal}" class="btn btn-primary"> <i class="glyphicon glyphicon-plus glyphicon-white"></i> <span>Nuevo predio</span></a>
+	</div>
+
 </div>
+			
+			
+<div class="panel panel-default">
 
-		
-		</fieldset>
-	
+	<div class="panel-heading">
+		<h3 class="panel-title">Siniestros</h3>
+	</div>
 
-<div>&nbsp;</div>
+  	<div class="panel-body">
 		
-	<fieldset>
-		<legend>
-		Siniestros
-		</legend>
-		
-<div>&nbsp;</div>
-		
-
 <c:if test="${portal.siniestros != null && empty portal.siniestros}">
 	<p class="text-info">NO SE HAN ENCONTRADO RESULTADOS</p>
 </c:if>
@@ -154,7 +156,7 @@
 					<td>
 						<a href="action/siniestros/editar?id=${siniestro.cnSiniestro }">
 							<i class="glyphicon glyphicon-edit"  title="Consultar"></i></a> &nbsp;
-						<a data-toggle="modal" href="#modalDelete" class="delete_row" data-id="action/siniestros/eliminar?id=${siniestro.cnSiniestro }">
+						<a data-toggle="modal" href="#modalDeleteGET" class="delete_row" data-id="action/siniestros/eliminar?id=${siniestro.cnSiniestro }">
 							<i class="glyphicon glyphicon-remove"  title="Eliminar"></i></a>
 					</td>
 				</tr>
@@ -163,19 +165,18 @@
 	</table>
 
 </c:if>
-<div>&nbsp;</div>
-		
+	</div>
 
+	 <div class="panel-footer">
+			<a href="action/siniestros/nuevoSiniestro?codPortal=${portal.cnPortal }" class="btn btn-primary"><i class="glyphicon glyphicon-plus glyphicon-white"></i> <span>Nuevo siniestro</span></a>
+	</div>
 
-<div>
-	<a href="action/siniestros/nuevoSiniestro?codPortal=${portal.cnPortal }" class="btn btn-primary"><i class="glyphicon glyphicon-plus glyphicon-white"></i> <span>Nuevo siniestro</span></a>
 </div>
-
-		</fieldset>
+		
 		</c:if>
 		
 		
-<div>&nbsp;</div>
+
 </form:form>
 
 

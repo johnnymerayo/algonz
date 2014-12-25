@@ -25,7 +25,7 @@ import es.algonz.domain.TipoRepresentanteVO;
 @Repository(value = "TipoRepresentanteDAO")
 public class TipoRepresentanteDAOImpl implements TipoRepresentanteDAO {
 
-	private static final Log log = LogFactory
+	private static final Log LOGGER = LogFactory
 			.getLog(TipoRepresentanteDAOImpl.class);
 
 	@PersistenceContext
@@ -33,50 +33,50 @@ public class TipoRepresentanteDAOImpl implements TipoRepresentanteDAO {
 
 	@Transactional
 	public void persist(TipoRepresentanteVO transientInstance) {
-		log.debug("persisting TipoRepresentante instance");
+		LOGGER.debug("persisting TipoRepresentante instance");
 		try {
 			entityManager.persist(transientInstance);
-			log.debug("persist successful");
+			LOGGER.debug("persist successful");
 		} catch (RuntimeException re) {
-			log.error("persist failed", re);
+			LOGGER.error("persist failed", re);
 			throw re;
 		}
 	}
 
 	@Transactional
 	public void remove(TipoRepresentanteVO persistentInstance) {
-		log.debug("removing TipoRepresentante instance");
+		LOGGER.debug("removing TipoRepresentante instance");
 		try {
 			entityManager.remove(persistentInstance);
-			log.debug("remove successful");
+			LOGGER.debug("remove successful");
 		} catch (RuntimeException re) {
-			log.error("remove failed", re);
+			LOGGER.error("remove failed", re);
 			throw re;
 		}
 	}
 
 	@Transactional
 	public TipoRepresentanteVO merge(TipoRepresentanteVO detachedInstance) {
-		log.debug("merging TipoRepresentante instance");
+		LOGGER.debug("merging TipoRepresentante instance");
 		try {
 			TipoRepresentanteVO result = entityManager.merge(detachedInstance);
-			log.debug("merge successful");
+			LOGGER.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
-			log.error("merge failed", re);
+			LOGGER.error("merge failed", re);
 			throw re;
 		}
 	}
 
 	public TipoRepresentanteVO findById(Integer id) {
-		log.debug("getting TipoRepresentante instance with id: " + id);
+		LOGGER.debug("getting TipoRepresentante instance with id: " + id);
 		try {
 			TipoRepresentanteVO instance = entityManager.find(
 					TipoRepresentanteVO.class, id);
-			log.debug("get successful");
+			LOGGER.debug("get successful");
 			return instance;
 		} catch (RuntimeException re) {
-			log.error("get failed", re);
+			LOGGER.error("get failed", re);
 			throw re;
 		}
 	}
@@ -84,7 +84,7 @@ public class TipoRepresentanteDAOImpl implements TipoRepresentanteDAO {
 	@Override
 	public List<TipoRepresentanteVO> getTipoRepresentantes(
 			TipoRepresentanteVO object) {
-		log.debug("getting TipoRepresentante list ");
+		LOGGER.debug("getting TipoRepresentante list ");
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 		CriteriaQuery<TipoRepresentanteVO> cq = cb.createQuery(TipoRepresentanteVO.class);
 		Root<TipoRepresentanteVO> root = cq.from(TipoRepresentanteVO.class);

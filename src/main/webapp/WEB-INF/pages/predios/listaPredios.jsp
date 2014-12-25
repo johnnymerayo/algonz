@@ -1,9 +1,10 @@
 <%@ include file="/WEB-INF/pages/include.jsp"%>
 
-<h3>Predios</h3>
-
-		<!-- Muestra los mensajes de validación -->
-		<jsp:include page="../include_messages.jsp"/>
+<div class="page-header">
+	<h2>Predios</h2>
+</div>
+		
+		
 
 <c:if test="${listaPredios != null && empty listaPredios}">
 	<p class="text-info">NO SE HAN ENCONTRADO RESULTADOS</p>
@@ -41,7 +42,7 @@
 					<td>
 						<a href="action/predios/editar?id=${predio.cnPredio }">
 							<i class="glyphicon glyphicon-edit"  title="Consultar"></i></a> &nbsp;
-						<a data-toggle="modal" href="#modalDelete" class="delete_row" data-id="action/predios/eliminar?id=${predio.cnPredio }">
+						<a data-toggle="modal" href="#modalDeleteGET" class="delete_row" data-id="action/predios/eliminar?id=${predio.cnPredio }">
 							<i class="glyphicon glyphicon-remove"  title="Eliminar"></i></a>
 					</td>
 				</tr>
@@ -50,7 +51,7 @@
 	</table>
 
 </c:if>
-<div>&nbsp;</div>
+
 <!-- 
 <div>
 	<a href="action/predios/nuevo" class="btn btn-primary">Nuevo predio</a>

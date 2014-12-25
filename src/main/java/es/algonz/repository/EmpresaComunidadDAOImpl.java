@@ -26,7 +26,7 @@ import es.algonz.domain.EmpresaComunidadVO;
 @Repository(value = "EmpresaComunidadDAO")
 public class EmpresaComunidadDAOImpl implements EmpresaComunidadDAO{
 
-	private static final Log log = LogFactory
+	private static final Log LOGGER = LogFactory
 			.getLog(EmpresaComunidadDAOImpl.class);
 
 	@PersistenceContext
@@ -34,53 +34,53 @@ public class EmpresaComunidadDAOImpl implements EmpresaComunidadDAO{
 
 	@Transactional
 	public void persist(EmpresaComunidadVO transientInstance) {
-		log.debug("persisting EmpresaComunidad instance");
+		LOGGER.debug("persisting EmpresaComunidad instance");
 		try {
 			entityManager.persist(transientInstance);
 			entityManager.flush();
 			entityManager.refresh(transientInstance);
-			log.debug("persist successful");
+			LOGGER.debug("persist successful");
 		} catch (RuntimeException re) {
-			log.error("persist failed", re);
+			LOGGER.error("persist failed", re);
 			throw re;
 		}
 	}
 
 	@Transactional
 	public void remove(EmpresaComunidadVO persistentInstance) {
-		log.debug("removing EmpresaComunidad instance");
+		LOGGER.debug("removing EmpresaComunidad instance");
 		try {
 			entityManager.remove(persistentInstance);
 			entityManager.flush();
-			log.debug("remove successful");
+			LOGGER.debug("remove successful");
 		} catch (RuntimeException re) {
-			log.error("remove failed", re);
+			LOGGER.error("remove failed", re);
 			throw re;
 		}
 	}
 
 	@Transactional
 	public EmpresaComunidadVO merge(EmpresaComunidadVO detachedInstance) {
-		log.debug("merging EmpresaComunidad instance");
+		LOGGER.debug("merging EmpresaComunidad instance");
 		try {
 			EmpresaComunidadVO result = entityManager.merge(detachedInstance);
-			log.debug("merge successful");
+			LOGGER.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
-			log.error("merge failed", re);
+			LOGGER.error("merge failed", re);
 			throw re;
 		}
 	}
 
 	public EmpresaComunidadVO findById(Integer id) {
-		log.debug("getting EmpresaComunidad instance with id: " + id);
+		LOGGER.debug("getting EmpresaComunidad instance with id: " + id);
 		try {
 			EmpresaComunidadVO instance = entityManager.find(
 					EmpresaComunidadVO.class, id);
-			log.debug("get successful");
+			LOGGER.debug("get successful");
 			return instance;
 		} catch (RuntimeException re) {
-			log.error("get failed", re);
+			LOGGER.error("get failed", re);
 			throw re;
 		}
 	}
@@ -88,7 +88,7 @@ public class EmpresaComunidadDAOImpl implements EmpresaComunidadDAO{
 	@Override
 	public List<EmpresaComunidadVO> getEmpresasComunidad(
 			EmpresaComunidadVO object) {
-		log.debug("getting EmpresaComunidad list ");
+		LOGGER.debug("getting EmpresaComunidad list ");
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 		CriteriaQuery<EmpresaComunidadVO> cq = cb.createQuery(EmpresaComunidadVO.class);
 		Root<EmpresaComunidadVO> root = cq.from(EmpresaComunidadVO.class);

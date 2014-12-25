@@ -36,6 +36,8 @@ import net.sf.jasperreports.engine.util.JRSwapFile;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.commons.validator.GenericValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -66,6 +68,8 @@ public class PredioController implements Printable{
 	private PortalManager portalManager;
 	@Autowired
 	private CombosUtils comboUtils;
+
+	private static final Log LOGGER = LogFactory.getLog(PredioController.class);
 
 	@InitBinder(RequestKeys.PREDIO)
 	protected void predio(WebDataBinder binder) {
@@ -306,12 +310,12 @@ public class PredioController implements Printable{
         }
         catch (JRException e)
         {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(),e);
 
     		return "redirect:/action/predios/editar?id=" + codPredio;
         } catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error(e.getMessage(),e);
 
 			return "redirect:/action/predios/editar?id=" + codPredio;
 		} 
@@ -399,12 +403,12 @@ public class PredioController implements Printable{
         }
         catch (JRException e)
         {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(),e);
 
     		return "redirect:/action/predios/editar?id=" + codPredio;
         } catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error(e.getMessage(),e);
 
 			return "redirect:/action/predios/editar?id=" + codPredio;
 		} 

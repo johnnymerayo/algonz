@@ -25,63 +25,63 @@ import es.algonz.domain.PlantaVO;
 @Repository(value = "PlantaDAO")
 public class PlantaDAOImpl implements PlantaDAO{
 
-	private static final Log log = LogFactory.getLog(PlantaDAOImpl.class);
+	private static final Log LOGGER = LogFactory.getLog(PlantaDAOImpl.class);
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
 	@Transactional
 	public void persist(PlantaVO transientInstance) {
-		log.debug("persisting Planta instance");
+		LOGGER.debug("persisting Planta instance");
 		try {
 			entityManager.persist(transientInstance);
-			log.debug("persist successful");
+			LOGGER.debug("persist successful");
 		} catch (RuntimeException re) {
-			log.error("persist failed", re);
+			LOGGER.error("persist failed", re);
 			throw re;
 		}
 	}
 
 	@Transactional
 	public void remove(PlantaVO persistentInstance) {
-		log.debug("removing Planta instance");
+		LOGGER.debug("removing Planta instance");
 		try {
 			entityManager.remove(persistentInstance);
-			log.debug("remove successful");
+			LOGGER.debug("remove successful");
 		} catch (RuntimeException re) {
-			log.error("remove failed", re);
+			LOGGER.error("remove failed", re);
 			throw re;
 		}
 	}
 
 	@Transactional
 	public PlantaVO merge(PlantaVO detachedInstance) {
-		log.debug("merging Planta instance");
+		LOGGER.debug("merging Planta instance");
 		try {
 			PlantaVO result = entityManager.merge(detachedInstance);
-			log.debug("merge successful");
+			LOGGER.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
-			log.error("merge failed", re);
+			LOGGER.error("merge failed", re);
 			throw re;
 		}
 	}
 
 	public PlantaVO findById(Integer id) {
-		log.debug("getting Planta instance with id: " + id);
+		LOGGER.debug("getting Planta instance with id: " + id);
 		try {
 			PlantaVO instance = entityManager.find(PlantaVO.class, id);
-			log.debug("get successful");
+			LOGGER.debug("get successful");
 			return instance;
 		} catch (RuntimeException re) {
-			log.error("get failed", re);
+			LOGGER.error("get failed", re);
 			throw re;
 		}
 	}
 
 	@Override
 	public List<PlantaVO> getPlantas(PlantaVO object) {
-		log.debug("getting Planta list ");
+		LOGGER.debug("getting Planta list ");
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 		CriteriaQuery<PlantaVO> cq = cb.createQuery(PlantaVO.class);
 		Root<PlantaVO> root = cq.from(PlantaVO.class);

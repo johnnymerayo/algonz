@@ -1,25 +1,31 @@
 <%@ include file="/WEB-INF/pages/include.jsp"%>
 
+<p class="bs-callout bs-callout-info" role="alert"> 
+			<strong>Comunidad:</strong> ${siniestro.portal.comunidad.teNombre} 
+			<br />
+			<strong>Portal nº:</strong>	<c:if test='${siniestro.portal.teNombre!=null}'> ${siniestro.portal.teNombre}</c:if>
+		
+</p>
+
+<div class="page-header">
+	<h2>	
+			<c:if test='${siniestro.cnSiniestro==null}'>Nuevo Siniestro</c:if>
+			<c:if test='${siniestro.cnSiniestro!=null}'>Datos Siniestro: ${siniestro.teNombre}
+			</c:if>	</h2>
+</div>
+
+ 
+
 
 <form:form class=".form-horizontal" id="mainForm"
 	modelAttribute="siniestro" method="POST" action="action/siniestros/guardar">
-	<fieldset>
-		<legend>
-			Comunidad: ${siniestro.portal.comunidad.teNombre} 
-			<br />
-			Portal nº:	<c:if test='${siniestro.portal.teNombre!=null}'> ${siniestro.portal.teNombre}</c:if>
-			<br />
-			<c:if test='${siniestro.cnSiniestro==null}'>Nuevo Siniestro</c:if>
-			<c:if test='${siniestro.cnSiniestro!=null}'>Datos Siniestro: ${siniestro.teNombre}
-			</c:if>
-		</legend>
-		
-		<!-- Muestra los mensajes de validación -->
-		<jsp:include page="../include_messages.jsp"/>
-		
+	
 		<form:hidden path="cnSiniestro" />
 		<form:hidden path="portal.cnPortal" />
-
+		
+		<div class="panel panel-default">
+  	<div class="panel-body">
+		
 		<div class="row">
 
     
@@ -38,11 +44,10 @@
 <div class="row">
 			<t:area gridClass="col-lg-12" path="teObservaciones" label="Observaciones" cols="500" tabindex="9"/>
 		</div>
-	</fieldset>
-	
-	
-<div>&nbsp;</div>
+	</div>
 
+	 <div class="panel-footer">
+		
 	
 		<div class="control-group" style="clear: both">
 			<div class="controls">
@@ -56,20 +61,27 @@
 			
 			</div>
 		</div>
+	</div>
+
+</div>
 	
-<div>&nbsp;</div>
+
+	
+
+
+	
+
 
 	<c:if test="${not empty siniestro.cnSiniestro }">	
 	
-	
-	<fieldset>
-		<legend>
-			Listado de actuaciones
-		</legend>
-		
-			
-<div>&nbsp;</div>
-		
+	<div class="panel panel-default">
+
+	<div class="panel-heading">
+		<h3 class="panel-title">Listado de actuaciones</h3>
+	</div>
+
+  	<div class="panel-body">
+				
 <c:if test="${siniestro.actuaciones != null && empty siniestro.actuaciones}">
 	<p class="text-info">NO SE HAN ENCONTRADO RESULTADOS</p>
 </c:if>
@@ -102,7 +114,7 @@
 					<td>
 						<a href="action/actuaciones/editar?id=${actuacion.cnActuacion }">
 							<i class="glyphicon glyphicon-edit"  title="Consultar"></i></a> &nbsp;
-						<a data-toggle="modal" href="#modalDelete" class="delete_row" data-id="action/actuaciones/eliminar?id=${actuacion.cnActuacion }">
+						<a data-toggle="modal" href="#modalDeleteGET" class="delete_row" data-id="action/actuaciones/eliminar?id=${actuacion.cnActuacion }">
 							<i class="glyphicon glyphicon-remove"  title="Eliminar"></i></a>
 					</td>
 				</tr>
@@ -111,16 +123,17 @@
 	</table>
 
 </c:if>
-<div>&nbsp;</div>
+	</div>
 
-<div>
-	<a href="action/actuaciones/nuevo?codSiniestro=${siniestro.cnSiniestro}" class="btn btn-primary"> <i class="glyphicon glyphicon-plus glyphicon-white"></i> <span>Nueva actuación</span></a>
+	 <div class="panel-footer">
+			<a href="action/actuaciones/nuevo?codSiniestro=${siniestro.cnSiniestro}" class="btn btn-primary"> <i class="glyphicon glyphicon-plus glyphicon-white"></i> <span>Nueva actuación</span></a>
+	</div>
+
 </div>
-		
-		</fieldset>
+	
 	</c:if>
 	
-<div>&nbsp;</div>
+
 </form:form>
 
 
@@ -137,7 +150,6 @@ function cargarEmpresasComunidad(codComunidad, idTipoEmpresa) {
 				document.getElementById("empresaComunidad").options.remove(0);
 			}
 
-			$("#empresaComunidad").select2("val", "Seleccionar..."); 
 
 			document.getElementById("empresaComunidad").options.add(new Option("Seleccionar...",
 					""))
@@ -146,6 +158,9 @@ function cargarEmpresasComunidad(codComunidad, idTipoEmpresa) {
 				var d = response[i];
 				document.getElementById("empresaComunidad").options.add(new Option(d.value, d.id))
 			}
+
+
+			$("#empresaComunidad").select2("val", ""); 
 
 		}
 	});

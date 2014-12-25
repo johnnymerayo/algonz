@@ -1,10 +1,11 @@
 <%@ include file="/WEB-INF/pages/include.jsp"%>
 
-<h3>Siniestros</h3>
+<div class="page-header">
+	<h2>Siniestros</h2>
+</div>
 
-
-		<!-- Muestra los mensajes de validación -->
-		<jsp:include page="../include_messages.jsp"/>
+		
+		
 
 <c:if test="${listaSiniestros != null && empty listaSiniestros}">
 	<p class="text-info">NO SE HAN ENCONTRADO RESULTADOS</p>
@@ -35,7 +36,7 @@
 					<td>
 						<a href="action/siniestros/editar?id=${siniestro.cnSiniestro }">
 							<i class="glyphicon glyphicon-edit"  title="Consultar"></i></a> &nbsp;
-						<a data-toggle="modal" href="#modalDelete" class="delete_row" data-id="action/siniestros/eliminar?id=${siniestro.cnSiniestro }">
+						<a data-toggle="modal" href="#modalDeleteGET" class="delete_row" data-id="action/siniestros/eliminar?id=${siniestro.cnSiniestro }">
 							<i class="glyphicon glyphicon-remove"  title="Eliminar"></i></a>
 					</td>
 				</tr>
@@ -44,7 +45,7 @@
 	</table>
 
 </c:if>
-<div>&nbsp;</div>
+
 <!-- 
 <div>
 	<a href="action/siniestros/nuevo" class="btn btn-primary">Nuevo siniestro</a>

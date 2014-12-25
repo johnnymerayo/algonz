@@ -32,6 +32,8 @@ import net.sf.jasperreports.engine.util.JRSwapFile;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.commons.validator.GenericValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -63,6 +65,8 @@ public class PortalController {
 	private ComunidadManager comunidadManager;
 	@Autowired
 	private ControladorUtils controladorUtils;
+
+	private static final Log LOGGER = LogFactory.getLog(PortalController.class);
 
 	@InitBinder(RequestKeys.PORTAL)
 	protected void portal(WebDataBinder binder) {
@@ -291,12 +295,12 @@ public class PortalController {
         }
         catch (JRException e)
         {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(),e);
 
     		return "redirect:/action/portales/editar?id=" + codPortal;
         } catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error(e.getMessage(),e);
 
 			return "redirect:/action/portales/editar?id=" + codPortal;
 		} 
@@ -385,12 +389,12 @@ public class PortalController {
         }
         catch (JRException e)
         {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(),e);
 
     		return "redirect:/action/portales/editar?id=" + codPortal;
         } catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error(e.getMessage(),e);
 
 			return "redirect:/action/portales/editar?id=" + codPortal;
 		} 

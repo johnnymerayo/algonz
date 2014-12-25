@@ -25,63 +25,63 @@ import es.algonz.domain.PortalVO;
 @Repository(value = "PortalDAO")
 public class PortalDAOImpl implements PortalDAO{
 
-	private static final Log log = LogFactory.getLog(PortalDAOImpl.class);
+	private static final Log LOGGER = LogFactory.getLog(PortalDAOImpl.class);
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
 	@Transactional
 	public void persist(PortalVO transientInstance) {
-		log.debug("persisting Portal instance");
+		LOGGER.debug("persisting Portal instance");
 		try {
 			entityManager.persist(transientInstance);
-			log.debug("persist successful");
+			LOGGER.debug("persist successful");
 		} catch (RuntimeException re) {
-			log.error("persist failed", re);
+			LOGGER.error("persist failed", re);
 			throw re;
 		}
 	}
 
 	@Transactional
 	public void remove(PortalVO persistentInstance) {
-		log.debug("removing Portal instance");
+		LOGGER.debug("removing Portal instance");
 		try {
 			entityManager.remove(persistentInstance);
-			log.debug("remove successful");
+			LOGGER.debug("remove successful");
 		} catch (RuntimeException re) {
-			log.error("remove failed", re);
+			LOGGER.error("remove failed", re);
 			throw re;
 		}
 	}
 
 	@Transactional
 	public PortalVO merge(PortalVO detachedInstance) {
-		log.debug("merging Portal instance");
+		LOGGER.debug("merging Portal instance");
 		try {
 			PortalVO result = entityManager.merge(detachedInstance);
-			log.debug("merge successful");
+			LOGGER.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
-			log.error("merge failed", re);
+			LOGGER.error("merge failed", re);
 			throw re;
 		}
 	}
 
 	public PortalVO findById(Integer id) {
-		log.debug("getting Portal instance with id: " + id);
+		LOGGER.debug("getting Portal instance with id: " + id);
 		try {
 			PortalVO instance = entityManager.find(PortalVO.class, id);
-			log.debug("get successful");
+			LOGGER.debug("get successful");
 			return instance;
 		} catch (RuntimeException re) {
-			log.error("get failed", re);
+			LOGGER.error("get failed", re);
 			throw re;
 		}
 	}
 
 	@Override
 	public List<PortalVO> getPortales(PortalVO object) {
-		log.debug("getting Portal list ");
+		LOGGER.debug("getting Portal list ");
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 		CriteriaQuery<PortalVO> cq = cb.createQuery(PortalVO.class);
 		Root<PortalVO> root = cq.from(PortalVO.class);

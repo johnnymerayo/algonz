@@ -28,63 +28,63 @@ import es.algonz.domain.PredioVO;
 @Repository(value = "PredioDAO")
 public class PredioDAOImpl implements PredioDAO {
 
-	private static final Log log = LogFactory.getLog(PredioDAOImpl.class);
+	private static final Log LOGGER = LogFactory.getLog(PredioDAOImpl.class);
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
 	@Transactional
 	public void persist(PredioVO transientInstance) {
-		log.debug("persisting Predio instance");
+		LOGGER.debug("persisting Predio instance");
 		try {
 			entityManager.persist(transientInstance);
-			log.debug("persist successful");
+			LOGGER.debug("persist successful");
 		} catch (RuntimeException re) {
-			log.error("persist failed", re);
+			LOGGER.error("persist failed", re);
 			throw re;
 		}
 	}
 	
 	@Transactional
 	public void remove(PredioVO persistentInstance) {
-		log.debug("removing Predio instance");
+		LOGGER.debug("removing Predio instance");
 		try {
 			entityManager.remove(persistentInstance);
-			log.debug("remove successful");
+			LOGGER.debug("remove successful");
 		} catch (RuntimeException re) {
-			log.error("remove failed", re);
+			LOGGER.error("remove failed", re);
 			throw re;
 		}
 	}
 
 	@Transactional
 	public PredioVO merge(PredioVO detachedInstance) {
-		log.debug("merging Predio instance");
+		LOGGER.debug("merging Predio instance");
 		try {
 			PredioVO result = entityManager.merge(detachedInstance);
-			log.debug("merge successful");
+			LOGGER.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
-			log.error("merge failed", re);
+			LOGGER.error("merge failed", re);
 			throw re;
 		}
 	}
 
 	public PredioVO findById(Integer id) {
-		log.debug("getting Predio instance with id: " + id);
+		LOGGER.debug("getting Predio instance with id: " + id);
 		try {
 			PredioVO instance = entityManager.find(PredioVO.class, id);
-			log.debug("get successful");
+			LOGGER.debug("get successful");
 			return instance;
 		} catch (RuntimeException re) {
-			log.error("get failed", re);
+			LOGGER.error("get failed", re);
 			throw re;
 		}
 	}
 
 	@Override
 	public List<PredioVO> getPredios(PredioVO object) {
-		log.debug("getting Predio list ");
+		LOGGER.debug("getting Predio list ");
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 		CriteriaQuery<PredioVO> cq = cb.createQuery(PredioVO.class);
 		Root<PredioVO> root = cq.from(PredioVO.class);

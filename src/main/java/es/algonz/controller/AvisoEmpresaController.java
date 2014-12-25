@@ -30,6 +30,8 @@ import net.sf.jasperreports.engine.util.JRSwapFile;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.commons.validator.GenericValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -70,6 +72,9 @@ public class AvisoEmpresaController {
 
 	@Autowired
 	private DocumentoManager documentoManager;
+	
+
+	private static final Log LOGGER = LogFactory.getLog(AvisoEmpresaController.class);
 
 	@InitBinder(RequestKeys.AVISO_EMPRESA)
 	protected void avisoEmpresa(WebDataBinder binder) {
@@ -286,12 +291,12 @@ public class AvisoEmpresaController {
         }
         catch (JRException e)
         {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(),e);
 
             return this.editar(model, codAvisoEmpresa, session);
         } catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error(e.getMessage(),e);
 
             return this.editar(model, codAvisoEmpresa, session);
 		} 
