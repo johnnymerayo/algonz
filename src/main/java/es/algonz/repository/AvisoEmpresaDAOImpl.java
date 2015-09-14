@@ -96,6 +96,7 @@ public class AvisoEmpresaDAOImpl implements AvisoEmpresaDAO{
 		return entityManager.createQuery(cq).getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<AvisoEmpresaVO> getAvisosEmpresaProximoVencimiento() {				
 		// El aviso salta nu_dias_aviso antes de la fecha de vencimiento o bien 15 días antes si no se indica.
@@ -103,12 +104,12 @@ public class AvisoEmpresaDAOImpl implements AvisoEmpresaDAO{
 				"where fe_vencimiento <= DATE_ADD(CURDATE(),INTERVAL IFNULL (nu_dias_aviso, 0) + " + ConstantesKeys.DIAS_AVISO_ALARMAS + " DAY) " +
 				"and cn_estado <> 2 " + // Estado CERRADO no se muestran
 				"order by fe_vencimiento asc;";
-		List<AvisoEmpresaVO> resultList = entityManager.createNativeQuery(query,AvisoEmpresaVO.class).getResultList();
-		return  resultList;
+		return entityManager.createNativeQuery(query,AvisoEmpresaVO.class).getResultList();
 	
 	}
 
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<AvisoEmpresaVO> getAvisosEmpresaUsuarioProximoVencimiento(String idUsuario) {				
 		// El aviso salta nu_dias_aviso antes de la fecha de vencimiento o bien 15 días antes si no se indica.
@@ -119,12 +120,11 @@ public class AvisoEmpresaDAOImpl implements AvisoEmpresaDAO{
 				"and ec.cn_comunidad = c.cn_comunidad " +
 				"and c.idUsuario = " + idUsuario + " " +
 				"order by fe_vencimiento asc;";
-		List<AvisoEmpresaVO> resultList = entityManager.createNativeQuery(query,AvisoEmpresaVO.class).getResultList();
-		return  resultList;
-	
+		return entityManager.createNativeQuery(query,AvisoEmpresaVO.class).getResultList();
 	}
 
-	
+
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<AvisoEmpresaVO> getAvisosEmpresaAbiertas(Integer cnEmpresa) {
 		String query="select a.* from aviso_empresa a, empresa_comunidad ec " +
@@ -132,7 +132,6 @@ public class AvisoEmpresaDAOImpl implements AvisoEmpresaDAO{
 				"and a.cn_empresa_comunidad = ec.cn_empresa_comunidad " +
 				"and a.cn_estado <> 2 " + // Estado CERRADO no se muestran
 				"order by a.fe_vencimiento asc;";
-		List<AvisoEmpresaVO> resultList = entityManager.createNativeQuery(query,AvisoEmpresaVO.class).getResultList();
-		return  resultList;
+		return entityManager.createNativeQuery(query,AvisoEmpresaVO.class).getResultList();
 	}
 }

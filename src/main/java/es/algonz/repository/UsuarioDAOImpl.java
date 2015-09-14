@@ -13,9 +13,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import es.algonz.domain.ActuacionVO;
 import es.algonz.domain.UsuarioVO;
-import es.algonz.web.utils.ConstantesKeys;
 
 @Repository(value = "usuarioDAO")
 public class UsuarioDAOImpl implements UsuarioDAO

@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import es.algonz.domain.PortalVO;
 import es.algonz.domain.UsuarioVO;
 import es.algonz.repository.UsuarioDAO;
 

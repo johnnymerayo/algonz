@@ -96,6 +96,8 @@ public class ActuacionDAOImpl implements ActuacionDAO {
 		return entityManager.createQuery(cq).getResultList();
 	}
 
+
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<ActuacionVO> getActuacionesProximoVencimiento() {
 		// El aviso salta 15 días antes de la fecha de vencimiento
@@ -103,10 +105,10 @@ public class ActuacionDAOImpl implements ActuacionDAO {
 				"where fe_vencimiento <= DATE_ADD(CURDATE(),INTERVAL " + ConstantesKeys.DIAS_AVISO_SINIESTRO +" DAY) " +
 				"and cn_estado <> 2 " + // Estado CERRADO no se muestran
 				"order by fe_vencimiento asc;";
-		List<ActuacionVO> resultList = entityManager.createNativeQuery(query,ActuacionVO.class).getResultList();
-		return  resultList;
+		return entityManager.createNativeQuery(query,ActuacionVO.class).getResultList();
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<ActuacionVO> getActuacionesUsuarioProximoVencimiento(String idUsuario) {
 		// El aviso salta 15 días antes de la fecha de vencimiento
@@ -118,10 +120,10 @@ public class ActuacionDAOImpl implements ActuacionDAO {
 				"and p.cn_comunidad = c.cn_comunidad " +
 				"and c.idUsuario = " + idUsuario + " " +
 				"order by fe_vencimiento asc;";
-		List<ActuacionVO> resultList = entityManager.createNativeQuery(query,ActuacionVO.class).getResultList();
-		return  resultList;
+		return entityManager.createNativeQuery(query,ActuacionVO.class).getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<ActuacionVO> getActuacionesAbiertas(Integer cnEmpresa) {
 		String query="select a.* from actuacion a, siniestro s, empresa_comunidad ec " +
@@ -130,8 +132,7 @@ public class ActuacionDAOImpl implements ActuacionDAO {
 				"and s.cn_empresa_comunidad = ec.cn_empresa_comunidad " +
 				"and a.cn_estado <> 2 " + // Estado CERRADO no se muestran
 				"order by a.fe_vencimiento asc;";
-		List<ActuacionVO> resultList = entityManager.createNativeQuery(query,ActuacionVO.class).getResultList();
-		return  resultList;
+		return entityManager.createNativeQuery(query,ActuacionVO.class).getResultList();
 	}
 	
 	

@@ -249,11 +249,11 @@ public class PredioController implements Printable{
                 JRSwapFile swapFile = new JRSwapFile("/tmp", 1024, 100);
                 virtualizer = new JRSwapFileVirtualizer(50, swapFile, true);
 
-                Map params = new HashMap();
+                Map<String, Object> params = new HashMap<String, Object>();
                 params.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
                 
                 PredioVO predio =  predioManager.findById(new Integer(codPredio));
-                String linea1, linea2, linea3, linea4, linea5 , linea6 = ""; 
+                String linea1, linea2, linea3, linea4 = ""; 
 
     			if (GenericValidator.isBlankOrNull(predio.getTerceroByCnPropietario().getTeDireccionSecundaria())){
     			// Imprimimos la dirección primaria
@@ -345,11 +345,11 @@ public class PredioController implements Printable{
                 JRSwapFile swapFile = new JRSwapFile("/tmp", 1024, 100);
                 virtualizer = new JRSwapFileVirtualizer(50, swapFile, true);
 
-                Map params = new HashMap();
+                Map<String, Object> params = new HashMap<String, Object>();
                 params.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
                 
                 PredioVO predio =  predioManager.findById(new Integer(codPredio));
-                String linea1, linea2, linea3, linea4, linea5 , linea6 = ""; 
+                String linea1, linea2, linea3, linea4 = ""; 
 
     			if (GenericValidator.isBlankOrNull(predio.getTerceroByCnConyuge().getTeDireccionSecundaria())){
     			// Imprimimos la dirección primaria

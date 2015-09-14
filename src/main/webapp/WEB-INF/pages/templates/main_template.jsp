@@ -6,6 +6,8 @@
 
 <head>
 	<tiles:insertAttribute name="head"  />
+	
+	<title>AlGonz 2.0</title>
 
 
 <link href="css/application.css" rel="stylesheet" media="screen"/>  

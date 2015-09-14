@@ -189,7 +189,7 @@ public class PortalController {
                 JRSwapFile swapFile = new JRSwapFile("/tmp", 1024, 100);
                 virtualizer = new JRSwapFileVirtualizer(50, swapFile, true);
 
-                Map params = new HashMap();
+                Map<String, Object> params = new HashMap<String, Object>();
                 params.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
                
                 
@@ -256,7 +256,7 @@ public class PortalController {
 								.fillReport(jasperReport, params,
 										new JREmptyDataSource());
 
-						List pages = jasperPrintAux.getPages();
+						List<JRPrintPage> pages = jasperPrintAux.getPages();
 						for (int j = 0; j < pages.size(); j++) {
 							JRPrintPage object = (JRPrintPage) pages.get(j);
 							jasperPrint.addPage(object);
@@ -352,7 +352,7 @@ public class PortalController {
 				}
 
 
-                Map paramsResumen = new HashMap();
+                Map<String, Object> paramsResumen = new HashMap<String, Object>();
                 paramsResumen.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
                 BufferedImage image = ImageIO.read(Thread.currentThread().getContextClassLoader().getResource("../../images/ALGONZ-logo.jpg"));
                 paramsResumen.put("logo", image );

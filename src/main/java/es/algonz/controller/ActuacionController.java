@@ -53,7 +53,6 @@ import es.algonz.domain.ActuacionVO;
 import es.algonz.domain.DocumentoVO;
 import es.algonz.domain.FileMeta;
 import es.algonz.domain.SiniestroVO;
-import es.algonz.domain.UsuarioVO;
 import es.algonz.service.ActuacionManager;
 import es.algonz.service.DocumentoManager;
 import es.algonz.service.SiniestroManager;
@@ -254,7 +253,7 @@ public class ActuacionController {
                 JRSwapFile swapFile = new JRSwapFile("/tmp", 1024, 100);
                 virtualizer = new JRSwapFileVirtualizer(50, swapFile, true);
 
-                Map params = new HashMap();
+                Map<String, Object> params = new HashMap<String, Object>();
                 params.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
                 
 

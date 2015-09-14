@@ -275,7 +275,7 @@ public class ComunidadController {
                 JRSwapFile swapFile = new JRSwapFile("/tmp", 1024, 100);
                 virtualizer = new JRSwapFileVirtualizer(50, swapFile, true);
 
-                Map params = new HashMap();
+                Map<String, Object> params = new HashMap<String, Object>();
                 params.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
                 
 
